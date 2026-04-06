@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CGTECH — Product Catalogues</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;background:#0a0f1a;color:#e2e8f0;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 20px}
+.logo{margin-bottom:24px}
+.logo img{height:48px}
+h1{font-size:2rem;font-weight:800;margin-bottom:8px;text-align:center}
+.sub{color:#94a3b8;margin-bottom:40px;text-align:center;font-size:0.95rem}
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:700px;width:100%}
+.card{background:linear-gradient(145deg,#111827,#0f172a);border:1px solid #1e293b;border-radius:16px;padding:32px;text-decoration:none;color:#e2e8f0;transition:all 0.3s;position:relative;overflow:hidden}
+.card:hover{border-color:#01A982;transform:translateY(-4px);box-shadow:0 8px 32px rgba(1,169,130,0.15)}
+.card h2{font-size:1.2rem;margin-bottom:8px}
+.card p{color:#94a3b8;font-size:0.85rem;line-height:1.5;margin-bottom:16px}
+.card .badge{display:inline-block;padding:4px 12px;border-radius:6px;font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.5px}
+.hpe .badge{background:rgba(1,169,130,0.15);color:#01A982}
+.pa .badge{background:rgba(240,78,35,0.15);color:#F04E23}
+.card .arrow{position:absolute;bottom:20px;right:20px;color:#94a3b8;font-size:1.2rem;transition:all 0.2s}
+.card:hover .arrow{color:#01A982;transform:translateX(4px)}
+.footer{margin-top:48px;text-align:center;color:#475569;font-size:0.75rem}
+.footer a{color:#01A982;text-decoration:none}
+@media(max-width:600px){.cards{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="logo">
+  <img src="https://cdn.prod.website-files.com/6343e547ce19691304ad1712/653778abacc086dd70af097c_CGTech%20-%20Logo%20export-12.avif" alt="CGTECH">
+</div>
+<h1>Product Catalogues</h1>
+<p class="sub">Sales reference material — Compugeddon t/a CGTECH</p>
+<div class="cards">
+  <a href="hpe-catalogue.html" class="card hpe">
+    <span class="badge">HPE Gold Partner</span>
+    <h2>HPE Networking</h2>
+    <p>HPE Aruba & Juniper Networks — switches, wireless, routers, SD-WAN, security, and management. Includes BOM configurator with export.</p>
+    <span class="arrow">→</span>
+  </a>
+  <a href="paloalto-catalogue.html" class="card pa">
+    <span class="badge">PA Diamond Innovator</span>
+    <h2>Palo Alto Networks</h2>
+    <p>Network security, SASE, Cortex SecOps, cloud security, and Unit 42 services. Includes hardware comparison tool.</p>
+    <span class="arrow">→</span>
+  </a>
+</div>
+<div class="footer">
+  <p>&copy; 2026 <a href="https://www.cgtech.co.za" target="_blank">Compugeddon t/a CGTECH</a> — All rights reserved</p>
+</div>
+</body>
+</html>
