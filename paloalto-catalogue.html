@@ -23,6 +23,8 @@
   --pa-blue: #3B82F6;
   --radius: 12px;
   --transition: 0.2s ease;
+  --pa-surface: #111827;
+  --pa-bg: #0A0F1A;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -1577,6 +1579,27 @@ footer a:hover { text-decoration: underline; }
 .hw-series-row.open .hw-series-chevron{transform:rotate(90deg)}
 .hw-series-count{font-size:0.72rem;font-weight:400;color:var(--pa-muted);margin-left:4px}
 .hw-model-row-hidden{display:none}
+
+/* Toast Notifications */
+.toast-container{position:fixed;top:20px;right:20px;z-index:9999;display:flex;flex-direction:column;gap:8px;pointer-events:none}
+.toast{pointer-events:auto;padding:12px 20px;border-radius:10px;font-size:0.82rem;font-weight:500;color:#fff;background:var(--pa-card);border:1px solid var(--pa-border);box-shadow:0 4px 24px rgba(0,0,0,0.4);opacity:0;transform:translateX(40px);transition:all 0.3s ease;max-width:360px}
+.toast.show{opacity:1;transform:translateX(0)}
+.toast.success{border-color:var(--pa-green);background:rgba(34,197,94,0.15)}
+.toast.warning{border-color:var(--pa-orange);background:rgba(250,88,45,0.15)}
+.toast.error{border-color:#ef4444;background:rgba(239,68,68,0.15)}
+
+/* Image Placeholder */
+.img-placeholder{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;width:100%;height:100%;min-height:80px;color:var(--pa-muted);font-size:0.7rem;opacity:0.5}
+
+/* Collapse All button */
+.hw-collapse-all{background:none;border:1px solid var(--pa-border);color:var(--pa-muted);padding:5px 12px;border-radius:6px;cursor:pointer;font-size:0.75rem;display:inline-flex;align-items:center;gap:5px;transition:all 0.2s}
+.hw-collapse-all:hover{border-color:var(--pa-cyan);color:var(--pa-cyan)}
+
+@media(max-width:520px){
+  .bom-drawer{width:100%}
+  .toast-container{left:12px;right:12px}
+  .toast{max-width:100%}
+}
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
@@ -1966,6 +1989,28 @@ footer a:hover { text-decoration: underline; }
 // ===== VERSION =====
 const APP_VERSION = '0.7.0-alpha.4';
 const APP_BUILD_DATE = '2026-04-03';
+
+// ===== UTILITIES =====
+function escapeHtml(s){var d=document.createElement('div');d.textContent=s;return d.innerHTML}
+
+function showToast(msg,type,duration){
+  var c=document.getElementById('toastContainer');
+  if(!c){c=document.createElement('div');c.id='toastContainer';c.className='toast-container';document.body.appendChild(c)}
+  var t=document.createElement('div');t.className='toast'+(type?' '+type:'');t.textContent=msg;c.appendChild(t);
+  requestAnimationFrame(function(){requestAnimationFrame(function(){t.classList.add('show')})});
+  setTimeout(function(){t.classList.remove('show');setTimeout(function(){t.remove()},300)},duration||3000);
+}
+
+function handleImgError(el){
+  var p=el.parentElement;
+  p.innerHTML='<div class="img-placeholder"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>Image unavailable</div>';
+}
+
+var _searchDebounceTimer=null;
+function debouncedSearch(){
+  clearTimeout(_searchDebounceTimer);
+  _searchDebounceTimer=setTimeout(function(){renderSearchDropdown()},200);
+}
 
 // ===== PRODUCT DATA =====
 const products = [
@@ -4023,7 +4068,7 @@ function render() {
       // Only show images for products that have actual hardware/device photos
       const hasRealImage = p.image && p.image.length > 0 && !p.image.includes('32x32') && !p.image.includes('favicon');
       const imgHtml = hasRealImage
-        ? `<div class="card-image"><img src="${p.image}" alt="${p.name}" onerror="this.parentElement.style.display='none'"></div>`
+        ? `<div class="card-image"><img src="${p.image}" alt="${p.name}" onerror="handleImgError(this)"></div>`
         : '';
       const eolRibbon = p.eolStatus === 'End-of-Life'
         ? `<div class="eol-ribbon eol">End-of-Life</div>`
@@ -4190,7 +4235,7 @@ function openCompare(customItems) {
   <tr>
     <th style="min-width:140px">Attribute</th>
     ${items.map(p => `<th style="min-width:180px;text-align:center">
-      ${p.image ? `<img src="${p.image}" alt="${p.name}" class="compare-product-img" onerror="this.style.display='none'">` : ''}
+      ${p.image ? `<img src="${p.image}" alt="${p.name}" class="compare-product-img" onerror="handleImgError(this)">` : ''}
       <div style="font-size:0.88rem;color:#fff;font-weight:700">${p.name}</div>
       ${p.eolStatus === 'End-of-Sale' ? '<span class="compare-eol-badge eos">End-of-Sale</span>' :
         p.eolStatus === 'End-of-Life' ? '<span class="compare-eol-badge eol">End-of-Life</span>' : ''}
@@ -4282,7 +4327,7 @@ function closeCompare() {
 document.getElementById('searchInput').addEventListener('input', e => {
   searchQuery = e.target.value;
   render();
-  renderSearchDropdown();
+  debouncedSearch();
 });
 document.getElementById('searchInput').addEventListener('focus', () => { renderSearchDropdown(); });
 document.addEventListener('click', e => { if(!e.target.closest('.search-box')) closeSearchDropdown(); });
@@ -4421,7 +4466,7 @@ function saveProduct() {
   const tagline = document.getElementById('f_tagline').value.trim();
   const description = document.getElementById('f_description').value.trim();
   if (!name || !tagline || !description) {
-    alert('Please fill in Name, Tagline, and Description.');
+    showToast('Please fill in Name, Tagline, and Description','warning');
     return;
   }
   const id = document.getElementById('editingProductId').value || name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
@@ -4487,6 +4532,7 @@ function copyJSON() {
 function handleImport(event) {
   const file = event.target.files[0];
   if (!file) return;
+  if(file.size>5*1024*1024){showToast('File too large (max 5 MB)','error');event.target.value='';return}
   const reader = new FileReader();
   reader.onload = function(e) {
     try {
@@ -4502,7 +4548,7 @@ function handleImport(event) {
 }
 
 function importMerge() {
-  if (!importedData) { alert('Please select a JSON file first.'); return; }
+  if (!importedData) { showToast('Please select a JSON file first','warning'); return; }
   let added = 0, updated = 0;
   importedData.forEach(p => {
     const idx = products.findIndex(x => x.id === p.id);
@@ -4517,7 +4563,7 @@ function importMerge() {
 }
 
 function importReplace() {
-  if (!importedData) { alert('Please select a JSON file first.'); return; }
+  if (!importedData) { showToast('Please select a JSON file first','warning'); return; }
   if (!confirm('This will replace ALL current products with the imported data. Continue?')) return;
   products.length = 0;
   importedData.forEach(p => products.push(p));
@@ -4668,7 +4714,7 @@ function renderHwTable() {
     seriesMap[s].push(m);
   });
 
-  var html = '<div class="hw-results-info">Showing <span class="hw-results-count">' + models.length + '</span> model' + (models.length !== 1 ? 's' : '') + ' across <strong>' + seriesOrder.length + '</strong> series &mdash; expand a series and check models to compare side-by-side</div>';
+  var html = '<div class="hw-results-info" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px"><span>Showing <span class="hw-results-count">' + models.length + '</span> model' + (models.length !== 1 ? 's' : '') + ' across <strong>' + seriesOrder.length + '</strong> series &mdash; expand a series and check models to compare side-by-side</span><button class="hw-collapse-all" onclick="hwCollapseAll()"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg> Collapse All</button></div>';
   html += '<div class="hw-table-wrap"><table class="hw-table"><thead><tr><th style="width:40px"></th><th>Model</th><th>FW Throughput</th><th>Threat Prev.</th><th>IPSec VPN</th><th>CPS</th><th>Max Sessions</th></tr></thead><tbody>';
 
   seriesOrder.forEach(function(seriesName) {
@@ -4716,6 +4762,12 @@ function toggleHwSeries(seriesId) {
     if (headerRow) headerRow.classList.remove('open');
     rows.forEach(function(r){ r.classList.add('hw-model-row-hidden'); });
   }
+}
+
+function hwCollapseAll() {
+  Object.keys(hwExpandedSeries).forEach(function(k){ hwExpandedSeries[k]=false; });
+  document.querySelectorAll('.hw-series-row.open').forEach(function(r){ r.classList.remove('open'); });
+  document.querySelectorAll('tr[data-series]').forEach(function(r){ r.classList.add('hw-model-row-hidden'); });
 }
 
 function toggleHwModelSelect(pid) {
@@ -5438,6 +5490,7 @@ function getBomExportData() {
 
 // ── CSV Export ──────────────────────────────────────────────
 function exportCSV() {
+  try{
   var d = getBomExportData();
   var esc = function(v) { var s = String(v||''); return s.includes(',') || s.includes('"') || s.includes('\n') ? '"'+s.replace(/"/g,'""')+'"' : s; };
   var csv = 'Palo Alto Networks - Bill of Materials\n';
@@ -5454,10 +5507,12 @@ function exportCSV() {
   a.click();
   closeExportDialog();
   showBomToast('CSV exported');
+  }catch(err){showToast('CSV export failed: '+err.message,'error')}
 }
 
 // ── Excel Export ────────────────────────────────────────────
 function exportXLSX() {
+  try{
   var d = getBomExportData();
   // Use HTML-blob approach for full cell styling (Excel opens HTML tables natively)
   var accent = '#1E50A2', accent2 = '#0E3478', altRow = '#EEF3FB';
@@ -5520,10 +5575,12 @@ function exportXLSX() {
   a.click();
   closeExportDialog();
   showBomToast('Excel exported');
+  }catch(err){showToast('Excel export failed: '+err.message,'error')}
 }
 
 // ── Word Export (HTML Blob) ─────────────────────────────────
 function exportDOCX() {
+  try{
   var d = getBomExportData();
   var html = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40">' +
 '<head><meta charset="utf-8"><style>' +
@@ -5567,11 +5624,13 @@ function exportDOCX() {
   a.click();
   closeExportDialog();
   showBomToast('Word document exported');
+  }catch(err){showToast('Word export failed: '+err.message,'error')}
 }
 
 // ── PDF Export ──────────────────────────────────────────────
 function exportPDF() {
-  if(typeof jspdf === 'undefined' && typeof window.jspdf === 'undefined') { showBomToast('PDF library loading...','warning'); return; }
+  if(typeof jspdf === 'undefined' && typeof window.jspdf === 'undefined') { showToast('PDF library not loaded — check your connection','error'); return; }
+  try{
   var jsPDF = window.jspdf.jsPDF;
   var d = getBomExportData();
   var doc = new jsPDF('p','mm','a4');
@@ -5732,6 +5791,7 @@ function exportPDF() {
   doc.save('BOM-' + (d.meta.projectName.replace(/[^a-zA-Z0-9]/g,'-')||'export') + '-' + d.meta.date + '.pdf');
   closeExportDialog();
   showBomToast('PDF exported');
+  }catch(err){showToast('PDF export failed: '+err.message,'error')}
 }
 
 // ── Email Compose (RFQ to Distributor) ──────────────────────
@@ -5872,7 +5932,7 @@ function openSeriesPage(productId) {
   var html = '';
   // Hero
   html += '<div class="series-hero">';
-  if(imgUrl) html += '<div class="series-hero-img"><img src="' + imgUrl + '" alt="' + p.name + '" onerror="this.parentElement.style.display=\'none\'"></div>';
+  if(imgUrl) html += '<div class="series-hero-img"><img src="' + imgUrl + '" alt="' + p.name + '" onerror="handleImgError(this)"></div>';
   html += '<div class="series-hero-info">';
   html += '<div style="display:flex;gap:8px;margin-bottom:6px"><span class="card-badge ' + getBadgeClass(p.category) + '">' + p.badge + '</span></div>';
   html += '<h1>' + p.name + '</h1>';
@@ -5893,7 +5953,7 @@ function openSeriesPage(productId) {
     html += '<div class="series-models-grid">';
     p.models.forEach(function(m, i) {
       html += '<div class="model-card">';
-      if(imgUrl) html += '<div class="model-card-img"><img src="' + imgUrl + '" alt="' + m.model + '" onerror="this.parentElement.style.display=\'none\'"></div>';
+      if(imgUrl) html += '<div class="model-card-img"><img src="' + imgUrl + '" alt="' + m.model + '" onerror="handleImgError(this)"></div>';
       html += '<div class="model-card-body">';
       html += '<h3>' + m.model + '</h3>';
       if(m.sku) html += '<div class="model-sku">' + m.sku + '</div>';
@@ -5968,7 +6028,7 @@ function renderSearchDropdown() {
   var html = '';
   results.slice(0,12).forEach(function(r) {
     var p = r.product;
-    var imgHtml = p.image ? '<img src="' + p.image + '" alt="" onerror="this.style.display=\'none\'">' : '';
+    var imgHtml = p.image ? '<img src="' + p.image + '" alt="" onerror="handleImgError(this)">' : '';
     if(r.type === 'model') {
       var m = r.model;
       html += '<div class="search-dropdown-item" onclick="openSeriesPage(\'' + p.id + '\');closeSearchDropdown()">';

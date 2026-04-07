@@ -162,6 +162,21 @@ a{color:var(--hpe-green);text-decoration:none}a:hover{text-decoration:underline}
 .cmp-model-desc{color:var(--hpe-muted);font-size:0.72rem}
 [data-theme="light"] .cmp-model-item{border-bottom-color:rgba(0,0,0,0.06)}
 
+/* Toast Notifications */
+.toast-container{position:fixed;top:20px;right:20px;z-index:9999;display:flex;flex-direction:column;gap:8px;pointer-events:none}
+.toast{pointer-events:auto;padding:12px 20px;border-radius:10px;font-size:0.82rem;font-weight:500;color:#fff;background:var(--hpe-surface);border:1px solid var(--hpe-border);box-shadow:0 4px 24px rgba(0,0,0,0.4);opacity:0;transform:translateX(40px);transition:all 0.3s ease;max-width:360px}
+.toast.show{opacity:1;transform:translateX(0)}
+.toast.success{border-color:var(--hpe-green);background:rgba(1,169,130,0.15)}
+.toast.warning{border-color:var(--hpe-orange);background:rgba(255,131,0,0.15)}
+.toast.error{border-color:#ef4444;background:rgba(239,68,68,0.15)}
+[data-theme="light"] .toast{background:#fff;box-shadow:0 4px 16px rgba(0,0,0,0.12)}
+
+/* Image Placeholder */
+.img-placeholder{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;width:100%;height:100%;min-height:80px;color:var(--hpe-muted);font-size:0.7rem;opacity:0.5}
+
+/* Light mode hero */
+[data-theme="light"] .hero h1{background:linear-gradient(135deg,#1e293b 0%,var(--hpe-green) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+
 /* Admin */
 .admin-toggle{position:fixed;bottom:20px;right:20px;width:48px;height:48px;border-radius:50%;background:var(--hpe-green);border:none;color:#000;font-size:1.3rem;cursor:pointer;box-shadow:var(--shadow);z-index:800;transition:transform 0.2s}
 .admin-toggle:hover{transform:scale(1.1)}
@@ -192,8 +207,13 @@ footer a{color:var(--hpe-green)}
   .hero h1{font-size:1.6rem}
   .grid{grid-template-columns:1fr}
   .stats{gap:24px}
-  .admin-panel{right:8px;left:8px;width:auto}
+  .admin-panel{right:8px;left:8px;width:auto;max-width:calc(100vw - 16px)}
   .modal{padding:24px}
+}
+@media(max-width:520px){
+  .bom-drawer{width:100%}
+  .toast-container{left:12px;right:12px}
+  .toast{max-width:100%}
 }
 
 /* BOM FAB Button */
@@ -1137,6 +1157,30 @@ const CATEGORIES = [
 // Tags removed
 
 // ═══════════════════════════════════════════════════════════════════
+// UTILITIES
+// ═══════════════════════════════════════════════════════════════════
+function escapeHtml(s){var d=document.createElement('div');d.textContent=s;return d.innerHTML}
+
+function showToast(msg,type,duration){
+  var c=document.getElementById('toastContainer');
+  if(!c){c=document.createElement('div');c.id='toastContainer';c.className='toast-container';document.body.appendChild(c)}
+  var t=document.createElement('div');t.className='toast'+(type?' '+type:'');t.textContent=msg;c.appendChild(t);
+  requestAnimationFrame(function(){requestAnimationFrame(function(){t.classList.add('show')})});
+  setTimeout(function(){t.classList.remove('show');setTimeout(function(){t.remove()},300)},duration||3000);
+}
+
+function handleImgError(el){
+  var p=el.parentElement;
+  p.innerHTML='<div class="img-placeholder"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>Image unavailable</div>';
+}
+
+var _searchDebounceTimer=null;
+function debouncedSearch(){
+  clearTimeout(_searchDebounceTimer);
+  _searchDebounceTimer=setTimeout(function(){renderSearchDropdown()},200);
+}
+
+// ═══════════════════════════════════════════════════════════════════
 // INIT
 // ═══════════════════════════════════════════════════════════════════
 function loadProducts(){
@@ -1154,7 +1198,7 @@ function init(){
   renderRecentlyViewed();
   updateStats();
   var searchEl = document.getElementById('searchInput');
-  searchEl.addEventListener('input', function() { renderGrid(); renderSearchDropdown(); });
+  searchEl.addEventListener('input', function() { renderGrid(); debouncedSearch(); });
   searchEl.addEventListener('focus', function() { if(searchEl.value.trim().length > 0) renderSearchDropdown(); });
   document.addEventListener('click', function(e) { if(!e.target.closest('.search-wrap')) closeSearchDropdown(); });
   // Version display with runtime deploy info
@@ -1230,7 +1274,7 @@ function renderSearchDropdown() {
     results.filter(function(r){return r.type==='series';}).forEach(function(r) {
       var img = imgMap[r.id] || r.product.imageUrl || '';
       html += '<div class="search-dropdown-item" onclick="closeSearchDropdown();openSeriesPage(\'' + r.id + '\')">';
-      if(img) html += '<img src="' + img + '" alt="" loading="lazy" onerror="this.style.display=\'none\'">';
+      if(img) html += '<img src="' + img + '" alt="" loading="lazy" onerror="handleImgError(this)">';
       html += '<div class="search-dd-info"><div class="search-dd-name">' + highlightMatch(r.name, q) + '</div>';
       if(r.sku) html += '<div class="search-dd-sku">' + highlightMatch(r.sku, q) + '</div>';
       html += '<div class="search-dd-meta">' + r.desc.substring(0,60) + '</div></div>';
@@ -1243,7 +1287,7 @@ function renderSearchDropdown() {
     results.filter(function(r){return r.type==='model';}).forEach(function(r) {
       var img = imgMap[r.id] || r.product.imageUrl || '';
       html += '<div class="search-dropdown-item" onclick="closeSearchDropdown();openSeriesPage(\'' + r.id + '\')">';
-      if(img) html += '<img src="' + img + '" alt="" loading="lazy" onerror="this.style.display=\'none\'">';
+      if(img) html += '<img src="' + img + '" alt="" loading="lazy" onerror="handleImgError(this)">';
       html += '<div class="search-dd-info"><div class="search-dd-name">' + highlightMatch(r.name, q) + '</div>';
       html += '<div class="search-dd-sku">' + highlightMatch(r.sku, q) + '</div>';
       html += '<div class="search-dd-meta">' + r.desc.substring(0,60) + '</div></div>';
@@ -1303,7 +1347,7 @@ function renderGrid(){
     return `
     <div class="card" onclick="openSeriesPage('${p.id}')">
       <button class="btn-compare ${isCompared?'selected':''}" onclick="event.stopPropagation();toggleCompare('${p.id}')" title="Add to comparison">${isCompared?'&#10003; Added':'+ Compare'}</button>
-      ${imgUrl&&p.category!=='services'?`<div class="card-img-wrap"><img src="${imgUrl}" alt="${p.name}" class="card-img" loading="lazy" onerror="this.parentElement.style.display='none'"></div>`:''}
+      ${imgUrl&&p.category!=='services'?`<div class="card-img-wrap"><img src="${imgUrl}" alt="${p.name}" class="card-img" loading="lazy" onerror="handleImgError(this)"></div>`:''}
       <div class="card-brand ${p.brand}">${p.brand==='aruba'?'HPE Aruba Networking':'Juniper Networks'}</div>
       <h3>${p.name}</h3>
       ${p.sku ? `<div style="font-size:0.65rem;color:var(--hpe-muted);margin-top:2px;font-family:monospace">${p.sku}</div>` : ''}
@@ -1334,7 +1378,7 @@ function openModal(id){
   const mImgUrl=PRODUCT_IMAGES[p.id]||p.imageUrl||'';
   document.getElementById('modalContent').innerHTML=`
     <button class="modal-close" onclick="closeModal()">&times;</button>
-    ${mImgUrl&&p.category!=='services'?`<div class="modal-img-wrap"><img src="${mImgUrl}" alt="${p.name}" class="modal-img" loading="lazy" onerror="this.parentElement.style.display='none'"></div>`:''}
+    ${mImgUrl&&p.category!=='services'?`<div class="modal-img-wrap"><img src="${mImgUrl}" alt="${p.name}" class="modal-img" loading="lazy" onerror="handleImgError(this)"></div>`:''}
     <div class="modal-brand" style="color:${p.brand==='aruba'?'var(--hpe-green)':'var(--hpe-teal)'}">${p.brand==='aruba'?'HPE Aruba Networking':'Juniper Networks'}</div>
     <h2>${p.name}</h2>
     ${p.sku ? `<div style="font-size:0.8rem;color:var(--hpe-muted);margin-top:4px;font-family:monospace">SKU: ${p.sku}</div>` : ''}
@@ -1431,7 +1475,7 @@ function renderRecentlyViewed() {
 function toggleCompare(id){
   if(compareSet.has(id))compareSet.delete(id);
   else if(compareSet.size<5)compareSet.add(id);
-  else{alert('Maximum 5 products for comparison');return}
+  else{showToast('Maximum 5 products for comparison','warning');return}
   updateCompareBar();renderGrid();
 }
 
@@ -1442,7 +1486,7 @@ function updateCompareBar(){
 }
 
 function showComparison(){
-  if(compareSet.size<2){alert('Select at least 2 products');return}
+  if(compareSet.size<2){showToast('Select at least 2 products','warning');return}
   const items=[...compareSet].map(id=>products.find(p=>p.id===id)).filter(Boolean);
   /* Build Models cell HTML for each product */
   function modelsCell(p,idx){
@@ -1474,7 +1518,7 @@ function showComparison(){
     ['Licensing',items.map(p=>p.licensing||'N/A')]
   ];
   const table=document.getElementById('compareTable');
-  table.innerHTML=`<thead><tr><th>Feature</th>${items.map(p=>`<th>${p.name}</th>`).join('')}</tr></thead><tbody>${rows.map(([label,vals])=>`<tr><td style="color:#fff;font-weight:600">${label}</td>${vals.map(v=>`<td>${v}</td>`).join('')}</tr>`).join('')}</tbody>`;
+  table.innerHTML=`<thead><tr><th>Feature</th>${items.map(p=>`<th>${p.name}</th>`).join('')}</tr></thead><tbody>${rows.map(([label,vals])=>`<tr><td style="color:var(--hpe-text);font-weight:600">${label}</td>${vals.map(v=>`<td>${v}</td>`).join('')}</tr>`).join('')}</tbody>`;
   document.getElementById('compareWrap').classList.add('show');
   document.getElementById('compareWrap').scrollIntoView({behavior:'smooth'});
 }
@@ -1505,7 +1549,7 @@ function renderAdminList(){
 
 function adminSave(){
   const name=document.getElementById('adName').value.trim();
-  if(!name){alert('Product name required');return}
+  if(!name){showToast('Product name required','warning');return}
   const p={
     id:'custom-'+Date.now(),
     name,
@@ -1559,13 +1603,14 @@ function adminExport(){
 
 function adminImport(e){
   const file=e.target.files[0];if(!file)return;
+  if(file.size>5*1024*1024){showToast('File too large (max 5 MB)','error');e.target.value='';return}
   const reader=new FileReader();
   reader.onload=function(ev){
     try{
       const data=JSON.parse(ev.target.result);
-      if(Array.isArray(data)){products=data;saveProducts();renderGrid();updateStats();renderAdminList();alert('Imported '+data.length+' products')}
-      else alert('Invalid format');
-    }catch(err){alert('Error: '+err.message)}
+      if(Array.isArray(data)){products=data;saveProducts();renderGrid();updateStats();renderAdminList();showToast('Imported '+data.length+' products','success')}
+      else showToast('Invalid format — expected JSON array','error');
+    }catch(err){showToast('Import failed: '+err.message,'error')}
   };
   reader.readAsText(file);
   e.target.value='';
@@ -2347,6 +2392,7 @@ function getBomExportData() {
 
 // ── CSV Export ────────────────────────────────────────────────
 function exportCSV() {
+  try{
   var d = getBomExportData();
   var esc = function(v) { var s = String(v||''); return s.includes(',') || s.includes('"') || s.includes('\n') ? '"'+s.replace(/"/g,'""')+'"' : s; };
   var csv = 'HPE Networking - Bill of Materials\n';
@@ -2365,10 +2411,12 @@ function exportCSV() {
   a.click();
   closeExportDialog();
   showBomToast('CSV exported');
+  }catch(err){showToast('CSV export failed: '+err.message,'error')}
 }
 
 // ── Excel Export ──────────────────────────────────────────────
 function exportXLSX() {
+  try{
   var d = getBomExportData();
   var accent = '#1E50A2', accent2 = '#0E3478', altRow = '#EEF3FB';
   var catOrder = ['Switches','Wireless','Routers','SD-WAN','Security','Firewalls','Management & AI','Software & OS','Services'];
@@ -2448,10 +2496,12 @@ function exportXLSX() {
   a.click();
   closeExportDialog();
   showBomToast('Excel exported');
+  }catch(err){showToast('Excel export failed: '+err.message,'error')}
 }
 
 // ── Word Export (HTML Blob) ──────────────────────────────────
 function exportDOCX() {
+  try{
   var d = getBomExportData();
   var html = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40">' +
 '<head><meta charset="utf-8"><style>' +
@@ -2501,11 +2551,13 @@ function exportDOCX() {
   a.click();
   closeExportDialog();
   showBomToast('Word document exported');
+  }catch(err){showToast('Word export failed: '+err.message,'error')}
 }
 
 // ── PDF Export ────────────────────────────────────────────────
 function exportPDF() {
-  if(typeof jspdf === 'undefined' && typeof window.jspdf === 'undefined') { showBomToast('PDF library loading...','warning'); return; }
+  if(typeof jspdf === 'undefined' && typeof window.jspdf === 'undefined') { showToast('PDF library not loaded — check your connection','error'); return; }
+  try{
   var jsPDF = window.jspdf.jsPDF;
   var d = getBomExportData();
   var doc = new jsPDF('p','mm','a4');
@@ -2682,6 +2734,7 @@ function exportPDF() {
   doc.save('BOM-' + (d.meta.projectName.replace(/[^a-zA-Z0-9]/g,'-')||'export') + '-' + d.meta.date + '.pdf');
   closeExportDialog();
   showBomToast('PDF exported');
+  }catch(err){showToast('PDF export failed: '+err.message,'error')}
 }
 
 // ── Email Compose (RFQ to Distributor) ───────────────────────
@@ -2854,10 +2907,10 @@ function openSeriesPage(productId) {
   var html = '';
   // Hero
   html += '<div class="series-hero">';
-  if(imgUrl) html += '<div class="series-hero-img"><img src="' + imgUrl + '" alt="' + p.name + '" loading="lazy" onerror="this.parentElement.style.display=\'none\'"></div>';
+  if(imgUrl) html += '<div class="series-hero-img"><img src="' + imgUrl + '" alt="' + p.name + '" loading="lazy" onerror="handleImgError(this)"></div>';
   html += '<div class="series-hero-info">';
   html += '<div style="display:flex;gap:8px;margin-bottom:6px"><span style="padding:3px 10px;border-radius:4px;font-size:0.7rem;font-weight:700;background:' + (p.brand==='aruba'?'rgba(1,169,130,0.15);color:#01A982':'rgba(0,115,157,0.15);color:#00739D') + '">' + (p.brand==='aruba'?'HPE Aruba':'Juniper') + '</span></div>';
-  html += '<h1>' + p.name + '</h1>';
+  html += '<h2 style="font-size:1.6rem;margin:0">' + p.name + '</h2>';
   html += '<div class="tagline">' + p.tagline + '</div>';
   if(p.sku) html += '<div class="sku-badge">SKU: ' + p.sku + '</div>';
   // For non-hardware products, put BOM button + links inside the hero
@@ -2876,7 +2929,7 @@ function openSeriesPage(productId) {
     html += '<div class="series-models-grid">';
     p.models.forEach(function(m, i) {
       html += '<div class="model-card">';
-      if(imgUrl) html += '<div class="model-card-img"><img src="' + imgUrl + '" alt="' + m.model + '" loading="lazy" onerror="this.parentElement.style.display=\'none\'"></div>';
+      if(imgUrl) html += '<div class="model-card-img"><img src="' + imgUrl + '" alt="' + m.model + '" loading="lazy" onerror="handleImgError(this)"></div>';
       html += '<div class="model-card-body">';
       html += '<h3>' + m.model + '</h3>';
       html += '<div class="model-sku">' + m.sku + '</div>';
