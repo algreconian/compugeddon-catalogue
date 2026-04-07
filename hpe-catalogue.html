@@ -149,6 +149,18 @@ a{color:var(--hpe-green);text-decoration:none}a:hover{text-decoration:underline}
 .compare-table th,.compare-table td{padding:12px 16px;border:1px solid var(--hpe-border);text-align:left;vertical-align:top}
 .compare-table th{background:var(--hpe-surface2);color:var(--hpe-green);font-weight:700;text-transform:uppercase;font-size:0.75rem;letter-spacing:1px}
 .compare-table td{color:var(--hpe-muted)}
+.cmp-models-toggle{display:inline-flex;align-items:center;gap:6px;cursor:pointer;color:var(--hpe-green);font-weight:600;font-size:0.82rem;user-select:none;transition:color 0.2s}
+.cmp-models-toggle:hover{color:var(--hpe-green-light)}
+.cmp-models-toggle .cmp-chevron{display:inline-block;font-size:0.7rem;transition:transform 0.25s ease}
+.cmp-models-toggle.open .cmp-chevron{transform:rotate(90deg)}
+.cmp-models-tree{max-height:0;overflow:hidden;transition:max-height 0.35s ease;margin-top:0}
+.cmp-models-tree.open{margin-top:8px}
+.cmp-model-item{display:flex;align-items:baseline;gap:6px;padding:5px 0;border-bottom:1px solid rgba(255,255,255,0.04);font-size:0.78rem}
+.cmp-model-item:last-child{border-bottom:none}
+.cmp-model-name{color:var(--hpe-text);font-weight:600}
+.cmp-model-sku{font-family:'Consolas','Courier New',monospace;color:var(--hpe-green);font-size:0.7rem}
+.cmp-model-desc{color:var(--hpe-muted);font-size:0.72rem}
+[data-theme="light"] .cmp-model-item{border-bottom-color:rgba(0,0,0,0.06)}
 
 /* Admin */
 .admin-toggle{position:fixed;bottom:20px;right:20px;width:48px;height:48px;border-radius:50%;background:var(--hpe-green);border:none;color:#000;font-size:1.3rem;cursor:pointer;box-shadow:var(--shadow);z-index:800;transition:transform 0.2s}
@@ -1432,9 +1444,30 @@ function updateCompareBar(){
 function showComparison(){
   if(compareSet.size<2){alert('Select at least 2 products');return}
   const items=[...compareSet].map(id=>products.find(p=>p.id===id)).filter(Boolean);
+  /* Build Models cell HTML for each product */
+  function modelsCell(p,idx){
+    if(!p.models||!p.models.length) return '<span style="color:var(--hpe-muted)">—</span>';
+    const count=p.models.length;
+    const treeId='cmpTree_'+idx;
+    const togId='cmpTog_'+idx;
+    let html='<span class="cmp-models-toggle" id="'+togId+'" onclick="toggleCmpModels(\''+treeId+'\',\''+togId+'\')">';
+    html+='<span class="cmp-chevron">&#9654;</span> '+count+' model'+(count>1?'s':'');
+    html+='</span>';
+    html+='<div class="cmp-models-tree" id="'+treeId+'">';
+    p.models.forEach(function(m){
+      html+='<div class="cmp-model-item">';
+      html+='<span class="cmp-model-name">'+m.model+'</span> ';
+      html+='<span class="cmp-model-sku">'+m.sku+'</span>';
+      if(m.desc) html+='<div class="cmp-model-desc">'+m.desc+'</div>';
+      html+='</div>';
+    });
+    html+='</div>';
+    return html;
+  }
   const rows=[
     ['Brand',items.map(p=>p.brand==='aruba'?'HPE Aruba':'Juniper')],
     ['Category',items.map(p=>(CATEGORIES.find(c=>c.id===p.category)?.label||p.category))],
+    ['Models',items.map((p,i)=>modelsCell(p,i))],
     ['Deployment',items.map(p=>(p.tags||[]).join(', '))],
     ['Key Specs',items.map(p=>(p.specs||[]).map(s=>'&bull; '+s).join('<br>'))],
     ['Use Cases',items.map(p=>(p.useCases||[]).join(', '))],
@@ -1444,6 +1477,13 @@ function showComparison(){
   table.innerHTML=`<thead><tr><th>Feature</th>${items.map(p=>`<th>${p.name}</th>`).join('')}</tr></thead><tbody>${rows.map(([label,vals])=>`<tr><td style="color:#fff;font-weight:600">${label}</td>${vals.map(v=>`<td>${v}</td>`).join('')}</tr>`).join('')}</tbody>`;
   document.getElementById('compareWrap').classList.add('show');
   document.getElementById('compareWrap').scrollIntoView({behavior:'smooth'});
+}
+function toggleCmpModels(treeId,togId){
+  const tree=document.getElementById(treeId);
+  const tog=document.getElementById(togId);
+  const isOpen=tree.classList.toggle('open');
+  tog.classList.toggle('open',isOpen);
+  tree.style.maxHeight=isOpen?(tree.scrollHeight+'px'):'0';
 }
 
 function clearComparison(){
