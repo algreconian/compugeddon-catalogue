@@ -25,27 +25,6 @@
   --transition: 0.2s ease;
 }
 
-[data-theme="light"] {
-  --pa-dark: #FFFFFF;
-  --pa-darker: #F8FAFC;
-  --pa-card: #FFFFFF;
-  --pa-card-hover: #F1F5F9;
-  --pa-border: #E2E8F0;
-  --pa-text: #1E293B;
-  --pa-muted: #64748B;
-}
-[data-theme="light"] body { background: var(--pa-darker); color: var(--pa-text); }
-[data-theme="light"] .hero { background: linear-gradient(135deg, #F8FAFC 0%, #FFFFFF 50%, #F1F5F9 100%); }
-[data-theme="light"] .hero h1 { background: linear-gradient(135deg, #1E293B 0%, #475569 100%); -webkit-background-clip: text; background-clip: text; }
-[data-theme="light"] .card-image, [data-theme="light"] .series-hero-img, [data-theme="light"] .model-card-img { background: #F1F5F9; }
-[data-theme="light"] .card-image img, [data-theme="light"] .series-hero-img img, [data-theme="light"] .model-card-img img { mix-blend-mode: multiply; }
-[data-theme="light"] ::-webkit-scrollbar-track { background: #F1F5F9; }
-[data-theme="light"] ::-webkit-scrollbar-thumb { background: #CBD5E1; }
-[data-theme="light"] .bom-fab { box-shadow: 0 4px 16px rgba(0,0,0,0.15); }
-
-.theme-toggle{position:fixed;bottom:90px;right:24px;z-index:500;width:44px;height:44px;border-radius:50%;background:var(--pa-card);border:1px solid var(--pa-border);color:var(--pa-text);font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.2s;box-shadow:0 2px 8px rgba(0,0,0,0.3)}
-.theme-toggle:hover{transform:scale(1.1);border-color:var(--pa-cyan)}
-
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
@@ -298,7 +277,6 @@ body {
   mix-blend-mode: lighten;
 }
 .product-card:hover .card-image img { transform: scale(1.05); }
-.card-image.placeholder-cat svg { width: 60%; height: 80%; }
 .card-image .placeholder-icon {
   font-size: 48px;
   opacity: 0.3;
@@ -342,8 +320,6 @@ body {
 }
 .eol-ribbon.eos { background: rgba(251,191,36,0.2); color: #FBBF24; border-left: 2px solid #FBBF24; }
 .eol-ribbon.eol { background: rgba(156,163,175,0.15); color: #9CA3AF; border-left: 2px solid #6B7280; }
-.eol-ribbon.eos-soon { background: rgba(239,68,68,0.25); color: #FCA5A5; border-left: 2px solid #EF4444; font-weight: 700; animation: pulse-warn 2s ease-in-out infinite; }
-@keyframes pulse-warn { 0%,100% { opacity: 1; } 50% { opacity: 0.6; } }
 
 /* EOL notice box in modal */
 .eol-notice {
@@ -1436,15 +1412,6 @@ footer a:hover { text-decoration: underline; }
 .bom-notes-toggle:hover{color:var(--pa-cyan)}
 .bom-notes-input{width:100%;margin-top:4px;padding:5px 7px;background:var(--pa-darker);border:1px solid var(--pa-border);border-radius:5px;color:var(--pa-text);font-size:0.72rem;resize:vertical;min-height:24px;font-family:inherit}
 
-/* BOM Sub-items (licenses under hardware) */
-.bom-subitem{margin-left:16px;padding-left:12px;border-left:2px solid var(--pa-border)}
-.bom-subitem.bom-required{border-left-color:var(--pa-orange)}
-.bom-subitem-add{margin-left:16px;padding:4px 0 8px 12px;border-left:2px solid var(--pa-border)}
-.bom-lic-add{display:block;width:100%;text-align:left;padding:4px 8px;margin:2px 0;background:transparent;border:1px dashed var(--pa-border);border-radius:5px;color:var(--pa-cyan);font-size:0.68rem;font-weight:600;cursor:pointer;transition:all 0.15s;font-family:inherit}
-.bom-lic-add:hover{background:rgba(0,192,232,0.08);border-color:var(--pa-cyan)}
-.bom-lic-badge{font-size:0.55rem;padding:1px 5px;border-radius:3px;margin-left:4px;font-weight:700;vertical-align:middle}
-.bom-lic-badge.rec{background:rgba(250,88,45,0.15);color:var(--pa-orange)}
-
 /* BOM Summary */
 .bom-summary{padding-top:12px}
 .bom-summary-row{display:flex;justify-content:space-between;padding:6px 0;font-size:0.85rem;color:var(--pa-text)}
@@ -1623,7 +1590,6 @@ footer a:hover { text-decoration: underline; }
 </div>
 
 <!-- MAIN CONTENT -->
-<div id="recentlyViewed" style="max-width:1400px;margin:0 auto;padding:16px 24px 0;display:none"></div>
 <div class="main" id="mainContent"></div>
 
 <!-- NO RESULTS -->
@@ -1692,9 +1658,6 @@ footer a:hover { text-decoration: underline; }
 <!-- BOM Backdrop (click outside to close) -->
 <div id="bomBackdrop" onclick="closeBomDrawer()" style="display:none;position:fixed;inset:0;z-index:1099;background:rgba(0,0,0,0.35)"></div>
 
-<!-- Theme Toggle -->
-<button class="theme-toggle" onclick="toggleTheme()" title="Toggle light/dark" id="themeToggleBtn">&#9790;</button>
-
 <!-- BOM FAB -->
 <button class="bom-fab" onclick="toggleBomDrawer()" title="Bill of Materials (Ctrl+B)">
   <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><path d="M9 14l2 2 4-4"/></svg>
@@ -1726,7 +1689,6 @@ footer a:hover { text-decoration: underline; }
         <div><label style="font-size:0.7rem;color:var(--pa-muted)">Generated</label><input id="bomDate" type="text" readonly style="color:var(--pa-muted);cursor:default"></div>
       </div>
     </details>
-    <input type="text" id="bomFilter" placeholder="Filter BOM items..." oninput="renderBomItems()" style="width:100%;padding:7px 10px;margin-bottom:10px;background:var(--pa-darker);border:1px solid var(--pa-border);border-radius:6px;color:var(--pa-text);font-size:0.78rem;font-family:inherit">
     <div id="bomItems"></div>
     <div id="bomSuggestions"></div>
   </div>
@@ -1783,25 +1745,6 @@ footer a:hover { text-decoration: underline; }
 <div id="modelPickerOverlay" class="model-picker-overlay" style="display:none" onclick="if(event.target===this)closeModelPicker()">
   <div class="model-picker" id="modelPickerContent"></div>
 </div>
-
-<!-- Keyboard Shortcuts Help -->
-<div id="shortcutsOverlay" class="modal-overlay" onclick="if(event.target===this)closeShortcuts()" style="display:none;z-index:1300">
-  <div class="modal" style="max-width:460px;padding:24px 28px">
-    <h3 style="margin:0 0 16px;color:var(--pa-text);display:flex;align-items:center;justify-content:space-between">Keyboard Shortcuts <button class="bom-btn" onclick="closeShortcuts()" style="padding:4px 10px">&times;</button></h3>
-    <table style="width:100%;font-size:0.82rem;color:var(--pa-text)">
-      <tr><td style="padding:6px 0"><kbd class="kbd">?</kbd></td><td style="color:var(--pa-muted)">Show this help</td></tr>
-      <tr><td style="padding:6px 0"><kbd class="kbd">Ctrl</kbd>+<kbd class="kbd">B</kbd></td><td style="color:var(--pa-muted)">Toggle BOM drawer</td></tr>
-      <tr><td style="padding:6px 0"><kbd class="kbd">Ctrl</kbd>+<kbd class="kbd">K</kbd></td><td style="color:var(--pa-muted)">Focus search</td></tr>
-      <tr><td style="padding:6px 0"><kbd class="kbd">Esc</kbd></td><td style="color:var(--pa-muted)">Close modal / drawer / overlay</td></tr>
-      <tr><td style="padding:6px 0"><kbd class="kbd">Ctrl</kbd>+<kbd class="kbd">Z</kbd></td><td style="color:var(--pa-muted)">Undo BOM change</td></tr>
-      <tr><td style="padding:6px 0"><kbd class="kbd">Ctrl</kbd>+<kbd class="kbd">Shift</kbd>+<kbd class="kbd">Z</kbd></td><td style="color:var(--pa-muted)">Redo BOM change</td></tr>
-      <tr><td style="padding:6px 0"><kbd class="kbd">/</kbd></td><td style="color:var(--pa-muted)">Focus search</td></tr>
-    </table>
-  </div>
-</div>
-<style>
-.kbd{display:inline-block;padding:2px 6px;font-family:'Consolas','Courier New',monospace;font-size:0.72rem;background:var(--pa-darker);border:1px solid var(--pa-border);border-radius:4px;color:var(--pa-cyan);margin:0 1px}
-</style>
 
 <!-- Series Overlay -->
 <div class="series-overlay" id="seriesOverlay">
@@ -1961,32 +1904,14 @@ footer a:hover { text-decoration: underline; }
       <span style="font-size:0.7rem;font-weight:600;color:var(--pa-orange);letter-spacing:1px;text-transform:uppercase;line-height:1.3">Diamond<br>Innovator</span>
     </div>
   </div>
-  <p>Palo Alto Networks Product Catalogue &mdash; Sales Reference Material</p>
+  <p>Palo Alto Networks Product Catalogue &mdash; Sales Reference Material &mdash; Updated April 2026</p>
   <p style="margin-top:6px"><a href="https://www.cgtech.co.za" target="_blank">www.cgtech.co.za</a> &mdash; <a href="https://www.paloaltonetworks.com/products/products-a-z" target="_blank">paloaltonetworks.com/products</a></p>
-  <p id="footerVersion" style="margin-top:10px;font-size:0.7rem;color:#475569;font-family:'Consolas','Courier New',monospace"></p>
 </footer>
 
 <script>
 // ===== VERSION =====
-const APP_VERSION = '0.9.0';
-const APP_BUILD_DATE = '2026-04-06';
-
-// Fetch deploy info from GitHub Actions build metadata
-(function() {
-  var vEl = document.getElementById('footerVersion');
-  if(!vEl) return;
-  vEl.textContent = 'v' + APP_VERSION + ' · build ' + APP_BUILD_DATE;
-  Promise.all([
-    fetch('.version').then(function(r){return r.ok?r.text():null}).catch(function(){return null}),
-    fetch('.deployed-at').then(function(r){return r.ok?r.text():null}).catch(function(){return null})
-  ]).then(function(results) {
-    var sha = results[0] ? results[0].trim() : null;
-    var deployed = results[1] ? results[1].trim() : null;
-    if(sha || deployed) {
-      vEl.textContent = 'v' + APP_VERSION + (sha ? ' · ' + sha : '') + (deployed ? ' · deployed ' + deployed.replace('T',' ').replace('Z',' UTC') : '');
-    }
-  });
-})();
+const APP_VERSION = '0.7.0-alpha.4';
+const APP_BUILD_DATE = '2026-04-03';
 
 // ===== PRODUCT DATA =====
 const products = [
@@ -2018,7 +1943,7 @@ const products = [
     useCases: ["Hyperscale data center security", "Tier-1 service provider deployments", "Large enterprise Internet edge", "Carrier-grade network security"],
     licensing: "Per-chassis subscription model. Chassis and System Processing Cards (SPCs) purchased separately. Security subscriptions (Prevention or Premium bundle) required. Strata Cloud Manager included.",
     licenseType: "Per-Chassis Subscription",
-    brochureUrl: "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/pa-7500",
+    brochureUrl: "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/pa-7500-series",
     productUrl: "https://www.paloaltonetworks.com/network-security/hardware-firewall-innovations",
     detailedSpecs: [
           { section: 'Performance', rows: [['PA-7500: App-ID firewall throughput (Appmix)', '1.5 Tbps'], ['PA-7500: Threat prevention throughput (Appmix)', '1.44 Tbps'], ['PA-7500: IPSec VPN throughput', '407 Gbps'], ['PA-7500: Connections per second', '7,200,000']] },
@@ -2673,7 +2598,7 @@ const products = [
     useCases: ["Legacy branch and campus deployments", "Small enterprise perimeter (legacy)"],
     licensing: "No longer available for new purchase. Existing customers supported until Aug 31, 2029. Upgrade path: PA-1400 Series.",
     licenseType: "End-of-Sale — Legacy",
-    brochureUrl: "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/pa-800-series-datasheet",
+    brochureUrl: "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/pa-800-series",
     productUrl: "https://www.paloaltonetworks.com/network-security/hardware-firewall-innovations",
     detailedSpecs: [
           { section: 'Performance', rows: [['PA-850: App-ID firewall throughput (Appmix)', '1.9 Gbps'], ['PA-850: Threat prevention throughput (Appmix)', '1 Gbps'], ['PA-850: IPSec VPN throughput', '1.8 Gbps'], ['PA-850: Connections per second', '13,100'], ['PA-820: App-ID firewall throughput (Appmix)', '1.5 Gbps'], ['PA-820: Threat prevention throughput (Appmix)', '840 Mbps'], ['PA-820: IPSec VPN throughput', '1.4 Gbps'], ['PA-820: Connections per second', '8,100']] },
@@ -2814,28 +2739,1240 @@ const products = [
           { section: 'GlobalProtect Clientless VPN', rows: [['Max SSL tunnels', '20']] },
           { section: 'Multicast', rows: [['Replication (egress interfaces)', '100'], ['Routes', '500']] }
         ]
+  },
+
+  // ── FULLY END-OF-LIFE HARDWARE ──
+  {
+    id: "pa-500-legacy",
+    image: "https://docs.paloaltonetworks.com/content/dam/techdocs/en_US/images/hardware/pa-500-black-bkd.png",
+    name: "PA-500 (Legacy)",
+    category: "eol-hw",
+    badge: "Network Security",
+    tagline: "Entry-level branch NGFW — End-of-Life Oct 31, 2023",
+    description: "The original PA-500 was an entry-level 1U branch NGFW. Not to be confused with the new PA-500 Series (2025). End-of-Sale: Oct 31, 2018. End-of-Life: Oct 31, 2023. Last supported PAN-OS: 8.1. No longer supported.",
+    eolStatus: "End-of-Life",
+    eosDate: "October 31, 2018",
+    eolDate: "October 31, 2023",
+    lastPanOs: "PAN-OS 8.1",
+    replacedBy: "PA-400 Series",
+    specs: ["250 Mbps FW", "100 Mbps Threat", "50 Mbps VPN", "64,000 Sessions", "1U Appliance", "End-of-Life"],
+    specGrid: [
+      { label: "Firewall Throughput", value: "250 Mbps" },
+      { label: "Threat Prevention", value: "100 Mbps" },
+      { label: "IPSec VPN", value: "50 Mbps" },
+      { label: "Max Sessions", value: "64,000" },
+      { label: "End-of-Sale", value: "Oct 31, 2018" },
+      { label: "End-of-Life", value: "Oct 31, 2023" }
+    ],
+    features: ["Original entry-level branch NGFW (1U)", "Full PAN-OS 8.1 feature set", "No longer supported or sold"],
+    useCases: ["Historical reference only — no longer deployable in production"],
+    licensing: "This product has reached End-of-Life and is no longer supported or sold. No software updates or support available.",
+    licenseType: "End-of-Life — Unsupported",
+    brochureUrl: "",
+    productUrl: "https://www.paloaltonetworks.com/network-security/hardware-firewall-innovations",
+    detailedSpecs: {
+      "Performance": {
+        "FW throughput": "250 Mbps",
+        "Threat Prevention": "100 Mbps",
+        "IPsec VPN": "50 Mbps"
+      },
+      "Sessions": {
+        "Max sessions": "64,000"
+      },
+      "I/O & Hardware": {
+        "I/O": "8x 1G RJ45",
+        "Form Factor": "1U, 19\" rack",
+        "Power": "Single PSU"
       }
-      var eolDays = null;
-      if(p.eolDate) {
-        var eolTs = Date.parse(p.eolDate);
-        if(!isNaN(eolTs)) {
-          eolDays = Math.round((eolTs - Date.now()) / 86400000);
-        }
+    }
+  },
+  {
+    id: "pa-200",
+    image: "https://docs.paloaltonetworks.com/content/dam/techdocs/en_US/images/hardware/pa-200.png",
+    name: "PA-200",
+    category: "eol-hw",
+    badge: "Network Security",
+    tagline: "Desktop NGFW — End-of-Life Oct 31, 2023",
+    description: "The PA-200 was Palo Alto Networks' smallest and most entry-level desktop NGFW. End-of-Sale: Oct 31, 2018. End-of-Life: Oct 31, 2023. Last supported PAN-OS: 8.1. No longer supported.",
+    eolStatus: "End-of-Life",
+    eosDate: "October 31, 2018",
+    eolDate: "October 31, 2023",
+    lastPanOs: "PAN-OS 8.1",
+    replacedBy: "PA-400 Series",
+    specs: ["100 Mbps FW", "50 Mbps Threat", "Desktop Form", "64,000 Sessions", "End-of-Life"],
+    specGrid: [
+      { label: "Firewall Throughput", value: "100 Mbps" },
+      { label: "Threat Prevention", value: "50 Mbps" },
+      { label: "Max Sessions", value: "64,000" },
+      { label: "Form Factor", value: "Desktop" },
+      { label: "End-of-Sale", value: "Oct 31, 2018" },
+      { label: "End-of-Life", value: "Oct 31, 2023" }
+    ],
+    features: ["Smallest form factor desktop NGFW", "Full PAN-OS 8.1 feature set", "No longer supported or sold"],
+    useCases: ["Historical reference only — no longer deployable in production"],
+    licensing: "This product has reached End-of-Life and is no longer supported or sold.",
+    licenseType: "End-of-Life — Unsupported",
+    brochureUrl: "",
+    productUrl: "https://www.paloaltonetworks.com/network-security/hardware-firewall-innovations",
+    detailedSpecs: {
+      "Performance": {
+        "FW throughput": "100 Mbps",
+        "Threat Prevention": "50 Mbps"
+      },
+      "Sessions": {
+        "Max sessions": "64,000"
+      },
+      "I/O & Hardware": {
+        "I/O": "4x 1G RJ45",
+        "Form Factor": "Desktop, fanless",
+        "Power": "External adapter"
       }
-      var eolRibbon = '';
-      if(p.eolStatus === 'End-of-Life') {
-        eolRibbon = `<div class="eol-ribbon eol">End-of-Life</div>`;
-      } else if(p.eolStatus === 'End-of-Sale') {
-        if(eosDays !== null && eosDays > 0 && eosDays <= 90) {
-          eolRibbon = `<div class="eol-ribbon eos-soon" title="EoS in ${eosDays} days">&#9888; EoS in ${eosDays}d</div>`;
-        } else {
-          eolRibbon = `<div class="eol-ribbon eos">End-of-Sale</div>`;
-        }
-      } else if(eosDays !== null && eosDays > 0 && eosDays <= 90) {
-        eolRibbon = `<div class="eol-ribbon eos-soon" title="EoS in ${eosDays} days">&#9888; EoS in ${eosDays}d</div>`;
-      } else if(eolDays !== null && eolDays > 0 && eolDays <= 90) {
-        eolRibbon = `<div class="eol-ribbon eos-soon" title="EoL in ${eolDays} days">&#9888; EoL in ${eolDays}d</div>`;
+    }
+  },
+  {
+    id: "pa-3000",
+    image: "https://docs.paloaltonetworks.com/content/dam/techdocs/en_US/images/hardware/pa-3050-black-bkd.png",
+    models: [
+      {model:"PA-3020",sku:"PAN-PA-3020",desc:"2 Gbps firewall"},
+      {model:"PA-3050",sku:"PAN-PA-3050",desc:"4 Gbps firewall"},
+      {model:"PA-3060",sku:"PAN-PA-3060",desc:"4 Gbps firewall with additional I/O"}
+    ],
+    name: "PA-3000 Series",
+    category: "eol-hw",
+    badge: "Network Security",
+    tagline: "Mid-range NGFW — End-of-Life Oct 31, 2024",
+    description: "The PA-3000 Series was a mid-range enterprise NGFW. Models: PA-3020, PA-3050, PA-3060. End-of-Sale: Oct 31, 2019. End-of-Life: Oct 31, 2024. Last supported PAN-OS: 9.1. No longer supported.",
+    eolStatus: "End-of-Life",
+    eosDate: "October 31, 2019",
+    eolDate: "October 31, 2024",
+    lastPanOs: "PAN-OS 9.1",
+    replacedBy: "PA-3400 Series",
+    specs: ["2–4 Gbps FW", "1–2 Gbps Threat", "500M–1M Sessions", "1U Appliance", "End-of-Life"],
+    specGrid: [
+      { label: "Firewall Throughput", value: "2 – 4 Gbps" },
+      { label: "Threat Prevention", value: "1 – 2 Gbps" },
+      { label: "Max Sessions", value: "500K – 1 Million" },
+      { label: "Form Factor", value: "1U Rackmount" },
+      { label: "End-of-Sale", value: "Oct 31, 2019" },
+      { label: "End-of-Life", value: "Oct 31, 2024" }
+    ],
+    features: ["Mid-range enterprise NGFW (legacy)", "Full PAN-OS 9.1 feature set", "No longer supported or sold"],
+    useCases: ["Historical reference only — no longer deployable in production"],
+    licensing: "This product has reached End-of-Life and is no longer supported or sold.",
+    licenseType: "End-of-Life — Unsupported",
+    brochureUrl: "",
+    productUrl: "https://www.paloaltonetworks.com/network-security/hardware-firewall-innovations",
+    detailedSpecs: {
+      "Performance (per model)": {
+        "PA-3020 FW throughput": "2 Gbps",
+        "PA-3050 FW throughput": "4 Gbps",
+        "PA-3060 FW throughput": "4 Gbps",
+        "PA-3020 Threat Prevention": "1 Gbps",
+        "PA-3050 Threat Prevention": "2 Gbps",
+        "PA-3060 Threat Prevention": "2 Gbps"
+      },
+      "Sessions": {
+        "PA-3020 Max sessions": "250,000",
+        "PA-3050 Max sessions": "500,000",
+        "PA-3060 Max sessions": "1M"
+      },
+      "I/O & Hardware": {
+        "I/O": "1G RJ45, 1G SFP — varies by model",
+        "Form Factor": "1U, 19\" rack",
+        "Power": "Redundant PSU (PA-3060)"
       }
+    }
+  },
+  {
+    id: "pa-5000",
+    image: "https://docs.paloaltonetworks.com/content/dam/techdocs/en_US/images/hardware/pa-5060-black-bkd.png",
+    models: [
+      {model:"PA-5020",sku:"PAN-PA-5020",desc:"10 Gbps firewall"},
+      {model:"PA-5050",sku:"PAN-PA-5050",desc:"15 Gbps firewall"},
+      {model:"PA-5060",sku:"PAN-PA-5060",desc:"20 Gbps firewall"}
+    ],
+    name: "PA-5000 Series",
+    category: "eol-hw",
+    badge: "Network Security",
+    tagline: "Data center NGFW — End-of-Life Jan 31, 2024",
+    description: "The PA-5000 Series was the high-performance data center NGFW predecessor to PA-5200. Models: PA-5020, PA-5050, PA-5060. End-of-Sale: Jan 31, 2019. End-of-Life: Jan 31, 2024. Last supported PAN-OS: 8.1. No longer supported.",
+    eolStatus: "End-of-Life",
+    eosDate: "January 31, 2019",
+    eolDate: "January 31, 2024",
+    lastPanOs: "PAN-OS 8.1",
+    replacedBy: "PA-5400 Series",
+    specs: ["10–20 Gbps FW", "5–10 Gbps Threat", "Up to 4M Sessions", "2U Appliance", "End-of-Life"],
+    specGrid: [
+      { label: "Firewall Throughput", value: "10 – 20 Gbps" },
+      { label: "Threat Prevention", value: "5 – 10 Gbps" },
+      { label: "Max Sessions", value: "Up to 4 Million" },
+      { label: "Form Factor", value: "2U Rackmount" },
+      { label: "End-of-Sale", value: "Jan 31, 2019" },
+      { label: "End-of-Life", value: "Jan 31, 2024" }
+    ],
+    features: ["High-performance data center NGFW (legacy)", "Full PAN-OS 8.1 feature set", "No longer supported or sold"],
+    useCases: ["Historical reference only — no longer deployable in production"],
+    licensing: "This product has reached End-of-Life and is no longer supported or sold.",
+    licenseType: "End-of-Life — Unsupported",
+    brochureUrl: "",
+    productUrl: "https://www.paloaltonetworks.com/network-security/hardware-firewall-innovations",
+    detailedSpecs: {
+      "Performance (per model)": {
+        "PA-5020 FW throughput": "10 Gbps",
+        "PA-5050 FW throughput": "20 Gbps",
+        "PA-5060 FW throughput": "20 Gbps",
+        "PA-5020 Threat Prevention": "5 Gbps",
+        "PA-5050 Threat Prevention": "10 Gbps",
+        "PA-5060 Threat Prevention": "10 Gbps"
+      },
+      "Sessions": {
+        "PA-5020 Max sessions": "1M",
+        "PA-5050 Max sessions": "2M",
+        "PA-5060 Max sessions": "4M"
+      },
+      "I/O & Hardware": {
+        "I/O": "10G SFP+, 1G RJ45, 1G SFP — varies by model",
+        "Form Factor": "2U, 19\" rack",
+        "Power": "Redundant PSU"
+      }
+    }
+  },
+  {
+    id: "pa-2000",
+    image: "https://docs.paloaltonetworks.com/content/dam/techdocs/en_US/images/hardware/pa-455.png",
+    models: [
+      {model:"PA-2020",sku:"PAN-PA-2020",desc:"500 Mbps firewall"},
+      {model:"PA-2050",sku:"PAN-PA-2050",desc:"1 Gbps firewall"}
+    ],
+    name: "PA-2000 Series",
+    category: "eol-hw",
+    badge: "Network Security",
+    tagline: "Branch NGFW — End-of-Life Apr 30, 2020",
+    description: "The PA-2000 Series was a branch and small campus NGFW. Models: PA-2020, PA-2050. End-of-Sale: Apr 30, 2015. End-of-Life: Apr 30, 2020. Last supported PAN-OS: 7.1. No longer supported.",
+    eolStatus: "End-of-Life",
+    eosDate: "April 30, 2015",
+    eolDate: "April 30, 2020",
+    lastPanOs: "PAN-OS 7.1",
+    replacedBy: "PA-800 / PA-1400 Series",
+    specs: ["1–2 Gbps FW", "Up to 500 Mbps Threat", "Up to 500K Sessions", "1U Appliance", "End-of-Life"],
+    specGrid: [
+      { label: "Firewall Throughput", value: "1 – 2 Gbps" },
+      { label: "Threat Prevention", value: "Up to 500 Mbps" },
+      { label: "Max Sessions", value: "Up to 500,000" },
+      { label: "Form Factor", value: "1U Rackmount" },
+      { label: "End-of-Sale", value: "Apr 30, 2015" },
+      { label: "End-of-Life", value: "Apr 30, 2020" }
+    ],
+    features: ["Branch and campus NGFW (legacy)", "Full PAN-OS 7.1 feature set", "No longer supported or sold"],
+    useCases: ["Historical reference only — no longer deployable in production"],
+    licensing: "This product has reached End-of-Life and is no longer supported or sold.",
+    licenseType: "End-of-Life — Unsupported",
+    brochureUrl: "",
+    productUrl: "https://www.paloaltonetworks.com/network-security/hardware-firewall-innovations",
+    detailedSpecs: {
+      "Performance (per model)": {
+        "PA-2020 FW throughput": "500 Mbps",
+        "PA-2050 FW throughput": "1 Gbps",
+        "PA-2020 Threat Prevention": "200 Mbps",
+        "PA-2050 Threat Prevention": "500 Mbps"
+      },
+      "Sessions": {
+        "PA-2020 Max sessions": "125,000",
+        "PA-2050 Max sessions": "500,000"
+      },
+      "I/O & Hardware": {
+        "I/O": "1G RJ45, 1G SFP — varies by model",
+        "Form Factor": "1U, 19\" rack",
+        "Power": "Single PSU"
+      }
+    }
+  },
+  {
+    id: "pa-4000",
+    image: "https://docs.paloaltonetworks.com/content/dam/techdocs/en_US/images/hardware/pa-5060-black-bkd.png",
+    models: [
+      {model:"PA-4020",sku:"PAN-PA-4020",desc:"2 Gbps firewall"},
+      {model:"PA-4050",sku:"PAN-PA-4050",desc:"10 Gbps firewall"},
+      {model:"PA-4060",sku:"PAN-PA-4060",desc:"10 Gbps firewall with additional I/O"}
+    ],
+    name: "PA-4000 Series",
+    category: "eol-hw",
+    badge: "Network Security",
+    tagline: "High-performance NGFW — End-of-Life Apr 30, 2019",
+    description: "The PA-4000 Series was a high-performance enterprise NGFW preceding the PA-5000. Models: PA-4020, PA-4050, PA-4060. End-of-Sale: Apr 30, 2014. End-of-Life: Apr 30, 2019. Last supported PAN-OS: 7.1. No longer supported.",
+    eolStatus: "End-of-Life",
+    eosDate: "April 30, 2014",
+    eolDate: "April 30, 2019",
+    lastPanOs: "PAN-OS 7.1",
+    replacedBy: "PA-5400 Series",
+    specs: ["10–20 Gbps FW", "Up to 10 Gbps Threat", "Up to 4M Sessions", "2U Appliance", "End-of-Life"],
+    specGrid: [
+      { label: "Firewall Throughput", value: "10 – 20 Gbps" },
+      { label: "Threat Prevention", value: "Up to 10 Gbps" },
+      { label: "Max Sessions", value: "Up to 4 Million" },
+      { label: "Form Factor", value: "2U Rackmount" },
+      { label: "End-of-Sale", value: "Apr 30, 2014" },
+      { label: "End-of-Life", value: "Apr 30, 2019" }
+    ],
+    features: ["High-performance enterprise NGFW (legacy)", "Full PAN-OS 7.1 feature set", "No longer supported or sold"],
+    useCases: ["Historical reference only — no longer deployable in production"],
+    licensing: "This product has reached End-of-Life and is no longer supported or sold.",
+    licenseType: "End-of-Life — Unsupported",
+    brochureUrl: "",
+    productUrl: "https://www.paloaltonetworks.com/network-security/hardware-firewall-innovations",
+    detailedSpecs: {
+      "Performance (per model)": {
+        "PA-4020 FW throughput": "2 Gbps",
+        "PA-4050 FW throughput": "10 Gbps",
+        "PA-4060 FW throughput": "10 Gbps",
+        "PA-4020 Threat Prevention": "1 Gbps",
+        "PA-4050 Threat Prevention": "5 Gbps",
+        "PA-4060 Threat Prevention": "5 Gbps"
+      },
+      "Sessions": {
+        "PA-4020 Max sessions": "500,000",
+        "PA-4050 Max sessions": "2M",
+        "PA-4060 Max sessions": "4M"
+      },
+      "I/O & Hardware": {
+        "I/O": "10G SFP+, 1G RJ45, 1G SFP — varies by model",
+        "Form Factor": "2U, 19\" rack",
+        "Power": "Redundant PSU"
+      }
+    }
+  },
+
+  // ── NETWORK SECURITY: SOFTWARE FIREWALLS ──
+  {
+    id: "vm-series",
+    image: "https://docs.paloaltonetworks.com/content/dam/techdocs/en_US/images/hardware/pa-5450-black-bkd.png",
+    name: "VM-Series",
+    category: "network",
+    badge: "Network Security",
+    tagline: "Virtual next-generation firewall for cloud and virtualized environments",
+    description: "Virtual firewalls that bring best-in-class network security and threat prevention to public and private cloud environments. Supports AWS, Azure, GCP, Oracle Cloud, VMware, KVM, Hyper-V and more.",
+    specs: ["Up to 16 Gbps FW", "All Cloud Platforms", "Auto-Scaling Support", "Terraform & API Ready", "Consistent Policy Model", "Full NGFW Feature Set"],
+    specGrid: [
+      { label: "Firewall Throughput", value: "Up to 16 Gbps" },
+      { label: "Platforms", value: "AWS, Azure, GCP, OCI" },
+      { label: "Hypervisors", value: "VMware, KVM, Hyper-V" },
+      { label: "Orchestration", value: "Terraform, Ansible" },
+      { label: "Deployment", value: "Cloud / Virtual DC" },
+      { label: "Form Factor", value: "Virtual Appliance" }
+    ],
+    features: ["Consistent security across hybrid cloud", "Auto-scaling with cloud workloads", "Infrastructure-as-code deployment", "Full Layer 7 application visibility", "Integrated threat prevention", "Centralized management via Panorama/SCM"],
+    useCases: ["Public cloud workload protection", "Private cloud / SDN environments", "Hybrid cloud security", "Cloud migration projects"],
+    licensing: "Flexible licensing: BYOL (Bring Your Own License), PAYG (Pay-As-You-Go) via cloud marketplace, or ELA (Enterprise License Agreement). VM-Series models (VM-50 to VM-700) sized by vCPU allocation. Security subscriptions sold separately.",
+    licenseType: "BYOL / PAYG / ELA",
+    brochureUrl: "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/vm-series-spec-sheet",
+    productUrl: "https://www.paloaltonetworks.com/network-security/vm-series-virtual-next-generation-firewall"
+  },
+  {
+    id: "cn-series",
+    image: "https://docs.paloaltonetworks.com/content/dam/techdocs/en_US/images/hardware/pa-5450-black-bkd.png",
+    name: "CN-Series",
+    category: "network",
+    badge: "Network Security",
+    tagline: "Containerized NGFW for Kubernetes environments",
+    description: "The industry's first ML-powered containerized next-generation firewall. Prevents sophisticated network-based threats from spreading across Kubernetes namespace boundaries.",
+    specs: ["Kubernetes Native", "Layer 7 Visibility", "Namespace Isolation", "Threat Prevention", "Helm Chart Deploy", "Any K8s Platform"],
+    specGrid: [
+      { label: "Platform", value: "Any Kubernetes" },
+      { label: "Deployment", value: "DaemonSet / Sidecar" },
+      { label: "Visibility", value: "Layer 7 App-ID" },
+      { label: "Orchestration", value: "Helm / Operators" },
+      { label: "Target", value: "Container Workloads" },
+      { label: "Management", value: "Panorama / SCM" }
+    ],
+    features: ["East-west traffic inspection between pods", "Layer 7 application identification", "Threat prevention for container traffic", "Dynamic policy based on K8s labels", "Helm chart deployment", "Integration with CI/CD pipelines"],
+    useCases: ["Kubernetes workload protection", "Microservices security", "Container namespace isolation", "DevSecOps pipelines"],
+    licensing: "Per-node or per-vCPU subscription model. Deployed as Kubernetes resources. Requires Panorama or Strata Cloud Manager for management. Security subscriptions included in CN-Series license.",
+    licenseType: "Per-Node Subscription",
+    brochureUrl: "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/cn-series-container-firewall",
+    productUrl: "https://www.paloaltonetworks.com/network-security/cn-series"
+  },
+  {
+    id: "cloud-ngfw",
+    image: "https://docs.paloaltonetworks.com/content/dam/techdocs/en_US/images/hardware/pa-5450-black-bkd.png",
+    name: "Cloud NGFW",
+    category: "network",
+    badge: "Network Security",
+    tagline: "Cloud-native firewall-as-a-service for AWS and Azure",
+    description: "Best-in-class NGFW security delivered as a fully managed cloud-native service. Available for AWS (managed by Palo Alto Networks, procured via AWS Marketplace) and Azure. No infrastructure to manage, patch, or scale.",
+    specs: ["Fully Managed Service", "AWS & Azure Native", "Auto-Scaling", "Pay-As-You-Go", "Zero Infrastructure", "App-ID & Threat Prevention"],
+    specGrid: [
+      { label: "Clouds", value: "AWS, Azure" },
+      { label: "Management", value: "Fully Managed" },
+      { label: "Scaling", value: "Automatic" },
+      { label: "Procurement", value: "Cloud Marketplace" },
+      { label: "Deployment", value: "Cloud-Native FWaaS" },
+      { label: "Integration", value: "VPC / VNet Native" }
+    ],
+    features: ["Zero infrastructure management", "Cloud-native auto-scaling", "Full App-ID, Threat Prevention, URL Filtering", "Rulestack-based policy management", "Native cloud marketplace billing", "Terraform provider available"],
+    useCases: ["AWS workload security", "Azure workload security", "Cloud-first organizations", "DevOps-friendly security"],
+    licensing: "Pay-as-you-go via AWS/Azure Marketplace based on data processed. No upfront commitment. Alternatively available as committed use with ELA. All security features included in the service price.",
+    licenseType: "Pay-As-You-Go",
+    brochureUrl: "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/cloud-ngfw-for-aws",
+    productUrl: "https://www.paloaltonetworks.com/network-security/cloud-ngfw"
+  },
+
+  // ── NETWORK SECURITY: MANAGEMENT ──
+  {
+    id: "pan-os",
+    image: "https://docs.paloaltonetworks.com/content/dam/techdocs/en_US/images/hardware/m-200-m-600-black-bkd.png",
+    name: "PAN-OS",
+    category: "network",
+    badge: "Network Security",
+    tagline: "The operating system powering all Palo Alto Networks NGFWs",
+    description: "PAN-OS is the software foundation for all Palo Alto Networks next-generation firewalls. Latest version PAN-OS 12.1 Orion features quantum-safe security, AI-driven operations, and multi-cloud consistency.",
+    specs: ["App-ID Technology", "User-ID & Device-ID", "Content-ID Inspection", "Decryption Broker", "Precision AI Powered", "Zero Trust Architecture"],
+    specGrid: [
+      { label: "Latest Version", value: "PAN-OS 12.1 Orion" },
+      { label: "Core Tech", value: "App-ID, User-ID" },
+      { label: "AI Engine", value: "Precision AI" },
+      { label: "Security", value: "Quantum-Safe Ready" },
+      { label: "Applies To", value: "All NGFW Platforms" },
+      { label: "Licensing", value: "Included with HW/SW" }
+    ],
+    features: ["Single-pass parallel processing architecture", "App-ID for Layer 7 application identification", "User-ID for user-based policies", "Device-ID for IoT device identification", "Inline deep learning for unknown threats", "Quantum-safe IPSec VPN"],
+    useCases: ["All NGFW deployments", "Zero Trust enforcement", "Encrypted traffic inspection", "Application-aware security"],
+    licensing: "Included with all PA-Series, VM-Series, and CN-Series firewalls. PAN-OS updates included with valid support contract (PAN-SVC). Major version upgrades available with active support.",
+    licenseType: "Included with HW/SW",
+    brochureUrl: "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/firewall-feature-overview-datasheet",
+    productUrl: "https://www.paloaltonetworks.com/network-security/pan-os"
+  },
+  {
+    id: "panorama",
+    image: "https://docs.paloaltonetworks.com/content/dam/techdocs/en_US/images/hardware/m-200-m-600-black-bkd.png",
+    name: "Panorama",
+    category: "network",
+    badge: "Network Security",
+    tagline: "Centralized network security management for all NGFWs",
+    description: "Centralized management solution that provides a single pane of glass for all Palo Alto Networks NGFWs across all form factors and locations. Simplifies policy management, logging, and reporting.",
+    specs: ["Central Management", "All NGFW Forms", "Template Stacks", "Device Groups", "Logging & Reporting", "Role-Based Access"],
+    specGrid: [
+      { label: "Managed Devices", value: "Up to 6,000+ FWs" },
+      { label: "Form Factors", value: "HW Appliance / VM" },
+      { label: "Log Storage", value: "Dedicated Log Collectors" },
+      { label: "HA Support", value: "Active/Passive" },
+      { label: "APIs", value: "XML, REST" },
+      { label: "Deployment", value: "On-Prem or Cloud" }
+    ],
+    features: ["Unified policy management across all NGFWs", "Template stacks for configuration inheritance", "Device groups for logical grouping", "Centralized logging and reporting", "Role-based access control", "REST API for automation"],
+    useCases: ["Large-scale NGFW management", "Multi-site policy consistency", "Compliance reporting", "Operational automation"],
+    licensing: "Licensed per managed device. Available as hardware appliance (M-200, M-600) or virtual (Panorama VM). Device management licenses sold in increments. Log collector licenses separate.",
+    licenseType: "Per Managed Device",
+    brochureUrl: "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/panorama-centralized-management-datasheet",
+    productUrl: "https://www.paloaltonetworks.com/network-security/panorama"
+  },
+  {
+    id: "strata-cloud-manager",
+    image: "https://www.paloaltonetworks.com/content/dam/pan/en_US/images/cosmos/strata-cloud-manager-black.svg",
+    name: "Strata Cloud Manager",
+    category: "network",
+    badge: "Network Security",
+    tagline: "AI-powered holistic network security management and operations",
+    description: "The industry's first AI-powered network security management solution. Provides unified management for all Strata hardware, software, and SASE deployments with AIOps-driven insights and automation.",
+    specs: ["AI-Powered AIOps", "Unified Dashboard", "Best Practice Assessment", "Policy Optimizer", "Health Monitoring", "SaaS Delivered"],
+    specGrid: [
+      { label: "Delivery", value: "Cloud / SaaS" },
+      { label: "AI Engine", value: "Precision AI AIOps" },
+      { label: "Manages", value: "NGFW + SASE" },
+      { label: "Insights", value: "Proactive Alerts" },
+      { label: "Policy", value: "Unified Across All" },
+      { label: "Automation", value: "API + Playbooks" }
+    ],
+    features: ["AI-driven best practice recommendations", "Unified policy management across NGFW & SASE", "Proactive health monitoring and alerts", "Configuration drift detection", "Policy optimizer to tighten rules", "SaaS-delivered — no infrastructure"],
+    useCases: ["Unified NGFW + SASE management", "Security posture optimization", "Operational simplification", "Compliance and audit readiness"],
+    licensing: "Included with all Strata NGFW and Prisma SASE subscriptions. Premium tier available with enhanced AIOps features and extended log retention. SaaS-delivered, no additional infrastructure needed.",
+    licenseType: "Included / Premium Tier",
+    brochureUrl: "",
+    productUrl: "https://www.paloaltonetworks.com/network-security/strata-cloud-manager"
+  },
+
+  // ── CLOUD-DELIVERED SECURITY SERVICES (SUBSCRIPTIONS) ──
+  {
+    id: "adv-threat-prevention",
+    image: "",
+    name: "Advanced Threat Prevention",
+    category: "subscription",
+    badge: "Security Service",
+    tagline: "Industry-first IPS that stops unknown C2 in real time",
+    description: "Cloud-delivered advanced IPS service that uses inline deep learning models to detect and block unknown command-and-control (C2) traffic in real time. Stops 48% more unknown C2 than any other solution.",
+    specs: ["Inline Deep Learning", "Unknown C2 Detection", "Zero-Day Prevention", "48% More Coverage", "Real-Time Updates", "Snort Rule Compatible"],
+    specGrid: [
+      { label: "Detection", value: "Inline Deep Learning" },
+      { label: "Coverage", value: "48% More Than Others" },
+      { label: "Updates", value: "Real-Time Signatures" },
+      { label: "Protocols", value: "All Major Protocols" },
+      { label: "Delivery", value: "Cloud-Delivered" },
+      { label: "Applies To", value: "All NGFWs + SASE" }
+    ],
+    features: ["First IPS with inline deep learning", "Detects unknown C2 and evasive threats", "Real-time signature updates (zero-delay)", "Blocks exploits, malware, and spyware", "Compatible with existing Snort rules", "Works across all NGFW and SASE"],
+    useCases: ["Advanced threat prevention at network perimeter", "Stopping zero-day C2 communications", "Replacing legacy IPS solutions", "Enhancing existing NGFW security"],
+    licensing: "Annual subscription per firewall or included in Prevention/Premium bundle. Available for all PA-Series, VM-Series, CN-Series, Cloud NGFW, and Prisma Access deployments.",
+    licenseType: "Annual Subscription",
+    brochureUrl: "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/advanced-threat-prevention",
+    productUrl: "https://www.paloaltonetworks.com/network-security/advanced-threat-prevention"
+  },
+  {
+    id: "adv-url-filtering",
+    image: "",
+    name: "Advanced URL Filtering",
+    category: "subscription",
+    badge: "Security Service",
+    tagline: "Real-time web security powered by deep learning",
+    description: "Cloud-delivered web security using inline deep learning to protect against known and unknown web-based threats including phishing, malware distribution sites, and C2 callbacks in real time.",
+    specs: ["Inline Deep Learning", "Real-Time Categorization", "Phishing Prevention", "100+ URL Categories", "Custom Allow/Block", "Credential Theft Protection"],
+    specGrid: [
+      { label: "Categories", value: "100+ URL Categories" },
+      { label: "Detection", value: "Inline ML Analysis" },
+      { label: "Coverage", value: "Phishing, Malware, C2" },
+      { label: "Updates", value: "Real-Time Cloud" },
+      { label: "Delivery", value: "Cloud-Delivered" },
+      { label: "Applies To", value: "All NGFWs + SASE" }
+    ],
+    features: ["Inline deep learning for unknown malicious URLs", "Real-time web page categorization", "Credential phishing prevention", "HTTP header insertion for SaaS control", "Customizable URL categories and lists", "Detailed URL logging and reporting"],
+    useCases: ["Web security and acceptable use", "Phishing prevention", "Malware download blocking", "SaaS application control"],
+    licensing: "Annual subscription per firewall. Available standalone or included in Prevention/Premium bundle. Replaces legacy PAN-DB URL Filtering subscription.",
+    licenseType: "Annual Subscription",
+    brochureUrl: "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/advanced-url-filtering",
+    productUrl: "https://www.paloaltonetworks.com/network-security/advanced-url-filtering"
+  },
+  {
+    id: "adv-wildfire",
+    image: "",
+    name: "Advanced WildFire",
+    category: "subscription",
+    badge: "Security Service",
+    tagline: "World's largest cloud-based malware prevention engine",
+    description: "The industry's largest and most integrated cloud-based malware prevention engine. Uses machine learning, dynamic analysis, and crowdsourced intelligence to identify and stop unknown file-based threats.",
+    specs: ["ML-Based Analysis", "Dynamic Sandboxing", "Bare Metal Analysis", "60-Second Verdicts", "Global Threat Intel", "Crowdsourced Intelligence"],
+    specGrid: [
+      { label: "Analysis", value: "ML + Dynamic + Static" },
+      { label: "Verdict Time", value: "~60 Seconds" },
+      { label: "File Types", value: "PE, ELF, APK, Office, PDF+" },
+      { label: "Daily Samples", value: "Millions Analyzed" },
+      { label: "Delivery", value: "Cloud-Delivered" },
+      { label: "Applies To", value: "All NGFWs + SASE" }
+    ],
+    features: ["Machine learning-based static analysis", "Dynamic analysis in cloud sandboxes", "Bare metal analysis for evasion-resistant detection", "Automatic signature generation in ~60 seconds", "Crowdsourced threat intelligence from 70K+ customers", "API submission for custom integrations"],
+    useCases: ["Zero-day malware prevention", "Advanced persistent threat (APT) defense", "File-based threat analysis", "Automated malware research"],
+    licensing: "Annual subscription per firewall. Included in Premium bundle. Advanced WildFire adds bare metal analysis, intelligent run-time memory analysis, and advanced file type support over standard WildFire.",
+    licenseType: "Annual Subscription",
+    brochureUrl: "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/wildfire",
+    productUrl: "https://www.paloaltonetworks.com/network-security/advanced-wildfire"
+  },
+  {
+    id: "adv-dns-security",
+    image: "",
+    name: "Advanced DNS Security",
+    category: "subscription",
+    badge: "Security Service",
+    tagline: "Real-time DNS-layer protection against hijacking and tunneling",
+    description: "Cloud-delivered DNS security service providing real-time protection against DNS-based threats including DNS hijacking, tunneling, and C2 over DNS. Industry's first real-time DNS hijacking protection.",
+    specs: ["DNS Hijack Protection", "DNS Tunneling Detection", "DGA Detection", "Predictive Analytics", "2x More Coverage", "Real-Time Cloud Analysis"],
+    specGrid: [
+      { label: "Protection", value: "DNS Hijack + Tunnel" },
+      { label: "Detection", value: "ML + Predictive" },
+      { label: "Coverage", value: "2x More Than Others" },
+      { label: "Response", value: "Real-Time Blocking" },
+      { label: "Delivery", value: "Cloud-Delivered" },
+      { label: "Applies To", value: "All NGFWs + SASE" }
+    ],
+    features: ["Real-time DNS hijacking prevention", "DNS tunneling detection and blocking", "Domain Generation Algorithm (DGA) detection", "Predictive analytics for new malicious domains", "Integration with threat intelligence", "Sinkholing for infected device identification"],
+    useCases: ["DNS-layer threat prevention", "C2 communication blocking", "Data exfiltration prevention via DNS", "DNS infrastructure security"],
+    licensing: "Annual subscription per firewall. Available standalone or included in bundles. Works across all PA-Series, VM-Series, CN-Series, and Prisma Access deployments.",
+    licenseType: "Annual Subscription",
+    brochureUrl: "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/dns-security-service",
+    productUrl: "https://www.paloaltonetworks.com/network-security/advanced-dns-security"
+  },
+  {
+    id: "enterprise-dlp",
+    image: "",
+    name: "Enterprise Data Loss Prevention",
+    category: "subscription",
+    badge: "Security Service",
+    tagline: "Consistent data protection across network, cloud, and users",
+    description: "Cloud-delivered enterprise DLP solution providing consistent, accurate data classification and protection across every network, cloud, and user. Single policy engine for all deployment points.",
+    specs: ["ML-Based Classification", "500+ Data Patterns", "Unified Policy Engine", "Exact Data Matching", "OCR for Images", "Cross-Platform"],
+    specGrid: [
+      { label: "Patterns", value: "500+ Built-in" },
+      { label: "Classification", value: "ML + EDM + OCR" },
+      { label: "Policy Engine", value: "Unified Across All" },
+      { label: "Platforms", value: "NGFW + SASE + SaaS" },
+      { label: "Compliance", value: "GDPR, HIPAA, PCI+" },
+      { label: "Delivery", value: "Cloud-Delivered" }
+    ],
+    features: ["ML-based data classification", "500+ predefined data patterns", "Exact Data Matching (EDM)", "Optical Character Recognition (OCR)", "Unified policy across NGFW, SASE, SaaS", "Built-in compliance templates (GDPR, HIPAA, PCI)"],
+    useCases: ["Sensitive data protection", "Regulatory compliance", "Preventing data exfiltration", "SaaS data governance"],
+    licensing: "Annual subscription. Can be activated on NGFWs, Prisma Access, and/or Prisma SaaS Security. Single license covers all enforcement points. Volume pricing available.",
+    licenseType: "Annual Subscription",
+    brochureUrl: "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/enterprise-data-loss-prevention",
+    productUrl: "https://www.paloaltonetworks.com/sase/enterprise-data-loss-prevention"
+  },
+  {
+    id: "iot-security",
+    image: "",
+    name: "Enterprise IoT Security",
+    category: "subscription",
+    badge: "Security Service",
+    tagline: "Complete IoT visibility, prevention, and enforcement",
+    description: "The industry's most comprehensive IoT security solution. Uses ML to discover and profile every IoT and OT device, assess risk, prevent threats, and enforce policies — all without sensors or additional infrastructure.",
+    specs: ["ML Device Discovery", "Risk Assessment", "Policy Recommendations", "No Sensors Needed", "IT + OT + IoMT", "90% Faster Deployment"],
+    specGrid: [
+      { label: "Discovery", value: "ML-Powered Profiling" },
+      { label: "Devices", value: "IT, OT, IoMT" },
+      { label: "Infrastructure", value: "No Sensors Required" },
+      { label: "Policies", value: "Auto-Recommended" },
+      { label: "Integration", value: "NAC, CMDB, ITSM" },
+      { label: "Delivery", value: "Cloud-Delivered" }
+    ],
+    features: ["Agentless ML-based device discovery", "Accurate device profiling (type, vendor, model, firmware)", "Vulnerability and risk assessment", "Automated policy recommendations", "Anomalous behavior detection", "Integration with NAC, CMDB, and ITSM tools"],
+    useCases: ["IoT device visibility and control", "OT/ICS security", "Medical device security (IoMT)", "Smart building security"],
+    licensing: "Annual subscription based on number of devices monitored. Activated on existing NGFWs — no additional sensors or infrastructure needed. Separate SKUs for Enterprise IoT, Medical IoT, and Industrial OT.",
+    licenseType: "Per-Device Count",
+    brochureUrl: "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/iot-security",
+    productUrl: "https://www.paloaltonetworks.com/network-security/enterprise-device-security"
+  },
+  {
+    id: "saas-security",
+    image: "",
+    name: "SaaS Security",
+    category: "subscription",
+    badge: "Security Service",
+    tagline: "Next-generation CASB for complete SaaS visibility and control",
+    description: "Integrated SaaS Security powered by next-generation CASB technology. Discovers and secures all SaaS applications, protects sensitive data, prevents zero-day threats, and ensures compliance.",
+    specs: ["Next-Gen CASB", "Shadow IT Discovery", "Inline + API Mode", "Data Classification", "Compliance Monitoring", "Zero-Day Protection"],
+    specGrid: [
+      { label: "SaaS Apps", value: "60,000+ Identified" },
+      { label: "Modes", value: "Inline + API (Out-of-Band)" },
+      { label: "Data Protection", value: "DLP + ML Classification" },
+      { label: "Compliance", value: "SaaS Posture Mgmt" },
+      { label: "Threat Prevention", value: "Zero-Day + Malware" },
+      { label: "Delivery", value: "Cloud-Delivered" }
+    ],
+    features: ["Discover and classify 60,000+ SaaS apps", "Inline and out-of-band (API) protection modes", "SaaS Security Posture Management (SSPM)", "Sensitive data exposure detection", "User behavior analytics", "Automated remediation workflows"],
+    useCases: ["Shadow IT discovery and control", "SaaS data protection", "SaaS compliance monitoring", "Collaboration security (O365, Google, Slack)"],
+    licensing: "Annual subscription. Available for NGFW inline mode and/or API-based out-of-band mode. Tiered licensing based on number of SaaS app instances connected. Part of the Prisma SASE portfolio as well.",
+    licenseType: "Annual Subscription",
+    brochureUrl: "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/saas-security",
+    productUrl: "https://www.paloaltonetworks.com/sase/saas-security"
+  },
+  {
+    id: "ai-access-security",
+    image: "",
+    name: "AI Access Security",
+    category: "subscription",
+    badge: "Security Service",
+    tagline: "Comprehensive visibility and control over generative AI usage",
+    description: "Purpose-built security solution for monitoring and controlling enterprise use of generative AI applications. Provides visibility into shadow AI, enforces data protection policies, and ensures safe adoption of AI tools.",
+    specs: ["GenAI App Discovery", "Data Protection", "Shadow AI Visibility", "Real-Time Control", "Risk Assessment", "Policy Enforcement"],
+    specGrid: [
+      { label: "Visibility", value: "All GenAI Apps" },
+      { label: "Control", value: "Real-Time Inline" },
+      { label: "Data Protection", value: "DLP for AI Prompts" },
+      { label: "Risk", value: "AI App Risk Scoring" },
+      { label: "Delivery", value: "Cloud-Delivered" },
+      { label: "Applies To", value: "NGFW + SASE" }
+    ],
+    features: ["Discover all GenAI applications in use", "Classify AI apps by risk level", "Prevent sensitive data in AI prompts", "Block unauthorized AI applications", "Monitor AI usage patterns and trends", "Enforce acceptable AI use policies"],
+    useCases: ["Shadow AI discovery", "Preventing data leaks to AI tools", "AI acceptable use enforcement", "Compliance for AI usage"],
+    licensing: "Annual subscription add-on for existing NGFW or Prisma Access deployments. Per-user licensing model. Requires Advanced URL Filtering or Prisma Access as a prerequisite.",
+    licenseType: "Per-User Add-On",
+    brochureUrl: "",
+    productUrl: "https://www.paloaltonetworks.com/network-security/ai-access-security"
+  },
+  {
+    id: "sd-wan-ngfw",
+    image: "",
+    name: "SD-WAN for NGFW",
+    category: "subscription",
+    badge: "Security Service",
+    tagline: "Intelligent path selection with integrated security on one platform",
+    description: "SD-WAN subscription for Palo Alto Networks NGFWs enabling intelligent path selection, application-aware routing, and WAN optimization — all integrated with security on a single platform. No separate SD-WAN appliances needed.",
+    specs: ["App-Aware Routing", "Path Selection", "Link Monitoring", "WAN Optimization", "No Extra Hardware", "Centralized Management"],
+    specGrid: [
+      { label: "Routing", value: "Application-Aware" },
+      { label: "Path Selection", value: "Real-Time Quality" },
+      { label: "Optimization", value: "FEC + Packet Dup" },
+      { label: "Links", value: "MPLS, Broadband, LTE" },
+      { label: "Management", value: "Panorama / SCM" },
+      { label: "Requires", value: "PA-Series NGFW" }
+    ],
+    features: ["Application-aware intelligent path selection", "Real-time link quality monitoring", "Forward Error Correction (FEC)", "Packet duplication for reliability", "SaaS application acceleration", "No additional hardware required"],
+    useCases: ["Branch office WAN optimization", "MPLS to broadband migration", "Application performance improvement", "Unified security + SD-WAN"],
+    licensing: "Annual subscription per NGFW. Activated on existing PA-Series hardware. Managed via Panorama or Strata Cloud Manager. Can be combined with Prisma SD-WAN for full SASE SD-WAN.",
+    licenseType: "Annual Subscription",
+    brochureUrl: "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/pan-os-sd-wan",
+    productUrl: "https://www.paloaltonetworks.com/network-security/sd-wan-subscription"
+  },
+
+  // ── PRISMA SASE ──
+  {
+    id: "prisma-access",
+    image: "https://www.paloaltonetworks.com/etc/clientlibs/pan/img/favicons2020/prisma-32x32.png",
+    name: "Prisma Access",
+    category: "sase",
+    badge: "Prisma SASE",
+    tagline: "Cloud-delivered security for all users, apps, and locations",
+    description: "Secure access service edge (SASE) platform delivering consistent security for remote and mobile users, branch offices, and cloud applications. Built on a purpose-built cloud-delivered infrastructure with 100+ global locations.",
+    specs: ["100+ Global PoPs", "ZTNA 2.0", "SWG / CASB / FWaaS", "App-ID Everywhere", "Full TLS Inspection", "5 Nines SLA"],
+    specGrid: [
+      { label: "Global PoPs", value: "100+" },
+      { label: "SLA", value: "99.999% Uptime" },
+      { label: "Capabilities", value: "ZTNA, SWG, CASB, FWaaS" },
+      { label: "Users", value: "Remote + Branch" },
+      { label: "Architecture", value: "Single-Pass Cloud" },
+      { label: "Management", value: "Strata Cloud Manager" }
+    ],
+    features: ["ZTNA 2.0 for least-privilege access", "Secure Web Gateway (SWG)", "Cloud Access Security Broker (CASB)", "Firewall-as-a-Service (FWaaS)", "Full TLS/SSL inspection at scale", "Autonomous Digital Experience Management (ADEM)"],
+    useCases: ["Remote and hybrid workforce security", "Branch office cloud security", "VPN replacement with ZTNA", "Global application access"],
+    licensing: "Per-user annual subscription. Tiered editions: Prisma Access (base), Prisma Access with Advanced Security. Add-ons include ADEM, Enterprise DLP, SaaS Security, AI Access Security. Volume discounts available.",
+    licenseType: "Per-User Subscription",
+    brochureUrl: "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/prisma-access",
+    productUrl: "https://www.paloaltonetworks.com/sase/access"
+  },
+  {
+    id: "prisma-sd-wan",
+    image: "https://docs.paloaltonetworks.com/content/dam/techdocs/en_US/images/hardware/ION3200_HeroR.png",
+    name: "Prisma SD-WAN",
+    category: "sase",
+    badge: "Prisma SASE",
+    tagline: "Application-defined autonomous next-generation SD-WAN",
+    description: "Cloud-delivered next-generation SD-WAN that enables the cloud-delivered branch. Autonomous operations with application-defined policies, integrated IoT security, and seamless integration with Prisma Access for full SASE.",
+    specs: ["Autonomous Operations", "App-Defined Policies", "ION Appliances", "Integrated IoT Security", "Cloud-Managed", "SASE Native"],
+    specGrid: [
+      { label: "Appliances", value: "ION 1200/3200/9000" },
+      { label: "Management", value: "Cloud Controller" },
+      { label: "Operations", value: "ML-Driven Autonomous" },
+      { label: "Integration", value: "Prisma Access Native" },
+      { label: "IoT", value: "Built-in Discovery" },
+      { label: "Architecture", value: "SASE-Native SD-WAN" }
+    ],
+    features: ["ML-driven autonomous operations", "Application-defined routing policies", "ION hardware appliances for branches", "Integrated IoT device security", "Direct cloud on-ramp connectivity", "Seamless Prisma Access integration"],
+    useCases: ["Branch office transformation", "MPLS migration to SASE", "WAN optimization and simplification", "IoT-enabled branch security"],
+    licensing: "Per-site annual subscription. ION hardware appliances (ION 1200, 3200, 9000) purchased or leased separately. Tiered bandwidth licensing. Part of Prisma SASE platform bundle.",
+    licenseType: "Per-Site Subscription",
+    brochureUrl: "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/prisma-sd-wan-aag",
+    productUrl: "https://www.paloaltonetworks.com/sase/sd-wan"
+  },
+  {
+    id: "prisma-browser",
+    image: "https://www.paloaltonetworks.com/etc/clientlibs/pan/img/favicons2020/prisma-32x32.png",
+    name: "Prisma Access Browser",
+    category: "sase",
+    badge: "Prisma SASE",
+    tagline: "Enterprise browser securing managed and unmanaged devices",
+    description: "Enterprise-grade secure browser built for the modern workforce. Secures both managed and unmanaged devices (BYOD, contractors) with consistent security policies, data protection, and seamless user experience.",
+    specs: ["Chromium-Based", "BYOD / Contractor Ready", "Integrated DLP", "Last-Mile Visibility", "Session Recording", "Zero Install Option"],
+    specGrid: [
+      { label: "Engine", value: "Chromium-Based" },
+      { label: "Devices", value: "Managed + Unmanaged" },
+      { label: "Data Protection", value: "Inline DLP" },
+      { label: "Visibility", value: "Last-Mile Activity" },
+      { label: "Integration", value: "Prisma SASE Native" },
+      { label: "Deployment", value: "MSI / Zero-Install" }
+    ],
+    features: ["Chromium-based enterprise browser", "Secure access from unmanaged devices", "Built-in DLP and data protection", "Last-mile visibility into user actions", "Watermarking and copy/paste controls", "Native integration with Prisma SASE"],
+    useCases: ["BYOD and contractor access", "Virtual desktop replacement", "Sensitive application access", "Third-party workforce security"],
+    licensing: "Per-user annual subscription. Add-on to Prisma Access or available standalone. Concurrent user licensing available for shared workstation scenarios.",
+    licenseType: "Per-User Subscription",
+    brochureUrl: "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/prisma-access-browser",
+    productUrl: "https://www.paloaltonetworks.com/sase/prisma-browser"
+  },
+  {
+    id: "adem",
+    image: "",
+    name: "Autonomous Digital Experience Management",
+    category: "sase",
+    badge: "Prisma SASE",
+    tagline: "SASE-native visibility across the entire service delivery path",
+    description: "Industry's first SASE-native Autonomous Digital Experience Management solution. Provides end-to-end visibility across the entire service delivery path to proactively identify and resolve performance issues before users are impacted.",
+    specs: ["End-to-End Visibility", "Synthetic Monitoring", "Real User Monitoring", "AI-Driven Insights", "Auto Remediation", "SASE-Native"],
+    specGrid: [
+      { label: "Monitoring", value: "Synthetic + Real User" },
+      { label: "Visibility", value: "Endpoint to App" },
+      { label: "Analysis", value: "AI-Driven Root Cause" },
+      { label: "Remediation", value: "Autonomous Actions" },
+      { label: "Integration", value: "Prisma SASE Native" },
+      { label: "Segments", value: "WiFi, ISP, App, VPN" }
+    ],
+    features: ["End-to-end path visibility from endpoint to app", "Synthetic monitoring for proactive detection", "Real user experience monitoring", "AI-driven root cause analysis", "Segment-level performance isolation", "Autonomous remediation recommendations"],
+    useCases: ["SASE performance monitoring", "User experience troubleshooting", "ISP and network path analysis", "Proactive issue resolution"],
+    licensing: "Per-user annual subscription. Add-on to Prisma Access. Included in select Prisma SASE premium bundles. Requires Prisma Access GlobalProtect agent on endpoints.",
+    licenseType: "Per-User Add-On",
+    brochureUrl: "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/autonomous-digital-experience-management-aag",
+    productUrl: "https://www.paloaltonetworks.com/sase/adem"
+  },
+  {
+    id: "globalprotect",
+    image: "",
+    name: "GlobalProtect",
+    category: "sase",
+    badge: "Prisma SASE",
+    tagline: "Network security client for endpoint connectivity",
+    description: "Network security client that extends NGFW security policies to mobile and remote users. Provides always-on VPN connectivity, host information profiling, and consistent security enforcement regardless of user location.",
+    specs: ["Always-On VPN", "HIP Checks", "Split Tunneling", "Pre-Logon Connect", "Multi-OS Support", "MFA Integration"],
+    specGrid: [
+      { label: "Platforms", value: "Win, Mac, Linux, iOS, Android" },
+      { label: "VPN", value: "IPSec + SSL" },
+      { label: "Authentication", value: "SAML, MFA, Certificates" },
+      { label: "Features", value: "HIP, Split Tunnel, Pre-Logon" },
+      { label: "Integration", value: "NGFW + Prisma Access" },
+      { label: "Management", value: "Panorama / SCM" }
+    ],
+    features: ["Always-on VPN connectivity", "Host Information Profile (HIP) checks", "Intelligent split tunneling", "Pre-logon and always-on modes", "SAML and MFA support", "Clientless VPN option"],
+    useCases: ["Remote workforce VPN", "BYOD endpoint compliance", "Mobile user security", "Pre-logon domain connectivity"],
+    licensing: "Included with Prisma Access subscription. For NGFW-based deployment, GlobalProtect subscription is per-firewall annual license. Multi-platform support included.",
+    licenseType: "Included / Per-FW",
+    brochureUrl: "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/globalprotect-datasheet",
+    productUrl: "https://www.paloaltonetworks.com/products/globalprotect"
+  },
+  {
+    id: "rbi",
+    image: "",
+    name: "Remote Browser Isolation",
+    category: "sase",
+    badge: "Prisma SASE",
+    tagline: "Isolate risky web content from endpoints",
+    description: "Cloud-based browser isolation that renders web content in isolated containers, preventing web-based threats from reaching endpoints. Provides safe access to risky or unknown websites without impacting user experience.",
+    specs: ["Cloud-Based Isolation", "Pixel Streaming", "Read-Only Mode", "File Sanitization", "No Endpoint Agent", "URL Category Based"],
+    specGrid: [
+      { label: "Rendering", value: "Cloud Container" },
+      { label: "Streaming", value: "Pixel-Based" },
+      { label: "Controls", value: "Read-Only, No Download" },
+      { label: "Files", value: "CDR Sanitization" },
+      { label: "Trigger", value: "URL Category Policy" },
+      { label: "Integration", value: "Prisma Access / NGFW" }
+    ],
+    features: ["Web content rendered in cloud containers", "Pixel-based streaming to endpoints", "Read-only mode for risky sites", "File download sanitization (CDR)", "Policy-based activation by URL category", "No additional endpoint agent required"],
+    useCases: ["Safe access to unknown websites", "Phishing protection for risky links", "Protecting against web-based zero-days", "Compliance for regulated industries"],
+    licensing: "Per-user annual subscription add-on. Requires Prisma Access or NGFW with Advanced URL Filtering. Usage-based tiers available.",
+    licenseType: "Per-User Add-On",
+    brochureUrl: "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/prisma-sase-aag",
+    productUrl: "https://www.paloaltonetworks.com/sase/remote-browser-isolation"
+  },
+
+  // ── CORTEX (SECOPS) ──
+  {
+    id: "cortex-xsiam",
+    image: "https://www.paloaltonetworks.com/etc/clientlibs/pan/img/favicons2020/cortex-32x32.png",
+    name: "Cortex XSIAM",
+    category: "cortex",
+    badge: "Cortex SecOps",
+    tagline: "AI-driven security operations platform for the modern SOC",
+    description: "The industry's leading AI-driven security operations platform purpose-built for SOC transformation. Unifies SIEM, SOAR, ASM, UEBA, TIP, and XDR capabilities on a single platform powered by the Cortex Extended Data Lake.",
+    specs: ["AI-Driven SOC Platform", "Unified SIEM + SOAR + XDR", "98% Faster Response", "Cortex Extended Data Lake", "Precision AI Engine", "1000+ Integrations"],
+    specGrid: [
+      { label: "Platform", value: "Unified SOC (SIEM+SOAR+XDR)" },
+      { label: "AI", value: "Precision AI Engine" },
+      { label: "Response", value: "98% Faster MTTR" },
+      { label: "Data Lake", value: "Cortex XDL" },
+      { label: "Integrations", value: "1,000+ Pre-Built" },
+      { label: "Automation", value: "Full SOAR Built-In" }
+    ],
+    features: ["AI-driven alert grouping, scoring, and triage", "Unified data lake with automatic normalization", "Built-in SOAR with 1,000+ playbooks", "Attack surface management", "User and entity behavior analytics", "Threat intelligence management"],
+    useCases: ["SOC transformation and modernization", "SIEM replacement / consolidation", "Automated incident response", "Threat hunting at scale"],
+    licensing: "Data ingestion-based subscription (GB/day). Tiered editions with different data retention and analytics capabilities. Includes XDR, SOAR, ASM, TIP, and UEBA. Multi-year discounts available.",
+    licenseType: "Data Volume (GB/day)",
+    brochureUrl: "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/cortex-xsiam",
+    productUrl: "https://www.paloaltonetworks.com/cortex/cortex-xsiam"
+  },
+  {
+    id: "cortex-xdr",
+    image: "https://www.paloaltonetworks.com/etc/clientlibs/pan/img/favicons2020/cortex-32x32.png",
+    name: "Cortex XDR",
+    category: "cortex",
+    badge: "Cortex SecOps",
+    tagline: "Extended detection and response with 100% MITRE ATT&CK detection",
+    description: "Industry-leading extended detection and response platform achieving 100% detection in MITRE ATT&CK Evaluations. Prevents, detects, and remediates threats across endpoints, network, cloud, and identity data.",
+    specs: ["100% MITRE Detection", "Endpoint + Network + Cloud", "Behavioral Analytics", "Forensic Investigation", "Host Firewall & Encryption", "Identity Analytics"],
+    specGrid: [
+      { label: "Coverage", value: "Endpoint, Network, Cloud, Identity" },
+      { label: "Detection", value: "100% MITRE ATT&CK" },
+      { label: "Prevention", value: "ML + Behavioral" },
+      { label: "Agent", value: "Windows, Mac, Linux" },
+      { label: "Forensics", value: "Full Investigation" },
+      { label: "Tiers", value: "Prevent, Pro, Pro per TB" }
+    ],
+    features: ["Endpoint protection with ML and behavioral analysis", "Cross-data analytics across endpoint, network, cloud", "Automated root cause analysis", "Forensic investigation and timeline", "Host firewall and disk encryption", "Identity threat detection and response"],
+    useCases: ["Endpoint protection (EPP/EDR)", "Extended detection and response", "Threat investigation and forensics", "Identity-based threat detection"],
+    licensing: "Per-endpoint annual subscription. Three tiers: Cortex XDR Prevent (EPP), Cortex XDR Pro per Endpoint, Cortex XDR Pro per TB (includes third-party data). Add-ons: Host Insights, Forensics, Identity Analytics.",
+    licenseType: "Per-Endpoint Subscription",
+    brochureUrl: "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/cortex-xdr",
+    productUrl: "https://www.paloaltonetworks.com/cortex/cortex-xdr"
+  },
+  {
+    id: "cortex-xsoar",
+    image: "https://www.paloaltonetworks.com/etc/clientlibs/pan/img/favicons2020/cortex-32x32.png",
+    name: "Cortex XSOAR",
+    category: "cortex",
+    badge: "Cortex SecOps",
+    tagline: "Security orchestration, automation, and response with native TIP",
+    description: "The industry's most comprehensive SOAR platform with native threat intelligence management. Automates incident response with 1,000+ pre-built integrations and playbooks, reducing manual SOC work by 75%.",
+    specs: ["1000+ Integrations", "Visual Playbook Builder", "War Room Collaboration", "Native TIP", "Case Management", "75% Workload Reduction"],
+    specGrid: [
+      { label: "Integrations", value: "1,000+ Pre-Built" },
+      { label: "Playbooks", value: "Hundreds Pre-Built" },
+      { label: "Automation", value: "75% Workload Reduction" },
+      { label: "TIP", value: "Native Threat Intel" },
+      { label: "Collaboration", value: "War Rooms" },
+      { label: "Deployment", value: "Cloud or On-Prem" }
+    ],
+    features: ["Visual drag-and-drop playbook builder", "1,000+ third-party integrations", "Native threat intelligence management", "War Room real-time collaboration", "Case management with SLA tracking", "Marketplace for community content"],
+    useCases: ["Automated incident response", "Threat intelligence operationalization", "SOC workflow automation", "Multi-team security collaboration"],
+    licensing: "Tiered subscription: Community Edition (free, limited), Standard, and Enterprise. Licensed by number of automation actions or analysts. Available as SaaS or on-premises deployment.",
+    licenseType: "Tiered Subscription",
+    brochureUrl: "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/cortex-xsoar",
+    productUrl: "https://www.paloaltonetworks.com/cortex/cortex-xsoar"
+  },
+  {
+    id: "cortex-xpanse",
+    image: "https://www.paloaltonetworks.com/etc/clientlibs/pan/img/favicons2020/cortex-32x32.png",
+    name: "Cortex Xpanse",
+    category: "cortex",
+    badge: "Cortex SecOps",
+    tagline: "Attack surface management with 100% asset coverage",
+    description: "The leading attack surface management (ASM) solution that continuously discovers and monitors all internet-connected assets across all 65,000 ports. Identifies vulnerabilities and misconfigurations proactively.",
+    specs: ["All 65,000 Ports", "Continuous Discovery", "Shadow IT Detection", "Risk Prioritization", "Auto Remediation", "M&A Due Diligence"],
+    specGrid: [
+      { label: "Scanning", value: "All 65,000 Ports" },
+      { label: "Frequency", value: "Continuous / Daily" },
+      { label: "Assets", value: "All Internet-Facing" },
+      { label: "Detection", value: "Shadow IT + Unknown" },
+      { label: "Remediation", value: "Automated via XSOAR" },
+      { label: "Use Cases", value: "ASM, M&A, Supply Chain" }
+    ],
+    features: ["Continuous internet-wide asset discovery", "Identification of unknown and shadow IT assets", "Vulnerability and misconfiguration detection", "Risk-based prioritization", "Automated remediation workflows", "Supply chain and M&A risk assessment"],
+    useCases: ["External attack surface management", "Shadow IT discovery", "M&A security due diligence", "Supply chain risk assessment"],
+    licensing: "Annual subscription based on number of IP ranges or entities monitored. Tiered editions: Xpanse Expander (discovery), Xpanse Link (supply chain). Part of Cortex platform bundle.",
+    licenseType: "Entity-Based Subscription",
+    brochureUrl: "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/expander-a-better-way-to-manage-your-attack-surface",
+    productUrl: "https://www.paloaltonetworks.com/cortex/cortex-xpanse"
+  },
+  {
+    id: "cortex-exposure-mgmt",
+    image: "https://www.paloaltonetworks.com/etc/clientlibs/pan/img/favicons2020/cortex-32x32.png",
+    name: "Cortex Exposure Management",
+    category: "cortex",
+    badge: "Cortex SecOps",
+    tagline: "AI-driven vulnerability prioritization and automated remediation",
+    description: "Comprehensive exposure management solution that cuts vulnerability noise by up to 99% using AI-driven prioritization. Spans enterprise and cloud environments with automated remediation capabilities.",
+    specs: ["99% Noise Reduction", "AI Prioritization", "Attack Path Analysis", "Auto Remediation", "Enterprise + Cloud", "Continuous Assessment"],
+    specGrid: [
+      { label: "Noise Reduction", value: "Up to 99%" },
+      { label: "Prioritization", value: "AI-Driven" },
+      { label: "Analysis", value: "Attack Path Mapping" },
+      { label: "Remediation", value: "Automated" },
+      { label: "Coverage", value: "Enterprise + Cloud" },
+      { label: "Platform", value: "Cortex / XSIAM" }
+    ],
+    features: ["AI-driven vulnerability prioritization", "Attack path analysis and visualization", "Automated remediation workflows", "Unified view across enterprise and cloud", "Integration with CMDB and ticketing", "Continuous posture assessment"],
+    useCases: ["Vulnerability management modernization", "Risk-based patching prioritization", "Compliance-driven remediation", "Security posture optimization"],
+    licensing: "Annual subscription. Available as part of Cortex XSIAM or as standalone module. Licensed per asset count. Integrates with existing vulnerability scanners.",
+    licenseType: "Per-Asset Subscription",
+    brochureUrl: "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/cortex-exposure-management",
+    productUrl: "https://www.paloaltonetworks.com/cortex/exposure-management"
+  },
+  {
+    id: "cortex-email-security",
+    image: "https://www.paloaltonetworks.com/etc/clientlibs/pan/img/favicons2020/cortex-32x32.png",
+    name: "Cortex Advanced Email Security",
+    category: "cortex",
+    badge: "Cortex SecOps",
+    tagline: "AI-driven protection against advanced email threats",
+    description: "Advanced email security solution using LLM-driven analytics merged with industry-leading detection and response capabilities. Stops advanced phishing, BEC, and email-based attacks with AI-powered analysis.",
+    specs: ["LLM-Driven Analytics", "BEC Protection", "Phishing Prevention", "Auto Investigation", "Inline + API Mode", "M365 & Google Integration"],
+    specGrid: [
+      { label: "AI Engine", value: "LLM-Driven Analytics" },
+      { label: "Threats", value: "Phishing, BEC, Malware" },
+      { label: "Modes", value: "Inline + API" },
+      { label: "Platforms", value: "M365, Google Workspace" },
+      { label: "Response", value: "Auto Investigation" },
+      { label: "Integration", value: "Cortex XSIAM Native" }
+    ],
+    features: ["LLM-powered email threat analysis", "Business Email Compromise detection", "Advanced phishing prevention", "Automated investigation and response", "Integration with Cortex XSIAM", "Microsoft 365 and Google Workspace support"],
+    useCases: ["Email-based threat prevention", "BEC and CEO fraud protection", "Phishing attack mitigation", "SOC-integrated email security"],
+    licensing: "Per-mailbox annual subscription. Available as standalone or integrated with Cortex XSIAM. Volume-based pricing tiers.",
+    licenseType: "Per-Mailbox Subscription",
+    brochureUrl: "",
+    productUrl: "https://www.paloaltonetworks.com/cortex/advanced-email-security"
+  },
+
+  // ── CLOUD SECURITY ──
+  {
+    id: "cortex-cloud",
+    image: "https://www.paloaltonetworks.com/etc/clientlibs/pan/img/favicons2020/cortex-32x32.png",
+    name: "Cortex Cloud",
+    category: "cloud",
+    badge: "Cloud Security",
+    tagline: "The #1 CNAPP reimagined for real-time protection",
+    description: "The world's leading cloud-native application protection platform (CNAPP), rearchitected on the Cortex SecOps platform for real-time security from code to cloud to SOC. Unifies CSPM, CWP, CIEM, and code security.",
+    specs: ["#1 CNAPP Platform", "Code to Cloud to SOC", "Real-Time Protection", "CSPM + CWP + CIEM", "Agentless + Agent", "Multi-Cloud Native"],
+    specGrid: [
+      { label: "Platform", value: "#1 CNAPP" },
+      { label: "Clouds", value: "AWS, Azure, GCP, OCI" },
+      { label: "Coverage", value: "CSPM, CWP, CIEM, IaC" },
+      { label: "Detection", value: "Real-Time + Agentless" },
+      { label: "Integration", value: "Cortex SecOps Native" },
+      { label: "Compliance", value: "100+ Frameworks" }
+    ],
+    features: ["Cloud Security Posture Management (CSPM)", "Cloud Workload Protection (CWP)", "Cloud Infrastructure Entitlement Management (CIEM)", "Infrastructure as Code (IaC) security", "Container and serverless protection", "Attack path analysis across cloud"],
+    useCases: ["Multi-cloud security posture", "Cloud workload protection", "Cloud compliance and governance", "DevSecOps pipeline security"],
+    licensing: "Credit-based consumption model. Credits consumed based on cloud resources protected. Tiered bundles: Foundation, Advanced, Enterprise. Annual commitment with true-up. Multi-cloud pricing.",
+    licenseType: "Credit-Based Consumption",
+    brochureUrl: "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/cortex-cloud-overview",
+    productUrl: "https://www.paloaltonetworks.com/cortex/cloud"
+  },
+  {
+    id: "prisma-cloud",
+    image: "https://www.paloaltonetworks.com/etc/clientlibs/pan/img/favicons2020/prisma-32x32.png",
+    name: "Prisma Cloud",
+    category: "cloud",
+    badge: "Cloud Security",
+    tagline: "Comprehensive cloud-native security for the full lifecycle",
+    description: "Cloud Native Security platform providing comprehensive protection across the full application lifecycle for any cloud. Secures infrastructure, workloads, applications, and data with a unified platform approach.",
+    specs: ["Full Lifecycle Security", "Any Cloud Platform", "Shift-Left Integration", "Runtime Protection", "Network Security", "Data Security"],
+    specGrid: [
+      { label: "Lifecycle", value: "Build, Deploy, Run" },
+      { label: "Clouds", value: "AWS, Azure, GCP, OCI+" },
+      { label: "Workloads", value: "VM, Container, Serverless" },
+      { label: "Shift-Left", value: "IDE + CI/CD + Registry" },
+      { label: "Runtime", value: "Agent + Agentless" },
+      { label: "Compliance", value: "100+ Standards" }
+    ],
+    features: ["Cloud Security Posture Management", "Cloud Workload Protection (containers, hosts, serverless)", "Web Application & API Security (WAAS)", "Microsegmentation for cloud networks", "IaC scanning in CI/CD pipelines", "Secrets scanning and data security"],
+    useCases: ["Cloud security posture management", "Container security in production", "Shift-left security for DevOps", "Cloud compliance automation"],
+    licensing: "Credit-based consumption model. Modules can be purchased individually or as bundles. Credits consumed per cloud resource. Annual commitment. Being integrated into Cortex Cloud platform.",
+    licenseType: "Credit-Based Consumption",
+    brochureUrl: "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/prisma-cloud-compute-edition-aag",
+    productUrl: "https://www.paloaltonetworks.com/prisma/cloud"
+  },
+  {
+    id: "prisma-airs",
+    image: "https://www.paloaltonetworks.com/etc/clientlibs/pan/img/favicons2020/prisma-32x32.png",
+    name: "Prisma AIRS",
+    category: "cloud",
+    badge: "Cloud Security",
+    tagline: "The world's most comprehensive AI security platform",
+    description: "Prisma AI Runtime Security — the comprehensive AI security platform to securely deploy AI applications, agents, models, and data. Protects from development to deployment against prompt injection, data leaks, toxic content, and more.",
+    specs: ["AI App Security", "Prompt Injection Defense", "Model Protection", "Data Leak Prevention", "Agent Security", "Full Lifecycle"],
+    specGrid: [
+      { label: "Scope", value: "Apps, Agents, Models, Data" },
+      { label: "Threats", value: "Prompt Injection, DLP, Toxic" },
+      { label: "Lifecycle", value: "Dev to Production" },
+      { label: "Models", value: "LLMs, RAG, Agents" },
+      { label: "Integration", value: "API + SDK" },
+      { label: "Platform", value: "Cloud-Delivered" }
+    ],
+    features: ["AI application runtime protection", "Prompt injection detection and blocking", "Sensitive data leak prevention in AI", "Toxic/harmful content filtering", "Model security and integrity monitoring", "AI agent governance and control"],
+    useCases: ["Securing enterprise AI/LLM deployments", "Protecting against prompt injection", "AI data loss prevention", "Governing AI agent behaviors"],
+    licensing: "Per-AI-application or per-API-call consumption model. Annual subscription with tiered pricing based on usage volume. Available as standalone or integrated with Cortex Cloud.",
+    licenseType: "Consumption-Based",
+    brochureUrl: "",
+    productUrl: "https://www.paloaltonetworks.com/prisma/prisma-ai-runtime-security"
+  },
+
+  // ── UNIT 42 SERVICES ──
+  {
+    id: "unit42-ir",
+    image: "",
+    name: "Unit 42 Incident Response",
+    category: "services",
+    badge: "Unit 42 Services",
+    tagline: "Elite incident response team to contain and remediate breaches",
+    description: "World-class incident response services from Unit 42 security experts. Rapid deployment to investigate breaches, contain threats, remediate damage, and get organizations back to business. Available 24/7 with retainer or on-demand.",
+    specs: ["24/7 Availability", "Average 30 Min Response", "Global Coverage", "Retainer or On-Demand", "Legal-Ready Reporting", "Forensic Analysis"],
+    specGrid: [
+      { label: "Response Time", value: "~30 Minutes" },
+      { label: "Availability", value: "24/7/365" },
+      { label: "Coverage", value: "Global" },
+      { label: "Engagement", value: "Retainer or On-Demand" },
+      { label: "Reporting", value: "Legal-Ready" },
+      { label: "Team", value: "Elite Threat Experts" }
+    ],
+    features: ["Rapid breach containment", "Digital forensic investigation", "Malware reverse engineering", "Threat actor attribution", "Legal-ready incident reports", "Post-incident remediation guidance"],
+    useCases: ["Active breach response", "Ransomware recovery", "Nation-state attack investigation", "Legal and regulatory incident handling"],
+    licensing: "Retainer-based annual contract with pre-purchased hours, or on-demand engagement at premium rates. Retainer includes proactive services credits. Enterprise, Mid-Market, and Premium tiers available.",
+    licenseType: "Retainer / On-Demand",
+    brochureUrl: "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/threat-intel-and-incident-response-services-overview",
+    productUrl: "https://www.paloaltonetworks.com/unit42/respond"
+  },
+  {
+    id: "unit42-assess",
+    image: "",
+    name: "Unit 42 Proactive Assessments",
+    category: "services",
+    badge: "Unit 42 Services",
+    tagline: "Identify and fix vulnerabilities before attackers exploit them",
+    description: "Proactive security assessment services including penetration testing, red teaming, purple teaming, compromise assessments, and security posture reviews. Performed by Unit 42's elite threat experts using real-world attack techniques.",
+    specs: ["Penetration Testing", "Red / Purple Teaming", "Compromise Assessment", "Tabletop Exercises", "Cloud Security Review", "Ransomware Readiness"],
+    specGrid: [
+      { label: "Services", value: "Pen Test, Red Team, Purple" },
+      { label: "Assessments", value: "Compromise, Posture" },
+      { label: "Exercises", value: "Tabletop, War Games" },
+      { label: "Focus", value: "Network, Cloud, App, Social" },
+      { label: "Standards", value: "MITRE ATT&CK Framework" },
+      { label: "Delivery", value: "Remote + On-Site" }
+    ],
+    features: ["Network and application penetration testing", "Red team / adversary simulation", "Purple team collaborative exercises", "Compromise and breach assessment", "Ransomware readiness review", "Executive tabletop exercises"],
+    useCases: ["Annual security assessments", "Pre-audit vulnerability identification", "Ransomware preparedness", "Board-level risk reporting"],
+    licensing: "Project-based engagement pricing. Can be purchased as standalone projects or included as part of IR retainer proactive credits. Volume discounts for multi-assessment engagements.",
+    licenseType: "Project-Based",
+    brochureUrl: "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/unit42-cyber-risk-management",
+    productUrl: "https://www.paloaltonetworks.com/unit42/assess"
+  },
+  {
+    id: "unit42-mdr",
+    image: "",
+    name: "Unit 42 Managed Detection & Response",
+    category: "services",
+    badge: "Unit 42 Services",
+    tagline: "24/7 threat detection and response by elite security experts",
+    description: "Managed detection and response service powered by Unit 42's elite analysts and the Cortex platform. Provides 24/7 monitoring, threat hunting, detection, investigation, and response capabilities as a fully managed service.",
+    specs: ["24/7 SOC Coverage", "Unit 42 Analysts", "Cortex-Powered", "Threat Hunting", "Automated Response", "Monthly Reporting"],
+    specGrid: [
+      { label: "Coverage", value: "24/7/365" },
+      { label: "Platform", value: "Cortex XDR / XSIAM" },
+      { label: "Team", value: "Unit 42 Experts" },
+      { label: "Hunting", value: "Proactive Threat Hunting" },
+      { label: "Response", value: "Investigation + Remediation" },
+      { label: "Reporting", value: "Monthly Executive" }
+    ],
+    features: ["24/7 monitoring and alert triage", "Proactive threat hunting", "Automated and manual investigation", "Guided and hands-on remediation", "Monthly executive reporting", "Access to Unit 42 threat intelligence"],
+    useCases: ["Outsourced SOC operations", "SOC augmentation (nights/weekends)", "Organizations without dedicated SOC", "Compliance-driven monitoring"],
+    licensing: "Per-endpoint or per-seat annual subscription. Tiered service levels: MDR Essentials and MDR Complete. Requires Cortex XDR or XSIAM as the underlying platform. Multi-year discounts available.",
+    licenseType: "Per-Endpoint Subscription",
+    brochureUrl: "",
+    productUrl: "https://www.paloaltonetworks.com/cortex/managed-detection-and-response"
+  },
+  {
+    id: "managed-xsiam",
+    image: "",
+    name: "Managed XSIAM",
+    category: "services",
+    badge: "Unit 42 Services",
+    tagline: "Expert-led managed security operations on the #1 AI-driven SOC platform",
+    description: "Comprehensive managed security operations service where Unit 42 experts deliver end-to-end SOC operations on Cortex XSIAM. Includes threat hunting, 24/7 MDR, continuous SOC engineering, and platform optimization.",
+    specs: ["End-to-End Managed SOC", "XSIAM Platform", "SOC Engineering", "Continuous Optimization", "Threat Hunting", "Full Data Sources"],
+    specGrid: [
+      { label: "Platform", value: "Cortex XSIAM" },
+      { label: "Operations", value: "Full Managed SOC" },
+      { label: "Engineering", value: "Continuous Tuning" },
+      { label: "Hunting", value: "Proactive" },
+      { label: "Data Sources", value: "All XSIAM Sources" },
+      { label: "Team", value: "Unit 42 Experts" }
+    ],
+    features: ["Full managed SOC on XSIAM platform", "Continuous SOC engineering and tuning", "Proactive threat hunting across all data", "Custom detection rule development", "Playbook optimization and automation", "Executive and operational reporting"],
+    useCases: ["Full SOC outsourcing", "XSIAM platform management", "Accelerating SOC transformation", "Expert-driven security operations"],
+    licensing: "Annual subscription based on XSIAM data ingestion volume. Includes platform management, threat hunting, MDR, and SOC engineering. Requires Cortex XSIAM license (separate).",
+    licenseType: "Data Volume + Service",
+    brochureUrl: "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/unit42-managed-xsiam",
+    productUrl: "https://www.paloaltonetworks.com/cortex/managed-xsiam"
+  },
+  {
+    id: "unit42-threat-intel",
+    image: "",
+    name: "Unit 42 Threat Intelligence",
+    category: "services",
+    badge: "Unit 42 Services",
+    tagline: "Frontline threat intelligence from world-class researchers",
+    description: "Actionable threat intelligence from Unit 42's world-renowned security researchers. Covers emerging threats, threat actor profiles, campaign tracking, and industry-specific intelligence to inform security strategy.",
+    specs: ["Threat Actor Profiles", "Campaign Tracking", "Industry Intelligence", "IOCs & TTPs", "Published Research", "Analyst Briefings"],
+    specGrid: [
+      { label: "Coverage", value: "Global Threat Landscape" },
+      { label: "Content", value: "Actors, Campaigns, IOCs" },
+      { label: "Research", value: "Published Reports" },
+      { label: "Briefings", value: "Analyst-Led" },
+      { label: "Integration", value: "TIP, SIEM, SOAR" },
+      { label: "Updates", value: "Continuous" }
+    ],
+    features: ["Threat actor profiling and tracking", "Campaign analysis and attribution", "Industry-specific threat briefings", "IOCs and TTPs for operationalization", "Integration with security tools", "Regular published research reports"],
+    useCases: ["Strategic threat intelligence program", "Executive threat briefings", "Operationalizing threat intel in SOC", "Industry-specific threat awareness"],
+    licensing: "Subscription-based annual service. Tiered access levels based on intelligence depth and analyst engagement. Can be combined with IR retainer. Custom briefing packages available.",
+    licenseType: "Annual Subscription",
+    brochureUrl: "",
+    productUrl: "https://www.paloaltonetworks.com/unit42/threat-intelligence-partners"
+  }
+];
+
+// ===== CATEGORY DEFINITIONS =====
+const categories = {
+  network: { name: "Network Security (Strata)", icon: "🛡️", color: "#FA582D", badgeClass: "badge-network" },
+  "eol-hw": { name: "EOL / End-of-Sale Hardware Firewalls", icon: "📦", color: "#6B7280", badgeClass: "badge-eol-hw" },
+  subscription: { name: "Cloud-Delivered Security Services", icon: "☁️", color: "#EAB308", badgeClass: "badge-subscription" },
+  sase: { name: "Prisma SASE", icon: "🌐", color: "#00C0E8", badgeClass: "badge-sase" },
+  cortex: { name: "Cortex Security Operations", icon: "🧠", color: "#A855F7", badgeClass: "badge-cortex" },
+  cloud: { name: "Cloud Security", icon: "🔒", color: "#3B82F6", badgeClass: "badge-cloud" },
+  services: { name: "Unit 42 Services", icon: "🎯", color: "#22C55E", badgeClass: "badge-services" }
+};
+
+// ===== STATE =====
+let currentFilter = 'all';
+let searchQuery = '';
+let compareSet = new Set();
+
+// ===== BADGE CLASS HELPER =====
+function getBadgeClass(cat) {
+  return categories[cat]?.badgeClass || 'badge-network';
+}
+
+// ===== RENDER =====
+function render() {
+  const main = document.getElementById('mainContent');
+  const noResults = document.getElementById('noResults');
+  let filtered = products.filter(p => {
+    const matchCat = currentFilter === 'all' || p.category === currentFilter;
+    if (!matchCat) return false;
+    if (!searchQuery) return true;
+    const q = searchQuery.toLowerCase();
+    return p.name.toLowerCase().includes(q) ||
+           p.description.toLowerCase().includes(q) ||
+           p.tagline.toLowerCase().includes(q) ||
+           p.badge.toLowerCase().includes(q) ||
+           p.specs.some(s => s.toLowerCase().includes(q)) ||
+           (p.features && p.features.some(f => f.toLowerCase().includes(q)));
+  });
+
+  if (filtered.length === 0) {
+    main.innerHTML = '';
+    noResults.style.display = 'block';
+    return;
+  }
+  noResults.style.display = 'none';
+
+  // Group by category
+  const grouped = {};
+  const catOrder = ['network', 'eol-hw', 'subscription', 'sase', 'cortex', 'cloud', 'services'];
+  filtered.forEach(p => {
+    if (!grouped[p.category]) grouped[p.category] = [];
+    grouped[p.category].push(p);
+  });
+
+  let html = '';
+  catOrder.forEach(cat => {
+    if (!grouped[cat]) return;
+    const catInfo = categories[cat];
+    html += `<section class="category-section">
+      <div class="category-header">
+        <div class="category-icon" style="background:${catInfo.color}22">${catInfo.icon}</div>
+        <h2>${catInfo.name}</h2>
+        <span class="count">${grouped[cat].length} product${grouped[cat].length>1?'s':''}</span>
+      </div>
+      <div class="products-grid">`;
+    grouped[cat].forEach((p, i) => {
+      const isSelected = compareSet.has(p.id);
+      // Only show images for products that have actual hardware/device photos
+      const hasRealImage = p.image && p.image.length > 0 && !p.image.includes('32x32') && !p.image.includes('favicon');
+      const imgHtml = hasRealImage
+        ? `<div class="card-image"><img src="${p.image}" alt="${p.name}" onerror="this.parentElement.style.display='none'"></div>`
+        : '';
+      const eolRibbon = p.eolStatus === 'End-of-Life'
+        ? `<div class="eol-ribbon eol">End-of-Life</div>`
+        : p.eolStatus === 'End-of-Sale'
+        ? `<div class="eol-ribbon eos">End-of-Sale</div>`
+        : '';
       html += `<div class="product-card${isSelected?' selected':''}" style="animation-delay:${i*0.05}s;position:relative" onclick="openSeriesPage('${p.id}')">
         ${eolRibbon}
         <div class="card-top">
@@ -2852,14 +3989,14 @@ const products = [
           </span>
           <div class="card-actions">
             ${!p.models || !p.models.length ? `<button class="btn-bom${isInBom(p.id)?' in-bom':''}" onclick="event.stopPropagation();addToBom('${p.id}')">${isInBom(p.id)?'In BOM':'+ BOM'}</button>` : ''}
-            ${p.productUrl ? `<a href="${p.productUrl}" target="_blank" class="btn-details" onclick="event.stopPropagation()" title="Vendor product page">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-4 0h4"/></svg>
-              Home Page
+            ${p.productUrl ? `<a href="${p.productUrl}" target="_blank" class="btn-details" onclick="event.stopPropagation()" title="Full specs on paloaltonetworks.com">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              Specs
             </a>` : ''}
-            ${p.brochureUrl ? `<a href="${p.brochureUrl}" target="_blank" class="btn-brochure" onclick="event.stopPropagation()">
+            <a href="${p.brochureUrl}" target="_blank" class="btn-brochure" onclick="event.stopPropagation()">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-              Datasheet
-            </a>` : ''}
+              Brochure
+            </a>
           </div>
         </div>
       </div>`;
@@ -2925,14 +4062,14 @@ function openModal(id) {
         </div>
       </div>
       <div class="modal-actions">
-        ${p.productUrl ? `<a href="${p.productUrl}" target="_blank" class="btn-secondary">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-4 0h4"/></svg>
-          Home Page
-        </a>` : ''}
-        ${p.brochureUrl ? `<a href="${p.brochureUrl}" target="_blank" class="btn-primary">
+        <a href="${p.brochureUrl}" target="_blank" class="btn-primary">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-          Download Datasheet (PDF)
-        </a>` : ''}
+          Download Brochure / Datasheet
+        </a>
+        <a href="${p.productUrl}" target="_blank" class="btn-secondary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          Visit Product Page
+        </a>
       </div>
     </div>`;
   document.getElementById('modalOverlay').classList.add('active');
@@ -2996,7 +4133,7 @@ function openCompare(customItems) {
   <tr>
     <th style="min-width:140px">Attribute</th>
     ${items.map(p => `<th style="min-width:180px;text-align:center">
-      ${p.image ? `<img src="${p.image}" alt="${p.name}" class="compare-product-img" loading="lazy" onerror="this.style.display='none'">` : ''}
+      ${p.image ? `<img src="${p.image}" alt="${p.name}" class="compare-product-img" onerror="this.style.display='none'">` : ''}
       <div style="font-size:0.88rem;color:#fff;font-weight:700">${p.name}</div>
       ${p.eolStatus === 'End-of-Sale' ? '<span class="compare-eol-badge eos">End-of-Sale</span>' :
         p.eolStatus === 'End-of-Life' ? '<span class="compare-eol-badge eol">End-of-Life</span>' : ''}
@@ -3064,8 +4201,8 @@ function openCompare(customItems) {
   // Quick links row
   html += `<tr><td>Links</td>${items.map(p => `<td>
     <div class="compare-links">
-      ${p.productUrl ? `<a href="${p.productUrl}" target="_blank"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-4 0h4"/></svg> Home Page</a>` : ''}
-      ${p.brochureUrl ? `<a href="${p.brochureUrl}" target="_blank"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Datasheet PDF</a>` : ''}
+      ${p.brochureUrl ? `<a href="${p.brochureUrl}" target="_blank"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Brochure</a>` : ''}
+      ${p.productUrl ? `<a href="${p.productUrl}" target="_blank"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> Product Page</a>` : ''}
     </div>
   </td>`).join('')}</tr>`;
 
@@ -3104,8 +4241,6 @@ document.querySelectorAll('.filter-tab').forEach(tab => {
 
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape') {
-    var shortcuts = document.getElementById('shortcutsOverlay');
-    if(shortcuts && shortcuts.style.display==='flex') { closeShortcuts(); return; }
     if(document.getElementById('exportOverlay').style.display==='flex') { closeExportDialog(); }
     else if(document.getElementById('savedBomsOverlay').style.display==='flex') { closeSavedBoms(); }
     else if(document.getElementById('templatesOverlay').style.display==='flex') { closeTemplates(); }
@@ -3116,54 +4251,7 @@ document.addEventListener('keydown', e => {
   }
   // Ctrl+B to toggle BOM drawer
   if(e.ctrlKey && e.key === 'b') { e.preventDefault(); toggleBomDrawer(); }
-  // ? to open shortcuts (only when not typing in an input)
-  if(e.key === '?' && !/input|textarea|select/i.test(e.target.tagName)) { e.preventDefault(); openShortcuts(); }
-  // / or Ctrl+K to focus search
-  if(((e.key === '/' && !/input|textarea|select/i.test(e.target.tagName)) || (e.ctrlKey && e.key === 'k'))) {
-    var si = document.getElementById('searchInput'); if(si) { e.preventDefault(); si.focus(); si.select(); }
-  }
 });
-function openShortcuts() { var el = document.getElementById('shortcutsOverlay'); if(el) el.style.display = 'flex'; }
-function closeShortcuts() { var el = document.getElementById('shortcutsOverlay'); if(el) el.style.display = 'none'; }
-
-// ===== RECENTLY VIEWED & LOCAL ANALYTICS =====
-var RECENT_KEY = 'panw_catalogue_recent';
-var VIEWS_KEY  = 'panw_catalogue_view_counts';
-function trackRecentlyViewed(productId) {
-  try {
-    var list = JSON.parse(localStorage.getItem(RECENT_KEY) || '[]');
-    list = list.filter(function(id){ return id !== productId; });
-    list.unshift(productId);
-    list = list.slice(0, 5);
-    localStorage.setItem(RECENT_KEY, JSON.stringify(list));
-    // Count views (local-only, no external tracking)
-    var counts = JSON.parse(localStorage.getItem(VIEWS_KEY) || '{}');
-    counts[productId] = (counts[productId] || 0) + 1;
-    localStorage.setItem(VIEWS_KEY, JSON.stringify(counts));
-    renderRecentlyViewed();
-  } catch(e) {}
-}
-function getMyTopProducts(n) {
-  try {
-    var counts = JSON.parse(localStorage.getItem(VIEWS_KEY) || '{}');
-    return Object.entries(counts).sort(function(a,b){return b[1]-a[1]}).slice(0, n || 5)
-      .map(function(e){ var p = products.find(function(x){return x.id===e[0]}); return p ? {product:p, count:e[1]} : null; }).filter(Boolean);
-  } catch(e) { return []; }
-}
-function renderRecentlyViewed() {
-  var el = document.getElementById('recentlyViewed');
-  if(!el) return;
-  var list = JSON.parse(localStorage.getItem(RECENT_KEY) || '[]');
-  if(!list.length) { el.style.display = 'none'; return; }
-  var items = list.map(function(id){ return products.find(function(p){return p.id===id}); }).filter(Boolean);
-  if(!items.length) { el.style.display = 'none'; return; }
-  el.style.display = 'block';
-  el.innerHTML = '<div style="font-size:0.7rem;font-weight:600;color:var(--pa-muted);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px">&#128336; Recently Viewed</div>' +
-    '<div style="display:flex;gap:6px;flex-wrap:wrap">' +
-    items.map(function(p){
-      return '<button onclick="openSeriesPage(\'' + p.id + '\')" style="padding:4px 10px;font-size:0.72rem;background:var(--pa-card);border:1px solid var(--pa-border);border-radius:6px;color:var(--pa-text);cursor:pointer;transition:all 0.2s" onmouseover="this.style.borderColor=\'var(--pa-cyan)\';this.style.color=\'var(--pa-cyan)\'" onmouseout="this.style.borderColor=\'var(--pa-border)\';this.style.color=\'var(--pa-text)\'">' + p.name + '</button>';
-    }).join('') + '</div>';
-}
 
 // ── Datetime helper ─────────────────────────────────────────
 function nowDateTimeStr() {
@@ -3541,7 +4629,7 @@ function renderHwTable() {
       <td><input type="checkbox" class="hw-check" ${isChecked ? 'checked' : ''} onchange="event.stopPropagation();toggleHwSelect('${p.id}')"></td>
       <td>
         <div class="hw-product-cell">
-          ${p.image ? `<img src="${p.image}" alt="${p.name}" loading="lazy" onerror="this.style.display='none'">` : ''}
+          ${p.image ? `<img src="${p.image}" alt="${p.name}" onerror="this.style.display='none'">` : ''}
           <div class="hw-prod-info">
             <span class="hw-prod-name">
               <span class="hw-expand-icon" id="hwExpand-${p.id}">&#9654;</span>
@@ -3579,7 +4667,7 @@ function renderHwTable() {
             </div>
             ${p.eolStatus ? '<div class="hw-eol-detail' + (p.eolStatus === 'End-of-Life' ? ' hard' : '') + '"><strong>' + p.eolStatus + '</strong> &mdash; ' + (p.eosDate ? '<span>EoS: <strong>' + p.eosDate + '</strong></span>' : '') + (p.eolDate ? '<span>EoL: <strong>' + p.eolDate + '</strong></span>' : '') + (p.lastPanOs ? '<span>Last OS: <strong>' + p.lastPanOs + '</strong></span>' : '') + (p.replacedBy ? '<span>Replace with: <strong>' + p.replacedBy + '</strong></span>' : '') + '</div>' : ''}
           </div>
-          ${p.detailedSpecs ? '<div class="hw-detail-tab-content" id="hwTab-' + p.id + '-specs" data-lazy="specs"></div>' : ''}
+          ${p.detailedSpecs ? '<div class="hw-detail-tab-content" id="hwTab-' + p.id + '-specs"><div class="hw-specs-grid">' + (Array.isArray(p.detailedSpecs) ? p.detailedSpecs : Object.entries(p.detailedSpecs).map(([s,kv]) => ({section:s,rows:Object.entries(kv)}))).map(sec => '<div class="hw-spec-section"><h5 class="hw-spec-section-title" onclick="event.stopPropagation();this.parentElement.classList.toggle(\'collapsed\')">' + sec.section + '</h5><table class="hw-spec-table">' + sec.rows.map(r => '<tr><td>' + r[0] + '</td><td>' + r[1] + '</td></tr>').join('') + '</table></div>').join('') + '</div></div>' : ''}
           <div class="hw-detail-tab-content" id="hwTab-${p.id}-licensing">
             <div class="hw-detail-section">
               <h4>License Type</h4>
@@ -3589,8 +4677,8 @@ function renderHwTable() {
           </div>
           <div class="hw-detail-tab-content" id="hwTab-${p.id}-links">
             <div class="hw-detail-links">
-              ${p.productUrl ? '<a href="' + p.productUrl + '" target="_blank" onclick="event.stopPropagation()"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-4 0h4"/></svg> Home Page</a>' : ''}
-              ${p.brochureUrl ? '<a href="' + p.brochureUrl + '" target="_blank" onclick="event.stopPropagation()"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download Datasheet</a>' : ''}
+              ${p.brochureUrl ? '<a href="' + p.brochureUrl + '" target="_blank" onclick="event.stopPropagation()"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download Brochure</a>' : ''}
+              ${p.productUrl ? '<a href="' + p.productUrl + '" target="_blank" onclick="event.stopPropagation()"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> Product Page</a>' : ''}
             </div>
           </div>
         </div>
@@ -3633,23 +4721,7 @@ function switchHwTab(productId, tabName, btn) {
   row.querySelectorAll('.hw-detail-tab-content').forEach(c => c.classList.remove('active'));
   btn.classList.add('active');
   const target = document.getElementById('hwTab-' + productId + '-' + tabName);
-  if (target) {
-    target.classList.add('active');
-    // Lazy-render specs content on first open
-    if (target.dataset.lazy === 'specs' && !target.dataset.rendered) {
-      const p = products.find(x => x.id === productId);
-      if (p && p.detailedSpecs) {
-        const specs = Array.isArray(p.detailedSpecs)
-          ? p.detailedSpecs
-          : Object.entries(p.detailedSpecs).map(([s,kv]) => ({section:s, rows:Object.entries(kv)}));
-        target.innerHTML = '<div class="hw-specs-grid">' + specs.map(sec =>
-          '<div class="hw-spec-section"><h5 class="hw-spec-section-title" onclick="event.stopPropagation();this.parentElement.classList.toggle(\'collapsed\')">' + sec.section + '</h5>' +
-          '<table class="hw-spec-table">' + sec.rows.map(r => '<tr><td>' + r[0] + '</td><td>' + r[1] + '</td></tr>').join('') + '</table></div>'
-        ).join('') + '</div>';
-        target.dataset.rendered = '1';
-      }
-    }
-  }
+  if (target) target.classList.add('active');
 }
 
 function toggleHwDetail(id, event) {
@@ -3870,26 +4942,8 @@ function addToBomDirect(seriesId, modelName, modelSku, qty) {
   var existing = bomState.items.find(function(i){ return (i.itemId || i.productId) === itemId || (i.productId === seriesId && i.modelSku === modelSku); });
   if(existing) {
     existing.quantity += qty;
-    // Sync required license qty
-    bomState.items.forEach(function(li) {
-      if(li.parentItemId === getBomItemId(existing) && li.isRequired && li.qtyMatch) li.quantity = existing.quantity;
-    });
   } else {
-    var newItem = { itemId: itemId, productId: seriesId, modelName: modelName, modelSku: modelSku, quantity: qty, unitPrice: 0, notes: '', sortOrder: bomState.items.length };
-    bomState.items.push(newItem);
-    // Auto-add required licenses as sub-items
-    var lics = getProductLicenses(seriesId);
-    lics.filter(function(l){ return l.type === 'required'; }).forEach(function(l) {
-      bomState.items.push({
-        itemId: 'lic-' + l.sku + '-' + itemId,
-        productId: 'lic-' + l.sku,
-        parentItemId: itemId,
-        name: l.name, sku: l.sku,
-        quantity: l.qtyMatch ? qty : 1,
-        isLicense: true, isRequired: true, qtyMatch: !!l.qtyMatch,
-        notes: '', sortOrder: bomState.items.length
-      });
-    });
+    bomState.items.push({ itemId: itemId, productId: seriesId, modelName: modelName, modelSku: modelSku, quantity: qty, unitPrice: 0, notes: '', sortOrder: bomState.items.length });
   }
   bomState.updatedAt = new Date().toISOString();
   renderBom();
@@ -3908,11 +4962,8 @@ function getBomItemId(item) {
 
 function removeFromBom(itemId) {
   if(bomState.locked) return;
-  var item = bomState.items.find(function(i){ return getBomItemId(i) === itemId; });
-  if(item && item.isRequired) { showBomToast('Required license cannot be removed','warning'); return; }
   pushBomUndo();
-  // Cascade delete: remove item AND all children linked to it
-  bomState.items = bomState.items.filter(function(i){ return getBomItemId(i) !== itemId && i.parentItemId !== itemId; });
+  bomState.items = bomState.items.filter(function(i){ return getBomItemId(i) !== itemId; });
   bomState.updatedAt = new Date().toISOString();
   renderBom();
   updateBomBadge();
@@ -3926,10 +4977,6 @@ function updateBomQty(itemId, qty) {
   if(!item) return;
   pushBomUndo();
   item.quantity = qty;
-  // Sync required child license quantities
-  bomState.items.forEach(function(li) {
-    if(li.parentItemId === itemId && li.isRequired && li.qtyMatch) li.quantity = qty;
-  });
   bomState.updatedAt = new Date().toISOString();
   renderBomSummary();
   bomAutoSaveDebounced();
@@ -4024,30 +5071,19 @@ function renderBom() {
 
 function renderBomItems() {
   var container = document.getElementById('bomItems');
-  // Separate parent items (no parentItemId) from child licenses
-  var parents = bomState.items.filter(function(i){ return !i.parentItemId; });
-  if(!parents.length) {
+  if(!bomState.items.length) {
     container.innerHTML = '<div class="bom-empty"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" opacity="0.3"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/></svg><p style="margin-top:12px">No products in BOM yet</p><p style="font-size:0.75rem">Browse the catalogue and click <strong>+ BOM</strong> on any product</p></div>';
-    return;
-  }
-  var filterEl = document.getElementById('bomFilter');
-  var filterQ = filterEl ? filterEl.value.trim().toLowerCase() : '';
-  var filteredParents = filterQ ? parents.filter(function(item) {
-    var name = (item.modelName || item.name || '').toLowerCase();
-    var sku = (item.modelSku || item.sku || '').toLowerCase();
-    return name.indexOf(filterQ) >= 0 || sku.indexOf(filterQ) >= 0;
-  }) : parents;
-  if(filterQ && !filteredParents.length) {
-    container.innerHTML = '<div class="bom-empty" style="padding:30px 20px"><p style="color:var(--pa-muted);font-size:0.8rem">No items match "' + filterQ + '"</p></div>';
     return;
   }
   var catOrder = ['network','eol-hw','subscription','sase','cortex','cloud','services'];
   var grouped = {};
-  filteredParents.forEach(function(item) {
+  bomState.items.forEach(function(item) {
     var p = products.find(function(x){ return x.id === item.productId; });
     if(!p) {
-      if(item.isLicense) p = { id: item.productId, name: item.name, category: 'subscription' };
-      else return;
+      // Handle license items added via addLicenseToBom (no matching product entry)
+      if(item.isLicense) {
+        p = { id: item.productId, name: item.name, category: 'subscription', badge: 'License', models: null };
+      } else { return; }
     }
     if(!grouped[p.category]) grouped[p.category] = [];
     grouped[p.category].push({item:item, product:p});
@@ -4064,93 +5100,26 @@ function renderBomItems() {
       var iid = getBomItemId(item);
       var displayName = item.modelName || item.name || p.name;
       var displaySku = item.modelSku || item.sku || '';
-      // Parent item row
-      html += '<div class="bom-item bom-parent">' +
+      var isLicense = ['subscription','sase','cortex','cloud','services'].includes(p.category);
+      html += '<div class="bom-item">' +
         '<div class="bom-item-info">' +
           '<div class="bom-item-name">' + displayName + '</div>' +
           (displaySku ? '<div class="bom-item-sku">' + displaySku + '</div>' : '') +
-          '<div class="bom-item-brand">Palo Alto Networks</div>' +
+          '<div class="bom-item-brand">Palo Alto Networks' + (isLicense ? ' &middot; License' : '') + '</div>' +
           '<span class="bom-notes-toggle" onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display===\'none\'?\'block\':\'none\'">&#128221; Notes</span>' +
           '<textarea class="bom-notes-input" style="display:' + (item.notes?'block':'none') + '" placeholder="Add notes..." oninput="updateBomNotes(\'' + iid + '\',this.value)" ' + disabled + '>' + (item.notes||'') + '</textarea>' +
         '</div>' +
-        '<div class="bom-qty">' +
+        '<div class="bom-qty" title="' + (isLicense ? 'Licenses' : 'Qty') + '">' +
           '<button onclick="updateBomQty(\'' + iid + '\',' + (item.quantity-1) + ');renderBomItems()" ' + disabled + '>&minus;</button>' +
           '<input type="number" value="' + item.quantity + '" min="1" max="999" onchange="updateBomQty(\'' + iid + '\',this.value);renderBomItems()" ' + disabled + '>' +
           '<button onclick="updateBomQty(\'' + iid + '\',' + (item.quantity+1) + ');renderBomItems()" ' + disabled + '>+</button>' +
         '</div>' +
         '<button class="bom-remove" onclick="removeFromBom(\'' + iid + '\')" ' + disabled + ' title="Remove">&times;</button>' +
       '</div>';
-
-      // Child license sub-items (already in BOM)
-      var children = bomState.items.filter(function(li){ return li.parentItemId === iid; });
-      children.forEach(function(child) {
-        var ciid = getBomItemId(child);
-        html += '<div class="bom-item bom-subitem' + (child.isRequired ? ' bom-required' : '') + '">' +
-          '<div class="bom-item-info">' +
-            '<div class="bom-item-name" style="font-size:0.75rem">' + (child.name || child.sku) + '</div>' +
-            '<div class="bom-item-sku" style="font-size:0.6rem">' + child.sku +
-              (child.isRequired ? ' <span style="color:var(--pa-orange);font-weight:700;font-family:Inter,sans-serif">REQUIRED</span>' : '') +
-            '</div>' +
-          '</div>' +
-          (child.isRequired && child.qtyMatch
-            ? '<div class="bom-qty-fixed" style="font-size:0.72rem;color:var(--pa-muted);padding:0 8px;min-width:38px;text-align:center">' + child.quantity + '</div>'
-            : '<div class="bom-qty" style="transform:scale(0.85)">' +
-                '<button onclick="updateBomQty(\'' + ciid + '\',' + (child.quantity-1) + ');renderBomItems()" ' + disabled + '>&minus;</button>' +
-                '<input type="number" value="' + child.quantity + '" min="1" max="999" onchange="updateBomQty(\'' + ciid + '\',this.value);renderBomItems()" ' + disabled + '>' +
-                '<button onclick="updateBomQty(\'' + ciid + '\',' + (child.quantity+1) + ');renderBomItems()" ' + disabled + '>+</button>' +
-              '</div>') +
-          (child.isRequired ? '<div style="width:22px"></div>' : '<button class="bom-remove" onclick="removeFromBom(\'' + ciid + '\')" ' + disabled + ' title="Remove">&times;</button>') +
-        '</div>';
-      });
-
-      // Available licenses not yet added (show as "+ Add" buttons)
-      var lics = getProductLicenses(item.productId);
-      var addedSkus = new Set(children.map(function(c){ return c.sku; }));
-      var available = lics.filter(function(l){ return l.type !== 'required' && !addedSkus.has(l.sku); });
-      if(available.length) {
-        var recAvail = available.filter(function(l){ return l.type === 'recommended'; });
-        var optAvail = available.filter(function(l){ return l.type === 'optional'; });
-        html += '<div class="bom-subitem-add">';
-        recAvail.forEach(function(l) {
-          html += '<button class="bom-lic-add" onclick="addChildLicense(\'' + iid + '\',\'' + item.productId + '\',\'' + l.sku + '\',\'' + l.name.replace(/'/g,"\\'") + '\',' + item.quantity + ')" title="' + l.desc + '">' +
-            '+ ' + l.name + ' <span class="bom-lic-badge rec">Recommended</span></button>';
-        });
-        if(optAvail.length) {
-          html += '<details style="margin-top:2px"><summary style="font-size:0.65rem;color:var(--pa-muted);cursor:pointer;padding:2px 0">+ ' + optAvail.length + ' optional license' + (optAvail.length>1?'s':'') + '</summary>';
-          optAvail.forEach(function(l) {
-            html += '<button class="bom-lic-add" onclick="addChildLicense(\'' + iid + '\',\'' + item.productId + '\',\'' + l.sku + '\',\'' + l.name.replace(/'/g,"\\'") + '\',' + item.quantity + ')" title="' + l.desc + '">' +
-              '+ ' + l.name + '</button>';
-          });
-          html += '</details>';
-        }
-        html += '</div>';
-      }
     });
     html += '</div>';
   });
   container.innerHTML = html;
-}
-
-function addChildLicense(parentItemId, productId, sku, name, parentQty) {
-  if(bomState.locked) return;
-  var existing = bomState.items.find(function(i){ return i.parentItemId === parentItemId && i.sku === sku; });
-  if(existing) { showBomToast(name + ' already added'); return; }
-  pushBomUndo();
-  bomState.items.push({
-    itemId: 'lic-' + sku + '-' + parentItemId,
-    productId: 'lic-' + sku,
-    parentItemId: parentItemId,
-    name: name, sku: sku,
-    quantity: parentQty || 1,
-    isLicense: true, isRequired: false, qtyMatch: false,
-    notes: '', sortOrder: bomState.items.length
-  });
-  bomState.updatedAt = new Date().toISOString();
-  renderBomItems();
-  renderBomSummary();
-  updateBomBadge();
-  bomAutoSaveDebounced();
-  showBomToast(name + ' added');
 }
 
 function renderBomSummary() {
@@ -4162,105 +5131,15 @@ function renderBomSummary() {
 
 // ── Recommendations ─────────────────────────────────────────
 // Licensing suggestions map for PA hardware firewalls
-// ── Per-device licensing (inline sub-items) ─────────────────
-// Each product gets licenses resolved at runtime from PA_DEVICE_LICENSES
-// type: 'required' = auto-added, non-removable, qty syncs with parent
-// type: 'recommended' = shown expanded under item, user clicks + Add
-// type: 'optional' = shown in collapsed section
-var PA_DEVICE_LICENSES = {
-  'hw-chassis': [
-    {sku:'PAN-SVC-PREM',name:'Premium Support',desc:'24/7 TAC, 1-hr critical SLA, NBD hardware replacement',type:'required',qtyMatch:true},
-    {sku:'PAN-ATP',name:'Advanced Threat Prevention',desc:'Inline deep learning IPS — stops zero-day C2',type:'recommended'},
-    {sku:'PAN-URL',name:'Advanced URL Filtering',desc:'Real-time web security with inline ML',type:'recommended'},
-    {sku:'PAN-WF',name:'WildFire',desc:'Cloud malware analysis — 60-second verdicts',type:'recommended'},
-    {sku:'PAN-DNS',name:'Advanced DNS Security',desc:'AI-powered DNS-layer threat prevention',type:'recommended'},
-    {sku:'PAN-DLP',name:'Enterprise DLP',desc:'Cloud-delivered data loss prevention',type:'optional'},
-    {sku:'PAN-IOT',name:'IoT Security',desc:'ML-powered IoT device discovery and policy',type:'optional'},
-    {sku:'PAN-M-600',name:'Panorama M-600',desc:'Centralized management up to 10,000 firewalls',type:'recommended'},
-    {sku:'PAN-SCM',name:'Strata Cloud Manager',desc:'AI-powered cloud management and AIOps',type:'optional'}
-  ],
-  'hw-enterprise': [
-    {sku:'PAN-SVC-PREM',name:'Premium Support',desc:'24/7 TAC, 1-hr critical SLA, NBD hardware replacement',type:'required',qtyMatch:true},
-    {sku:'PAN-ATP',name:'Advanced Threat Prevention',desc:'Inline deep learning IPS — stops zero-day C2',type:'recommended'},
-    {sku:'PAN-URL',name:'Advanced URL Filtering',desc:'Real-time web security with inline ML',type:'recommended'},
-    {sku:'PAN-WF',name:'WildFire',desc:'Cloud malware analysis — 60-second verdicts',type:'recommended'},
-    {sku:'PAN-DNS',name:'Advanced DNS Security',desc:'AI-powered DNS-layer threat prevention',type:'recommended'},
-    {sku:'PAN-DLP',name:'Enterprise DLP',desc:'Cloud-delivered data loss prevention',type:'optional'},
-    {sku:'PAN-IOT',name:'IoT Security',desc:'ML-powered IoT device discovery and policy',type:'optional'},
-    {sku:'PAN-M-200',name:'Panorama M-200',desc:'Centralized management up to 1,000 firewalls',type:'recommended'},
-    {sku:'PAN-SCM',name:'Strata Cloud Manager',desc:'AI-powered cloud management and AIOps',type:'optional'}
-  ],
-  'hw-midrange': [
-    {sku:'PAN-SVC-PREM',name:'Premium Support',desc:'24/7 TAC, 1-hr critical SLA, NBD hardware replacement',type:'required',qtyMatch:true},
-    {sku:'PAN-ATP',name:'Advanced Threat Prevention',desc:'Inline deep learning IPS — stops zero-day C2',type:'recommended'},
-    {sku:'PAN-URL',name:'Advanced URL Filtering',desc:'Real-time web security with inline ML',type:'recommended'},
-    {sku:'PAN-WF',name:'WildFire',desc:'Cloud malware analysis — 60-second verdicts',type:'recommended'},
-    {sku:'PAN-DNS',name:'Advanced DNS Security',desc:'AI-powered DNS-layer threat prevention',type:'recommended'},
-    {sku:'PAN-DLP',name:'Enterprise DLP',desc:'Cloud-delivered data loss prevention',type:'optional'},
-    {sku:'PAN-SDWAN',name:'SD-WAN',desc:'Integrated SD-WAN for branch connectivity',type:'recommended'},
-    {sku:'PAN-IOT',name:'IoT Security',desc:'ML-powered IoT device discovery and policy',type:'optional'},
-    {sku:'PAN-M-200',name:'Panorama M-200',desc:'Centralized management up to 1,000 firewalls',type:'recommended'},
-    {sku:'PAN-SCM',name:'Strata Cloud Manager',desc:'AI-powered cloud management and AIOps',type:'optional'}
-  ],
-  'hw-branch': [
-    {sku:'PAN-SVC-PREM',name:'Premium Support',desc:'24/7 TAC, 1-hr critical SLA, NBD hardware replacement',type:'required',qtyMatch:true},
-    {sku:'PAN-ATP',name:'Advanced Threat Prevention',desc:'Inline deep learning IPS — stops zero-day C2',type:'recommended'},
-    {sku:'PAN-URL',name:'Advanced URL Filtering',desc:'Real-time web security with inline ML',type:'recommended'},
-    {sku:'PAN-WF',name:'WildFire',desc:'Cloud malware analysis — 60-second verdicts',type:'recommended'},
-    {sku:'PAN-DNS',name:'Advanced DNS Security',desc:'AI-powered DNS-layer threat prevention',type:'recommended'},
-    {sku:'PAN-SDWAN',name:'SD-WAN',desc:'Integrated SD-WAN for branch connectivity',type:'recommended'},
-    {sku:'PAN-SCM',name:'Strata Cloud Manager',desc:'AI-powered cloud management and AIOps',type:'optional'}
-  ],
-  'hw-ruggedized': [
-    {sku:'PAN-SVC-PREM',name:'Premium Support',desc:'24/7 TAC, 1-hr critical SLA, NBD hardware replacement',type:'required',qtyMatch:true},
-    {sku:'PAN-ATP',name:'Advanced Threat Prevention',desc:'Inline deep learning IPS — stops zero-day C2',type:'recommended'},
-    {sku:'PAN-URL',name:'Advanced URL Filtering',desc:'Real-time web security with inline ML',type:'recommended'},
-    {sku:'PAN-WF',name:'WildFire',desc:'Cloud malware analysis — 60-second verdicts',type:'recommended'}
-  ],
-  'hw-eol': [
-    {sku:'PAN-SVC-PREM',name:'Premium Support',desc:'24/7 TAC, 1-hr critical SLA, NBD hardware replacement',type:'required',qtyMatch:true}
-  ],
-  'hw-virtual': [
-    {sku:'PAN-SVC-PREM',name:'Premium Support',desc:'24/7 TAC, 1-hr critical SLA — required for VM/CN-Series',type:'required',qtyMatch:true},
-    {sku:'PAN-ATP',name:'Advanced Threat Prevention',desc:'Inline deep learning IPS — stops zero-day C2',type:'recommended'},
-    {sku:'PAN-URL',name:'Advanced URL Filtering',desc:'Real-time web security with inline ML',type:'recommended'},
-    {sku:'PAN-WF',name:'WildFire',desc:'Cloud malware analysis — 60-second verdicts',type:'recommended'},
-    {sku:'PAN-DNS',name:'Advanced DNS Security',desc:'AI-powered DNS-layer threat prevention',type:'recommended'},
-    {sku:'PAN-DLP',name:'Enterprise DLP',desc:'Cloud-delivered data loss prevention',type:'optional'},
-    {sku:'PAN-SCM',name:'Strata Cloud Manager',desc:'AI-powered cloud management and AIOps',type:'optional'}
-  ],
-  'cloud-ngfw': [
-    {sku:'PAN-SCM',name:'Strata Cloud Manager',desc:'AI-powered cloud management and AIOps',type:'optional'}
-  ],
-  'sase': [
-    {sku:'PAN-SASE-PA',name:'Prisma Access License',desc:'Per-user SASE — secure internet, SaaS, private apps',type:'recommended'},
-    {sku:'PAN-SASE-ADEM',name:'ADEM Add-on',desc:'Autonomous digital experience monitoring',type:'optional'}
-  ],
-  'cortex': [
-    {sku:'PAN-XDR-PRO',name:'Cortex XDR Pro',desc:'Per-endpoint detection, investigation, response',type:'recommended'},
-    {sku:'PAN-XSIAM',name:'Cortex XSIAM',desc:'AI-driven SOC platform — per GB/day ingestion',type:'optional'}
-  ]
-};
-
-// Map product IDs to license groups
-var PA_LICENSE_GROUPS = {
-  'pa-7500': 'hw-chassis', 'pa-7000': 'hw-chassis',
-  'pa-5500': 'hw-enterprise', 'pa-5400': 'hw-enterprise', 'pa-5450': 'hw-enterprise', 'pa-5200': 'hw-enterprise',
-  'pa-3400': 'hw-midrange', 'pa-3200': 'hw-midrange', 'pa-3000': 'hw-midrange',
-  'pa-500-series': 'hw-branch', 'pa-400': 'hw-branch', 'pa-1400': 'hw-branch', 'pa-800': 'hw-branch',
-  'pa-220': 'hw-branch', 'pa-220r': 'hw-ruggedized',
-  'pa-500-legacy': 'hw-eol', 'pa-200': 'hw-eol', 'pa-5000': 'hw-eol', 'pa-2000': 'hw-eol', 'pa-4000': 'hw-eol',
-  'vm-series': 'hw-virtual', 'cn-series': 'hw-virtual', 'cloud-ngfw': 'cloud-ngfw',
-  'prisma-access': 'sase', 'prisma-sd-wan': 'sase', 'prisma-browser': 'sase', 'adem': 'sase', 'globalprotect': 'sase', 'rbi': 'sase',
-  'cortex-xsiam': 'cortex', 'cortex-xdr': 'cortex', 'cortex-xsoar': 'cortex', 'cortex-xpanse': 'cortex',
-  'cortex-exposure-mgmt': 'cortex', 'cortex-email-security': 'cortex'
-};
-
-// Get licenses for a product
-function getProductLicenses(productId) {
-  var group = PA_LICENSE_GROUPS[productId];
-  return group ? (PA_DEVICE_LICENSES[group] || []) : [];
-}
+var PA_LICENSE_SUGGESTIONS = [
+  { sku: 'PAN-ATP', name: 'Advanced Threat Prevention', desc: 'Inline deep learning IPS stopping unknown C2 in real time' },
+  { sku: 'PAN-URL', name: 'Advanced URL Filtering', desc: 'Real-time web security with inline ML — blocks phishing & malware' },
+  { sku: 'PAN-DNS', name: 'Advanced DNS Security', desc: 'AI-powered DNS-layer threat prevention and C2 detection' },
+  { sku: 'PAN-WF', name: 'WildFire', desc: "World's largest cloud malware prevention engine — 60s verdicts" },
+  { sku: 'PAN-DLP', name: 'Enterprise DLP', desc: 'Cloud-delivered data loss prevention across all channels' },
+  { sku: 'PAN-SDWAN', name: 'SD-WAN', desc: 'Integrated SD-WAN for optimized branch connectivity' },
+  { sku: 'PAN-M-200', name: 'Panorama (management)', desc: 'Centralized management for all Palo Alto Networks NGFWs' }
+];
 
 function addLicenseToBom(sku, name) {
   var existing = bomState.items.find(function(i){ return i.sku === sku; });
@@ -4300,16 +5179,38 @@ function renderBomSuggestions() {
       }
     }
   });
+
   var html = '';
+
   if(suggestions.length) {
     html += '<div style="margin-top:16px;padding-top:12px;border-top:1px solid var(--pa-border)">' +
-      '<div style="font-size:0.75rem;font-weight:600;color:var(--pa-orange);margin-bottom:8px">&#128161; Recommended Products</div>' +
+      '<div style="font-size:0.75rem;font-weight:600;color:var(--pa-orange);margin-bottom:8px">&#128161; Recommended Additions</div>' +
       suggestions.slice(0,4).map(function(s) { return '<div style="display:flex;align-items:center;gap:8px;padding:6px 0;font-size:0.8rem">' +
         '<div style="flex:1"><strong style="color:var(--pa-text)">' + s.name + '</strong><br><span style="color:var(--pa-muted);font-size:0.7rem">' + s.reason + '</span></div>' +
         '<button class="btn-bom" onclick="addToBom(\'' + s.id + '\')">+ Add</button>' +
       '</div>'; }).join('') +
     '</div>';
   }
+
+  if(hasHardware) {
+    html += '<div style="margin-top:14px;padding-top:12px;border-top:1px solid var(--pa-border)">' +
+      '<div style="font-size:0.75rem;font-weight:600;color:var(--pa-cyan);margin-bottom:8px">&#127891; Strata Licensing Subscriptions</div>' +
+      PA_LICENSE_SUGGESTIONS.map(function(lic) {
+        var alreadyAdded = bomState.items.some(function(i){ return i.sku === lic.sku; });
+        return '<div style="display:flex;align-items:flex-start;gap:8px;padding:6px 0;font-size:0.8rem;border-bottom:1px solid rgba(255,255,255,0.04)">' +
+          '<div style="flex:1">' +
+            '<strong style="color:var(--pa-text)">' + lic.name + '</strong>' +
+            '<span style="display:inline-block;margin-left:6px;font-size:0.65rem;background:rgba(0,192,232,0.12);color:var(--pa-cyan);border-radius:3px;padding:1px 5px">' + lic.sku + '</span>' +
+            '<br><span style="color:var(--pa-muted);font-size:0.7rem">' + lic.desc + '</span>' +
+          '</div>' +
+          (alreadyAdded
+            ? '<span style="font-size:0.65rem;color:var(--pa-cyan);padding:4px 8px">&#10003; Added</span>'
+            : '<button class="btn-bom" style="flex-shrink:0;font-size:0.7rem;padding:4px 10px" onclick="addLicenseToBom(\'' + lic.sku + '\',\'' + lic.name.replace(/'/g,"\\'") + '\')">+ Add</button>') +
+        '</div>';
+      }).join('') +
+    '</div>';
+  }
+
   container.innerHTML = html;
 }
 
@@ -4426,16 +5327,11 @@ function getBomExportData() {
     reference: (document.getElementById('bomReference') ? document.getElementById('bomReference').value : '') || bomState.meta.reference || '',
     date: nowDateTimeStr()
   };
-  // Build hierarchical lines: parents first, then their child licenses indented
-  var parents = bomState.items.filter(function(i){ return !i.parentItemId; });
-  var children = bomState.items.filter(function(i){ return !!i.parentItemId; });
-  var lines = [], sn = 1;
-  parents.forEach(function(item) {
+  var lines = bomState.items.map(function(item, i) {
     var p = products.find(function(x){ return x.id === item.productId; });
     var catId = p ? p.category : (item.isLicense ? 'subscription' : '');
-    var itemId = item.itemId || item.productId;
-    lines.push({
-      line: sn++,
+    return {
+      line: i + 1,
       name: item.modelName || item.name || (p ? p.name : item.productId),
       sku: item.modelSku || item.sku || '',
       brand: 'Palo Alto Networks',
@@ -4444,47 +5340,17 @@ function getBomExportData() {
       qty: item.quantity,
       unitPrice: item.unitPrice,
       lineTotal: item.quantity * item.unitPrice,
-      notes: item.notes || '',
-      isParent: true, isLicense: false, isRequired: false
-    });
-    // Append child licenses for this parent
-    children.filter(function(c){ return c.parentItemId === itemId; }).forEach(function(lic) {
-      lines.push({
-        line: '',
-        name: lic.name || lic.sku,
-        sku: lic.sku || '',
-        brand: 'Palo Alto Networks',
-        category: 'Subscription / License',
-        categoryId: 'subscription',
-        qty: lic.quantity,
-        unitPrice: lic.unitPrice || 0,
-        lineTotal: (lic.quantity || 1) * (lic.unitPrice || 0),
-        notes: lic.notes || '',
-        isParent: false, isLicense: true, isRequired: !!lic.isRequired,
-        licenseType: lic.isRequired ? 'Required' : 'Recommended'
-      });
-    });
-  });
-  // Orphan licenses (no parent) — e.g. manually added
-  children.filter(function(c) {
-    return !parents.some(function(p){ return (p.itemId || p.productId) === c.parentItemId; });
-  }).forEach(function(lic) {
-    lines.push({
-      line: sn++, name: lic.name || lic.sku, sku: lic.sku || '', brand: 'Palo Alto Networks',
-      category: 'Subscription / License', categoryId: 'subscription', qty: lic.quantity,
-      unitPrice: lic.unitPrice || 0, lineTotal: (lic.quantity||1)*(lic.unitPrice||0),
-      notes: lic.notes || '', isParent: false, isLicense: true, isRequired: !!lic.isRequired,
-      licenseType: lic.isRequired ? 'Required' : 'Recommended'
-    });
+      licensing: p ? (p.licensing || '') : '',
+      specs: p ? (p.specs || []).join('; ') : '',
+      notes: item.notes || ''
+    };
   });
   var subtotal = lines.reduce(function(s,l){ return s + l.lineTotal; }, 0);
   var discountAmt = bomState.discount.type === 'percent' ? subtotal * (bomState.discount.value/100) : bomState.discount.value;
   var afterDiscount = subtotal - discountAmt;
   var taxAmt = afterDiscount * (bomState.taxRate/100);
   var grandTotal = afterDiscount + taxAmt;
-  var hwCount = lines.filter(function(l){return l.isParent;}).length;
-  var licCount = lines.filter(function(l){return l.isLicense;}).length;
-  return { meta:meta, lines:lines, subtotal:subtotal, discountAmt:discountAmt, afterDiscount:afterDiscount, taxAmt:taxAmt, grandTotal:grandTotal, discount:bomState.discount, taxRate:bomState.taxRate, totalQty:lines.reduce(function(s,l){return s+l.qty},0), hwCount:hwCount, licCount:licCount };
+  return { meta:meta, lines:lines, subtotal:subtotal, discountAmt:discountAmt, afterDiscount:afterDiscount, taxAmt:taxAmt, grandTotal:grandTotal, discount:bomState.discount, taxRate:bomState.taxRate, totalQty:lines.reduce(function(s,l){return s+l.qty},0) };
 }
 
 // ── CSV Export ──────────────────────────────────────────────
@@ -4493,13 +5359,11 @@ function exportCSV() {
   var esc = function(v) { var s = String(v||''); return s.includes(',') || s.includes('"') || s.includes('\n') ? '"'+s.replace(/"/g,'""')+'"' : s; };
   var csv = 'Palo Alto Networks - Bill of Materials\n';
   csv += 'Project,' + esc(d.meta.projectName) + '\nCustomer,' + esc(d.meta.customer) + '\nPrepared By,' + esc(d.meta.preparedBy) + '\nReference,' + esc(d.meta.reference) + '\nGenerated,' + d.meta.date + '\n\n';
-  csv += '#,Product,SKU,Category,Qty,Type,Notes\n';
+  csv += '#,Product,SKU,Category,Qty / Lic.,Licensing,Notes\n';
   d.lines.forEach(function(l) {
-    var type = l.isLicense ? l.licenseType : 'Hardware';
-    var name = (l.isLicense && !l.isParent) ? '  \u2514 ' + l.name : l.name;
-    csv += (l.line||'') + ',' + esc(name) + ',' + esc(l.sku) + ',' + esc(l.category) + ',' + l.qty + ',' + type + ',' + esc(l.notes) + '\n';
+    csv += l.line + ',' + esc(l.name) + ',' + esc(l.sku) + ',' + esc(l.category) + ',' + l.qty + ',' + esc(l.licensing) + ',' + esc(l.notes) + '\n';
   });
-  csv += '\nTotal,' + d.hwCount + ' hardware + ' + d.licCount + ' licenses,,' + d.totalQty + ' units\n';
+  csv += '\nTotal,' + d.lines.length + ' products,' + d.totalQty + ' units\n';
   var blob = new Blob([csv], {type:'text/csv;charset=utf-8;'});
   var a = document.createElement('a');
   a.href = URL.createObjectURL(blob);
@@ -4544,42 +5408,19 @@ function exportXLSX() {
     '</table>';
 
   var tableHtml = '';
-  // Group lines by category, keeping parent→child order
-  var xlGrouped = {}, xlCatOrder = [];
-  d.lines.forEach(function(l) {
-    if(l.isLicense && !l.isParent) return; // children handled inline
-    var cat = l.category;
-    if(!xlGrouped[cat]) { xlGrouped[cat] = []; xlCatOrder.push(cat); }
-    xlGrouped[cat].push(l);
-    if(l.isParent) {
-      var idx = d.lines.indexOf(l);
-      for(var ci = idx+1; ci < d.lines.length; ci++) {
-        if(d.lines[ci].isLicense && !d.lines[ci].isParent) xlGrouped[cat].push(d.lines[ci]);
-        else break;
-      }
-    }
-  });
-  var allXlCats = catOrder.concat(xlCatOrder.filter(function(c){return catOrder.indexOf(c)===-1;}));
-  allXlCats.forEach(function(cat) {
-    if(!xlGrouped[cat]||!xlGrouped[cat].length) return;
+  allCats.forEach(function(cat) {
+    if(!grouped[cat]||!grouped[cat].length) return;
     tableHtml += '<table class="bom">' +
       '<tr class="section-hdr"><td colspan="4">' + cat + ' BOM</td></tr>' +
-      '<tr class="col-hdr"><td width="130">P/N</td><td>Description</td><td width="55">Qty</td><td width="200">Notes</td></tr>';
-    var hwIdx = 0;
-    xlGrouped[cat].forEach(function(l) {
-      if(l.isLicense && !l.isParent) {
-        var badge = l.isRequired ? '<span style="color:#0E3478;font-weight:bold">[Required]</span>' : '<span style="color:#666">[Recommended]</span>';
-        tableHtml += '<tr style="background:#F5F8FF"><td class="pn" style="color:#888">' + (l.sku||'') + '</td><td style="padding-left:24px;font-size:8.5pt;color:#555">\u2514 ' + l.name + ' ' + badge + '</td><td class="qty" style="color:#888">' + l.qty + '</td><td style="font-size:8pt;color:#888">' + (l.notes||'') + '</td></tr>';
-      } else {
-        var alt = hwIdx%2===1 ? ' class="alt"' : '';
-        tableHtml += '<tr' + alt + '><td class="pn">' + (l.sku||'') + '</td><td><strong>' + l.name + '</strong></td><td class="qty">' + l.qty + '</td><td>' + (l.notes||'') + '</td></tr>';
-        hwIdx++;
-      }
+      '<tr class="col-hdr"><td width="130">P/N</td><td>Description</td><td width="55">Qty / Lic.</td><td width="200">Notes</td></tr>';
+    grouped[cat].forEach(function(l, i) {
+      var alt = i%2===1 ? ' class="alt"' : '';
+      tableHtml += '<tr' + alt + '><td class="pn">' + (l.sku||'') + '</td><td>' + l.name + '</td><td class="qty">' + l.qty + '</td><td>' + (l.notes||'') + '</td></tr>';
     });
     tableHtml += '</table>';
   });
 
-  var totalHtml = '<table class="bom"><tr class="total-row"><td colspan="2">TOTAL</td><td class="qty">' + d.totalQty + ' units</td><td>' + d.hwCount + ' hardware, ' + d.licCount + ' license(s)</td></tr></table>';
+  var totalHtml = '<table class="bom"><tr class="total-row"><td colspan="2">TOTAL</td><td class="qty">' + d.totalQty + ' units</td><td>' + d.lines.length + ' line item(s)</td></tr></table>';
 
   var footer = '<div class="footer">Prepared by Compugeddon t/a CGTECH &nbsp;|&nbsp; Palo Alto NextWave Diamond Innovator &nbsp;|&nbsp; www.cgtech.co.za</div>';
 
@@ -4622,24 +5463,18 @@ function exportDOCX() {
 '.footer{margin-top:40px;text-align:center;font-size:8.5pt;color:#888;border-top:2px solid #F04E23;padding-top:12px}' +
 '.footer strong{color:#F04E23}' +
 '</style></head><body>' +
-'<div class="header"><div class="logo-row"><div><h1>Palo Alto Networks</h1><p>Bill of Materials</p></div><div style="text-align:right"><span style="font-size:20pt;font-weight:bold;color:#1E50A2">CGTECH</span><br><span style="font-size:8pt;color:#666;font-style:italic">Compugeddon t/a CGTECH</span></div></div></div>' +
+'<div class="header"><div class="logo-row"><div><h1>Palo Alto Networks</h1><p>Bill of Materials</p></div><img src="' + CGTECH_LOGO + '" style="height:48px" alt="CGTECH"></div></div>' +
 '<table class="meta-table">' +
   '<tr><td>Project:</td><td>' + d.meta.projectName + '</td><td>Reference:</td><td>' + d.meta.reference + '</td></tr>' +
   '<tr><td>Customer:</td><td>' + d.meta.customer + '</td><td>Date:</td><td>' + d.meta.date + '</td></tr>' +
-  '<tr><td>Prepared By:</td><td>' + d.meta.preparedBy + '</td><td>Partnership:</td><td>Palo Alto NextWave Diamond Innovator</td></tr>' +
+  '<tr><td>Prepared By:</td><td>' + d.meta.preparedBy + '</td><td>Generated:</td><td>' + d.meta.date + '</td></tr>' +
 '</table>' +
 '<table class="bom">' +
-  '<tr><th>#</th><th>Product</th><th>SKU</th><th>Qty</th><th>Notes</th></tr>' +
-  d.lines.map(function(l){
-    if(l.isLicense && !l.isParent) {
-      var badge = l.isRequired ? '<strong style="color:#0E3478">[Required]</strong>' : '<span style="color:#888">[Recommended]</span>';
-      return '<tr style="background:#F5F8FF"><td></td><td style="padding-left:28px;font-size:8pt;color:#555">\u2514 ' + l.name + ' ' + badge + '</td><td style="font-family:Consolas,monospace;font-size:7pt;color:#888">' + l.sku + '</td><td style="text-align:center;color:#888">' + l.qty + '</td><td style="font-size:8pt;color:#888">' + l.notes + '</td></tr>';
-    }
-    return '<tr><td>' + l.line + '</td><td><strong>' + l.name + '</strong></td><td style="font-family:Consolas,monospace;font-size:8pt">' + l.sku + '</td><td style="text-align:center">' + l.qty + '</td><td>' + l.notes + '</td></tr>';
-  }).join('') +
-  '<tr class="total"><td colspan="3" style="text-align:right">Total</td><td style="text-align:center">' + d.totalQty + ' units</td><td>' + d.hwCount + ' hardware, ' + d.licCount + ' license(s)</td></tr>' +
+  '<tr><th>#</th><th>Product</th><th>SKU</th><th>Category</th><th>Qty / Lic.</th><th>Notes</th></tr>' +
+  d.lines.map(function(l){ return '<tr><td>' + l.line + '</td><td>' + l.name + '</td><td style="font-family:Consolas,monospace;font-size:8pt">' + l.sku + '</td><td>' + l.category + '</td><td style="text-align:center">' + l.qty + '</td><td>' + l.notes + '</td></tr>'; }).join('') +
+  '<tr class="total"><td colspan="4" style="text-align:right">Total</td><td style="text-align:center">' + d.totalQty + ' units</td><td>' + d.lines.length + ' products</td></tr>' +
 '</table>' +
-'<p style="font-size:9pt;color:#555;margin-top:24px;padding:12px 16px;background:#f8fafb;border-left:3px solid #F04E23;border-radius:2px"><em>Please provide pricing, stock availability, and estimated lead times for the above items. Licenses marked [Required] must be included with associated hardware.</em></p>' +
+'<p style="font-size:9pt;color:#555;margin-top:24px;padding:12px 16px;background:#f8fafb;border-left:3px solid #F04E23;border-radius:2px"><em>Please provide pricing, stock availability, and estimated lead times for the above items.</em></p>' +
 '<div class="footer"><strong>Compugeddon t/a CGTECH</strong> &mdash; Palo Alto Diamond Innovator<br>www.cgtech.co.za</div>' +
 '</body></html>';
   var blob = new Blob(['\ufeff'+html], {type:'application/msword'});
@@ -4744,48 +5579,19 @@ function exportPDF() {
   y += 7;
 
   // ── BOM TABLE ────────────────────────────────────────────────
-  // Group by category but preserve parent→child ordering
   var grouped = {}, catOrder = [];
   d.lines.forEach(function(l) {
-    var cat = l.isLicense && !l.isParent ? '__skip__' : l.category;
-    if(cat === '__skip__') return; // children rendered inline under parent
-    if(!grouped[cat]) { grouped[cat] = []; catOrder.push(cat); }
-    // Push parent + its children together
-    grouped[cat].push(l);
-    // Find children immediately following this parent
-    if(l.isParent) {
-      var idx = d.lines.indexOf(l);
-      for(var ci = idx+1; ci < d.lines.length; ci++) {
-        if(d.lines[ci].isLicense && !d.lines[ci].isParent) grouped[cat].push(d.lines[ci]);
-        else break;
-      }
-    }
+    if(!grouped[l.category]) { grouped[l.category] = []; catOrder.push(l.category); }
+    grouped[l.category].push(l);
   });
-
-  var licFill = [245, 248, 255];
-  var reqBadge = [14, 52, 120];
   var tableBody = [], sn = 1;
   catOrder.forEach(function(cat) {
     tableBody.push([{content: cat, colSpan: 5, styles:{fillColor:accent2, textColor:[255,255,255], fontStyle:'bold', fontSize:7.5, cellPadding:{top:2.5,bottom:2.5,left:4,right:4}}}]);
     grouped[cat].forEach(function(l) {
-      if(l.isLicense && !l.isParent) {
-        // License sub-row — indented, lighter style
-        var badge = l.isRequired ? '  [Required]' : '  [Recommended]';
-        tableBody.push([
-          {content:'', styles:{fillColor:licFill, cellPadding:1.5}},
-          {content:'    \u2514 ' + l.name + badge, styles:{fillColor:licFill, fontSize:7, textColor: l.isRequired ? reqBadge : [80,80,80], fontStyle: l.isRequired ? 'bold' : 'normal', cellPadding:{top:1.5,bottom:1.5,left:8,right:3}}},
-          {content:l.sku||'', styles:{fillColor:licFill, font:'courier', fontSize:6, cellPadding:1.5}},
-          {content:String(l.qty), styles:{fillColor:licFill, halign:'center', fontSize:7, cellPadding:1.5}},
-          {content:l.notes||'', styles:{fillColor:licFill, fontSize:6.5, cellPadding:1.5}}
-        ]);
-      } else {
-        // Hardware parent row
-        tableBody.push([sn++, l.name, {content:l.sku||'', styles:{font:'courier',fontSize:6.5}}, {content:String(l.qty), styles:{halign:'center',fontStyle:'bold'}}, l.notes||'']);
-      }
+      tableBody.push([sn++, l.name, {content:l.sku||'', styles:{font:'courier',fontSize:6.5}}, {content:String(l.qty), styles:{halign:'center',fontStyle:'bold'}}, l.notes||'']);
     });
   });
 
-  var contentW = pageW - 2*M;
   doc.autoTable({
     startY: y,
     head: [['SN', 'Description', 'Part No.', 'Qty', 'Notes']],
@@ -4795,14 +5601,15 @@ function exportPDF() {
     alternateRowStyles: { fillColor: accent3 },
     columnStyles: {
       0: {cellWidth:9,  halign:'center'},
-      1: {cellWidth: contentW - 9 - 30 - 12 - 28},
-      2: {cellWidth:30},
-      3: {cellWidth:12, halign:'center'},
-      4: {cellWidth:28}
+      1: {cellWidth:74},
+      2: {cellWidth:32},
+      3: {cellWidth:13, halign:'center'},
+      4: {cellWidth:36}
     },
     styles: { lineColor:[180,200,240], lineWidth:0.25, overflow:'ellipsize' },
     margin: {left:M, right:M},
     didDrawPage: function() {
+      // continuation header
       doc.setFillColor(accent[0],accent[1],accent[2]);
       doc.rect(0, 0, pageW, 8, 'F');
       doc.setFontSize(7); doc.setFont(undefined,'normal'); doc.setTextColor(255,255,255);
@@ -4814,26 +5621,23 @@ function exportPDF() {
 
   // ── TOTALS + SIGNATURE ───────────────────────────────────────
   var finalY = doc.lastAutoTable.finalY + 6;
-  if(finalY > pageH - 50) { doc.addPage(); finalY = 15; }
+  if(finalY > pageH - 40) { doc.addPage(); finalY = 15; }
 
-  // Summary box (right-aligned)
-  var tW = 84, tX = pageW - M - tW;
-  doc.setDrawColor(accent[0],accent[1],accent[2]); doc.setLineWidth(0.4);
-  doc.rect(tX, finalY, tW, 24);
+  // totals box (right-aligned like reference)
+  var tW = 80, tX = pageW - M - tW;
+  doc.setDrawColor(180); doc.setLineWidth(0.3);
+  doc.rect(tX, finalY, tW, 16);
   doc.line(tX, finalY+8, tX+tW, finalY+8);
-  doc.line(tX, finalY+16, tX+tW, finalY+16);
-  doc.line(tX+42, finalY, tX+42, finalY+24);
+  doc.line(tX+40, finalY, tX+40, finalY+16);
   doc.setFontSize(7.5); doc.setFont(undefined,'bold'); doc.setTextColor(50);
-  doc.text('Hardware Items', tX+2, finalY+5.5);
-  doc.text('License Items', tX+2, finalY+13.5);
-  doc.text('Total Units', tX+2, finalY+21.5);
+  doc.text('Line Items', tX+2, finalY+5.5);
+  doc.text('Total Units', tX+2, finalY+13.5);
   doc.setFont(undefined,'normal');
-  doc.text(String(d.hwCount), tX+44, finalY+5.5);
-  doc.text(String(d.licCount), tX+44, finalY+13.5);
-  doc.setFont(undefined,'bold');
-  doc.text(String(d.totalQty), tX+44, finalY+21.5);
+  doc.text(String(d.lines.length), tX+42, finalY+5.5);
+  doc.text(String(d.totalQty), tX+42, finalY+13.5);
 
-  // Signature block (left)
+  // signature block
+  finalY += 22;
   doc.setFontSize(8); doc.setFont(undefined,'bold'); doc.setTextColor(50);
   doc.text('For Compugeddon t/a CGTECH,', M, finalY);
   doc.setLineWidth(0.3); doc.setDrawColor(80);
@@ -4860,44 +5664,25 @@ function composeBomEmail() {
   body += '\n─────────────────────────────────────\n';
   body += 'BILL OF MATERIALS (' + d.lines.length + ' products, ' + d.totalQty + ' units)\n';
   body += '─────────────────────────────────────\n\n';
-  // Group by category, preserving parent→child order
-  var emailCats = {}, emailCatOrder = [];
-  d.lines.forEach(function(l) {
-    if(l.isLicense && !l.isParent) return;
-    var cat = l.category;
-    if(!emailCats[cat]) { emailCats[cat] = []; emailCatOrder.push(cat); }
-    emailCats[cat].push(l);
-    if(l.isParent) {
-      var idx = d.lines.indexOf(l);
-      for(var ci = idx+1; ci < d.lines.length; ci++) {
-        if(d.lines[ci].isLicense && !d.lines[ci].isParent) emailCats[cat].push(d.lines[ci]);
-        else break;
-      }
-    }
-  });
-  emailCatOrder.forEach(function(cat) {
+  var cats = {};
+  d.lines.forEach(function(l) { if(!cats[l.category]) cats[l.category] = []; cats[l.category].push(l); });
+  Object.keys(cats).forEach(function(cat) {
     body += '[ ' + cat.toUpperCase() + ' ]\n';
-    emailCats[cat].forEach(function(l) {
-      if(l.isLicense && !l.isParent) {
-        var tag = l.isRequired ? '(Required)' : '(Recommended)';
-        body += '      └ ' + l.qty + 'x  ' + l.name + (l.sku ? ' [' + l.sku + ']' : '') + ' ' + tag + '\n';
-      } else {
-        body += '  ' + l.qty + 'x  ' + l.name + (l.sku ? ' [' + l.sku + ']' : '');
-        if(l.notes) body += ' — ' + l.notes;
-        body += '\n';
-      }
+    cats[cat].forEach(function(l) {
+      body += '  ' + l.qty + 'x  ' + l.name + (l.sku ? ' [' + l.sku + ']' : '');
+      if(l.notes) body += ' — ' + l.notes;
+      body += '\n';
     });
     body += '\n';
   });
   body += '─────────────────────────────────────\n';
-  body += 'Total: ' + d.hwCount + ' hardware + ' + d.licCount + ' licenses, ' + d.totalQty + ' units\n';
+  body += 'Total: ' + d.lines.length + ' line items, ' + d.totalQty + ' units\n';
   body += '─────────────────────────────────────\n\n';
   body += 'Please quote:\n';
   body += '  - Unit pricing per item (ZAR excl. VAT)\n';
   body += '  - Stock availability / lead times\n';
   body += '  - Volume discount (if applicable)\n';
-  body += '  - Licensing/subscription pricing where relevant\n';
-  body += '  - Items marked (Required) must be included with hardware\n\n';
+  body += '  - Licensing/subscription pricing where relevant\n\n';
   body += 'Kind regards,\n' + (d.meta.preparedBy || 'Compugeddon t/a CGTECH') + '\n';
   body += 'Palo Alto Diamond Innovator\n';
   var mailto = 'mailto:?subject=' + subject + '&body=' + encodeURIComponent(body);
@@ -4911,40 +5696,27 @@ function copyBomToClipboard() {
   var d = getBomExportData();
   var pad = function(s, n) { s = String(s||''); return s.length >= n ? s.slice(0,n) : s + ' '.repeat(n - s.length); };
 
-  // Group by category, preserving parent→child order
+  // Group lines by categoryId
   var catLabels = { network:'HARDWARE', 'eol-hw':'HARDWARE (EOL)', subscription:'LICENSING', sase:'SASE', cortex:'CORTEX', cloud:'CLOUD', services:'SERVICES' };
   var catOrder  = ['network','eol-hw','subscription','sase','cortex','cloud','services'];
   var grouped   = {};
   d.lines.forEach(function(l) {
-    if(l.isLicense && !l.isParent) return; // children rendered under parent
     var cat = l.categoryId || 'subscription';
     if(!grouped[cat]) grouped[cat] = [];
     grouped[cat].push(l);
-    if(l.isParent) {
-      var idx = d.lines.indexOf(l);
-      for(var ci = idx+1; ci < d.lines.length; ci++) {
-        if(d.lines[ci].isLicense && !d.lines[ci].isParent) grouped[cat].push(d.lines[ci]);
-        else break;
-      }
-    }
   });
 
-  var text = pad('Qty', 6) + pad('SKU', 22) + 'Description\n';
-  text += '\u2500'.repeat(64) + '\n';
+  var text = pad('Qty', 6) + pad('SKU', 18) + 'Description\n';
+  text += '\u2500'.repeat(56) + '\n';
   catOrder.forEach(function(cat) {
     if(!grouped[cat] || !grouped[cat].length) return;
     text += '\n' + (catLabels[cat] || cat.toUpperCase()) + '\n';
     grouped[cat].forEach(function(l) {
-      if(l.isLicense && !l.isParent) {
-        var tag = l.isRequired ? ' (Required)' : ' (Recommended)';
-        text += '  ' + pad(l.qty, 4) + pad(l.sku||'\u2014', 22) + '\u2514 ' + l.name + tag + '\n';
-      } else {
-        text += pad(l.qty, 6) + pad(l.sku||'\u2014', 22) + l.name + '\n';
-      }
+      text += pad(l.qty, 6) + pad(l.sku||'\u2014', 18) + l.name + '\n';
     });
   });
-  text += '\n' + '\u2500'.repeat(64) + '\n';
-  text += 'Total: ' + d.hwCount + ' hardware + ' + d.licCount + ' licenses, ' + d.totalQty + ' unit(s)\n';
+  text += '\n' + '\u2500'.repeat(56) + '\n';
+  text += 'Total: ' + d.totalQty + ' unit(s), ' + d.lines.length + ' line item(s)\n';
 
   navigator.clipboard.writeText(text).then(function() {
     closeExportDialog();
@@ -5009,7 +5781,6 @@ function loadAutoSavedBom() {
 function openSeriesPage(productId) {
   var p = products.find(function(x){ return x.id === productId; });
   if(!p) return;
-  trackRecentlyViewed(productId);
 
   var imgUrl = p.image || '';
   var container = document.getElementById('seriesContent');
@@ -5018,7 +5789,7 @@ function openSeriesPage(productId) {
   var html = '';
   // Hero
   html += '<div class="series-hero">';
-  if(imgUrl) html += '<div class="series-hero-img"><img src="' + imgUrl + '" alt="' + p.name + '" loading="lazy" onerror="this.parentElement.style.display=\'none\'"></div>';
+  if(imgUrl) html += '<div class="series-hero-img"><img src="' + imgUrl + '" alt="' + p.name + '" onerror="this.parentElement.style.display=\'none\'"></div>';
   html += '<div class="series-hero-info">';
   html += '<div style="display:flex;gap:8px;margin-bottom:6px"><span class="card-badge ' + getBadgeClass(p.category) + '">' + p.badge + '</span></div>';
   html += '<h1>' + p.name + '</h1>';
@@ -5027,8 +5798,8 @@ function openSeriesPage(productId) {
   if(!p.models || !p.models.length) {
     html += '<div style="display:flex;gap:10px;align-items:center;margin-top:16px;flex-wrap:wrap">';
     html += '<button class="btn-bom" style="padding:8px 20px;font-size:0.85rem" onclick="addToBom(\'' + p.id + '\')">+ Add to BOM</button>';
-    if(p.productUrl) html += '<a href="' + p.productUrl + '" target="_blank" style="padding:6px 10px;border:1px solid var(--pa-border);border-radius:6px;color:var(--pa-muted);font-size:0.75rem;text-decoration:none;display:flex;align-items:center;gap:4px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-4 0h4"/></svg>Home Page</a>';
-    if(p.brochureUrl) html += '<a href="' + p.brochureUrl + '" target="_blank" style="padding:6px 10px;border:1px solid var(--pa-border);border-radius:6px;color:var(--pa-muted);font-size:0.75rem;text-decoration:none;display:flex;align-items:center;gap:4px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Datasheet</a>';
+    if(p.brochureUrl) html += '<a href="' + p.brochureUrl + '" target="_blank" style="padding:6px 10px;border:1px solid var(--pa-border);border-radius:6px;color:var(--pa-muted);font-size:0.75rem;text-decoration:none;display:flex;align-items:center;gap:4px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Brochure</a>';
+    if(p.productUrl) html += '<a href="' + p.productUrl + '" target="_blank" style="padding:6px 10px;border:1px solid var(--pa-border);border-radius:6px;color:var(--pa-muted);font-size:0.75rem;text-decoration:none;display:flex;align-items:center;gap:4px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Product Page</a>';
     html += '</div>';
   }
   html += '</div></div>';
@@ -5039,7 +5810,7 @@ function openSeriesPage(productId) {
     html += '<div class="series-models-grid">';
     p.models.forEach(function(m, i) {
       html += '<div class="model-card">';
-      if(imgUrl) html += '<div class="model-card-img"><img src="' + imgUrl + '" alt="' + m.model + '" loading="lazy" onerror="this.parentElement.style.display=\'none\'"></div>';
+      if(imgUrl) html += '<div class="model-card-img"><img src="' + imgUrl + '" alt="' + m.model + '" onerror="this.parentElement.style.display=\'none\'"></div>';
       html += '<div class="model-card-body">';
       html += '<h3>' + m.model + '</h3>';
       if(m.sku) html += '<div class="model-sku">' + m.sku + '</div>';
@@ -5051,8 +5822,8 @@ function openSeriesPage(productId) {
       html += '<button onclick="adjustSeriesModelQty(\'' + p.id + '\',' + i + ',1)">+</button>';
       html += '</div>';
       html += '<button class="btn-bom" onclick="addModelFromSeries(\'' + p.id + '\',' + i + ')">+ Add to BOM</button>';
-      if(p.productUrl) html += '<a href="' + p.productUrl + '" target="_blank" style="padding:6px 10px;border:1px solid var(--pa-border);border-radius:6px;color:var(--pa-muted);font-size:0.7rem;text-decoration:none;display:flex;align-items:center;gap:4px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-4 0h4"/></svg>Home Page</a>';
-      if(p.brochureUrl) html += '<a href="' + p.brochureUrl + '" target="_blank" style="padding:6px 10px;border:1px solid var(--pa-border);border-radius:6px;color:var(--pa-muted);font-size:0.7rem;text-decoration:none;display:flex;align-items:center;gap:4px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Datasheet</a>';
+      if(p.brochureUrl) html += '<a href="' + p.brochureUrl + '" target="_blank" style="padding:6px 10px;border:1px solid var(--pa-border);border-radius:6px;color:var(--pa-muted);font-size:0.7rem;text-decoration:none;display:flex;align-items:center;gap:4px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Brochure</a>';
+      if(p.productUrl) html += '<a href="' + p.productUrl + '" target="_blank" style="padding:6px 10px;border:1px solid var(--pa-border);border-radius:6px;color:var(--pa-muted);font-size:0.7rem;text-decoration:none;display:flex;align-items:center;gap:4px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Product</a>';
       html += '</div></div></div>';
     });
     html += '</div>';
@@ -5114,7 +5885,7 @@ function renderSearchDropdown() {
   var html = '';
   results.slice(0,12).forEach(function(r) {
     var p = r.product;
-    var imgHtml = p.image ? '<img src="' + p.image + '" alt="" loading="lazy" onerror="this.style.display=\'none\'">' : '';
+    var imgHtml = p.image ? '<img src="' + p.image + '" alt="" onerror="this.style.display=\'none\'">' : '';
     if(r.type === 'model') {
       var m = r.model;
       html += '<div class="search-dropdown-item" onclick="openSeriesPage(\'' + p.id + '\');closeSearchDropdown()">';
@@ -5149,30 +5920,10 @@ function closeSearchDropdown() {
   if(dd) dd.classList.remove('show');
 }
 
-// ===== THEME =====
-var THEME_KEY = 'panw_catalogue_theme';
-function toggleTheme() {
-  var current = document.documentElement.getAttribute('data-theme') || 'dark';
-  var next = current === 'dark' ? 'light' : 'dark';
-  applyTheme(next);
-  try { localStorage.setItem(THEME_KEY, next); } catch(e) {}
-}
-function applyTheme(theme) {
-  if(theme === 'light') {
-    document.documentElement.setAttribute('data-theme', 'light');
-    var btn = document.getElementById('themeToggleBtn'); if(btn) btn.innerHTML = '&#9728;';
-  } else {
-    document.documentElement.removeAttribute('data-theme');
-    var btn = document.getElementById('themeToggleBtn'); if(btn) btn.innerHTML = '&#9790;';
-  }
-}
-(function(){ try { applyTheme(localStorage.getItem(THEME_KEY) || 'dark'); } catch(e){} })();
-
 // ===== INIT =====
 loadAutoSavedBom();
 loadProducts();
 render();
-renderRecentlyViewed();
 </script>
 </body>
 </html>
