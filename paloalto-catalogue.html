@@ -1523,6 +1523,24 @@ footer a:hover { text-decoration: underline; }
   .series-models-grid{grid-template-columns:1fr}
   .series-info{grid-template-columns:1fr}
 }
+
+/* Hardware Model Comparison Table */
+.hw-compare-view { padding: 0 0 24px; }
+.hw-compare-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; padding:0 4px; flex-wrap:wrap; gap:8px; }
+.hw-compare-header h2 { display:flex; align-items:center; gap:10px; font-size:1.1rem; color:#fff; margin:0; }
+.hw-back-btn { background:none; border:1px solid var(--pa-border); color:var(--pa-muted); padding:6px 14px; border-radius:6px; cursor:pointer; display:flex; align-items:center; gap:6px; font-size:0.8rem; }
+.hw-back-btn:hover { border-color:var(--pa-cyan); color:var(--pa-cyan); }
+.hw-compare-table { width:100%; border-collapse:collapse; font-size:0.8rem; }
+.hw-compare-table th, .hw-compare-table td { padding:7px 10px; border:1px solid var(--pa-border); text-align:center; }
+.hw-compare-feature-col { text-align:left !important; min-width:200px; font-weight:600; color:var(--pa-text); position:sticky; left:0; background:var(--pa-surface); z-index:2; }
+.hw-compare-model-col { min-width:130px; background:var(--pa-surface); }
+.hw-compare-key { text-align:left !important; padding-left:20px !important; font-weight:400; color:var(--pa-text); font-size:0.78rem; position:sticky; left:0; background:var(--pa-bg); z-index:1; white-space:nowrap; }
+.hw-compare-val { font-variant-numeric:tabular-nums; font-size:0.78rem; }
+.hw-compare-val.best-value { color:var(--pa-green,#22c55e); font-weight:700; }
+.hw-compare-section-header td { background:rgba(0,192,232,0.08) !important; color:var(--pa-cyan); font-weight:700; font-size:0.82rem; text-transform:uppercase; letter-spacing:0.5px; padding:10px 16px !important; text-align:left !important; border-top:2px solid rgba(0,192,232,0.3); }
+.hw-row-selected { background:rgba(0,192,232,0.06); }
+.hw-data-row { cursor:pointer; }
+.hw-data-row:hover { background:rgba(0,192,232,0.04); }
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
@@ -5733,25 +5751,7 @@ function printBom() {
     '.total td{font-weight:bold;border-top:2px solid #F04E23}' +
     '.meta td{padding:3px 6px;border:none}' +
     '.footer{text-align:center;font-size:8pt;color:#999;margin-top:20px;border-top:1px solid #e0e0e0;padding-top:8px}' +
-  '
-/* Hardware Model Comparison Table */
-.hw-compare-view { padding: 0 0 24px; }
-.hw-compare-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; padding:0 4px; flex-wrap:wrap; gap:8px; }
-.hw-compare-header h2 { display:flex; align-items:center; gap:10px; font-size:1.1rem; color:#fff; margin:0; }
-.hw-back-btn { background:none; border:1px solid var(--pa-border); color:var(--pa-muted); padding:6px 14px; border-radius:6px; cursor:pointer; display:flex; align-items:center; gap:6px; font-size:0.8rem; }
-.hw-back-btn:hover { border-color:var(--pa-cyan); color:var(--pa-cyan); }
-.hw-compare-table { width:100%; border-collapse:collapse; font-size:0.8rem; }
-.hw-compare-table th, .hw-compare-table td { padding:7px 10px; border:1px solid var(--pa-border); text-align:center; }
-.hw-compare-feature-col { text-align:left !important; min-width:200px; font-weight:600; color:var(--pa-text); position:sticky; left:0; background:var(--pa-surface); z-index:2; }
-.hw-compare-model-col { min-width:130px; background:var(--pa-surface); }
-.hw-compare-key { text-align:left !important; padding-left:20px !important; font-weight:400; color:var(--pa-text); font-size:0.78rem; position:sticky; left:0; background:var(--pa-bg); z-index:1; white-space:nowrap; }
-.hw-compare-val { font-variant-numeric:tabular-nums; font-size:0.78rem; }
-.hw-compare-val.best-value { color:var(--pa-green,#22c55e); font-weight:700; }
-.hw-compare-section-header td { background:rgba(0,192,232,0.08) !important; color:var(--pa-cyan); font-weight:700; font-size:0.82rem; text-transform:uppercase; letter-spacing:0.5px; padding:10px 16px !important; text-align:left !important; border-top:2px solid rgba(0,192,232,0.3); }
-.hw-row-selected { background:rgba(0,192,232,0.06); }
-.hw-data-row { cursor:pointer; }
-.hw-data-row:hover { background:rgba(0,192,232,0.04); }
-</style></head><body>' +
+  '</style></head><body>' +
     '<div style="display:flex;align-items:center;justify-content:space-between"><div><h1>Palo Alto Networks</h1><p class="sub">Bill of Materials</p></div><img src="' + CGTECH_LOGO + '" style="height:36px" alt="CGTECH"></div><hr style="border-color:#F04E23">' +
     '<table class="meta"><tr><td><strong>Project:</strong> ' + d.meta.projectName + '</td><td><strong>Customer:</strong> ' + d.meta.customer + '</td></tr>' +
     '<tr><td><strong>Prepared By:</strong> ' + d.meta.preparedBy + '</td><td><strong>Date:</strong> ' + d.meta.date + '</td></tr>' +
