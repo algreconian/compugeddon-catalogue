@@ -4689,8 +4689,13 @@ function updateHwCompareBtn() {
   document.getElementById('hwSelectedCount').textContent = count;
   var btn = document.getElementById('hwCompareSelectedBtn');
   if (btn) {
+    if (count > 0) {
+      btn.classList.add('visible');
+    } else {
+      btn.classList.remove('visible');
+    }
     btn.disabled = count < 2;
-    btn.style.opacity = count < 2 ? '0.5' : '1';
+    btn.style.opacity = count < 2 ? '0.6' : '1';
   }
 }
 
