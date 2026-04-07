@@ -1569,6 +1569,14 @@ footer a:hover { text-decoration: underline; }
 .hw-row-selected { background:rgba(0,192,232,0.06); }
 .hw-data-row { cursor:pointer; }
 .hw-data-row:hover { background:rgba(0,192,232,0.04); }
+.hw-series-row{cursor:pointer;user-select:none}
+.hw-series-row td{background:rgba(0,192,232,0.05);border-bottom:1px solid rgba(0,192,232,0.15);padding:10px 14px}
+.hw-series-row:hover td{background:rgba(0,192,232,0.09)}
+.hw-series-toggle{display:inline-flex;align-items:center;gap:8px;color:#fff;font-weight:700;font-size:0.88rem}
+.hw-series-chevron{display:inline-block;font-size:0.65rem;color:var(--pa-cyan);transition:transform 0.25s ease;width:14px;text-align:center}
+.hw-series-row.open .hw-series-chevron{transform:rotate(90deg)}
+.hw-series-count{font-size:0.72rem;font-weight:400;color:var(--pa-muted);margin-left:4px}
+.hw-model-row-hidden{display:none}
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
@@ -4643,6 +4651,8 @@ function getFilteredHwModels() {
   return models;
 }
 
+var hwExpandedSeries = {};
+
 function renderHwTable() {
   var main = document.getElementById('hwMain');
   var models = getFilteredHwModels();
@@ -4652,29 +4662,66 @@ function renderHwTable() {
     return;
   }
 
-  var html = '<div class="hw-results-info">Showing <span class="hw-results-count">' + models.length + '</span> individual firewall model' + (models.length !== 1 ? 's' : '') + ' &mdash; check models to compare full specifications side-by-side</div>';
-  html += '<div class="hw-table-wrap"><table class="hw-table"><thead><tr><th style="width:40px"></th><th>Model</th><th>Series</th><th>FW Throughput</th><th>Threat Prev.</th><th>IPSec VPN</th><th>CPS</th><th>Max Sessions</th></tr></thead><tbody>';
-
+  /* Group models by series */
+  var seriesOrder = [];
+  var seriesMap = {};
   models.forEach(function(m) {
-    var isChecked = hwSelectedSet.has(m.pid);
-    var perf = m.specs.Performance || {};
-    var sess = m.specs.Sessions || {};
-    var escapedPid = m.pid.replace(/'/g, "\\'");
-    html += '<tr class="hw-data-row' + (isChecked ? ' hw-row-selected' : '') + '" onclick="toggleHwModelSelect(\'' + escapedPid + '\')">';
-    html += '<td><input type="checkbox" class="hw-check" ' + (isChecked ? 'checked' : '') + ' onchange="event.stopPropagation();toggleHwModelSelect(\'' + escapedPid + '\')">';
-    html += '</td>';
-    html += '<td><strong style="color:#fff">' + m.model + '</strong></td>';
-    html += '<td style="font-size:0.78rem;color:var(--pa-muted)">' + m.series + '</td>';
-    html += '<td>' + (perf['App-ID firewall throughput (Appmix)'] || '-') + '</td>';
-    html += '<td>' + (perf['Threat prevention throughput (Appmix)'] || '-') + '</td>';
-    html += '<td>' + (perf['IPSec VPN throughput'] || '-') + '</td>';
-    html += '<td>' + (perf['Connections per second'] || '-') + '</td>';
-    html += '<td>' + (sess['Max sessions for L7 inspection'] || '-') + '</td>';
+    var s = m.series || 'Other';
+    if (!seriesMap[s]) {
+      seriesMap[s] = [];
+      seriesOrder.push(s);
+    }
+    seriesMap[s].push(m);
+  });
+
+  var html = '<div class="hw-results-info">Showing <span class="hw-results-count">' + models.length + '</span> model' + (models.length !== 1 ? 's' : '') + ' across <strong>' + seriesOrder.length + '</strong> series &mdash; expand a series and check models to compare side-by-side</div>';
+  html += '<div class="hw-table-wrap"><table class="hw-table"><thead><tr><th style="width:40px"></th><th>Model</th><th>FW Throughput</th><th>Threat Prev.</th><th>IPSec VPN</th><th>CPS</th><th>Max Sessions</th></tr></thead><tbody>';
+
+  seriesOrder.forEach(function(seriesName) {
+    var group = seriesMap[seriesName];
+    var seriesId = seriesName.replace(/[^a-zA-Z0-9]/g, '_');
+    var isOpen = !!hwExpandedSeries[seriesId];
+    var selectedInGroup = group.filter(function(m){ return hwSelectedSet.has(m.pid); }).length;
+
+    /* Series header row */
+    html += '<tr class="hw-series-row' + (isOpen ? ' open' : '') + '" onclick="toggleHwSeries(\'' + seriesId + '\')">';
+    html += '<td style="text-align:center"><span class="hw-series-chevron">&#9654;</span></td>';
+    html += '<td colspan="6"><span class="hw-series-toggle">' + seriesName + '<span class="hw-series-count">(' + group.length + ' model' + (group.length !== 1 ? 's' : '') + ')' + (selectedInGroup > 0 ? ' &mdash; <span style="color:var(--pa-cyan)">' + selectedInGroup + ' selected</span>' : '') + '</span></span></td>';
     html += '</tr>';
+
+    /* Individual model rows */
+    group.forEach(function(m) {
+      var isChecked = hwSelectedSet.has(m.pid);
+      var perf = m.specs.Performance || {};
+      var sess = m.specs.Sessions || {};
+      var escapedPid = m.pid.replace(/'/g, "\\'");
+      html += '<tr class="hw-data-row' + (isChecked ? ' hw-row-selected' : '') + (!isOpen ? ' hw-model-row-hidden' : '') + '" data-series="' + seriesId + '" onclick="toggleHwModelSelect(\'' + escapedPid + '\')">';
+      html += '<td><input type="checkbox" class="hw-check" ' + (isChecked ? 'checked' : '') + ' onchange="event.stopPropagation();toggleHwModelSelect(\'' + escapedPid + '\')"></td>';
+      html += '<td><strong style="color:#fff">' + m.model + '</strong></td>';
+      html += '<td>' + (perf['App-ID firewall throughput (Appmix)'] || '-') + '</td>';
+      html += '<td>' + (perf['Threat prevention throughput (Appmix)'] || '-') + '</td>';
+      html += '<td>' + (perf['IPSec VPN throughput'] || '-') + '</td>';
+      html += '<td>' + (perf['Connections per second'] || '-') + '</td>';
+      html += '<td>' + (sess['Max sessions for L7 inspection'] || '-') + '</td>';
+      html += '</tr>';
+    });
   });
 
   html += '</tbody></table></div>';
   main.innerHTML = html;
+}
+
+function toggleHwSeries(seriesId) {
+  hwExpandedSeries[seriesId] = !hwExpandedSeries[seriesId];
+  var rows = document.querySelectorAll('tr[data-series="' + seriesId + '"]');
+  var headerRow = rows.length > 0 ? rows[0].previousElementSibling : null;
+  if (hwExpandedSeries[seriesId]) {
+    if (headerRow) headerRow.classList.add('open');
+    rows.forEach(function(r){ r.classList.remove('hw-model-row-hidden'); });
+  } else {
+    if (headerRow) headerRow.classList.remove('open');
+    rows.forEach(function(r){ r.classList.add('hw-model-row-hidden'); });
+  }
 }
 
 function toggleHwModelSelect(pid) {
