@@ -984,14 +984,40 @@ footer a:hover { text-decoration: underline; }
 }
 
 /* ===== HARDWARE COMPARISON TOOL ===== */
+/* Hero Compare CTA */
+.hero-compare-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+  padding: 14px 36px;
+  background: linear-gradient(135deg, var(--pa-orange), #ff6b35);
+  border: none;
+  border-radius: 12px;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(250,88,45,0.4), 0 0 0 0 rgba(250,88,45,0);
+  letter-spacing: 0.3px;
+}
+.hero-compare-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(250,88,45,0.5), 0 0 0 4px rgba(250,88,45,0.15);
+}
+.hero-compare-btn:active { transform: translateY(0); }
+
+/* Controls bar Compare Hardware button */
 .hw-compare-btn {
-  padding: 8px 20px;
-  border: 1px solid var(--pa-orange);
-  border-radius: 6px;
-  background: rgba(250,88,45,0.1);
-  color: var(--pa-orange);
-  font-size: 0.8rem;
-  font-weight: 600;
+  padding: 10px 24px;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(135deg, var(--pa-orange), #ff6b35);
+  color: #fff;
+  font-size: 0.82rem;
+  font-weight: 700;
   font-family: inherit;
   cursor: pointer;
   transition: all var(--transition);
@@ -999,8 +1025,10 @@ footer a:hover { text-decoration: underline; }
   display: inline-flex;
   align-items: center;
   gap: 6px;
+  box-shadow: 0 2px 12px rgba(250,88,45,0.3);
+  letter-spacing: 0.3px;
 }
-.hw-compare-btn:hover { background: var(--pa-orange); color: #fff; }
+.hw-compare-btn:hover { transform: translateY(-1px); box-shadow: 0 4px 20px rgba(250,88,45,0.45); }
 
 .hw-overlay {
   position: fixed;
@@ -1376,9 +1404,9 @@ footer a:hover { text-decoration: underline; }
 
 /* ===== BOM CONFIGURATOR ===== */
 /* BOM FAB Button */
-.bom-fab{position:fixed;bottom:24px;right:88px;width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,var(--pa-cyan),#0098B8);border:none;color:#fff;cursor:pointer;box-shadow:0 4px 20px rgba(0,192,232,0.4);z-index:850;transition:transform 0.2s;display:flex;align-items:center;justify-content:center}
-.bom-fab:hover{transform:scale(1.1);box-shadow:0 6px 28px rgba(0,192,232,0.5)}
-.bom-fab-badge{position:absolute;top:-4px;right:-4px;width:20px;height:20px;border-radius:50%;background:var(--pa-orange);color:#fff;font-size:0.7rem;font-weight:700;display:flex;align-items:center;justify-content:center;display:none}
+.bom-fab{position:fixed;bottom:20px;right:20px;width:44px;height:44px;border-radius:50%;background:rgba(0,192,232,0.15);border:1px solid rgba(0,192,232,0.3);color:var(--pa-cyan);cursor:pointer;box-shadow:0 2px 12px rgba(0,0,0,0.2);z-index:850;transition:all 0.2s;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(8px)}
+.bom-fab:hover{transform:scale(1.08);background:rgba(0,192,232,0.25);box-shadow:0 4px 20px rgba(0,192,232,0.3)}
+.bom-fab-badge{position:absolute;top:-4px;right:-4px;width:18px;height:18px;border-radius:50%;background:var(--pa-orange);color:#fff;font-size:0.65rem;font-weight:700;display:flex;align-items:center;justify-content:center;display:none}
 
 /* BOM Drawer */
 .bom-drawer{position:fixed;right:0;top:0;bottom:0;width:520px;z-index:1100;background:var(--pa-dark);border-left:1px solid var(--pa-border);transform:translateX(100%);transition:transform 0.3s;display:flex;flex-direction:column;box-shadow:-4px 0 24px rgba(0,0,0,0.5)}
@@ -1575,6 +1603,12 @@ footer a:hover { text-decoration: underline; }
       <div class="hero-stat"><div class="num">70K+</div><div class="label">Customers</div></div>
       <div class="hero-stat"><div class="num">13x</div><div class="label">Industry Leader</div></div>
     </div>
+    <button class="hero-compare-btn" onclick="openHwCompare()">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/><path d="M7 8h2"/><path d="M7 12h4"/><path d="M15 8h2"/><path d="M15 12h2"/></svg>
+      Compare 62 Hardware Firewall Models
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><polyline points="12 5 19 12 12 19"/></svg>
+    </button>
+    <p style="font-size:0.75rem;color:var(--pa-muted);margin-top:8px">Full specifications from PA-7500 chassis to PA-220 &mdash; side-by-side comparison across 27 categories</p>
   </div>
 </section>
 
@@ -1596,11 +1630,11 @@ footer a:hover { text-decoration: underline; }
       <button class="filter-tab" data-filter="cloud">Cloud Security</button>
       <button class="filter-tab" data-filter="services">Unit 42</button>
     </div>
-    <button class="hw-compare-btn" onclick="openHwCompare()" title="Compare hardware firewall specs side-by-side">
+    <button class="hw-compare-btn" onclick="openHwCompare()" title="Compare 62 hardware firewall models side-by-side with full specifications">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/><path d="M7 8h2"/><path d="M7 12h4"/><path d="M15 8h2"/><path d="M15 12h2"/></svg>
-      Compare Hardware
+      Compare Hardware (62 Models)
     </button>
-    <button class="compare-btn" id="compareBtn" onclick="openCompare()">
+    <button class="compare-btn" id="compareBtn" onclick="openCompare()" title="Compare selected products from the catalogue">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 20V10M12 20V4M6 20v-6"/></svg>
       Compare (<span id="compareCount">0</span>)
     </button>
@@ -5930,4 +5964,3 @@ render();
 </script>
 </body>
 </html>
-<!-- Tue Apr  7 12:51:36 SAST 2026 -->
