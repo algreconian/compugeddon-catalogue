@@ -307,6 +307,17 @@ body {
 .badge-eol { background: rgba(100,100,100,0.2); color: #9CA3AF; border: 1px solid rgba(100,100,100,0.3); }
 .badge-eol-hw { background: rgba(250,88,45,0.12); color: var(--pa-orange); }
 
+/* RAG status light */
+.rag-light {
+  width: 10px; height: 10px; border-radius: 50%; display: inline-block;
+  position: absolute; top: 12px; right: 12px; z-index: 2;
+  box-shadow: 0 0 6px currentColor;
+  cursor: help;
+}
+.rag-green { background: #22c55e; color: #22c55e; }
+.rag-amber { background: #f59e0b; color: #f59e0b; }
+.rag-red { background: #ef4444; color: #ef4444; }
+
 /* EOL / EoS card status ribbon */
 .eol-ribbon {
   position: absolute;
@@ -4020,6 +4031,52 @@ function getBadgeClass(cat) {
   return categories[cat]?.badgeClass || 'badge-network';
 }
 
+function getRAGStatus(p) {
+  let score = 0, max = 0, issues = [];
+  // Image (2 pts)
+  max += 2;
+  if (p.image && p.image.length > 0 && !p.image.includes('32x32') && !p.image.includes('favicon')) { score += 2; }
+  else { issues.push('No product image'); }
+  // Models/SKUs (3 pts)
+  max += 3;
+  if (p.models && p.models.length > 0) {
+    score += 1;
+    const hasSku = p.models.every(m => m.sku && m.sku !== 'TBD');
+    if (hasSku) { score += 2; } else { issues.push('Some SKUs missing/TBD'); score += 1; }
+  } else { issues.push('No models defined'); }
+  // Specs (2 pts)
+  max += 2;
+  if (p.specs && p.specs.length >= 4) { score += 2; }
+  else if (p.specs && p.specs.length > 0) { score += 1; issues.push('Fewer than 4 specs'); }
+  else { issues.push('No specs'); }
+  // Description (1 pt)
+  max += 1;
+  if (p.description && p.description.length > 50) { score += 1; }
+  else { issues.push('Description too short'); }
+  // Product URL (1 pt)
+  max += 1;
+  if (p.productUrl && p.productUrl.startsWith('http')) { score += 1; }
+  else { issues.push('No product URL'); }
+  // Brochure URL (1 pt)
+  max += 1;
+  if (p.brochureUrl && p.brochureUrl.startsWith('http')) { score += 1; }
+  else { issues.push('No brochure URL'); }
+  // Licensing info (1 pt)
+  max += 1;
+  if (p.licensing && p.licensing.length > 10) { score += 1; }
+  else { issues.push('Licensing info missing'); }
+  // specGrid (1 pt)
+  max += 1;
+  if (p.specGrid && p.specGrid.length >= 3) { score += 1; }
+  else { issues.push('Spec grid incomplete'); }
+  const pct = score / max;
+  let color, label;
+  if (pct >= 0.85) { color = 'rag-green'; label = 'Verified'; }
+  else if (pct >= 0.55) { color = 'rag-amber'; label = 'Partial'; }
+  else { color = 'rag-red'; label = 'Incomplete'; }
+  return { color, label, issues, score, max, pct: Math.round(pct * 100) };
+}
+
 // ===== RENDER =====
 function render() {
   const main = document.getElementById('mainContent');
@@ -4075,8 +4132,10 @@ function render() {
         : p.eolStatus === 'End-of-Sale'
         ? `<div class="eol-ribbon eos">End-of-Sale</div>`
         : '';
+      const rag = getRAGStatus(p);
       html += `<div class="product-card${isSelected?' selected':''}" style="animation-delay:${i*0.05}s;position:relative" onclick="openSeriesPage('${p.id}')">
         ${eolRibbon}
+        <div class="rag-light ${rag.color}" title="${rag.label} (${rag.pct}%) — ${rag.issues.length ? rag.issues.join(', ') : 'All checks passed'}"></div>
         <div class="card-top">
           <span class="card-badge ${getBadgeClass(p.category)}">${p.badge}</span>
         </div>

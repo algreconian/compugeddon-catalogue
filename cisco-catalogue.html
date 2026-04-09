@@ -309,6 +309,17 @@ body {
 .badge-eos { background: rgba(234,179,8,0.2); color: #FBBF24; border: 1px solid rgba(234,179,8,0.3); }
 .badge-eol { background: rgba(100,100,100,0.2); color: #9CA3AF; border: 1px solid rgba(100,100,100,0.3); }
 
+/* RAG status light */
+.rag-light {
+  width: 10px; height: 10px; border-radius: 50%; display: inline-block;
+  position: absolute; top: 12px; right: 12px; z-index: 2;
+  box-shadow: 0 0 6px currentColor;
+  cursor: help;
+}
+.rag-green { background: #22c55e; color: #22c55e; }
+.rag-amber { background: #f59e0b; color: #f59e0b; }
+.rag-red { background: #ef4444; color: #ef4444; }
+
 /* EOL / EoS card status ribbon */
 .eol-ribbon {
   position: absolute;
@@ -2014,7 +2025,7 @@ function debouncedSearch(){
 const products = [
   // ── CAMPUS SWITCHING ────────────────────────────────────────────
   {
-    id: "cat-9200", image: "",
+    id: "cat-9200", image: "https://www.cisco.com/content/dam/cisco-cdc/site/us/en/images/networking/9200-series-switches-og-image-1200x630.jpg",
     models: [
       {model:"C9200L-24T-4G-E",sku:"C9200L-24T-4G-E",desc:"24x 1G, 4x 1G SFP, Network Essentials"},
       {model:"C9200L-48T-4G-E",sku:"C9200L-48T-4G-E",desc:"48x 1G, 4x 1G SFP, Network Essentials"},
@@ -2038,7 +2049,7 @@ const products = [
     productUrl: "https://www.cisco.com/site/us/en/products/networking/switches/catalyst-9200-series-switches/index.html"
   },
   {
-    id: "cat-9300", image: "",
+    id: "cat-9300", image: "https://www.cisco.com/content/dam/cisco-cdc/site/images/open-graph/products/networking/9300-series-switches-laptop-og-image-1200x630.jpg",
     models: [
       {model:"C9300-24T-A",sku:"C9300-24T-A",desc:"24x 1G, Network Advantage"},
       {model:"C9300-48P-A",sku:"C9300-48P-A",desc:"48x 1G PoE+, Network Advantage"},
@@ -2064,7 +2075,7 @@ const products = [
     productUrl: "https://www.cisco.com/site/us/en/products/networking/switches/catalyst-9300-series-switches/index.html"
   },
   {
-    id: "cat-9400", image: "",
+    id: "cat-9400", image: "https://www.cisco.com/content/dam/cisco-cdc/site/us/en/images/networking/cat9400-og-image-1200x630.jpg",
     models: [
       {model:"C9404R",sku:"C9404R",desc:"4-slot chassis"},
       {model:"C9407R",sku:"C9407R",desc:"7-slot chassis"},
@@ -2087,7 +2098,7 @@ const products = [
     productUrl: "https://www.cisco.com/site/us/en/products/networking/switches/catalyst-9400-series-switches/index.html"
   },
   {
-    id: "cat-9500", image: "",
+    id: "cat-9500", image: "https://www.cisco.com/content/dam/cisco-cdc/site/us/en/images/networking/cat9500-og-image-1200x630.jpg",
     models: [
       {model:"C9500-24Y4C-A",sku:"C9500-24Y4C-A",desc:"24x 25G SFP28 + 4x 100G QSFP28"},
       {model:"C9500-48Y4C-A",sku:"C9500-48Y4C-A",desc:"48x 25G SFP28 + 4x 100G QSFP28"},
@@ -2110,7 +2121,7 @@ const products = [
     productUrl: "https://www.cisco.com/site/us/en/products/networking/switches/catalyst-9500-series-switches/index.html"
   },
   {
-    id: "cat-9600", image: "",
+    id: "cat-9600", image: "https://www.cisco.com/content/dam/cisco-cdc/site/us/en/images/networking/cat9600-og-image-1200x630.jpg",
     models: [
       {model:"C9606R",sku:"C9606R",desc:"6-slot modular chassis"},
       {model:"C9610R",sku:"C9610R",desc:"10-slot modular chassis"},
@@ -2134,7 +2145,7 @@ const products = [
   },
   // ── BRANCH SWITCHING ────────────────────────────────────────────
   {
-    id: "cat-1000", image: "",
+    id: "cat-1000", image: "https://www.cisco.com/c/dam/assets/swa/img/anchor-info/cat1k-anchor-v2-628x353.png",
     models: [
       {model:"C1000-8T-2G-L",sku:"C1000-8T-2G-L",desc:"8x 1G + 2x 1G SFP, LAN Base"},
       {model:"C1000-24T-4G-L",sku:"C1000-24T-4G-L",desc:"24x 1G + 4x 1G SFP, LAN Base"},
@@ -2158,7 +2169,7 @@ const products = [
     productUrl: "https://www.cisco.com/c/en/us/products/switches/catalyst-1000-series-switches/index.html"
   },
   {
-    id: "meraki-ms", image: "",
+    id: "meraki-ms", image: "https://www.cisco.com/content/dam/cisco-cdc/site/images/open-graph/ms-family-og-1200x630.jpg",
     models: [
       {model:"MS130-24",sku:"MS130-24-HW",desc:"24x 1G, 4x 10G SFP+, cloud-managed"},
       {model:"MS210-48LP",sku:"MS210-48LP-HW",desc:"48x 1G PoE, 4x SFP+, stackable"},
@@ -2184,7 +2195,7 @@ const products = [
   },
   // ── DC SWITCHING ────────────────────────────────────────────────
   {
-    id: "nexus-9300", image: "",
+    id: "nexus-9300", image: "https://www.cisco.com/content/dam/cisco-cdc/site/us/en/images/networking/og-image-cloud-networking-1200x630.jpg",
     models: [
       {model:"N9K-C9332D-GX2B",sku:"N9K-C9332D-GX2B",desc:"32x 400G QSFP-DD"},
       {model:"N9K-C93600CD-GX",sku:"N9K-C93600CD-GX",desc:"28x 100G + 8x 400G"},
@@ -2230,7 +2241,7 @@ const products = [
     productUrl: "https://www.cisco.com/c/en/us/products/switches/nexus-9000-series-switches/index.html"
   },
   {
-    id: "nexus-3000", image: "",
+    id: "nexus-3000", image: "https://www.cisco.com/content/dam/cisco-cdc/site/us/en/images/networking/og-image-nexus-3000-series-1200x630.jpg",
     models: [
       {model:"N3K-C3264C-E",sku:"N3K-C3264C-E",desc:"64x 100G or 32x 400G QSFP-DD"},
       {model:"N3K-C3232C",sku:"N3K-C3232C",desc:"32x 100G QSFP28"},
@@ -2252,7 +2263,7 @@ const products = [
   },
   // ── WIRELESS ────────────────────────────────────────────────────
   {
-    id: "cat-9100-ap", image: "",
+    id: "cat-9100-ap", image: "https://www.cisco.com/content/dam/cisco-cdc/site/images/open-graph/products/networking/wireless/wifi7-ap-1200x630.jpg",
     models: [
       {model:"CW9162I",sku:"CW9162I-B",desc:"Wi-Fi 6E, 2x2, internal antennas, indoor"},
       {model:"CW9164I",sku:"CW9164I-B",desc:"Wi-Fi 6E, tri-radio 4x4, indoor"},
@@ -2300,7 +2311,7 @@ const products = [
     productUrl: "https://meraki.cisco.com/products/wi-fi/"
   },
   {
-    id: "cat-9800-wlc", image: "",
+    id: "cat-9800-wlc", image: "https://www.cisco.com/content/dam/cisco-cdc/site/images/open-graph/networking/np-9800-og-1200x260.png",
     models: [
       {model:"C9800-40",sku:"C9800-40-K9",desc:"40 Gbps, up to 2000 APs, 32000 clients"},
       {model:"C9800-80",sku:"C9800-80-K9",desc:"80 Gbps, up to 6000 APs, 64000 clients"},
@@ -2323,7 +2334,7 @@ const products = [
   },
   // ── ROUTING ─────────────────────────────────────────────────────
   {
-    id: "cat-8000", image: "",
+    id: "cat-8000", image: "https://www.cisco.com/content/dam/cisco-cdc/site/images/open-graph/products/networking/og-catalyst-8000v-1200x630.jpg",
     models: [
       {model:"C8200-1N-4T",sku:"C8200-1N-4T",desc:"4x 1G, 1x NIM slot, compact edge"},
       {model:"C8200L-1N-4T",sku:"C8200L-1N-4T",desc:"4x 1G, 1x NIM slot, low-end edge"},
@@ -2347,7 +2358,7 @@ const products = [
     productUrl: "https://www.cisco.com/c/en/us/products/routers/catalyst-8000-series/index.html"
   },
   {
-    id: "isr-1000", image: "",
+    id: "isr-1000", image: "https://www.cisco.com/content/dam/cisco-cdc/site/images/open-graph/products/networking/1000ISR-hero-ogimage-1200x630.jpg",
     models: [
       {model:"ISR1100-4G",sku:"C1111-4P",desc:"4x GE, dual WAN, compact"},
       {model:"ISR1100-6G",sku:"C1111-8P",desc:"8x GE, dual WAN"},
@@ -2369,7 +2380,7 @@ const products = [
     productUrl: "https://www.cisco.com/c/en/us/products/routers/1000-series-integrated-services-routers-isr/index.html"
   },
   {
-    id: "isr-4000", image: "",
+    id: "isr-4000", image: "https://www.cisco.com/content/dam/cisco-cdc/site/images/heroes/products/networking/sdwan-routers/4000-series-isr-hero-desktop-3200x1372.jpg",
     models: [
       {model:"ISR4221",sku:"ISR4221/K9",desc:"2x GE WAN, 35/75 Mbps default"},
       {model:"ISR4321",sku:"ISR4321/K9",desc:"2x GE WAN, 50/100 Mbps default"},
@@ -2393,7 +2404,7 @@ const products = [
     productUrl: "https://www.cisco.com/c/en/us/products/routers/4000-series-integrated-services-routers-isr/index.html"
   },
   {
-    id: "asr-1000", image: "",
+    id: "asr-1000", image: "https://www.cisco.com/content/dam/cisco-cdc/site/images/heroes/products/networking/asr1000-series-hero-desktop-3200x1372.jpg",
     models: [
       {model:"ASR1001-X",sku:"ASR1001-X",desc:"Compact, 20 Gbps, 1U"},
       {model:"ASR1002-HX",sku:"ASR1002-HX",desc:"Fixed, 100 Gbps, 2U"},
@@ -2416,7 +2427,7 @@ const products = [
   },
   // ── SD-WAN ──────────────────────────────────────────────────────
   {
-    id: "cisco-sdwan", image: "",
+    id: "cisco-sdwan", image: "https://www.cisco.com/content/dam/cisco-cdc/site/images/open-graph/solutions/networking/sdwan-og-1200x630.png",
     models: [
       {model:"vManage",sku:"VMANAGE-HOST",desc:"Centralized management and monitoring"},
       {model:"vSmart Controller",sku:"VSMART-HOST",desc:"Centralized policy and control plane"},
@@ -2437,7 +2448,7 @@ const products = [
     productUrl: "https://www.cisco.com/c/en/us/solutions/enterprise-networks/sd-wan/index.html"
   },
   {
-    id: "meraki-mx", image: "",
+    id: "meraki-mx", image: "https://www.cisco.com/content/dam/cisco-cdc/site/images/open-graph/products/networking/sdwan-routers/meraki-secure-sdwan/meraki-mx-family-og-1200x630.jpg",
     models: [
       {model:"MX67",sku:"MX67-HW",desc:"450 Mbps FW, 5x GE, small branch"},
       {model:"MX68",sku:"MX68-HW",desc:"450 Mbps FW, 10x GE + 2x PoE, branch"},
@@ -2464,7 +2475,7 @@ const products = [
   },
   // ── SECURITY ────────────────────────────────────────────────────
   {
-    id: "fw-3100", image: "",
+    id: "fw-3100", image: "https://www.cisco.com/content/dam/cisco-cdc/site/us/en/images/security/secure-firewall3100-og-1200x677.jpg",
     models: [
       {model:"FPR-3105",sku:"FPR3105-NGFW-K9",desc:"17 Gbps FW, 10 Gbps IPS, 1U"},
       {model:"FPR-3110",sku:"FPR3110-NGFW-K9",desc:"22 Gbps FW, 12 Gbps IPS, 1U"},
@@ -2487,7 +2498,7 @@ const products = [
     productUrl: "https://www.cisco.com/site/us/en/products/security/firewalls/secure-firewall-3100-series/index.html"
   },
   {
-    id: "fw-4200", image: "",
+    id: "fw-4200", image: "https://www.cisco.com/content/dam/cisco-cdc/site/images/open-graph/products/security/firepower-4200-series-og-1200x630.jpg",
     models: [
       {model:"FPR-4215",sku:"FPR4215-NGFW-K9",desc:"65 Gbps FW, 30 Gbps IPS, 1U"},
       {model:"FPR-4225",sku:"FPR4225-NGFW-K9",desc:"80 Gbps FW, 42 Gbps IPS, 1U"},
@@ -2508,7 +2519,7 @@ const products = [
     productUrl: "https://www.cisco.com/site/us/en/products/security/firewalls/secure-firewall-4200-series/index.html"
   },
   {
-    id: "cisco-ise", image: "",
+    id: "cisco-ise", image: "https://www.cisco.com/content/dam/cisco-cdc/site/us/en/images/security/901065222_Reimagined_WebUpdate_ISE_1200x667.jpg",
     name: "Cisco Identity Services Engine (ISE)",
     category: "security",
     badge: "Security",
@@ -2524,7 +2535,7 @@ const products = [
     productUrl: "https://www.cisco.com/site/us/en/products/security/identity-services-engine/index.html"
   },
   {
-    id: "cisco-umbrella", image: "",
+    id: "cisco-umbrella", image: "https://www.cisco.com/content/dam/cisco-cdc/site/images/heroes/products/security/umbrella-dashboard-og-1200x630.png",
     name: "Cisco Umbrella",
     category: "security",
     badge: "Security",
@@ -2540,7 +2551,7 @@ const products = [
     productUrl: "https://www.cisco.com/site/us/en/products/security/umbrella/index.html"
   },
   {
-    id: "cisco-duo", image: "",
+    id: "cisco-duo", image: "https://www.cisco.com/content/dam/cisco-cdc/site/images/open-graph/products/security/duo-og-1200x630.jpg",
     name: "Cisco Duo",
     category: "security",
     badge: "Security",
@@ -2556,7 +2567,7 @@ const products = [
     productUrl: "https://www.cisco.com/site/us/en/products/security/duo/index.html"
   },
   {
-    id: "cisco-xdr", image: "",
+    id: "cisco-xdr", image: "https://www.cisco.com/content/dam/cisco-cdc/site/images/open-graph/products/security/xdr-og-1200x630.jpg",
     name: "Cisco XDR",
     category: "security",
     badge: "Security",
@@ -2573,7 +2584,7 @@ const products = [
   },
   // ── DATA CENTER ─────────────────────────────────────────────────
   {
-    id: "ucs-c", image: "",
+    id: "ucs-c", image: "https://www.cisco.com/content/dam/cisco-cdc/site/images/open-graph/products/computing/og-ucs-c-series-product-stack-1200x630.jpg",
     models: [
       {model:"UCS C220 M7",sku:"UCSC-C220-M7",desc:"1U rack, 2x Intel Xeon 4th Gen, up to 4TB RAM"},
       {model:"UCS C240 M7",sku:"UCSC-C240-M7",desc:"2U rack, 2x Intel Xeon 4th Gen, up to 8TB RAM, GPU-ready"},
@@ -2595,7 +2606,7 @@ const products = [
     productUrl: "https://www.cisco.com/c/en/us/products/servers-unified-computing/ucs-c-series-rack-servers/index.html"
   },
   {
-    id: "ucs-x", image: "",
+    id: "ucs-x", image: "https://www.cisco.com/content/dam/cisco-cdc/site/us/en/images/cloud-and-computing/og-image-ucs-x-series-1200x630.jpg",
     models: [
       {model:"UCS X9508 Chassis",sku:"UCSX-9508",desc:"8-slot modular chassis"},
       {model:"UCS X210c M7",sku:"UCSX-210C-M7",desc:"Compute node, 2x Intel Xeon 4th Gen"},
@@ -2616,7 +2627,7 @@ const products = [
     productUrl: "https://www.cisco.com/c/en/us/products/servers-unified-computing/ucs-x-series-modular-system/index.html"
   },
   {
-    id: "cisco-aci", image: "",
+    id: "cisco-aci", image: "https://www.cisco.com/content/dam/cisco-cdc/site/images/open-graph/products/networking/og-image-aci-1200x630.png",
     name: "Cisco ACI",
     category: "data-center",
     badge: "Data Center",
@@ -2632,7 +2643,7 @@ const products = [
     productUrl: "https://www.cisco.com/c/en/us/solutions/data-center-virtualization/application-centric-infrastructure/index.html"
   },
   {
-    id: "intersight", image: "",
+    id: "intersight", image: "https://www.cisco.com/content/dam/cisco-cdc/site/images/open-graph/products/computing/og-image-hywo-hub-1200x630.jpg",
     name: "Cisco Intersight",
     category: "data-center",
     badge: "Data Center",
@@ -2648,7 +2659,7 @@ const products = [
     productUrl: "https://www.cisco.com/site/us/en/products/computing/hybrid-cloud-operations/intersight-platform/index.html"
   },
   {
-    id: "hyperflex", image: "",
+    id: "hyperflex", image: "https://www.cisco.com/content/dam/cisco-cdc/site/us/en/images/cloud-and-computing/og-image-hyperflex-systems-1200x630.jpg",
     models: [
       {model:"HX220c M6",sku:"HX220C-M6S",desc:"All-flash 1U, hybrid compute+storage"},
       {model:"HX240c M6",sku:"HX240C-M6S",desc:"All-flash 2U, high-capacity storage"},
@@ -2670,7 +2681,7 @@ const products = [
   },
   // ── MANAGEMENT & LICENSING ──────────────────────────────────────
   {
-    id: "catalyst-center", image: "",
+    id: "catalyst-center", image: "https://www.cisco.com/content/dam/cisco-cdc/site/images/photography/product-photography/catalyst-center-og-1200x630.jpg",
     models: [
       {model:"Catalyst Center Appliance",sku:"DN2-HW-APL-XL",desc:"Physical appliance (44-core, 256GB RAM)"},
       {model:"Catalyst Center Virtual",sku:"DN2-VIRTUAL",desc:"Virtual appliance (ESXi/KVM)"}
@@ -2690,7 +2701,7 @@ const products = [
     productUrl: "https://www.cisco.com/site/us/en/products/networking/catalyst-center/index.html"
   },
   {
-    id: "meraki-dashboard", image: "",
+    id: "meraki-dashboard", image: "https://www.cisco.com/content/dam/cisco-cdc/site/images/open-graph/products/security/meraki-mobile-device-management-family-og-1200x630.jpg",
     name: "Meraki Dashboard",
     category: "management",
     badge: "Management",
@@ -2743,6 +2754,53 @@ let compareSet = new Set();
 // ===== BADGE CLASS HELPER =====
 function getBadgeClass(cat) {
   return categories[cat]?.badgeClass || 'badge-campus';
+}
+
+function getRAGStatus(p) {
+  let score = 0, max = 0, issues = [];
+  // Image (2 pts)
+  max += 2;
+  if (p.image && p.image.length > 0 && !p.image.includes('logo-open-graph')) { score += 2; }
+  else { issues.push('No product image'); }
+  // Models/SKUs (3 pts)
+  max += 3;
+  if (p.models && p.models.length > 0) {
+    score += 1;
+    const hasSku = p.models.every(m => m.sku && m.sku !== 'TBD');
+    if (hasSku) { score += 2; } else { issues.push('Some SKUs missing/TBD'); score += 1; }
+  } else { issues.push('No models defined'); }
+  // Specs (2 pts)
+  max += 2;
+  if (p.specs && p.specs.length >= 4) { score += 2; }
+  else if (p.specs && p.specs.length > 0) { score += 1; issues.push('Fewer than 4 specs'); }
+  else { issues.push('No specs'); }
+  // Description (1 pt)
+  max += 1;
+  if (p.description && p.description.length > 50) { score += 1; }
+  else { issues.push('Description too short'); }
+  // Product URL (1 pt)
+  max += 1;
+  if (p.productUrl && p.productUrl.startsWith('http')) { score += 1; }
+  else { issues.push('No product URL'); }
+  // Brochure/Datasheet URL (1 pt)
+  max += 1;
+  if (p.brochureUrl && p.brochureUrl.startsWith('http')) { score += 1; }
+  else { issues.push('No brochure/datasheet URL'); }
+  // Licensing info (1 pt)
+  max += 1;
+  if (p.licensing && p.licensing.length > 10) { score += 1; }
+  else { issues.push('Licensing info missing'); }
+  // specGrid (1 pt)
+  max += 1;
+  if (p.specGrid && p.specGrid.length >= 3) { score += 1; }
+  else { issues.push('Spec grid incomplete'); }
+
+  const pct = score / max;
+  let color, label;
+  if (pct >= 0.85) { color = 'rag-green'; label = 'Verified'; }
+  else if (pct >= 0.55) { color = 'rag-amber'; label = 'Partial'; }
+  else { color = 'rag-red'; label = 'Incomplete'; }
+  return { color, label, issues, score, max, pct: Math.round(pct * 100) };
 }
 
 // ===== RENDER =====
@@ -2800,8 +2858,10 @@ function render() {
         : p.eolStatus === 'End-of-Sale'
         ? `<div class="eol-ribbon eos">End-of-Sale</div>`
         : '';
+      const rag = getRAGStatus(p);
       html += `<div class="product-card${isSelected?' selected':''}" style="animation-delay:${i*0.05}s;position:relative" onclick="openSeriesPage('${p.id}')">
         ${eolRibbon}
+        <div class="rag-light ${rag.color}" title="${rag.label} (${rag.pct}%) — ${rag.issues.length ? rag.issues.join(', ') : 'All checks passed'}"></div>
         <div class="card-top">
           <span class="card-badge ${getBadgeClass(p.category)}">${p.badge}</span>
         </div>

@@ -93,6 +93,12 @@ a{color:var(--hpe-green);text-decoration:none}a:hover{text-decoration:underline}
 /* Grid */
 .grid{max-width:1280px;margin:0 auto;padding:0 24px 40px;display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:20px}
 
+/* RAG status light */
+.rag-light{width:10px;height:10px;border-radius:50%;display:inline-block;position:absolute;top:12px;right:12px;z-index:2;box-shadow:0 0 6px currentColor;cursor:help}
+.rag-green{background:#22c55e;color:#22c55e}
+.rag-amber{background:#f59e0b;color:#f59e0b}
+.rag-red{background:#ef4444;color:#ef4444}
+
 /* Cards */
 .card{background:var(--hpe-card-bg);border:1px solid var(--hpe-border);border-radius:var(--radius);padding:24px;display:flex;flex-direction:column;transition:all 0.25s;position:relative;cursor:pointer}
 .card:hover{border-color:var(--hpe-green);transform:translateY(-2px);box-shadow:0 8px 32px rgba(1,169,130,0.15)}
@@ -1129,7 +1135,143 @@ const DEFAULT_PRODUCTS = [
     licensing:"Per-device support contract (1/3/5 year)",
     productUrl:"https://www.hpe.com/us/en/services/pointnext.html",
     datasheetUrl:"https://www.hpe.com/psnow/doc/a00111733enw"
-  }
+  },
+
+  // ── ADDITIONAL ARUBA SWITCHES ──────────────────────────────────
+  {
+    id:"aruba-cx10040",sku:"TBD",models:[{model:"CX 10040-32QSFP-DD",sku:"TBD",desc:"32x 400G QSFP-DD ports"},{model:"CX 10040-48QSFP28",sku:"TBD",desc:"48x 100G QSFP28 ports"}],name:"HPE Aruba CX 10040 Series",brand:"aruba",category:"switches",
+    tagline:"High-resolution telemetry switch with enhanced security and twice the efficiency of comparable designs.",
+    specs:["400G QSFP-DD ports","High-resolution telemetry","Enhanced security features","2x efficiency vs comparable switches","AOS-CX operating system","Deep buffer architecture"],
+    useCases:["Data center spine","High-performance computing","AI/ML network fabrics","Campus core"],
+    tags:["DC","Core","Spine","400G"],
+    licensing:"AOS-CX included; optional Central subscription",
+    productUrl:"https://www.hpe.com/us/en/networking/switches.html",
+    datasheetUrl:""
+  },
+  {
+    id:"aruba-cx6300l",sku:"R8S89A",models:[{model:"CX 6300L-24G",sku:"R8S89A",desc:"24 1GbE ports, 4x SFP56"},{model:"CX 6300L-48G",sku:"R8S91A",desc:"48 1GbE ports, 4x SFP56"},{model:"CX 6300L-24G-PoE+",sku:"R8S90A",desc:"24 1GbE PoE+ ports"},{model:"CX 6300L-48G-PoE+",sku:"R8S92A",desc:"48 1GbE PoE+ ports"}],name:"HPE Aruba CX 6300L Series",brand:"aruba",category:"switches",
+    tagline:"Cost-optimized Layer 3 stackable switch for campus access with up to 50G uplinks.",
+    specs:["Layer 3 stackable","1GbE access ports","Up to 50G SFP56 uplinks","PoE+ (30W/port)","VSF stacking (up to 8)","AOS-CX operating system"],
+    useCases:["Campus access","Branch offices","SMB deployments","Cost-sensitive environments"],
+    tags:["Access","Branch","Campus","SME"],
+    licensing:"AOS-CX included; optional Central subscription",
+    productUrl:"https://www.hpe.com/us/en/networking/switches.html",
+    datasheetUrl:"https://www.hpe.com/psnow/doc/a00113236enw"
+  },
+  {
+    id:"aruba-cx5420",sku:"R9L63A",models:[{model:"CX 5420-24G-PoE+",sku:"R9L63A",desc:"24 1GbE PoE+, 4x SFP56"},{model:"CX 5420-48G-PoE+",sku:"R9L64A",desc:"48 1GbE PoE+, 4x SFP56"},{model:"CX 5420-24MR",sku:"R9L65A",desc:"24 Multi-Rate, 4x SFP56"},{model:"CX 5420-48MR",sku:"R9L66A",desc:"48 Multi-Rate, 4x SFP56"}],name:"HPE Aruba CX 5420 Series",brand:"aruba",category:"switches",
+    tagline:"Layer 3 stackable access switches with built-in security, IoT readiness, and simplified management.",
+    specs:["Layer 3 stackable","Multi-Rate Ethernet support","Up to 50G SFP56 uplinks","PoE+ / PoE++ support","MACsec encryption","Built-in IoT gateway"],
+    useCases:["Campus access","IoT-enabled networks","Branch offices","Secure access layer"],
+    tags:["Access","Campus","Branch","IoT"],
+    licensing:"AOS-CX included; optional Central subscription",
+    productUrl:"https://www.hpe.com/us/en/networking/switches.html",
+    datasheetUrl:"https://www.hpe.com/psnow/doc/a50009345enw"
+  },
+  {
+    id:"aruba-cx8360",sku:"JL710A",models:[{model:"CX 8360-32Y4C",sku:"JL710A",desc:"32x 25G SFP28, 4x 100G QSFP28"},{model:"CX 8360-48XT4C",sku:"JL711A",desc:"48x 10GBase-T, 4x 100G QSFP28"},{model:"CX 8360-12C",sku:"JL709A",desc:"12x 100G QSFP28"},{model:"CX 8360-48Y6C",sku:"JL712A",desc:"48x 25G SFP28, 6x 100G QSFP28"}],name:"HPE Aruba CX 8360 Series",brand:"aruba",category:"switches",
+    tagline:"Compact, high-performance data center and campus core switches with up to 100G connectivity.",
+    specs:["10G/25G/40G/100G ports","OSFP and QSFP28 uplinks","AOS-CX with NAE analytics","VSX for active-active redundancy","MACsec on all ports","Low-latency switching"],
+    useCases:["Data center leaf/spine","Campus core","Aggregation layer","High-performance computing"],
+    tags:["DC","Core","Leaf","Spine","100G"],
+    licensing:"AOS-CX included; optional Central subscription",
+    productUrl:"https://www.hpe.com/us/en/networking/switches.html",
+    datasheetUrl:"https://www.hpe.com/psnow/doc/a00098880enw"
+  },
+  {
+    id:"aruba-cx8320",sku:"JL579A",models:[{model:"CX 8320-32C",sku:"JL579A",desc:"32x 100G QSFP28"},{model:"CX 8320-48Y6C",sku:"JL581A",desc:"48x 25G SFP28, 6x 100G QSFP28"}],name:"HPE Aruba CX 8320 Series",brand:"aruba",category:"switches",
+    tagline:"High-density data center ToR switch with 25G/100G connectivity and VSX redundancy.",
+    specs:["25G SFP28 and 100G QSFP28","VSX active-active redundancy","AOS-CX with NAE","MACsec encryption","VXLAN with EVPN","Compact 1U form factor"],
+    useCases:["Data center top-of-rack","Leaf switch","Server connectivity","Storage networking"],
+    tags:["DC","Leaf","ToR","25G","100G"],
+    licensing:"AOS-CX included; optional Central subscription",
+    productUrl:"https://www.hpe.com/us/en/networking/switches.html",
+    datasheetUrl:"https://www.hpe.com/psnow/doc/a00056735enw"
+  },
+  {
+    id:"aruba-cx8325",sku:"JL627A",models:[{model:"CX 8325-48Y8C",sku:"JL627A",desc:"48x 25G SFP28, 8x 100G QSFP28"},{model:"CX 8325-32C",sku:"JL626A",desc:"32x 100G QSFP28"},{model:"CX 8325H-48Y8C",sku:"TBD",desc:"48x 25G SFP28, 8x 100G, half-width low-latency"}],name:"HPE Aruba CX 8325 Series",brand:"aruba",category:"switches",
+    tagline:"Low-latency data center spine switch optimized for high-frequency trading and real-time workloads.",
+    specs:["Ultra-low latency (<500ns)","25G/100G ports","Deep buffer options","VSX redundancy","VXLAN/EVPN fabric","Half-width option (8325H)"],
+    useCases:["Data center spine","Financial trading networks","Low-latency applications","Leaf-spine fabrics"],
+    tags:["DC","Spine","Low-Latency","100G"],
+    licensing:"AOS-CX included; optional Central subscription",
+    productUrl:"https://www.hpe.com/us/en/networking/switches.html",
+    datasheetUrl:""
+  },
+  {
+    id:"aruba-cx8100",sku:"R9W91A",models:[{model:"CX 8100-24XT",sku:"R9W91A",desc:"24x 10GBase-T, 6x 100G QSFP28"},{model:"CX 8100-48T",sku:"R9W93A",desc:"48x 10GBase-T, 6x 100G QSFP28"},{model:"CX 8100-48Y6C",sku:"R9W95A",desc:"48x 25G SFP28, 6x 100G QSFP28"}],name:"HPE Aruba CX 8100 Series",brand:"aruba",category:"switches",
+    tagline:"Versatile data center leaf switch with 10G/25G/100G ports and built-in VXLAN fabric support.",
+    specs:["10GBase-T, 25G SFP28, 100G QSFP28","VXLAN with EVPN","VSX active-active","AOS-CX with NAE","MACsec on all ports","Compact 1U form factor"],
+    useCases:["Data center leaf","Server connectivity","Campus core upgrade","Storage networking"],
+    tags:["DC","Leaf","10G","25G","100G"],
+    licensing:"AOS-CX included; optional Central subscription",
+    productUrl:"https://www.hpe.com/us/en/networking/switches.html",
+    datasheetUrl:"https://www.hpe.com/psnow/doc/a50004044enw"
+  },
+  // ── ADDITIONAL JUNIPER WIRELESS ────────────────────────────────
+  {
+    id:"juniper-ap37",sku:"AP37",models:[{model:"AP37-USP",sku:"AP37-USP",desc:"Wi-Fi 7 tri-radio, internal antennas, US"},{model:"AP37-WW",sku:"AP37-WW",desc:"Wi-Fi 7 tri-radio, internal antennas, WW"}],name:"Juniper Mist AP37 (Wi-Fi 7)",brand:"juniper",category:"wireless",
+    tagline:"High-performance Wi-Fi 7 (802.11be) access point with tri-radio architecture and AI-driven optimization.",
+    specs:["Wi-Fi 7 (802.11be)","Tri-radio (6 GHz + 5 GHz + 2.4 GHz)","Up to 18.4 Gbps aggregate","320 MHz channels on 6 GHz","MLO (Multi-Link Operation)","Patented vBLE for location"],
+    useCases:["High-density campus","Conference centers","Large enterprise","Education campuses"],
+    tags:["Wi-Fi 7","Indoor","High-Density","AI"],
+    licensing:"Juniper Mist cloud subscription required",
+    productUrl:"https://www.juniper.net/us/en/products/access-points/ap37-access-point.html",
+    datasheetUrl:"https://www.juniper.net/us/en/products/access-points/ap37-ap36-access-point-datasheet.html"
+  },
+  {
+    id:"juniper-ap36",sku:"AP36",models:[{model:"AP36-USP",sku:"AP36-USP",desc:"Wi-Fi 7 dual-radio, internal antennas, US"},{model:"AP36-WW",sku:"AP36-WW",desc:"Wi-Fi 7 dual-radio, internal antennas, WW"}],name:"Juniper Mist AP36 (Wi-Fi 7)",brand:"juniper",category:"wireless",
+    tagline:"Cost-effective Wi-Fi 7 access point with dual-radio design for mainstream enterprise deployments.",
+    specs:["Wi-Fi 7 (802.11be)","Dual-radio (6 GHz + 5 GHz/2.4 GHz)","Up to 11.5 Gbps aggregate","320 MHz channels on 6 GHz","vBLE for location services","Mist AI-driven optimization"],
+    useCases:["Standard office environments","Education","Healthcare","Retail"],
+    tags:["Wi-Fi 7","Indoor","Mainstream"],
+    licensing:"Juniper Mist cloud subscription required",
+    productUrl:"https://www.juniper.net/us/en/products/access-points/ap36-access-point.html",
+    datasheetUrl:"https://www.juniper.net/us/en/products/access-points/ap37-ap36-access-point-datasheet.html"
+  },
+  {
+    id:"juniper-ap34",sku:"AP34",models:[{model:"AP34-USP",sku:"AP34-USP",desc:"Wi-Fi 6E tri-radio, internal antennas, US"},{model:"AP34-WW",sku:"AP34-WW",desc:"Wi-Fi 6E tri-radio, internal antennas, WW"}],name:"Juniper Mist AP34 (Wi-Fi 6E)",brand:"juniper",category:"wireless",
+    tagline:"Tri-radio Wi-Fi 6E access point with patented vBLE and AI-driven wireless optimization.",
+    specs:["Wi-Fi 6E (802.11ax)","Tri-radio (6 GHz + 5 GHz + 2.4 GHz)","Up to 5.9 Gbps aggregate","160 MHz channels","Patented vBLE for indoor location","Mist AI optimization"],
+    useCases:["Enterprise campus","Healthcare","Education","Retail environments"],
+    tags:["Wi-Fi 6E","Indoor","Tri-Radio","AI"],
+    licensing:"Juniper Mist cloud subscription required",
+    productUrl:"https://www.juniper.net/us/en/products/access-points/ap34-access-point.html",
+    datasheetUrl:"https://www.juniper.net/us/en/products/access-points/ap34-access-point-datasheet.html"
+  },
+  // ── ADDITIONAL JUNIPER ROUTERS ─────────────────────────────────
+  {
+    id:"juniper-acx7024",sku:"ACX7024",models:[{model:"ACX7024",sku:"ACX7024",desc:"24x 10G SFP+, 6x 100G QSFP28"},{model:"ACX7100-32C",sku:"ACX7100-32C",desc:"32x 100G/400G QSFP-DD"},{model:"ACX7100-48L",sku:"ACX7100-48L",desc:"48x 10G SFP+, 8x 100G QSFP28"}],name:"Juniper ACX7000 Series",brand:"juniper",category:"routers",
+    tagline:"High-performance metro access and aggregation routers with 5G timing and CE 3.0 compliance.",
+    specs:["10G/25G/100G/400G ports","5G precision timing (PTP)","CE 3.0 compliant","MACsec encryption","Junos OS Evolved","Segment Routing (SRv6)"],
+    useCases:["Metro access/aggregation","5G backhaul/fronthaul","Service provider edge","Data center interconnect"],
+    tags:["Metro","5G","SP","DCI"],
+    licensing:"Junos OS subscription",
+    productUrl:"https://www.juniper.net/us/en/products/routers/acx-series.html",
+    datasheetUrl:""
+  },
+  // ── ADDITIONAL JUNIPER SECURITY ────────────────────────────────
+  {
+    id:"juniper-vsrx",sku:"vSRX",models:[{model:"vSRX 3.0",sku:"vSRX3.0",desc:"Virtual firewall for private/public cloud"},{model:"cSRX",sku:"cSRX",desc:"Container firewall for microservices"}],name:"Juniper vSRX / cSRX Virtual Firewalls",brand:"juniper",category:"firewalls",
+    tagline:"Virtual and containerized firewalls providing consistent security across physical, virtual, and container environments.",
+    specs:["Up to 100 Gbps (vSRX)","Private and public cloud support","AWS, Azure, GCP, KVM, VMware","IPS/IDS, UTM, AppID","Junos OS consistent policy","Container-native (cSRX)"],
+    useCases:["Cloud workload protection","Multi-cloud security","Container security","DevSecOps environments"],
+    tags:["Virtual","Cloud","Container","NFV"],
+    licensing:"vSRX / cSRX subscription license",
+    productUrl:"https://www.juniper.net/us/en/products/security/srx-series/vsrx-virtual-firewall.html",
+    datasheetUrl:"https://www.juniper.net/us/en/products/security/srx-series/vsrx-virtual-firewall-datasheet.html"
+  },
+  // ── ADDITIONAL MANAGEMENT ──────────────────────────────────────
+  {
+    id:"juniper-mist-edge",sku:"ME-X5",models:[{model:"Mist Edge ME-X5",sku:"ME-X5",desc:"On-premises tunneling gateway, up to 5 Gbps"},{model:"Mist Edge ME-X10",sku:"ME-X10",desc:"On-premises tunneling gateway, up to 10 Gbps"}],name:"Juniper Mist Edge",brand:"juniper",category:"management",
+    tagline:"On-premises microservices gateway extending Mist Cloud architecture to the campus edge for data sovereignty and low latency.",
+    specs:["On-premises tunneling gateway","Microservices architecture","Up to 10 Gbps throughput","L2/L3 guest tunneling","Dynamic VLAN assignment","Cloud-managed via Mist"],
+    useCases:["Data sovereignty requirements","Guest network isolation","Campus edge services","Low-latency applications"],
+    tags:["Edge","On-Prem","Cloud-Managed"],
+    licensing:"Juniper Mist subscription",
+    productUrl:"https://www.juniper.net/us/en/products/access-points/edge.html",
+    datasheetUrl:""
+  },
 ];
 
 // ═══════════════════════════════════════════════════════════════════
@@ -1330,6 +1472,39 @@ function getFiltered(){
   });
 }
 
+function getRAGStatus(p){
+  let score=0,max=0,issues=[];
+  // Image (2 pts)
+  max+=2;
+  const imgUrl=PRODUCT_IMAGES[p.id]||p.imageUrl||'';
+  if(imgUrl&&imgUrl.length>0){score+=2}else{issues.push('No product image')}
+  // Models/SKUs (3 pts)
+  max+=3;
+  if(p.models&&p.models.length>0){score+=1;const hasSku=p.models.every(m=>m.sku&&m.sku!=='TBD');if(hasSku){score+=2}else{issues.push('Some SKUs missing/TBD');score+=1}}else{issues.push('No models defined')}
+  // Specs (2 pts)
+  max+=2;
+  if(p.specs&&p.specs.length>=4){score+=2}else if(p.specs&&p.specs.length>0){score+=1;issues.push('Fewer than 4 specs')}else{issues.push('No specs')}
+  // Tagline (1 pt)
+  max+=1;
+  if(p.tagline&&p.tagline.length>30){score+=1}else{issues.push('Tagline too short')}
+  // Product URL (1 pt)
+  max+=1;
+  if(p.productUrl&&p.productUrl.startsWith('http')){score+=1}else{issues.push('No product URL')}
+  // Datasheet URL (1 pt)
+  max+=1;
+  if(p.datasheetUrl&&p.datasheetUrl.startsWith('http')){score+=1}else{issues.push('No datasheet URL')}
+  // Licensing info (1 pt)
+  max+=1;
+  if(p.licensing&&p.licensing.length>5){score+=1}else{issues.push('Licensing info missing')}
+  // Use cases (1 pt)
+  max+=1;
+  if(p.useCases&&p.useCases.length>=2){score+=1}else{issues.push('Use cases incomplete')}
+  const pct=score/max;
+  let color,label;
+  if(pct>=0.85){color='rag-green';label='Verified'}else if(pct>=0.55){color='rag-amber';label='Partial'}else{color='rag-red';label='Incomplete'}
+  return{color,label,issues,score,max,pct:Math.round(pct*100)};
+}
+
 function renderGrid(){
   const filtered=getFiltered();
   const grid=document.getElementById('productGrid');
@@ -1344,8 +1519,10 @@ function renderGrid(){
     const catLabel=CATEGORIES.find(c=>c.id===p.category)?.label||p.category;
     const isCompared=compareSet.has(p.id);
     const imgUrl=PRODUCT_IMAGES[p.id]||p.imageUrl||'';
+    const rag=getRAGStatus(p);
     return `
     <div class="card" onclick="openSeriesPage('${p.id}')">
+      <div class="rag-light ${rag.color}" title="${rag.label} (${rag.pct}%) — ${rag.issues.length?rag.issues.join(', '):'All checks passed'}"></div>
       <button class="btn-compare ${isCompared?'selected':''}" onclick="event.stopPropagation();toggleCompare('${p.id}')" title="Add to comparison">${isCompared?'&#10003; Added':'+ Compare'}</button>
       ${imgUrl&&p.category!=='services'?`<div class="card-img-wrap"><img src="${imgUrl}" alt="${p.name}" class="card-img" loading="lazy" onerror="handleImgError(this)"></div>`:''}
       <div class="card-brand ${p.brand}">${p.brand==='aruba'?'HPE Aruba Networking':'Juniper Networks'}</div>
