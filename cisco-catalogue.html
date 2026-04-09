@@ -2918,7 +2918,7 @@ function openModal(id) {
         ${p.eolStatus === 'End-of-Sale' ? `<span class="card-badge badge-eos">End-of-Sale</span>` : ''}
         ${p.eolStatus === 'End-of-Life' ? `<span class="card-badge badge-eol">End-of-Life</span>` : ''}
       </div>
-      <div class="modal-name">${p.name}</div>
+      <div class="modal-name" style="display:flex;align-items:center;gap:8px">${(() => { const r = getRAGStatus(p); return '<span class="rag-light ' + r.color + '" style="position:static;flex-shrink:0" title="' + r.label + ' (' + r.pct + '%) — ' + (r.issues.length ? r.issues.join(', ') : 'All checks passed') + '"></span>'; })()}${p.name}</div>
       <div class="modal-tagline">${p.tagline}</div>
     </div>
     <div class="modal-body">
@@ -3530,7 +3530,8 @@ function renderHwTable() {
       var escapedPid = m.pid.replace(/'/g, "\\'");
       html += '<tr class="hw-data-row' + (isChecked ? ' hw-row-selected' : '') + (!isOpen ? ' hw-model-row-hidden' : '') + '" data-series="' + seriesId + '" onclick="toggleHwModelSelect(\'' + escapedPid + '\')">';
       html += '<td><input type="checkbox" class="hw-check" ' + (isChecked ? 'checked' : '') + ' onchange="event.stopPropagation();toggleHwModelSelect(\'' + escapedPid + '\')"></td>';
-      html += '<td><strong style="color:#fff">' + m.model + '</strong></td>';
+      var rMs=(m.model?1:0)+(m.pid&&m.pid!=='TBD'&&m.pid.length>2?1:0)+((m.specs&&Object.keys(m.specs).length>0)?1:0);var rMc=rMs>=3?'rag-green':rMs>=2?'rag-amber':'rag-red';
+      html += '<td><span style="display:flex;align-items:center;gap:6px"><span class="rag-light '+rMc+'" style="position:static;flex-shrink:0" title="'+(rMs>=3?'Verified':rMs>=2?'Partial':'Incomplete')+'"></span><strong style="color:#fff">' + m.model + '</strong></span></td>';
       html += '<td>' + (perf['App-ID firewall throughput (Appmix)'] || '-') + '</td>';
       html += '<td>' + (perf['Threat prevention throughput (Appmix)'] || '-') + '</td>';
       html += '<td>' + (perf['IPSec VPN throughput'] || '-') + '</td>';
@@ -3605,7 +3606,8 @@ function hwCompareSelected() {
   html += '<thead><tr><th class="hw-compare-feature-col">Feature</th>';
   selected.forEach(function(m) {
     var escapedPid = m.pid.replace(/'/g, "\\'");
-    html += '<th class="hw-compare-model-col"><div style="font-weight:700;font-size:0.88rem;color:#fff">' + m.model + '</div><div style="font-size:0.7rem;color:var(--cisco-muted);margin:2px 0">' + m.series + '</div><button onclick="hwRemoveFromCompare(\'' + escapedPid + '\')" style="background:none;border:none;color:var(--cisco-blue);cursor:pointer;font-size:0.7rem;text-decoration:underline">Remove</button></th>';
+    var hMs=(m.model?1:0)+(m.pid&&m.pid!=='TBD'&&m.pid.length>2?1:0)+((m.specs&&Object.keys(m.specs).length>0)?1:0);var hMc=hMs>=3?'rag-green':hMs>=2?'rag-amber':'rag-red';var hMl=hMs>=3?'Verified':hMs>=2?'Partial':'Incomplete';
+    html += '<th class="hw-compare-model-col"><div style="font-weight:700;font-size:0.88rem;color:#fff;display:flex;align-items:center;gap:6px;justify-content:center"><span class="rag-light '+hMc+'" style="position:static;flex-shrink:0" title="'+hMl+'"></span>' + m.model + '</div><div style="font-size:0.7rem;color:var(--cisco-muted);margin:2px 0">' + m.series + '</div><button onclick="hwRemoveFromCompare(\'' + escapedPid + '\')" style="background:none;border:none;color:var(--cisco-blue);cursor:pointer;font-size:0.7rem;text-decoration:underline">Remove</button></th>';
   });
   html += '</tr></thead><tbody>';
 
@@ -4011,7 +4013,7 @@ function renderBomItems() {
     container.innerHTML = '<div class="bom-empty"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" opacity="0.3"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/></svg><p style="margin-top:12px">No products in BOM yet</p><p style="font-size:0.75rem">Browse the catalogue and click <strong>+ BOM</strong> on any product</p></div>';
     return;
   }
-  var catOrder = ['network','eol-hw','subscription','sase','cortex','cloud','services'];
+  var catOrder = ['campus-switching','branch-switching','dc-switching','wireless','routing','sd-wan','security','data-center','management'];
   var grouped = {};
   bomState.items.forEach(function(item) {
     var p = products.find(function(x){ return x.id === item.productId; });
@@ -4037,9 +4039,10 @@ function renderBomItems() {
       var displayName = item.modelName || item.name || p.name;
       var displaySku = item.modelSku || item.sku || '';
       var isLicense = ['subscription','sase','cortex','cloud','services'].includes(p.category);
+      var bMs=(displayName&&displayName.length>0?1:0)+(displaySku&&displaySku!=='TBD'&&displaySku.length>2?1:0)+(p.description&&p.description.length>5?1:0);var bMc=bMs>=3?'rag-green':bMs>=2?'rag-amber':'rag-red';var bMl=bMs>=3?'Verified':bMs>=2?'Partial':'Incomplete';
       html += '<div class="bom-item">' +
         '<div class="bom-item-info">' +
-          '<div class="bom-item-name">' + displayName + '</div>' +
+          '<div class="bom-item-name" style="display:flex;align-items:center;gap:6px"><span class="rag-light ' + bMc + '" style="position:static;flex-shrink:0" title="' + bMl + '"></span>' + displayName + '</div>' +
           (displaySku ? '<div class="bom-item-sku">' + displaySku + '</div>' : '') +
           '<div class="bom-item-brand">Cisco Systems' + (isLicense ? ' &middot; License' : '') + '</div>' +
           '<span class="bom-notes-toggle" onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display===\'none\'?\'block\':\'none\'">&#128221; Notes</span>' +

@@ -4210,6 +4210,7 @@ function render() {
 function openModal(id) {
   const p = products.find(x => x.id === id);
   if (!p) return;
+  const rag = getRAGStatus(p);
   const modal = document.getElementById('modalContent');
   modal.innerHTML = `
     <div class="modal-header">
@@ -4223,7 +4224,7 @@ function openModal(id) {
         ${p.eolStatus === 'End-of-Sale' ? `<span class="card-badge badge-eos">End-of-Sale</span>` : ''}
         ${p.eolStatus === 'End-of-Life' ? `<span class="card-badge badge-eol">End-of-Life</span>` : ''}
       </div>
-      <div class="modal-name">${p.name}</div>
+      <div class="modal-name"><span class="rag-light ${rag.color}" title="${rag.label} (${rag.pct}%) — ${rag.issues.length ? rag.issues.join(', ') : 'All checks passed'}"></span> ${p.name}</div>
       <div class="modal-tagline">${p.tagline}</div>
     </div>
     <div class="modal-body">
@@ -4833,9 +4834,15 @@ function renderHwTable() {
       var perf = m.specs.Performance || {};
       var sess = m.specs.Sessions || {};
       var escapedPid = m.pid.replace(/'/g, "\\'");
+      // Model-level RAG: find matching product model for sku/desc
+      var _pm = null; var _pp = products.find(function(x){return x.id===m.pid;});
+      if(_pp && _pp.models) _pm = _pp.models.find(function(x){return x.model===m.model;});
+      var _ms = (m.model?1:0)+((_pm&&_pm.sku&&_pm.sku!=='TBD'&&_pm.sku.length>2)?1:0)+((_pm&&_pm.desc&&_pm.desc.length>5)?1:0);
+      var _mc = _ms>=3?'rag-green':_ms>=2?'rag-amber':'rag-red';
+      var _ml = _ms>=3?'Verified':_ms>=2?'Partial':'Incomplete';
       html += '<tr class="hw-data-row' + (isChecked ? ' hw-row-selected' : '') + (!isOpen ? ' hw-model-row-hidden' : '') + '" data-series="' + seriesId + '" onclick="toggleHwModelSelect(\'' + escapedPid + '\')">';
       html += '<td><input type="checkbox" class="hw-check" ' + (isChecked ? 'checked' : '') + ' onchange="event.stopPropagation();toggleHwModelSelect(\'' + escapedPid + '\')"></td>';
-      html += '<td><strong style="color:#fff">' + m.model + '</strong></td>';
+      html += '<td><span class="rag-light '+_mc+'" title="'+_ml+' ('+Math.round(_ms/3*100)+'%)"></span> <strong style="color:#fff">' + m.model + '</strong></td>';
       html += '<td>' + (perf['App-ID firewall throughput (Appmix)'] || '-') + '</td>';
       html += '<td>' + (perf['Threat prevention throughput (Appmix)'] || '-') + '</td>';
       html += '<td>' + (perf['IPSec VPN throughput'] || '-') + '</td>';
@@ -4910,7 +4917,13 @@ function hwCompareSelected() {
   html += '<thead><tr><th class="hw-compare-feature-col">Feature</th>';
   selected.forEach(function(m) {
     var escapedPid = m.pid.replace(/'/g, "\\'");
-    html += '<th class="hw-compare-model-col"><div style="font-weight:700;font-size:0.88rem;color:#fff">' + m.model + '</div><div style="font-size:0.7rem;color:var(--pa-muted);margin:2px 0">' + m.series + '</div><button onclick="hwRemoveFromCompare(\'' + escapedPid + '\')" style="background:none;border:none;color:var(--pa-orange);cursor:pointer;font-size:0.7rem;text-decoration:underline">Remove</button></th>';
+    // Model-level RAG for compare header
+    var _pm = null; var _pp = products.find(function(x){return x.id===m.pid;});
+    if(_pp && _pp.models) _pm = _pp.models.find(function(x){return x.model===m.model;});
+    var _ms = (m.model?1:0)+((_pm&&_pm.sku&&_pm.sku!=='TBD'&&_pm.sku.length>2)?1:0)+((_pm&&_pm.desc&&_pm.desc.length>5)?1:0);
+    var _mc = _ms>=3?'rag-green':_ms>=2?'rag-amber':'rag-red';
+    var _ml = _ms>=3?'Verified':_ms>=2?'Partial':'Incomplete';
+    html += '<th class="hw-compare-model-col"><div style="font-weight:700;font-size:0.88rem;color:#fff"><span class="rag-light '+_mc+'" title="'+_ml+' ('+Math.round(_ms/3*100)+'%)"></span> ' + m.model + '</div><div style="font-size:0.7rem;color:var(--pa-muted);margin:2px 0">' + m.series + '</div><button onclick="hwRemoveFromCompare(\'' + escapedPid + '\')" style="background:none;border:none;color:var(--pa-orange);cursor:pointer;font-size:0.7rem;text-decoration:underline">Remove</button></th>';
   });
   html += '</tr></thead><tbody>';
 
@@ -5109,8 +5122,11 @@ function showModelPicker(seriesId) {
   var html = '<h3>' + p.name + '</h3>';
   html += '<div class="subtitle">Select model(s) and quantity to add to BOM</div>';
   p.models.forEach(function(m, i) {
+    var _ms=(m.model?1:0)+(m.sku&&m.sku!=='TBD'&&m.sku.length>2?1:0)+(m.desc&&m.desc.length>5?1:0);
+    var _mc=_ms>=3?'rag-green':_ms>=2?'rag-amber':'rag-red';
+    var _ml=_ms>=3?'Verified':_ms>=2?'Partial':'Incomplete';
     html += '<div class="model-option">';
-    html += '<div class="model-info"><div class="model-name">' + m.model + '</div>';
+    html += '<div class="model-info"><div class="model-name"><span class="rag-light '+_mc+'" title="'+_ml+' ('+Math.round(_ms/3*100)+'%)"></span> ' + m.model + '</div>';
     html += '<div class="model-sku">' + (m.sku || '') + '</div>';
     html += '<div class="model-desc">' + (m.desc || '') + '</div></div>';
     html += '<div class="model-qty">';
@@ -5334,9 +5350,15 @@ function renderBomItems() {
       var displayName = item.modelName || item.name || p.name;
       var displaySku = item.modelSku || item.sku || '';
       var isLicense = ['subscription','sase','cortex','cloud','services'].includes(p.category);
+      // Model-level RAG for BOM item
+      var _bm = null;
+      if(p.models) _bm = p.models.find(function(x){return x.model===displayName;});
+      var _bs = (displayName&&displayName.length>0?1:0)+(displaySku&&displaySku!=='TBD'&&displaySku.length>2?1:0)+((_bm&&_bm.desc&&_bm.desc.length>5)?1:0);
+      var _bc = _bs>=3?'rag-green':_bs>=2?'rag-amber':'rag-red';
+      var _bl = _bs>=3?'Verified':_bs>=2?'Partial':'Incomplete';
       html += '<div class="bom-item">' +
         '<div class="bom-item-info">' +
-          '<div class="bom-item-name">' + displayName + '</div>' +
+          '<div class="bom-item-name"><span class="rag-light '+_bc+'" title="'+_bl+' ('+Math.round(_bs/3*100)+'%)"></span> ' + displayName + '</div>' +
           (displaySku ? '<div class="bom-item-sku">' + displaySku + '</div>' : '') +
           '<div class="bom-item-brand">Palo Alto Networks' + (isLicense ? ' &middot; License' : '') + '</div>' +
           '<span class="bom-notes-toggle" onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display===\'none\'?\'block\':\'none\'">&#128221; Notes</span>' +
