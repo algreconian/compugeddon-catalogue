@@ -297,15 +297,17 @@ body {
   padding: 3px 8px;
   border-radius: 4px;
 }
-.badge-network { background: rgba(250,88,45,0.15); color: var(--cisco-blue); }
-.badge-sase { background: rgba(0,192,232,0.15); color: var(--cisco-teal); }
-.badge-cortex { background: rgba(168,85,247,0.15); color: var(--cisco-purple); }
-.badge-cloud { background: rgba(59,130,246,0.15); color: var(--cisco-teal); }
-.badge-services { background: rgba(34,197,94,0.15); color: var(--cisco-green); }
-.badge-subscription { background: rgba(234,179,8,0.15); color: var(--cisco-yellow); }
+.badge-campus { background: rgba(4,159,217,0.15); color: var(--cisco-blue); }
+.badge-branch { background: rgba(27,103,165,0.15); color: #1B67A5; }
+.badge-dc { background: rgba(140,82,255,0.15); color: var(--cisco-purple); }
+.badge-wireless { background: rgba(0,188,235,0.15); color: var(--cisco-teal); }
+.badge-routing { background: rgba(4,133,157,0.15); color: #04859D; }
+.badge-sdwan { background: rgba(108,192,74,0.15); color: var(--cisco-green); }
+.badge-security { background: rgba(255,109,46,0.15); color: var(--cisco-orange); }
+.badge-datacenter { background: rgba(140,82,255,0.15); color: var(--cisco-purple); }
+.badge-management { background: rgba(234,179,8,0.15); color: var(--cisco-yellow); }
 .badge-eos { background: rgba(234,179,8,0.2); color: #FBBF24; border: 1px solid rgba(234,179,8,0.3); }
 .badge-eol { background: rgba(100,100,100,0.2); color: #9CA3AF; border: 1px solid rgba(100,100,100,0.3); }
-.badge-eol-hw { background: rgba(250,88,45,0.12); color: var(--cisco-blue); }
 
 /* EOL / EoS card status ribbon */
 .eol-ribbon {
@@ -1566,7 +1568,7 @@ footer a:hover { text-decoration: underline; }
 .hw-compare-model-col { min-width:130px; background:var(--cisco-surface); }
 .hw-compare-key { text-align:left !important; padding-left:20px !important; font-weight:400; color:var(--cisco-text); font-size:0.78rem; position:sticky; left:0; background:var(--cisco-bg); z-index:1; white-space:nowrap; }
 .hw-compare-val { font-variant-numeric:tabular-nums; font-size:0.78rem; }
-.hw-compare-val.best-value { color:var(--pa-green,#22c55e); font-weight:700; }
+.hw-compare-val.best-value { color:var(--cisco-green,#22c55e); font-weight:700; }
 .hw-compare-section-header td { background:rgba(0,192,232,0.08) !important; color:var(--cisco-teal); font-weight:700; font-size:0.82rem; text-transform:uppercase; letter-spacing:0.5px; padding:10px 16px !important; text-align:left !important; border-top:2px solid rgba(0,192,232,0.3); }
 .hw-row-selected { background:rgba(0,192,232,0.06); }
 .hw-data-row { cursor:pointer; }
@@ -2740,7 +2742,7 @@ let compareSet = new Set();
 
 // ===== BADGE CLASS HELPER =====
 function getBadgeClass(cat) {
-  return categories[cat]?.badgeClass || 'badge-network';
+  return categories[cat]?.badgeClass || 'badge-campus';
 }
 
 // ===== RENDER =====
@@ -2769,7 +2771,7 @@ function render() {
 
   // Group by category
   const grouped = {};
-  const catOrder = ['network', 'eol-hw', 'subscription', 'sase', 'cortex', 'cloud', 'services'];
+  const catOrder = ['campus-switching', 'branch-switching', 'dc-switching', 'wireless', 'routing', 'sd-wan', 'security', 'data-center', 'management'];
   filtered.forEach(p => {
     if (!grouped[p.category]) grouped[p.category] = [];
     grouped[p.category].push(p);
@@ -2857,7 +2859,7 @@ function openModal(id) {
         <div class="eol-meta">
           ${p.eosDate ? `<span>End-of-Sale: <strong>${p.eosDate}</strong></span>` : ''}
           ${p.eolDate ? `<span>End-of-Life: <strong>${p.eolDate}</strong></span>` : ''}
-          ${p.lastPanOs ? `<span>Last PAN-OS: <strong>${p.lastPanOs}</strong></span>` : ''}
+          ${p.lastIosXe ? `<span>Last IOS-XE: <strong>${p.lastIosXe}</strong></span>` : ''}
           ${p.replacedBy ? `<span>Recommended Replacement: <strong>${p.replacedBy}</strong></span>` : ''}
         </div>
       </div>` : ''}
@@ -3310,7 +3312,7 @@ function resetToDefaults() {
 let hwSelectedSet = new Set();
 
 // Hardware product IDs that should be excluded (software, management, cloud)
-const hwExcludedIds = ['vm-series', 'cn-series', 'cloud-ngfw', 'pan-os', 'panorama', 'strata-cloud-manager'];
+const hwExcludedIds = ['cisco-ise', 'cisco-umbrella', 'cisco-duo', 'cisco-xdr', 'catalyst-center', 'meraki-dashboard', 'cisco-sdwan', 'intersight', 'cisco-aci'];
 
 function getHardwareProducts() {
   return products.filter(p =>
@@ -3650,7 +3652,7 @@ let bomUndoStack = [];
 let bomRedoStack = [];
 let bomAutoSaveTimer = null;
 
-// ── BOM Templates (PA-specific) ─────────────────────────────
+// ── BOM Templates (Cisco) ─────────────────────────────
 const BOM_TEMPLATES = [
   {name:"Branch Office", desc:"Branch switching + wireless + WAN", items:[
     {productId:'cat-1000', quantity:2}, {productId:'cat-9100-ap', quantity:4}, {productId:'isr-1000', quantity:1}
@@ -4486,7 +4488,7 @@ function exportPDF() {
       doc.setFillColor(accent[0],accent[1],accent[2]);
       doc.rect(0, 0, pageW, 8, 'F');
       doc.setFontSize(7); doc.setFont(undefined,'normal'); doc.setTextColor(255,255,255);
-      doc.text('CGTECH — PALO ALTO NETWORKS BOM  |  ' + (d.meta.projectName||''), M, 5.5);
+      doc.text('CGTECH — CISCO SYSTEMS BOM  |  ' + (d.meta.projectName||''), M, 5.5);
       doc.text('Page ' + doc.getCurrentPageInfo().pageNumber, pageW-M, 5.5, {align:'right'});
       drawPageFooter();
     }
