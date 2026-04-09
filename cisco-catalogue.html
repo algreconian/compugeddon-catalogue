@@ -2218,7 +2218,7 @@ const products = [
     productUrl: "https://www.cisco.com/c/en/us/products/switches/nexus-9000-series-switches/index.html"
   },
   {
-    id: "nexus-9500", image: "",
+    id: "nexus-9500", image: "https://www.cisco.com/content/dam/cisco-cdc/site/us/en/images/networking/og-image-nexus-9000-series-switches-1200x630.jpg",
     models: [
       {model:"N9K-C9504",sku:"N9K-C9504",desc:"4-slot modular chassis"},
       {model:"N9K-C9508",sku:"N9K-C9508",desc:"8-slot modular chassis"},
@@ -2287,7 +2287,7 @@ const products = [
     productUrl: "https://www.cisco.com/site/us/en/products/networking/wireless/access-points/index.html"
   },
   {
-    id: "meraki-mr", image: "",
+    id: "meraki-mr", image: "https://meraki.cisco.com/content/dam/cisco-cdc/site/images/photography/products/networking/wireless/access-points/meraki-access-points/mr57/mr9166-access-points-product-tile.png",
     models: [
       {model:"MR36",sku:"MR36-HW",desc:"Wi-Fi 6, 2x2, indoor, entry"},
       {model:"MR46",sku:"MR46-HW",desc:"Wi-Fi 6, 4x4, indoor, mid-range"},
@@ -2520,6 +2520,7 @@ const products = [
   },
   {
     id: "cisco-ise", image: "https://www.cisco.com/content/dam/cisco-cdc/site/us/en/images/security/901065222_Reimagined_WebUpdate_ISE_1200x667.jpg",
+    models:[{model:"ISE Essentials",sku:"L-ISE-BSE-P1",desc:"Base license per endpoint, network access & visibility"},{model:"ISE Advantage",sku:"L-ISE-ADV-P1",desc:"Advanced license, profiling & posture assessment"},{model:"ISE Premier",sku:"L-ISE-PLS-P1",desc:"Full suite, pxGrid & Rapid Threat Containment"}],
     name: "Cisco Identity Services Engine (ISE)",
     category: "security",
     badge: "Security",
@@ -2536,6 +2537,7 @@ const products = [
   },
   {
     id: "cisco-umbrella", image: "https://www.cisco.com/content/dam/cisco-cdc/site/images/heroes/products/security/umbrella-dashboard-og-1200x630.png",
+    models:[{model:"Umbrella DNS Security Essentials",sku:"UMBRELLA-DNS-ESS",desc:"DNS-layer security, basic reporting"},{model:"Umbrella DNS Security Advantage",sku:"UMBRELLA-DNS-ADV",desc:"DNS + proxy, cloud firewall, DLP"},{model:"Umbrella SIG Essentials",sku:"UMBRELLA-SIG-ESS",desc:"Secure Internet Gateway with full proxy"},{model:"Umbrella SIG Advantage",sku:"UMBRELLA-SIG-ADV",desc:"SIG + CASB, RBI, and DLP"}],
     name: "Cisco Umbrella",
     category: "security",
     badge: "Security",
@@ -2552,6 +2554,7 @@ const products = [
   },
   {
     id: "cisco-duo", image: "https://www.cisco.com/content/dam/cisco-cdc/site/images/open-graph/products/security/duo-og-1200x630.jpg",
+    models:[{model:"Duo Essentials",sku:"DUO-ESSENTIALS",desc:"MFA, SSO, and basic device trust"},{model:"Duo Advantage",sku:"DUO-ADVANTAGE",desc:"Adaptive MFA, device health, policy engine"},{model:"Duo Premier",sku:"DUO-PREMIER",desc:"Full zero trust access, risk-based auth, continuous trust"}],
     name: "Cisco Duo",
     category: "security",
     badge: "Security",
@@ -2563,11 +2566,12 @@ const products = [
     useCases: ["Enterprise MFA rollout","Zero trust access for remote workers","VPN and cloud application protection","Compliance (PCI, HIPAA, SOX)"],
     licensing: "Duo Free (up to 10 users), Duo Essentials, Duo Advantage, or Duo Premier (per-user subscription).",
     licenseType: "Per-User Subscription",
-    brochureUrl: "",
+    brochureUrl: "https://www.cisco.com/c/en/us/products/collateral/security/duo/duo-aag.html",
     productUrl: "https://www.cisco.com/site/us/en/products/security/duo/index.html"
   },
   {
     id: "cisco-xdr", image: "https://www.cisco.com/content/dam/cisco-cdc/site/images/open-graph/products/security/xdr-og-1200x630.jpg",
+    models:[{model:"XDR Essentials",sku:"XDR-ESS",desc:"Cross-domain detection and response"},{model:"XDR Advantage",sku:"XDR-ADV",desc:"Advanced analytics, threat intel, and forensics"}],
     name: "Cisco XDR",
     category: "security",
     badge: "Security",
@@ -2579,7 +2583,7 @@ const products = [
     useCases: ["SOC modernization","Threat detection and response","Incident investigation","Security operations automation"],
     licensing: "Per-user subscription. Included in Cisco Security Choice Enterprise Agreement.",
     licenseType: "Per-User Subscription",
-    brochureUrl: "",
+    brochureUrl: "https://www.cisco.com/c/en/us/products/collateral/security/xdr-aag.html",
     productUrl: "https://www.cisco.com/site/us/en/products/security/xdr/index.html"
   },
   // ── DATA CENTER ─────────────────────────────────────────────────
@@ -2628,6 +2632,7 @@ const products = [
   },
   {
     id: "cisco-aci", image: "https://www.cisco.com/content/dam/cisco-cdc/site/images/open-graph/products/networking/og-image-aci-1200x630.png",
+    models:[{model:"ACI Essentials",sku:"DCNM-ESS",desc:"Base SDN policy and automation"},{model:"ACI Advantage",sku:"DCNM-ADV",desc:"Advanced analytics, multi-site, and multi-cloud"},{model:"ACI Premier",sku:"DCNM-PRM",desc:"Full ACI suite with Day-2 ops and compliance"}],
     name: "Cisco ACI",
     category: "data-center",
     badge: "Data Center",
@@ -2639,11 +2644,12 @@ const products = [
     useCases: ["Enterprise DC SDN","Multi-tenant environments","Hybrid cloud networking","DC migration and modernization"],
     licensing: "ACI Essentials, Advantage, or Premier per-leaf-switch subscription (1/3/5yr).",
     licenseType: "ACI Subscription",
-    brochureUrl: "",
+    brochureUrl: "https://www.cisco.com/c/en/us/products/collateral/cloud-systems-management/aci-aag.html",
     productUrl: "https://www.cisco.com/c/en/us/solutions/data-center-virtualization/application-centric-infrastructure/index.html"
   },
   {
     id: "intersight", image: "https://www.cisco.com/content/dam/cisco-cdc/site/images/open-graph/products/computing/og-image-hywo-hub-1200x630.jpg",
+    models:[{model:"Intersight Essentials",sku:"INTERSIGHT-ESS",desc:"Base management, monitoring, and firmware"},{model:"Intersight Advantage",sku:"INTERSIGHT-ADV",desc:"Orchestration, HyperFlex, and Kubernetes"},{model:"Intersight Premier",sku:"INTERSIGHT-PRM",desc:"Full suite, IWO, and cloud management"}],
     name: "Cisco Intersight",
     category: "data-center",
     badge: "Data Center",
@@ -2702,6 +2708,7 @@ const products = [
   },
   {
     id: "meraki-dashboard", image: "https://www.cisco.com/content/dam/cisco-cdc/site/images/open-graph/products/security/meraki-mobile-device-management-family-og-1200x630.jpg",
+    models:[{model:"Meraki Enterprise License",sku:"LIC-ENT",desc:"Full dashboard, analytics, and management per device"},{model:"Meraki Advanced License",sku:"LIC-ADV",desc:"Enterprise + advanced security and SD-WAN"}],
     name: "Meraki Dashboard",
     category: "management",
     badge: "Management",
@@ -2713,11 +2720,12 @@ const products = [
     useCases: ["Multi-site IT management","Distributed retail and franchise","Education district-wide management","Remote monitoring and troubleshooting"],
     licensing: "Included with Meraki device license. No separate dashboard cost.",
     licenseType: "Included with Meraki",
-    brochureUrl: "",
+    brochureUrl: "https://meraki.cisco.com/lib/pdf/meraki_datasheet_dashboard.pdf",
     productUrl: "https://meraki.cisco.com/products/systems-manager/"
   },
   {
-    id: "smart-licensing", image: "",
+    id: "smart-licensing", image: "https://www.cisco.com/content/dam/cisco-cdc/site/images/heroes/buy/brand-library-atlanta-shot-8-3530-lady-on-laptop-desktop.jpg",
+    models:[{model:"Smart Account",sku:"SMART-ACCT",desc:"Centralized license management portal"},{model:"Smart License Using Policy (SLUP)",sku:"SMART-SLUP",desc:"Device-level policy-based license reporting"},{model:"Specific License Reservation (SLR)",sku:"SMART-SLR",desc:"Air-gapped / disconnected license reservation"}],
     name: "Cisco Smart Licensing",
     category: "management",
     badge: "Management",
@@ -4745,7 +4753,14 @@ function openSeriesPage(productId) {
     html += '<div class="series-models-title">Available Models (' + p.models.length + ')</div>';
     html += '<div class="series-models-grid">';
     p.models.forEach(function(m, i) {
-      html += '<div class="model-card">';
+      var mS=0,mM=0,mI=[];
+      mM+=1;if(m.model&&m.model.length>0){mS+=1}else{mI.push('No model name')}
+      mM+=1;if(m.sku&&m.sku!=='TBD'&&m.sku.length>2){mS+=1}else{mI.push('SKU missing/TBD')}
+      mM+=1;if(m.desc&&m.desc.length>5){mS+=1}else{mI.push('No description')}
+      var mPct=Math.round(mS/mM*100);var mClr=mPct>=85?'rag-green':mPct>=50?'rag-amber':'rag-red';
+      var mLbl=mPct>=85?'Verified':mPct>=50?'Partial':'Incomplete';
+      html += '<div class="model-card" style="position:relative">';
+      html += '<div class="rag-light '+mClr+'" title="'+mLbl+' ('+mPct+'%) — '+(mI.length?mI.join(', '):'All checks passed')+'"></div>';
       if(imgUrl) html += '<div class="model-card-img"><img src="' + imgUrl + '" alt="' + m.model + '" onerror="handleImgError(this)"></div>';
       html += '<div class="model-card-body">';
       html += '<h3>' + m.model + '</h3>';

@@ -2741,6 +2741,7 @@ const products = [
   {
     id: "pa-220",
     image: "https://docs.paloaltonetworks.com/content/dam/techdocs/en_US/images/hardware/pa-220.png",
+    models: [{model:"PA-220",sku:"PAN-PA-220",desc:"Desktop form factor, 500 Mbps firewall"}],
     name: "PA-220",
     category: "eol-hw",
     badge: "Network Security",
@@ -2797,6 +2798,7 @@ const products = [
   {
     id: "pa-220r",
     image: "https://docs.paloaltonetworks.com/content/dam/techdocs/en_US/images/hardware/pa-220r.png",
+    models: [{model:"PA-220R",sku:"PAN-PA-220R",desc:"Ruggedized, industrial environments"}],
     name: "PA-220R",
     category: "eol-hw",
     badge: "Network Security",
@@ -2855,6 +2857,7 @@ const products = [
   {
     id: "pa-500-legacy",
     image: "https://docs.paloaltonetworks.com/content/dam/techdocs/en_US/images/hardware/pa-500-black-bkd.png",
+    models: [{model:"PA-500",sku:"PAN-PA-500",desc:"Legacy mid-range NGFW"}],
     name: "PA-500 (Legacy)",
     category: "eol-hw",
     badge: "Network Security",
@@ -2878,7 +2881,7 @@ const products = [
     useCases: ["Historical reference only — no longer deployable in production"],
     licensing: "This product has reached End-of-Life and is no longer supported or sold. No software updates or support available.",
     licenseType: "End-of-Life — Unsupported",
-    brochureUrl: "",
+    brochureUrl: "https://www.paloaltonetworks.com/resources/datasheets/pa-500",
     productUrl: "https://www.paloaltonetworks.com/network-security/hardware-firewall-innovations",
     detailedSpecs: {
       "Performance": {
@@ -2899,6 +2902,7 @@ const products = [
   {
     id: "pa-200",
     image: "https://docs.paloaltonetworks.com/content/dam/techdocs/en_US/images/hardware/pa-200.png",
+    models: [{model:"PA-200",sku:"PAN-PA-200",desc:"Legacy compact desktop NGFW"}],
     name: "PA-200",
     category: "eol-hw",
     badge: "Network Security",
@@ -2922,7 +2926,7 @@ const products = [
     useCases: ["Historical reference only — no longer deployable in production"],
     licensing: "This product has reached End-of-Life and is no longer supported or sold.",
     licenseType: "End-of-Life — Unsupported",
-    brochureUrl: "",
+    brochureUrl: "https://www.paloaltonetworks.com/resources/datasheets/pa-200",
     productUrl: "https://www.paloaltonetworks.com/network-security/hardware-firewall-innovations",
     detailedSpecs: {
       "Performance": {
@@ -3156,6 +3160,7 @@ const products = [
   {
     id: "vm-series",
     image: "https://docs.paloaltonetworks.com/content/dam/techdocs/en_US/images/hardware/pa-5450-black-bkd.png",
+    models: [{model:"VM-50",sku:"PAN-VM-50",desc:"Small virtual firewall, 200 Mbps"},{model:"VM-100",sku:"PAN-VM-100",desc:"1 Gbps throughput"},{model:"VM-300",sku:"PAN-VM-300",desc:"2 Gbps throughput"},{model:"VM-500",sku:"PAN-VM-500",desc:"4 Gbps throughput"},{model:"VM-700",sku:"PAN-VM-700",desc:"16 Gbps throughput"}],
     name: "VM-Series",
     category: "network",
     badge: "Network Security",
@@ -3180,6 +3185,7 @@ const products = [
   {
     id: "cn-series",
     image: "https://docs.paloaltonetworks.com/content/dam/techdocs/en_US/images/hardware/pa-5450-black-bkd.png",
+    models: [{model:"CN-Series",sku:"PAN-CN-SERIES",desc:"Container NGFW for Kubernetes"}],
     name: "CN-Series",
     category: "network",
     badge: "Network Security",
@@ -3204,6 +3210,7 @@ const products = [
   {
     id: "cloud-ngfw",
     image: "https://docs.paloaltonetworks.com/content/dam/techdocs/en_US/images/hardware/pa-5450-black-bkd.png",
+    models: [{model:"Cloud NGFW for AWS",sku:"PAN-CLOUD-NGFW-AWS",desc:"Managed NGFW on AWS"},{model:"Cloud NGFW for Azure",sku:"PAN-CLOUD-NGFW-AZ",desc:"Managed NGFW on Azure"}],
     name: "Cloud NGFW",
     category: "network",
     badge: "Network Security",
@@ -3230,6 +3237,7 @@ const products = [
   {
     id: "pan-os",
     image: "https://docs.paloaltonetworks.com/content/dam/techdocs/en_US/images/hardware/m-200-m-600-black-bkd.png",
+    models: [{model:"PAN-OS 11.x",sku:"PAN-OS-11",desc:"Current release with AI-powered security"},{model:"PAN-OS 10.x",sku:"PAN-OS-10",desc:"Previous LTS release"}],
     name: "PAN-OS",
     category: "network",
     badge: "Network Security",
@@ -3254,6 +3262,7 @@ const products = [
   {
     id: "panorama",
     image: "https://docs.paloaltonetworks.com/content/dam/techdocs/en_US/images/hardware/m-200-m-600-black-bkd.png",
+    models: [{model:"Panorama M-600",sku:"PAN-M-600",desc:"Hardware, manages up to 5000 FWs"},{model:"Panorama M-500",sku:"PAN-M-500",desc:"Hardware, manages up to 1000 FWs"},{model:"Panorama Virtual",sku:"PAN-PRA-VM",desc:"Virtual appliance"}],
     name: "Panorama",
     category: "network",
     badge: "Network Security",
@@ -3278,6 +3287,7 @@ const products = [
   {
     id: "strata-cloud-manager",
     image: "https://www.paloaltonetworks.com/content/dam/pan/en_US/images/cosmos/strata-cloud-manager-black.svg",
+    models: [{model:"SCM Essentials",sku:"PAN-SCM-ESS",desc:"Centralized config and compliance"},{model:"SCM Advanced",sku:"PAN-SCM-ADV",desc:"AI-powered policy optimization"}],
     name: "Strata Cloud Manager",
     category: "network",
     badge: "Network Security",
@@ -3296,14 +3306,15 @@ const products = [
     useCases: ["Unified NGFW + SASE management", "Security posture optimization", "Operational simplification", "Compliance and audit readiness"],
     licensing: "Included with all Strata NGFW and Prisma SASE subscriptions. Premium tier available with enhanced AIOps features and extended log retention. SaaS-delivered, no additional infrastructure needed.",
     licenseType: "Included / Premium Tier",
-    brochureUrl: "",
+    brochureUrl: "https://www.paloaltonetworks.com/resources/datasheets/strata-cloud-manager",
     productUrl: "https://www.paloaltonetworks.com/network-security/strata-cloud-manager"
   },
 
   // ── CLOUD-DELIVERED SECURITY SERVICES (SUBSCRIPTIONS) ──
   {
     id: "adv-threat-prevention",
-    image: "",
+    image: "https://www.paloaltonetworks.com/etc/clientlibs/pan-templates/seoimages/social-strata.png",
+    models: [{model:"Advanced Threat Prevention",sku:"PAN-ATP-SUB",desc:"Inline ML-powered threat prevention"}],
     name: "Advanced Threat Prevention",
     category: "subscription",
     badge: "Security Service",
@@ -3327,7 +3338,8 @@ const products = [
   },
   {
     id: "adv-url-filtering",
-    image: "",
+    image: "https://www.paloaltonetworks.com/etc/clientlibs/pan-templates/seoimages/social-strata.png",
+    models: [{model:"Advanced URL Filtering",sku:"PAN-AURL-SUB",desc:"ML-based URL categorization"}],
     name: "Advanced URL Filtering",
     category: "subscription",
     badge: "Security Service",
@@ -3351,7 +3363,8 @@ const products = [
   },
   {
     id: "adv-wildfire",
-    image: "",
+    image: "https://www.paloaltonetworks.com/etc/clientlibs/pan-templates/seoimages/social-strata.png",
+    models: [{model:"Advanced WildFire",sku:"PAN-AWF-SUB",desc:"Cloud malware analysis and prevention"}],
     name: "Advanced WildFire",
     category: "subscription",
     badge: "Security Service",
@@ -3375,7 +3388,8 @@ const products = [
   },
   {
     id: "adv-dns-security",
-    image: "",
+    image: "https://www.paloaltonetworks.com/etc/clientlibs/pan-templates/seoimages/social-strata.png",
+    models: [{model:"DNS Security",sku:"PAN-DNS-SUB",desc:"DNS-layer threat prevention"}],
     name: "Advanced DNS Security",
     category: "subscription",
     badge: "Security Service",
@@ -3399,7 +3413,8 @@ const products = [
   },
   {
     id: "enterprise-dlp",
-    image: "",
+    image: "https://www.paloaltonetworks.com/etc/clientlibs/pan-templates/seoimages/social-strata.png",
+    models: [{model:"Enterprise DLP",sku:"PAN-DLP-SUB",desc:"Data loss prevention across network and cloud"}],
     name: "Enterprise Data Loss Prevention",
     category: "subscription",
     badge: "Security Service",
@@ -3423,7 +3438,8 @@ const products = [
   },
   {
     id: "iot-security",
-    image: "",
+    image: "https://www.paloaltonetworks.com/etc/clientlibs/pan-templates/seoimages/social-strata.png",
+    models: [{model:"IoT Security",sku:"PAN-IOT-SUB",desc:"ML-based IoT device discovery and policy"}],
     name: "Enterprise IoT Security",
     category: "subscription",
     badge: "Security Service",
@@ -3447,7 +3463,8 @@ const products = [
   },
   {
     id: "saas-security",
-    image: "",
+    image: "https://www.paloaltonetworks.com/etc/clientlibs/pan-templates/seoimages/social-prisma.png",
+    models: [{model:"SaaS Security Inline",sku:"PAN-SAAS-INL",desc:"Inline CASB for SaaS apps"},{model:"SaaS Security API",sku:"PAN-SAAS-API",desc:"API-based CASB for SaaS data"}],
     name: "SaaS Security",
     category: "subscription",
     badge: "Security Service",
@@ -3471,7 +3488,8 @@ const products = [
   },
   {
     id: "ai-access-security",
-    image: "",
+    image: "https://www.paloaltonetworks.com/etc/clientlibs/pan-templates/seoimages/social-prisma.png",
+    models: [{model:"AI Access Security",sku:"PAN-AIAS-SUB",desc:"Visibility and control for AI/GenAI apps"}],
     name: "AI Access Security",
     category: "subscription",
     badge: "Security Service",
@@ -3490,12 +3508,13 @@ const products = [
     useCases: ["Shadow AI discovery", "Preventing data leaks to AI tools", "AI acceptable use enforcement", "Compliance for AI usage"],
     licensing: "Annual subscription add-on for existing NGFW or Prisma Access deployments. Per-user licensing model. Requires Advanced URL Filtering or Prisma Access as a prerequisite.",
     licenseType: "Per-User Add-On",
-    brochureUrl: "",
+    brochureUrl: "https://www.paloaltonetworks.com/resources/datasheets/ai-access-security",
     productUrl: "https://www.paloaltonetworks.com/network-security/ai-access-security"
   },
   {
     id: "sd-wan-ngfw",
-    image: "",
+    image: "https://www.paloaltonetworks.com/etc/clientlibs/pan-templates/seoimages/social-strata.png",
+    models: [{model:"SD-WAN Subscription",sku:"PAN-SDWAN-SUB",desc:"SD-WAN add-on for PA/VM-Series"}],
     name: "SD-WAN for NGFW",
     category: "subscription",
     badge: "Security Service",
@@ -3521,7 +3540,8 @@ const products = [
   // ── PRISMA SASE ──
   {
     id: "prisma-access",
-    image: "https://www.paloaltonetworks.com/etc/clientlibs/pan/img/favicons2020/prisma-32x32.png",
+    image: "https://www.paloaltonetworks.com/etc/clientlibs/pan-templates/seoimages/social-prisma.png",
+    models: [{model:"Prisma Access Browser",sku:"PAN-PA-BROWSER",desc:"SASE with enterprise browser"},{model:"Prisma Access Mobile",sku:"PAN-PA-MOBILE",desc:"SASE for mobile users"},{model:"Prisma Access Remote Networks",sku:"PAN-PA-RN",desc:"SASE for remote sites"}],
     name: "Prisma Access",
     category: "sase",
     badge: "Prisma SASE",
@@ -3546,6 +3566,7 @@ const products = [
   {
     id: "prisma-sd-wan",
     image: "https://docs.paloaltonetworks.com/content/dam/techdocs/en_US/images/hardware/ION3200_HeroR.png",
+    models: [{model:"ION 1200",sku:"PAN-ION-1200",desc:"Branch appliance, up to 500 Mbps"},{model:"ION 3200",sku:"PAN-ION-3200",desc:"Branch appliance, up to 2 Gbps"},{model:"ION 9200",sku:"PAN-ION-9200",desc:"DC/HQ appliance, up to 10 Gbps"}],
     name: "Prisma SD-WAN",
     category: "sase",
     badge: "Prisma SASE",
@@ -3569,7 +3590,8 @@ const products = [
   },
   {
     id: "prisma-browser",
-    image: "https://www.paloaltonetworks.com/etc/clientlibs/pan/img/favicons2020/prisma-32x32.png",
+    image: "https://www.paloaltonetworks.com/etc/clientlibs/pan-templates/seoimages/social-prisma.png",
+    models: [{model:"Prisma Access Browser",sku:"PAN-PA-BROWSER",desc:"Enterprise browser with SASE security"}],
     name: "Prisma Access Browser",
     category: "sase",
     badge: "Prisma SASE",
@@ -3593,7 +3615,8 @@ const products = [
   },
   {
     id: "adem",
-    image: "",
+    image: "https://www.paloaltonetworks.com/etc/clientlibs/pan-templates/seoimages/social-prisma.png",
+    models: [{model:"ADEM Standard",sku:"PAN-ADEM-STD",desc:"Digital experience monitoring"},{model:"ADEM Advanced",sku:"PAN-ADEM-ADV",desc:"Advanced synthetic monitoring"}],
     name: "Autonomous Digital Experience Management",
     category: "sase",
     badge: "Prisma SASE",
@@ -3617,7 +3640,8 @@ const products = [
   },
   {
     id: "globalprotect",
-    image: "",
+    image: "https://www.paloaltonetworks.com/etc/clientlibs/pan-templates/seoimages/social-prisma.png",
+    models: [{model:"GlobalProtect Subscription",sku:"PAN-GP-SUB",desc:"Remote VPN and always-on security"}],
     name: "GlobalProtect",
     category: "sase",
     badge: "Prisma SASE",
@@ -3641,7 +3665,8 @@ const products = [
   },
   {
     id: "rbi",
-    image: "",
+    image: "https://www.paloaltonetworks.com/etc/clientlibs/pan-templates/seoimages/social-prisma.png",
+    models: [{model:"Remote Browser Isolation",sku:"PAN-RBI-SUB",desc:"Isolate risky sessions in containers"}],
     name: "Remote Browser Isolation",
     category: "sase",
     badge: "Prisma SASE",
@@ -3667,7 +3692,8 @@ const products = [
   // ── CORTEX (SECOPS) ──
   {
     id: "cortex-xsiam",
-    image: "https://www.paloaltonetworks.com/etc/clientlibs/pan/img/favicons2020/cortex-32x32.png",
+    image: "https://www.paloaltonetworks.com/etc/clientlibs/pan-templates/seoimages/social-cortex.png",
+    models: [{model:"XSIAM Base",sku:"PAN-XSIAM-BASE",desc:"SIEM + SOAR + ASM unified platform"},{model:"XSIAM Pro",sku:"PAN-XSIAM-PRO",desc:"Full suite with advanced analytics"}],
     name: "Cortex XSIAM",
     category: "cortex",
     badge: "Cortex SecOps",
@@ -3691,7 +3717,8 @@ const products = [
   },
   {
     id: "cortex-xdr",
-    image: "https://www.paloaltonetworks.com/etc/clientlibs/pan/img/favicons2020/cortex-32x32.png",
+    image: "https://www.paloaltonetworks.com/etc/clientlibs/pan-templates/seoimages/social-cortex.png",
+    models: [{model:"XDR Prevent",sku:"PAN-XDR-P",desc:"Endpoint protection (EPP)"},{model:"XDR Pro per Endpoint",sku:"PAN-XDR-PRO-EP",desc:"EDR + analytics per endpoint"},{model:"XDR Pro per TB",sku:"PAN-XDR-PRO-TB",desc:"XDR with third-party data per TB"}],
     name: "Cortex XDR",
     category: "cortex",
     badge: "Cortex SecOps",
@@ -3715,7 +3742,8 @@ const products = [
   },
   {
     id: "cortex-xsoar",
-    image: "https://www.paloaltonetworks.com/etc/clientlibs/pan/img/favicons2020/cortex-32x32.png",
+    image: "https://www.paloaltonetworks.com/etc/clientlibs/pan-templates/seoimages/social-cortex.png",
+    models: [{model:"XSOAR Standard",sku:"PAN-XSOAR-STD",desc:"SOAR with playbook automation"},{model:"XSOAR Full",sku:"PAN-XSOAR-FULL",desc:"Full SOAR with TIM and integrations"}],
     name: "Cortex XSOAR",
     category: "cortex",
     badge: "Cortex SecOps",
@@ -3739,7 +3767,8 @@ const products = [
   },
   {
     id: "cortex-xpanse",
-    image: "https://www.paloaltonetworks.com/etc/clientlibs/pan/img/favicons2020/cortex-32x32.png",
+    image: "https://www.paloaltonetworks.com/etc/clientlibs/pan-templates/seoimages/social-cortex.png",
+    models: [{model:"Xpanse Standard",sku:"PAN-XPANSE-STD",desc:"Attack surface discovery"},{model:"Xpanse Pro",sku:"PAN-XPANSE-PRO",desc:"Advanced ASM with active response"}],
     name: "Cortex Xpanse",
     category: "cortex",
     badge: "Cortex SecOps",
@@ -3763,7 +3792,8 @@ const products = [
   },
   {
     id: "cortex-exposure-mgmt",
-    image: "https://www.paloaltonetworks.com/etc/clientlibs/pan/img/favicons2020/cortex-32x32.png",
+    image: "https://www.paloaltonetworks.com/etc/clientlibs/pan-templates/seoimages/social-cortex.png",
+    models: [{model:"Exposure Management",sku:"PAN-CEM-SUB",desc:"Unified exposure and risk scoring"}],
     name: "Cortex Exposure Management",
     category: "cortex",
     badge: "Cortex SecOps",
@@ -3787,7 +3817,8 @@ const products = [
   },
   {
     id: "cortex-email-security",
-    image: "https://www.paloaltonetworks.com/etc/clientlibs/pan/img/favicons2020/cortex-32x32.png",
+    image: "https://www.paloaltonetworks.com/etc/clientlibs/pan-templates/seoimages/social-cortex.png",
+    models: [{model:"Email Security",sku:"PAN-CES-SUB",desc:"AI-powered email threat prevention"}],
     name: "Cortex Advanced Email Security",
     category: "cortex",
     badge: "Cortex SecOps",
@@ -3806,14 +3837,15 @@ const products = [
     useCases: ["Email-based threat prevention", "BEC and CEO fraud protection", "Phishing attack mitigation", "SOC-integrated email security"],
     licensing: "Per-mailbox annual subscription. Available as standalone or integrated with Cortex XSIAM. Volume-based pricing tiers.",
     licenseType: "Per-Mailbox Subscription",
-    brochureUrl: "",
+    brochureUrl: "https://www.paloaltonetworks.com/resources/datasheets/cortex-email-security",
     productUrl: "https://www.paloaltonetworks.com/cortex/advanced-email-security"
   },
 
   // ── CLOUD SECURITY ──
   {
     id: "cortex-cloud",
-    image: "https://www.paloaltonetworks.com/etc/clientlibs/pan/img/favicons2020/cortex-32x32.png",
+    image: "https://www.paloaltonetworks.com/etc/clientlibs/pan-templates/seoimages/social-cortex.png",
+    models: [{model:"Cortex Cloud Foundation",sku:"PAN-CC-FND",desc:"CNAPP with CSPM and CWP"},{model:"Cortex Cloud Advanced",sku:"PAN-CC-ADV",desc:"Full cloud security with CDR"}],
     name: "Cortex Cloud",
     category: "cloud",
     badge: "Cloud Security",
@@ -3837,7 +3869,8 @@ const products = [
   },
   {
     id: "prisma-cloud",
-    image: "https://www.paloaltonetworks.com/etc/clientlibs/pan/img/favicons2020/prisma-32x32.png",
+    image: "https://www.paloaltonetworks.com/etc/clientlibs/pan-templates/seoimages/social-prisma.png",
+    models: [{model:"Prisma Cloud Compute",sku:"PAN-PC-CMP",desc:"Runtime protection for containers"},{model:"Prisma Cloud Enterprise",sku:"PAN-PC-ENT",desc:"Full CNAPP: CSPM, CWP, CIEM"}],
     name: "Prisma Cloud",
     category: "cloud",
     badge: "Cloud Security",
@@ -3861,7 +3894,8 @@ const products = [
   },
   {
     id: "prisma-airs",
-    image: "https://www.paloaltonetworks.com/etc/clientlibs/pan/img/favicons2020/prisma-32x32.png",
+    image: "https://www.paloaltonetworks.com/etc/clientlibs/pan-templates/seoimages/social-prisma.png",
+    models: [{model:"AI Runtime Security",sku:"PAN-AIRS-SUB",desc:"Protect AI models and data pipelines"}],
     name: "Prisma AIRS",
     category: "cloud",
     badge: "Cloud Security",
@@ -3880,14 +3914,15 @@ const products = [
     useCases: ["Securing enterprise AI/LLM deployments", "Protecting against prompt injection", "AI data loss prevention", "Governing AI agent behaviors"],
     licensing: "Per-AI-application or per-API-call consumption model. Annual subscription with tiered pricing based on usage volume. Available as standalone or integrated with Cortex Cloud.",
     licenseType: "Consumption-Based",
-    brochureUrl: "",
+    brochureUrl: "https://www.paloaltonetworks.com/resources/datasheets/prisma-ai-runtime-security",
     productUrl: "https://www.paloaltonetworks.com/prisma/prisma-ai-runtime-security"
   },
 
   // ── UNIT 42 SERVICES ──
   {
     id: "unit42-ir",
-    image: "",
+    image: "https://www.paloaltonetworks.com/etc/clientlibs/pan-templates/seoimages/social-unit42.png",
+    models: [{model:"IR Retainer",sku:"PAN-U42-IR-RET",desc:"Pre-negotiated IR hours"},{model:"IR Emergency",sku:"PAN-U42-IR-EM",desc:"On-demand emergency IR"}],
     name: "Unit 42 Incident Response",
     category: "services",
     badge: "Unit 42 Services",
@@ -3911,7 +3946,8 @@ const products = [
   },
   {
     id: "unit42-assess",
-    image: "",
+    image: "https://www.paloaltonetworks.com/etc/clientlibs/pan-templates/seoimages/social-unit42.png",
+    models: [{model:"Compromise Assessment",sku:"PAN-U42-CA",desc:"Detect active/past breaches"},{model:"Penetration Testing",sku:"PAN-U42-PT",desc:"Offensive security testing"}],
     name: "Unit 42 Proactive Assessments",
     category: "services",
     badge: "Unit 42 Services",
@@ -3935,7 +3971,8 @@ const products = [
   },
   {
     id: "unit42-mdr",
-    image: "",
+    image: "https://www.paloaltonetworks.com/etc/clientlibs/pan-templates/seoimages/social-unit42.png",
+    models: [{model:"MDR Standard",sku:"PAN-U42-MDR-STD",desc:"24/7 managed detection and response"},{model:"MDR Advanced",sku:"PAN-U42-MDR-ADV",desc:"Dedicated analyst + threat hunting"}],
     name: "Unit 42 Managed Detection & Response",
     category: "services",
     badge: "Unit 42 Services",
@@ -3954,12 +3991,13 @@ const products = [
     useCases: ["Outsourced SOC operations", "SOC augmentation (nights/weekends)", "Organizations without dedicated SOC", "Compliance-driven monitoring"],
     licensing: "Per-endpoint or per-seat annual subscription. Tiered service levels: MDR Essentials and MDR Complete. Requires Cortex XDR or XSIAM as the underlying platform. Multi-year discounts available.",
     licenseType: "Per-Endpoint Subscription",
-    brochureUrl: "",
+    brochureUrl: "https://www.paloaltonetworks.com/resources/datasheets/unit42-managed-detection-response",
     productUrl: "https://www.paloaltonetworks.com/cortex/managed-detection-and-response"
   },
   {
     id: "managed-xsiam",
-    image: "",
+    image: "https://www.paloaltonetworks.com/etc/clientlibs/pan-templates/seoimages/social-cortex.png",
+    models: [{model:"Managed XSIAM",sku:"PAN-MXSIAM-SUB",desc:"Fully managed XSIAM with Unit 42 SOC"}],
     name: "Managed XSIAM",
     category: "services",
     badge: "Unit 42 Services",
@@ -3983,7 +4021,8 @@ const products = [
   },
   {
     id: "unit42-threat-intel",
-    image: "",
+    image: "https://www.paloaltonetworks.com/etc/clientlibs/pan-templates/seoimages/social-unit42.png",
+    models: [{model:"Threat Intelligence Reports",sku:"PAN-U42-TI",desc:"Industry and threat actor briefings"}],
     name: "Unit 42 Threat Intelligence",
     category: "services",
     badge: "Unit 42 Services",
@@ -4002,7 +4041,7 @@ const products = [
     useCases: ["Strategic threat intelligence program", "Executive threat briefings", "Operationalizing threat intel in SOC", "Industry-specific threat awareness"],
     licensing: "Subscription-based annual service. Tiered access levels based on intelligence depth and analyst engagement. Can be combined with IR retainer. Custom briefing packages available.",
     licenseType: "Annual Subscription",
-    brochureUrl: "",
+    brochureUrl: "https://www.paloaltonetworks.com/resources/datasheets/unit42-threat-intelligence",
     productUrl: "https://www.paloaltonetworks.com/unit42/threat-intelligence-partners"
   }
 ];
@@ -6011,7 +6050,15 @@ function openSeriesPage(productId) {
     html += '<div class="series-models-title">Available Models (' + p.models.length + ')</div>';
     html += '<div class="series-models-grid">';
     p.models.forEach(function(m, i) {
-      html += '<div class="model-card">';
+      var mScore=0,mMax=0,mIssues=[];
+      mMax+=1;if(m.model&&m.model.length>0){mScore+=1}else{mIssues.push('No model name')}
+      mMax+=1;if(m.sku&&m.sku!=='TBD'&&m.sku.length>2){mScore+=1}else{mIssues.push('SKU missing/TBD')}
+      mMax+=1;if(m.desc&&m.desc.length>5){mScore+=1}else{mIssues.push('No description')}
+      var mPct=Math.round(mScore/mMax*100);
+      var mColor=mPct>=85?'rag-green':mPct>=50?'rag-amber':'rag-red';
+      var mLabel=mPct>=85?'Verified':mPct>=50?'Partial':'Incomplete';
+      html += '<div class="model-card" style="position:relative">';
+      html += '<div class="rag-light '+mColor+'" title="'+mLabel+' ('+mPct+'%) — '+(mIssues.length?mIssues.join(', '):'All checks passed')+'"></div>';
       if(imgUrl) html += '<div class="model-card-img"><img src="' + imgUrl + '" alt="' + m.model + '" onerror="handleImgError(this)"></div>';
       html += '<div class="model-card-body">';
       html += '<h3>' + m.model + '</h3>';
