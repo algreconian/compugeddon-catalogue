@@ -1,0 +1,2602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Juniper Networks Product Catalogue — CGTECH</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --jnpr-green: #84BD00;
+  --jnpr-dark-green: #0A7E37;
+  --jnpr-cyan: #00B2A9;
+  --jnpr-dark: #0A0F1A;
+  --jnpr-darker: #060A12;
+  --jnpr-card: #111827;
+  --jnpr-card-hover: #1A2332;
+  --jnpr-border: #1E293B;
+  --jnpr-text: #E2E8F0;
+  --jnpr-muted: #94A3B8;
+  --jnpr-green-ok: #22C55E;
+  --jnpr-purple: #A855F7;
+  --jnpr-yellow: #EAB308;
+  --jnpr-blue: #3B82F6;
+  --radius: 12px;
+  --transition: 0.2s ease;
+  --jnpr-surface: #111827;
+  --jnpr-bg: #0A0F1A;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--jnpr-darker);
+  color: var(--jnpr-text);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--jnpr-darker); }
+::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #475569; }
+
+/* HERO */
+.hero {
+  position: relative;
+  padding: 80px 40px 60px;
+  text-align: center;
+  background: linear-gradient(135deg, var(--jnpr-darker) 0%, #0F172A 50%, #0C1220 100%);
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -50%; left: -20%;
+  width: 140%; height: 200%;
+  background: radial-gradient(ellipse at 30% 50%, rgba(132,189,0,0.08) 0%, transparent 50%),
+              radial-gradient(ellipse at 70% 50%, rgba(10,126,55,0.06) 0%, transparent 50%);
+  pointer-events: none;
+}
+.hero-content { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; }
+.hero-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--jnpr-green);
+}
+.hero-logo svg { width: 40px; height: 40px; }
+.hero h1 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 16px;
+  background: linear-gradient(135deg, #fff 0%, #CBD5E1 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero p {
+  font-size: 1.125rem;
+  color: var(--jnpr-muted);
+  max-width: 650px;
+  margin: 0 auto 32px;
+}
+.hero-stats { display: flex; justify-content: center; gap: 48px; flex-wrap: wrap; }
+.hero-stat { text-align: center; }
+.hero-stat .num { font-size: 2rem; font-weight: 800; color: var(--jnpr-green); }
+.hero-stat .label { font-size: 0.75rem; color: var(--jnpr-muted); text-transform: uppercase; letter-spacing: 1px; }
+
+/* CONTROLS */
+.controls {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(6,10,18,0.92);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--jnpr-border);
+  padding: 16px 40px;
+}
+.controls-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.search-box { position: relative; flex: 1; min-width: 250px; }
+.search-box svg {
+  position: absolute; left: 14px; top: 50%;
+  transform: translateY(-50%);
+  color: var(--jnpr-muted);
+  width: 18px; height: 18px;
+  pointer-events: none;
+}
+.search-box input {
+  width: 100%;
+  padding: 10px 16px 10px 42px;
+  border: 1px solid var(--jnpr-border);
+  border-radius: 8px;
+  background: var(--jnpr-card);
+  color: var(--jnpr-text);
+  font-size: 0.9rem;
+  font-family: inherit;
+  transition: border-color var(--transition);
+}
+.search-box input:focus { outline: none; border-color: var(--jnpr-green); }
+.search-box input::placeholder { color: #475569; }
+
+.filter-tabs { display: flex; gap: 4px; flex-wrap: wrap; }
+.filter-tab {
+  padding: 8px 16px;
+  border: 1px solid var(--jnpr-border);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--jnpr-muted);
+  font-size: 0.8rem;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all var(--transition);
+  white-space: nowrap;
+}
+.filter-tab:hover { border-color: #475569; color: var(--jnpr-text); }
+.filter-tab.active {
+  background: var(--jnpr-green);
+  border-color: var(--jnpr-green);
+  color: #0A0F1A;
+}
+
+.compare-btn {
+  padding: 8px 20px;
+  border: 1px solid var(--jnpr-cyan);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--jnpr-cyan);
+  font-size: 0.8rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all var(--transition);
+  display: none;
+  white-space: nowrap;
+}
+.compare-btn:hover { background: var(--jnpr-cyan); color: #0A0F1A; }
+.compare-btn.visible { display: inline-flex; align-items: center; gap: 6px; }
+
+.hw-compare-btn {
+  padding: 10px 24px;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(135deg, var(--jnpr-green), var(--jnpr-dark-green));
+  color: #0A0F1A;
+  font-size: 0.82rem;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all var(--transition);
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 2px 12px rgba(132,189,0,0.3);
+  letter-spacing: 0.3px;
+}
+.hw-compare-btn:hover { transform: translateY(-1px); box-shadow: 0 4px 20px rgba(132,189,0,0.45); }
+
+/* MAIN GRID */
+.main { max-width: 1400px; margin: 0 auto; padding: 32px 40px 80px; }
+.category-section { margin-bottom: 48px; }
+.category-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--jnpr-border);
+}
+.category-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
+.category-header h2 { font-size: 1.25rem; font-weight: 700; color: #fff; }
+.category-header .count {
+  font-size: 0.75rem;
+  color: var(--jnpr-muted);
+  background: var(--jnpr-card);
+  padding: 2px 10px;
+  border-radius: 10px;
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 16px;
+}
+
+/* PRODUCT CARD */
+.product-card {
+  position: relative;
+  background: var(--jnpr-card);
+  border: 1px solid var(--jnpr-border);
+  border-radius: var(--radius);
+  padding: 24px;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+.product-card:hover {
+  border-color: #334155;
+  background: var(--jnpr-card-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+}
+.product-card.selected {
+  border-color: var(--jnpr-green);
+  box-shadow: 0 0 0 1px var(--jnpr-green);
+}
+.card-image {
+  width: 100%;
+  height: 140px;
+  border-radius: 8px;
+  margin-bottom: 14px;
+  overflow: hidden;
+  background: #111827;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.card-image img {
+  max-width: 90%;
+  max-height: 120px;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+  mix-blend-mode: lighten;
+}
+.product-card:hover .card-image img { transform: scale(1.05); }
+.card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 12px;
+}
+.card-badge {
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+.badge-switches { background: rgba(132,189,0,0.15); color: var(--jnpr-green); }
+.badge-routers { background: rgba(10,126,55,0.2); color: #4ADE80; }
+.badge-wireless { background: rgba(0,178,169,0.15); color: var(--jnpr-cyan); }
+.badge-firewalls { background: rgba(239,68,68,0.15); color: #F87171; }
+.badge-sdwan { background: rgba(168,85,247,0.15); color: var(--jnpr-purple); }
+.badge-management { background: rgba(59,130,246,0.15); color: var(--jnpr-blue); }
+.badge-software { background: rgba(234,179,8,0.15); color: var(--jnpr-yellow); }
+.badge-services { background: rgba(148,163,184,0.15); color: var(--jnpr-muted); }
+
+/* RAG status light */
+.rag-light {
+  width: 10px; height: 10px; border-radius: 50%; display: inline-block;
+  position: absolute; top: 12px; right: 12px; z-index: 2;
+  box-shadow: 0 0 6px currentColor;
+  cursor: help;
+}
+.rag-green { background: #22c55e; color: #22c55e; }
+.rag-amber { background: #f59e0b; color: #f59e0b; }
+.rag-red { background: #ef4444; color: #ef4444; }
+
+.card-name {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 6px;
+}
+.card-desc {
+  font-size: 0.85rem;
+  color: var(--jnpr-muted);
+  margin-bottom: 16px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.card-specs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+.spec-tag {
+  font-size: 0.7rem;
+  padding: 3px 8px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 4px;
+  color: #CBD5E1;
+}
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 12px;
+  border-top: 1px solid var(--jnpr-border);
+}
+.license-tag {
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: var(--jnpr-muted);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.license-tag svg { width: 12px; height: 12px; }
+.card-actions { display: flex; gap: 8px; }
+.btn-brochure, .btn-details {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all var(--transition);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.btn-brochure {
+  background: rgba(132,189,0,0.15);
+  color: var(--jnpr-green);
+  border: 1px solid rgba(132,189,0,0.3);
+}
+.btn-brochure:hover { background: var(--jnpr-green); color: #0A0F1A; }
+.btn-details {
+  background: rgba(255,255,255,0.05);
+  color: var(--jnpr-text);
+  border: 1px solid var(--jnpr-border);
+}
+.btn-details:hover { background: rgba(255,255,255,0.1); }
+
+/* MODAL */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(4px);
+  z-index: 1000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.modal-overlay.active { display: flex; }
+.modal {
+  background: var(--jnpr-dark);
+  border: 1px solid var(--jnpr-border);
+  border-radius: 16px;
+  width: 100%;
+  max-width: 800px;
+  max-height: 85vh;
+  overflow-y: auto;
+  position: relative;
+}
+.modal-header {
+  position: sticky;
+  top: 0;
+  background: var(--jnpr-dark);
+  padding: 28px 32px 20px;
+  border-bottom: 1px solid var(--jnpr-border);
+  z-index: 1;
+}
+.modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  padding: 6px 14px;
+  border: 1px solid var(--jnpr-border);
+  border-radius: 8px;
+  background: transparent;
+  color: var(--jnpr-muted);
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  justify-content: center;
+  transition: all var(--transition);
+}
+.modal-close:hover { background: rgba(255,255,255,0.05); color: #fff; }
+.modal-badge-row { display: flex; gap: 8px; margin-bottom: 12px; flex-wrap: wrap; }
+.modal-name { font-size: 1.5rem; font-weight: 800; color: #fff; margin-bottom: 8px; }
+.modal-tagline { color: var(--jnpr-muted); font-size: 0.95rem; }
+.modal-body { padding: 24px 32px 32px; }
+
+.modal-section { margin-bottom: 28px; }
+.modal-section h3 {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--jnpr-green);
+  margin-bottom: 12px;
+}
+.modal-section p, .modal-section li {
+  font-size: 0.9rem;
+  color: var(--jnpr-muted);
+  line-height: 1.7;
+}
+.modal-section ul { list-style: none; padding: 0; }
+.modal-section li {
+  padding: 6px 0;
+  padding-left: 20px;
+  position: relative;
+}
+.modal-section li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 14px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--jnpr-green);
+}
+
+.spec-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 12px;
+}
+.spec-item {
+  background: var(--jnpr-card);
+  border: 1px solid var(--jnpr-border);
+  border-radius: 8px;
+  padding: 14px;
+}
+.spec-item .label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--jnpr-muted);
+  margin-bottom: 4px;
+}
+.spec-item .value {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+.licensing-box {
+  background: linear-gradient(135deg, rgba(132,189,0,0.08), rgba(0,178,169,0.08));
+  border: 1px solid rgba(132,189,0,0.2);
+  border-radius: var(--radius);
+  padding: 20px;
+}
+.licensing-box h4 {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 8px;
+}
+.licensing-box p {
+  font-size: 0.85rem;
+  color: var(--jnpr-muted);
+  line-height: 1.7;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+  flex-wrap: wrap;
+}
+.btn-primary {
+  padding: 12px 24px;
+  background: var(--jnpr-green);
+  color: #0A0F1A;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.btn-primary:hover { background: var(--jnpr-dark-green); color: #fff; transform: translateY(-1px); }
+.btn-secondary {
+  padding: 12px 24px;
+  background: transparent;
+  color: var(--jnpr-cyan);
+  border: 1px solid var(--jnpr-cyan);
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.btn-secondary:hover { background: var(--jnpr-cyan); color: #0A0F1A; }
+
+/* COMPARE MODAL */
+.compare-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.8);
+  backdrop-filter: blur(4px);
+  z-index: 10001;
+  display: none;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 40px 20px;
+  overflow-y: auto;
+}
+.compare-overlay.active { display: flex; }
+.compare-panel {
+  background: var(--jnpr-dark);
+  border: 1px solid var(--jnpr-border);
+  border-radius: 16px;
+  width: 100%;
+  max-width: 1100px;
+  padding: 32px;
+}
+.compare-panel h2 {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 24px;
+}
+.compare-table { width: 100%; border-collapse: collapse; }
+.compare-table th, .compare-table td {
+  padding: 12px 16px;
+  text-align: left;
+  border-bottom: 1px solid var(--jnpr-border);
+  font-size: 0.85rem;
+}
+.compare-table th {
+  color: var(--jnpr-muted);
+  font-weight: 600;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  background: var(--jnpr-card);
+  position: sticky;
+  top: 0;
+}
+.compare-table td { color: var(--jnpr-text); }
+.compare-table tr:hover td { background: rgba(255,255,255,0.02); }
+.compare-table td.best-value {
+  color: var(--jnpr-green);
+  font-weight: 700;
+  background: rgba(132,189,0,0.06);
+}
+.compare-close {
+  margin-top: 20px;
+  padding: 10px 24px;
+  background: transparent;
+  border: 1px solid var(--jnpr-border);
+  border-radius: 8px;
+  color: var(--jnpr-text);
+  font-family: inherit;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+.compare-close:hover { background: rgba(255,255,255,0.05); }
+.compare-product-img {
+  width: 80px;
+  height: 56px;
+  object-fit: contain;
+  border-radius: 6px;
+  background: rgba(255,255,255,0.04);
+  padding: 4px;
+  margin-bottom: 6px;
+}
+
+/* NO RESULTS */
+.no-results { text-align: center; padding: 60px 20px; display: none; }
+.no-results svg { width: 48px; height: 48px; color: #334155; margin-bottom: 16px; }
+.no-results h3 { font-size: 1.1rem; color: var(--jnpr-muted); margin-bottom: 8px; }
+.no-results p { font-size: 0.85rem; color: #475569; }
+
+/* FOOTER */
+footer {
+  text-align: center;
+  padding: 32px 40px;
+  border-top: 1px solid var(--jnpr-border);
+  color: #475569;
+  font-size: 0.8rem;
+}
+footer a { color: var(--jnpr-green); text-decoration: none; }
+footer a:hover { text-decoration: underline; }
+
+@media (max-width: 768px) {
+  .hero { padding: 60px 20px 40px; }
+  .controls { padding: 12px 16px; }
+  .controls-inner { gap: 10px; }
+  .main { padding: 20px 16px 60px; }
+  .products-grid { grid-template-columns: 1fr; }
+  .hero-stats { gap: 24px; }
+  .modal-header, .modal-body { padding-left: 20px; padding-right: 20px; }
+  .compare-panel { padding: 20px; }
+  .compare-table { font-size: 0.75rem; }
+  .compare-table th, .compare-table td { padding: 8px; }
+  .filter-tabs { gap: 4px; }
+  .filter-tab { padding: 6px 10px; font-size: 0.72rem; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.product-card { animation: fadeIn 0.3s ease forwards; }
+
+/* BOM CONFIGURATOR */
+.bom-fab{position:fixed;bottom:24px;right:24px;width:56px;height:56px;border-radius:50%;background:rgba(132,189,0,0.15);border:1px solid rgba(132,189,0,0.3);color:var(--jnpr-green);cursor:pointer;box-shadow:0 2px 12px rgba(0,0,0,0.2);z-index:850;transition:all 0.2s;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(8px);font-size:22px}
+.bom-fab:hover{transform:scale(1.08);background:rgba(132,189,0,0.25);box-shadow:0 4px 20px rgba(132,189,0,0.3)}
+.bom-fab-badge{position:absolute;top:-4px;right:-4px;width:18px;height:18px;border-radius:50%;background:var(--jnpr-dark-green);color:#fff;font-size:0.65rem;font-weight:700;display:none;align-items:center;justify-content:center}
+.bom-fab-badge.visible{display:flex}
+
+.bom-drawer{position:fixed;right:0;top:0;bottom:0;width:520px;z-index:1100;background:var(--jnpr-dark);border-left:1px solid var(--jnpr-border);transform:translateX(100%);transition:transform 0.3s;display:flex;flex-direction:column;box-shadow:-4px 0 24px rgba(0,0,0,0.5)}
+.bom-drawer.open{transform:translateX(0)}
+.bom-drawer-header{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;border-bottom:1px solid var(--jnpr-border);position:sticky;top:0;background:var(--jnpr-dark);z-index:1}
+.bom-drawer-body{flex:1;overflow-y:auto;padding:16px 20px}
+.bom-drawer-footer{padding:16px 20px;border-top:1px solid var(--jnpr-border);background:var(--jnpr-card)}
+
+.bom-meta{margin-bottom:16px}
+.bom-meta-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.bom-meta input{width:100%;background:var(--jnpr-darker);border:1px solid var(--jnpr-border);color:var(--jnpr-text);border-radius:6px;padding:8px;font-size:0.82rem;font-family:inherit}
+
+.bom-empty{text-align:center;padding:60px 20px;color:var(--jnpr-muted)}
+.bom-cat-group{margin-bottom:16px}
+.bom-cat-label{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.5px;color:var(--jnpr-green);padding:4px 0;border-bottom:1px solid var(--jnpr-border);margin-bottom:8px}
+.bom-item{display:flex;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.04)}
+.bom-item-info{flex:1;min-width:0}
+.bom-item-name{font-size:0.82rem;font-weight:600;color:var(--jnpr-text);line-height:1.3}
+.bom-item-sku{font-family:'Consolas','Courier New',monospace;font-size:0.68rem;color:var(--jnpr-cyan);margin-top:1px}
+.bom-item-brand{font-size:0.62rem;color:var(--jnpr-muted);margin-top:1px}
+.bom-qty{display:flex;align-items:center;gap:0;flex-shrink:0}
+.bom-qty button{width:26px;height:26px;border:1px solid var(--jnpr-border);background:transparent;color:var(--jnpr-text);cursor:pointer;font-size:13px;display:flex;align-items:center;justify-content:center}
+.bom-qty button:first-child{border-radius:6px 0 0 6px}
+.bom-qty button:last-child{border-radius:0 6px 6px 0}
+.bom-qty input{width:38px;height:26px;text-align:center;border-top:1px solid var(--jnpr-border);border-bottom:1px solid var(--jnpr-border);border-left:none;border-right:none;background:var(--jnpr-darker);color:var(--jnpr-text);font-size:0.78rem;font-family:inherit}
+.bom-remove{width:22px;height:22px;border:none;background:transparent;color:var(--jnpr-muted);cursor:pointer;font-size:15px;opacity:0.4;transition:all 0.2s;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.bom-remove:hover{opacity:1;color:#ef4444}
+
+.bom-summary{padding-top:12px}
+.bom-summary-row{display:flex;justify-content:space-between;padding:6px 0;font-size:0.85rem;color:var(--jnpr-text)}
+
+.bom-actions{display:flex;flex-wrap:wrap;gap:8px}
+.bom-btn{padding:7px 14px;border-radius:6px;font-size:0.78rem;font-weight:600;cursor:pointer;transition:all 0.2s;border:1px solid var(--jnpr-border);background:transparent;color:var(--jnpr-text);font-family:inherit}
+.bom-btn:hover{border-color:var(--jnpr-green);color:var(--jnpr-green)}
+.bom-btn.primary{background:var(--jnpr-green);border-color:var(--jnpr-green);color:#0A0F1A}
+.bom-btn.primary:hover{background:var(--jnpr-dark-green);color:#fff}
+.bom-btn.danger:hover{border-color:#ef4444;color:#ef4444}
+
+.btn-bom{padding:4px 10px;border:1px solid var(--jnpr-green);border-radius:6px;background:transparent;color:var(--jnpr-green);font-size:0.7rem;font-weight:600;cursor:pointer;transition:all 0.2s}
+.btn-bom:hover{background:var(--jnpr-green);color:#0A0F1A}
+.btn-bom.in-bom{background:var(--jnpr-green);color:#0A0F1A}
+
+.bom-toast{position:fixed;top:20px;left:50%;transform:translateX(-50%);z-index:1200;padding:12px 20px;background:var(--jnpr-card);border-radius:8px;border-left:4px solid var(--jnpr-green);color:var(--jnpr-text);font-size:0.85rem;box-shadow:0 4px 24px rgba(0,0,0,0.4);animation:bomToastIn 0.3s}
+@keyframes bomToastIn{from{transform:translateX(-50%) translateY(-20px);opacity:0}to{transform:translateX(-50%) translateY(0);opacity:1}}
+
+/* Series Overlay */
+.series-overlay{position:fixed;inset:0;background:var(--jnpr-darker);z-index:1000;overflow-y:auto;display:none}
+.series-overlay.open{display:block}
+.series-header{padding:24px 32px;border-bottom:1px solid var(--jnpr-border);display:flex;align-items:center;gap:16px;position:sticky;top:0;background:var(--jnpr-darker);z-index:1}
+.series-back{padding:8px 16px;border:1px solid var(--jnpr-border);border-radius:8px;background:transparent;color:var(--jnpr-muted);font-size:0.85rem;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:6px;transition:all 0.2s}
+.series-back:hover{background:rgba(255,255,255,0.05);color:#fff}
+.series-hero{max-width:900px;margin:0 auto;padding:32px;display:flex;gap:32px;align-items:center;border-bottom:1px solid var(--jnpr-border)}
+.series-hero-img{width:200px;height:140px;background:#111827;border-radius:10px;display:flex;align-items:center;justify-content:center;overflow:hidden;padding:10px;flex-shrink:0}
+.series-hero-img img{max-width:100%;max-height:120px;object-fit:contain;mix-blend-mode:lighten}
+.series-hero-info h1{font-size:1.5rem;color:var(--jnpr-text);margin:0 0 6px}
+.series-hero-info .tagline{color:var(--jnpr-muted);font-size:0.9rem}
+.series-models-title{max-width:900px;margin:0 auto;padding:24px 32px 8px;font-size:1rem;color:var(--jnpr-green);font-weight:700;text-transform:uppercase;letter-spacing:0.5px}
+.series-models-grid{max-width:900px;margin:0 auto;padding:8px 32px 24px;display:flex;flex-direction:column;gap:16px}
+.model-card{background:var(--jnpr-card);border:1px solid var(--jnpr-border);border-radius:var(--radius);padding:20px;transition:all 0.2s;display:flex;align-items:center;gap:20px}
+.model-card:hover{border-color:var(--jnpr-green)}
+.model-card-img{width:140px;height:100px;background:#111827;border-radius:8px;display:flex;align-items:center;justify-content:center;overflow:hidden;padding:8px;flex-shrink:0}
+.model-card-img img{max-width:100%;max-height:84px;object-fit:contain;mix-blend-mode:lighten}
+.model-card-body{flex:1;min-width:0}
+.model-card h3{font-size:1.05rem;color:var(--jnpr-text);margin:0 0 4px}
+.model-card .model-sku{font-family:monospace;font-size:0.8rem;color:var(--jnpr-cyan);margin-bottom:4px}
+.model-card .model-desc{font-size:0.82rem;color:var(--jnpr-muted);margin-bottom:10px}
+.model-card-actions{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.model-card-actions .btn-bom{padding:6px 14px}
+.model-bom-qty{display:flex;align-items:center;gap:0}
+.model-bom-qty button{width:28px;height:28px;border:1px solid var(--jnpr-border);background:transparent;color:var(--jnpr-text);cursor:pointer}
+.model-bom-qty button:first-child{border-radius:6px 0 0 6px}
+.model-bom-qty button:last-child{border-radius:0 6px 6px 0}
+.model-bom-qty input{width:40px;height:28px;text-align:center;border:1px solid var(--jnpr-border);border-left:0;border-right:0;background:var(--jnpr-darker);color:var(--jnpr-text);font-size:0.8rem}
+
+/* Model Picker */
+.model-picker-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:1050;display:flex;align-items:center;justify-content:center}
+.model-picker{background:var(--jnpr-dark);border-radius:var(--radius);padding:24px;max-width:500px;width:90%;max-height:80vh;overflow-y:auto;border:1px solid var(--jnpr-border)}
+.model-picker h3{margin:0 0 4px;color:var(--jnpr-text)}
+.model-picker .subtitle{font-size:0.8rem;color:var(--jnpr-muted);margin-bottom:16px}
+.model-option{display:flex;align-items:center;gap:12px;padding:12px;border:1px solid var(--jnpr-border);border-radius:8px;margin-bottom:8px}
+.model-option:hover{border-color:var(--jnpr-green);background:rgba(132,189,0,0.05)}
+.model-option .model-info{flex:1}
+.model-option .model-name{font-weight:600;color:var(--jnpr-text);font-size:0.9rem}
+.model-option .model-sku{font-family:monospace;font-size:0.75rem;color:var(--jnpr-cyan)}
+.model-option .model-desc{font-size:0.75rem;color:var(--jnpr-muted);margin-top:2px}
+.model-option .model-qty{display:flex;align-items:center;gap:0}
+.model-option .model-qty button{width:28px;height:28px;border:1px solid var(--jnpr-border);background:transparent;color:var(--jnpr-text);cursor:pointer;font-size:14px}
+.model-option .model-qty button:first-child{border-radius:6px 0 0 6px}
+.model-option .model-qty button:last-child{border-radius:0 6px 6px 0}
+.model-option .model-qty input{width:40px;height:28px;text-align:center;border:1px solid var(--jnpr-border);border-left:0;border-right:0;background:var(--jnpr-darker);color:var(--jnpr-text);font-size:0.8rem}
+
+/* Search Dropdown */
+.search-dropdown{position:absolute;top:100%;left:0;right:0;background:var(--jnpr-card);border:1px solid var(--jnpr-border);border-top:none;border-radius:0 0 8px 8px;max-height:360px;overflow-y:auto;z-index:100;display:none;box-shadow:0 8px 24px rgba(0,0,0,0.4)}
+.search-dropdown.show{display:block}
+.search-dropdown-item{display:flex;align-items:center;gap:12px;padding:10px 16px;cursor:pointer;transition:background 0.15s;border-bottom:1px solid rgba(255,255,255,0.03)}
+.search-dropdown-item:last-child{border-bottom:none}
+.search-dropdown-item:hover,.search-dropdown-item.active{background:rgba(132,189,0,0.08)}
+.search-dropdown-item img{width:40px;height:30px;object-fit:contain;border-radius:4px;background:rgba(255,255,255,0.05);padding:2px;flex-shrink:0}
+.search-dd-info{flex:1;min-width:0}
+.search-dd-name{font-size:0.85rem;font-weight:600;color:var(--jnpr-text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.search-dd-meta{font-size:0.7rem;color:var(--jnpr-muted)}
+.search-dd-type{font-size:0.65rem;padding:2px 6px;border-radius:4px;background:rgba(132,189,0,0.1);color:var(--jnpr-green);white-space:nowrap}
+
+/* Hardware Compare Overlay */
+.hw-overlay{position:fixed;inset:0;z-index:10000;background:var(--jnpr-darker);display:none;flex-direction:column;overflow:hidden}
+.hw-overlay.active{display:flex}
+.hw-header{display:flex;align-items:center;justify-content:space-between;padding:16px 28px;background:var(--jnpr-dark);border-bottom:1px solid var(--jnpr-border);flex-shrink:0;gap:16px;flex-wrap:wrap}
+.hw-header h2{font-size:1.2rem;font-weight:800;color:#fff;display:flex;align-items:center;gap:10px}
+.hw-header h2 svg{color:var(--jnpr-green);flex-shrink:0}
+.hw-close{padding:8px 16px;border:1px solid var(--jnpr-border);border-radius:8px;background:transparent;color:var(--jnpr-muted);font-size:0.85rem;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:6px;transition:all var(--transition)}
+.hw-close:hover{background:rgba(255,255,255,0.05);color:#fff}
+.hw-body{display:flex;flex:1;overflow:hidden}
+.hw-sidebar{width:260px;flex-shrink:0;background:var(--jnpr-dark);border-right:1px solid var(--jnpr-border);padding:20px;overflow-y:auto}
+.hw-sidebar-group{margin-bottom:24px}
+.hw-sidebar-group h4{font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--jnpr-green);margin-bottom:12px}
+.hw-sidebar-item{display:flex;align-items:center;gap:10px;padding:7px 0;cursor:pointer;color:var(--jnpr-muted);font-size:0.82rem}
+.hw-sidebar-item:hover{color:var(--jnpr-text)}
+.hw-sidebar-item input[type="checkbox"]{accent-color:var(--jnpr-green);width:15px;height:15px;cursor:pointer}
+.hw-main{flex:1;overflow-y:auto;padding:24px}
+.hw-results-info{font-size:0.82rem;color:var(--jnpr-muted);margin-bottom:16px}
+.hw-table-wrap{overflow-x:auto;border:1px solid var(--jnpr-border);border-radius:var(--radius);background:var(--jnpr-card)}
+.hw-table{width:100%;border-collapse:collapse;min-width:800px}
+.hw-table th{padding:12px 14px;text-align:left;font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--jnpr-muted);background:rgba(0,0,0,0.3);border-bottom:1px solid var(--jnpr-border);white-space:nowrap;position:sticky;top:0;z-index:2}
+.hw-table td{padding:14px;border-bottom:1px solid rgba(255,255,255,0.04);font-size:0.85rem;color:var(--jnpr-text)}
+.hw-table tr:hover td{background:rgba(255,255,255,0.02)}
+.hw-product-cell{display:flex;align-items:center;gap:12px;min-width:200px}
+.hw-product-cell img{width:64px;height:44px;object-fit:contain;border-radius:6px;background:#0a0f1a;padding:4px;flex-shrink:0;mix-blend-mode:screen}
+.hw-product-cell .hw-prod-name{font-weight:700;color:#fff;font-size:0.88rem}
+.hw-no-results{text-align:center;padding:60px 20px;color:var(--jnpr-muted)}
+
+.img-placeholder{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;width:100%;height:100%;min-height:80px;color:var(--jnpr-muted);font-size:0.7rem;opacity:0.5}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div style="display:flex;align-items:center;justify-content:center;gap:24px;margin-bottom:20px;flex-wrap:wrap">
+      <img src="https://cdn.prod.website-files.com/6343e547ce19691304ad1712/65377a3d7cae3740f01493e5_CGTech%20-%20Logo%20export-10.avif" alt="Compugeddon t/a CGTECH" style="height:48px;filter:brightness(1.1)">
+      <span style="color:#334155;font-size:1.5rem;font-weight:200">&times;</span>
+      <div class="hero-logo" style="margin-bottom:0">
+        <svg viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="16" stroke="#84BD00" stroke-width="2" fill="none"/><path d="M14 14 L26 14 M14 20 L26 20 M14 26 L22 26" stroke="#84BD00" stroke-width="2.5" stroke-linecap="round"/></svg>
+        Juniper Networks
+      </div>
+    </div>
+    <h1>Product &amp; Services Catalogue</h1>
+    <p>AI-Native Networking for the Cloud Era &mdash; Switches, Routers, Wireless, Firewalls, SD-WAN, and AIOps powered by Mist AI and Junos OS.</p>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="num">40+</div><div class="label">Products</div></div>
+      <div class="hero-stat"><div class="num">8</div><div class="label">Categories</div></div>
+      <div class="hero-stat"><div class="num">Mist AI</div><div class="label">AIOps</div></div>
+      <div class="hero-stat"><div class="num">Junos</div><div class="label">One OS</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTROLS -->
+<div class="controls">
+  <div class="controls-inner">
+    <div class="search-box">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+      <input type="text" id="searchInput" placeholder="Search products, models, or keywords..." autocomplete="off">
+      <div class="search-dropdown" id="searchDropdown"></div>
+    </div>
+    <div class="filter-tabs">
+      <button class="filter-tab active" data-filter="all">All Products</button>
+      <button class="filter-tab" data-filter="switches">Switches</button>
+      <button class="filter-tab" data-filter="routers">Routers</button>
+      <button class="filter-tab" data-filter="wireless">Wireless</button>
+      <button class="filter-tab" data-filter="firewalls">Firewalls</button>
+      <button class="filter-tab" data-filter="sdwan">SD-WAN</button>
+      <button class="filter-tab" data-filter="management">Management</button>
+      <button class="filter-tab" data-filter="software">Software</button>
+      <button class="filter-tab" data-filter="services">Services</button>
+    </div>
+    <button class="hw-compare-btn" onclick="openHwCompare()" title="Compare hardware models side-by-side">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></svg>
+      Compare Hardware
+    </button>
+    <button class="compare-btn" id="compareBtn" onclick="openCompare()" title="Compare selected products">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 20V10M12 20V4M6 20v-6"/></svg>
+      Compare (<span id="compareCount">0</span>)
+    </button>
+  </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="main" id="mainContent"></div>
+
+<!-- NO RESULTS -->
+<div class="no-results" id="noResults">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/><path d="M8 11h6"/></svg>
+  <h3>No products found</h3>
+  <p>Try adjusting your search query or filter selection.</p>
+</div>
+
+<!-- PRODUCT DETAIL MODAL -->
+<div class="modal-overlay" id="modalOverlay" onclick="if(event.target===this)closeModal()">
+  <div class="modal" id="modalContent"></div>
+</div>
+
+<!-- COMPARE MODAL -->
+<div class="compare-overlay" id="compareOverlay" onclick="if(event.target===this)closeCompare()">
+  <div class="compare-panel" id="comparePanel"></div>
+</div>
+
+<!-- HARDWARE COMPARISON OVERLAY -->
+<div class="hw-overlay" id="hwOverlay">
+  <div class="hw-header">
+    <h2>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></svg>
+      Juniper Hardware Comparison
+    </h2>
+    <button class="hw-close" onclick="closeHwCompare()" title="Back to Catalogue">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5"/><polyline points="12 19 5 12 12 5"/></svg>
+      Back
+    </button>
+  </div>
+  <div class="hw-body">
+    <div class="hw-sidebar" id="hwSidebar">
+      <div class="hw-sidebar-group">
+        <h4>Product Categories</h4>
+        <label class="hw-sidebar-item"><input type="checkbox" name="hw-cat" value="switches" checked onchange="renderHwTable()"> Switches</label>
+        <label class="hw-sidebar-item"><input type="checkbox" name="hw-cat" value="routers" checked onchange="renderHwTable()"> Routers</label>
+        <label class="hw-sidebar-item"><input type="checkbox" name="hw-cat" value="wireless" checked onchange="renderHwTable()"> Wireless (APs)</label>
+        <label class="hw-sidebar-item"><input type="checkbox" name="hw-cat" value="firewalls" checked onchange="renderHwTable()"> Firewalls</label>
+        <label class="hw-sidebar-item"><input type="checkbox" name="hw-cat" value="sdwan" checked onchange="renderHwTable()"> SD-WAN</label>
+      </div>
+    </div>
+    <div class="hw-main" id="hwMain"></div>
+  </div>
+</div>
+
+<!-- BOM FAB -->
+<button class="bom-fab" onclick="toggleBomDrawer()" title="Bill of Materials (Ctrl+B)">
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><path d="M9 14l2 2 4-4"/></svg>
+  <span class="bom-fab-badge" id="bomBadge">0</span>
+</button>
+
+<!-- BOM Backdrop -->
+<div id="bomBackdrop" onclick="closeBomDrawer()" style="display:none;position:fixed;inset:0;z-index:1099;background:rgba(0,0,0,0.35)"></div>
+
+<!-- BOM Drawer -->
+<div class="bom-drawer" id="bomDrawer">
+  <div class="bom-drawer-header">
+    <h3 style="margin:0;font-size:1.1rem;color:var(--jnpr-text)">Bill of Materials</h3>
+    <button class="bom-btn" onclick="closeBomDrawer()" title="Close">&#10005;</button>
+  </div>
+  <div class="bom-drawer-body">
+    <details class="bom-meta" open>
+      <summary style="cursor:pointer;font-size:0.8rem;font-weight:600;color:var(--jnpr-green);margin-bottom:10px">Project Details</summary>
+      <div class="bom-meta-grid">
+        <div><label style="font-size:0.7rem;color:var(--jnpr-muted)">Project Name</label><input id="bomProject" placeholder="e.g. Acme Corp Network Refresh" oninput="bomAutoSave()"></div>
+        <div><label style="font-size:0.7rem;color:var(--jnpr-muted)">Customer</label><input id="bomCustomer" placeholder="Customer name" oninput="bomAutoSave()"></div>
+        <div><label style="font-size:0.7rem;color:var(--jnpr-muted)">Prepared By</label><input id="bomPreparedBy" value="Compugeddon t/a CGTECH" oninput="bomAutoSave()"></div>
+        <div><label style="font-size:0.7rem;color:var(--jnpr-muted)">Reference #</label><input id="bomReference" placeholder="BOM-001" oninput="bomAutoSave()"></div>
+      </div>
+    </details>
+    <div id="bomItems"></div>
+  </div>
+  <div class="bom-drawer-footer">
+    <div class="bom-summary" id="bomSummary"></div>
+    <div class="bom-actions" style="margin-top:12px">
+      <button class="bom-btn primary" onclick="exportBomCSV()">&#128228; Export CSV</button>
+      <button class="bom-btn" onclick="copyBomToClipboard()">&#128203; Copy</button>
+      <button class="bom-btn" onclick="printBom()">&#128424; Print</button>
+      <button class="bom-btn danger" onclick="clearBom()">&#128465; Clear</button>
+    </div>
+  </div>
+</div>
+
+<!-- Model Picker -->
+<div id="modelPickerOverlay" class="model-picker-overlay" style="display:none" onclick="if(event.target===this)closeModelPicker()">
+  <div class="model-picker" id="modelPickerContent"></div>
+</div>
+
+<!-- Series Overlay -->
+<div class="series-overlay" id="seriesOverlay">
+  <div class="series-header">
+    <button class="series-back" onclick="closeSeriesPage()">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5"/><polyline points="12 19 5 12 12 5"/></svg>
+      Back to Catalogue
+    </button>
+  </div>
+  <div id="seriesContent"></div>
+</div>
+
+<footer>
+  <div style="display:flex;align-items:center;justify-content:center;gap:20px;margin-bottom:16px;flex-wrap:wrap">
+    <img src="https://cdn.prod.website-files.com/6343e547ce19691304ad1712/65377a3d7cae3740f01493e5_CGTech%20-%20Logo%20export-10.avif" alt="CGTECH" style="height:36px;filter:brightness(1.1)">
+    <span style="color:#334155;font-size:1.2rem">|</span>
+    <div style="display:flex;align-items:center;gap:10px;padding:8px 16px;background:rgba(132,189,0,0.06);border:1px solid rgba(132,189,0,0.15);border-radius:10px">
+      <span style="font-size:0.7rem;font-weight:600;color:var(--jnpr-green);letter-spacing:1px;text-transform:uppercase;line-height:1.3">Juniper<br>Partner</span>
+    </div>
+  </div>
+  <p>Juniper Networks Product Catalogue &mdash; Sales Reference Material &mdash; April 2026</p>
+  <p style="margin-top:6px"><a href="https://www.cgtech.co.za" target="_blank">www.cgtech.co.za</a> &mdash; <a href="https://www.juniper.net/us/en/products.html" target="_blank">juniper.net/products</a></p>
+</footer>
+
+<script>
+// ===== UTILITIES =====
+function handleImgError(el){
+  var p=el.parentElement;
+  p.innerHTML='<div class="img-placeholder"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>Image unavailable</div>';
+}
+
+function showToast(msg, type) {
+  type = type || 'success';
+  var t = document.createElement('div');
+  t.className = 'bom-toast';
+  if(type==='warning') t.style.borderLeftColor = '#f59e0b';
+  else if(type==='info') t.style.borderLeftColor = 'var(--jnpr-cyan)';
+  else if(type==='error') t.style.borderLeftColor = '#ef4444';
+  t.textContent = msg;
+  document.body.appendChild(t);
+  setTimeout(function(){ t.style.opacity='0'; t.style.transition='opacity 0.3s'; setTimeout(function(){t.remove()}, 300); }, 2500);
+}
+
+// ===== CATEGORIES =====
+const categories = {
+  switches: { name: 'Switches', icon: 'S', color: '#84BD00', badgeClass: 'badge-switches' },
+  routers: { name: 'Routers', icon: 'R', color: '#00B2A9', badgeClass: 'badge-routers' },
+  wireless: { name: 'Wireless', icon: 'W', color: '#22c55e', badgeClass: 'badge-wireless' },
+  firewalls: { name: 'Firewalls', icon: 'F', color: '#f59e0b', badgeClass: 'badge-firewalls' },
+  sdwan: { name: 'SD-WAN', icon: 'D', color: '#8b5cf6', badgeClass: 'badge-sdwan' },
+  management: { name: 'Management & AIOps', icon: 'M', color: '#0ea5e9', badgeClass: 'badge-management' },
+  software: { name: 'Software & Subscriptions', icon: 'O', color: '#ec4899', badgeClass: 'badge-software' },
+  services: { name: 'Services & Support', icon: 'V', color: '#64748b', badgeClass: 'badge-services' }
+};
+const catOrder = ['switches','routers','wireless','firewalls','sdwan','management','software','services'];
+
+// ===== PRODUCTS =====
+const products = [
+  // ========== SWITCHES ==========
+  {
+    id: 'ex2300', category: 'switches', badge: 'Access Switch',
+    image: 'https://www.hpe.com/content/dam/hpe/shared-publishing/images-norend/products-norend/networking/juniper/Juniper-EX2300-Switch-F-16-9.png',
+    name: 'Juniper EX2300 Series',
+    tagline: 'Compact, entry-level access switches with Layer 2/3 capabilities for branch offices and small campuses.',
+    description: 'The EX2300 line delivers enterprise-grade switching for small branches and campus access closets. It supports Layer 2/3, Virtual Chassis (up to 4 members), Energy Efficient Ethernet, and optional PoE+ for powering APs, phones and cameras. Junos OS provides a consistent operational model across the Juniper portfolio.',
+    specs: ['24/48 x 1GbE ports (copper or fiber)', '4 x 1GbE/10GbE SFP+ uplinks', 'PoE+ on -P models (up to 740W)', 'Virtual Chassis: up to 4 switches', 'Junos OS with Layer 2/3', 'Compact, fanless on 12-port model'],
+    specGrid: [
+      { label: 'Access Ports', value: '24 / 48' },
+      { label: 'Uplinks', value: '4 x 10GbE SFP+' },
+      { label: 'PoE Budget', value: 'Up to 740W' },
+      { label: 'Switching Cap.', value: 'Up to 176 Gbps' },
+      { label: 'VC Members', value: 'Up to 4' },
+      { label: 'Junos', value: 'Junos OS' }
+    ],
+    features: ['Virtual Chassis stacking', 'PoE+ optional', 'Fanless 12-port variant', 'Zero Touch Provisioning'],
+    useCases: ['Branch office access', 'Small campus closets', 'PoE for APs/phones/cameras'],
+    licensing: 'Junos OS included. Optional Advanced Feature License (AFL) adds OSPF, BGP, multicast routing.',
+    licenseType: 'Perpetual + optional AFL',
+    models: [
+      { name: 'EX2300-24P', sku: 'EX2300-24P', description: '24 x 1GbE PoE+ + 4 SFP+' },
+      { name: 'EX2300-48P', sku: 'EX2300-48P', description: '48 x 1GbE PoE+ + 4 SFP+' },
+      { name: 'EX2300-24T', sku: 'EX2300-24T', description: '24 x 1GbE + 4 SFP+ (no PoE)' },
+      { name: 'EX2300-48T', sku: 'EX2300-48T', description: '48 x 1GbE + 4 SFP+ (no PoE)' }
+    ],
+    productUrl: 'https://www.juniper.net/us/en/products/switches/ex-series/ex2300-ethernet-switch.html',
+    brochureUrl: 'https://www.juniper.net/us/en/products/switches/ex-series/ex2300-ethernet-switch.html'
+  },
+  {
+    id: 'ex3400', category: 'switches', badge: 'Access Switch',
+    image: 'https://www.hpe.com/content/dam/hpe/shared-publishing/images-norend/products-norend/networking/juniper/Juniper-EX3400-Switch-F-16-9.png',
+    name: 'Juniper EX3400 Series',
+    tagline: 'Mid-range access switches with 10GbE uplinks, 40GbE VCP, and advanced routing for converged campus edge.',
+    description: 'EX3400 switches extend campus access with 10GbE SFP+ uplinks and 40GbE QSFP+ Virtual Chassis ports for high-speed stacking. They support MACsec encryption on all ports, Junos OS, and Virtual Chassis up to 10 members. Ideal for modern campus access that needs 10G uplink capacity today.',
+    specs: ['24/48 x 1GbE access ports', '4 x 10GbE SFP+ uplinks', '2 x 40GbE QSFP+ VCPs', 'PoE+ up to 740W (-P models)', 'MACsec AES-256 on all ports', 'Virtual Chassis up to 10 members'],
+    specGrid: [
+      { label: 'Access Ports', value: '24 / 48 x 1GbE' },
+      { label: 'Uplinks', value: '4 x 10GbE SFP+' },
+      { label: 'VC Ports', value: '2 x 40GbE QSFP+' },
+      { label: 'PoE', value: '740W (-P)' },
+      { label: 'MACsec', value: 'AES-256' },
+      { label: 'VC Members', value: 'Up to 10' }
+    ],
+    features: ['40GbE VCP ports', 'MACsec on every port', 'Virtual Chassis x10', 'Junos OS'],
+    useCases: ['Campus access with 10G uplinks', 'Secure edge with MACsec', 'IoT/PoE convergence'],
+    licensing: 'Junos OS base license included. Advanced Feature License (AFL) unlocks full L3 routing including BGP.',
+    licenseType: 'Perpetual + AFL option',
+    models: [
+      { name: 'EX3400-24P', sku: 'EX3400-24P', description: '24 x 1GbE PoE+ + 4 SFP+ + 2 QSFP+' },
+      { name: 'EX3400-48P', sku: 'EX3400-48P', description: '48 x 1GbE PoE+ + 4 SFP+ + 2 QSFP+' },
+      { name: 'EX3400-24T', sku: 'EX3400-24T', description: '24 x 1GbE + 4 SFP+ + 2 QSFP+' },
+      { name: 'EX3400-48T', sku: 'EX3400-48T', description: '48 x 1GbE + 4 SFP+ + 2 QSFP+' }
+    ],
+    productUrl: 'https://www.juniper.net/us/en/products/switches/ex-series/ex3400-ethernet-switch.html',
+    brochureUrl: 'https://www.juniper.net/us/en/products/switches/ex-series/ex3400-ethernet-switch.html'
+  },
+  {
+    id: 'ex4100', category: 'switches', badge: 'Access + mGig',
+    image: 'https://www.hpe.com/content/dam/hpe/shared-publishing/images-norend/products-norend/networking/juniper/Juniper-EX4100-48p-Switch-F-16-9.png',
+    name: 'Juniper EX4100 Series',
+    tagline: 'Cloud-ready access switches with multigigabit ports, 25GbE uplinks, and Mist AI cloud management.',
+    description: 'The EX4100 is Juniper\u2019s modern campus access platform, supporting Wi-Fi 6/6E/7 access points with 2.5G/5G/10G multigigabit ports, 25GbE uplinks, and 100GbE Virtual Chassis ports. Integrated with the Mist cloud for AIOps, it delivers the simplicity of cloud operations with the power of Junos.',
+    specs: ['24/48 x 1GbE or mGig access ports', '4 x 25GbE SFP28 uplinks', '4 x 100GbE QSFP28 VCPs', 'PoE++ (802.3bt) up to 2880W', 'Mist cloud-managed', 'Virtual Chassis up to 10 members'],
+    specGrid: [
+      { label: 'Access Ports', value: '24/48 mGig' },
+      { label: 'Uplinks', value: '4 x 25GbE' },
+      { label: 'VC Ports', value: '4 x 100GbE' },
+      { label: 'PoE Budget', value: 'Up to 2880W 802.3bt' },
+      { label: 'Cloud', value: 'Mist AI' },
+      { label: 'Switching', value: 'Up to 1.8 Tbps' }
+    ],
+    features: ['Multigigabit (2.5/5/10G)', '100GbE Virtual Chassis', '802.3bt PoE++', 'Mist AI cloud-managed'],
+    useCases: ['Wi-Fi 6E/7 AP aggregation', 'High-density campus', 'Mist-driven AIOps access'],
+    licensing: 'Mist Wired Assurance subscription required for cloud AIOps features. Junos base included.',
+    licenseType: 'Perpetual HW + Mist Wired Assurance sub',
+    models: [
+      { name: 'EX4100-24P', sku: 'EX4100-24P', description: '24 x 1GbE PoE+ + 4 SFP28' },
+      { name: 'EX4100-48P', sku: 'EX4100-48P', description: '48 x 1GbE PoE+ + 4 SFP28' },
+      { name: 'EX4100-24MP', sku: 'EX4100-24MP', description: '24 x mGig PoE++ + 4 SFP28' },
+      { name: 'EX4100-48MP', sku: 'EX4100-48MP', description: '48 x mGig PoE++ + 4 SFP28' },
+      { name: 'EX4100-F-12P', sku: 'EX4100-F-12P', description: '12 x 1GbE PoE+ fanless + 4 SFP+' }
+    ],
+    productUrl: 'https://www.juniper.net/us/en/products/switches/ex-series/ex4100-ethernet-switch.html',
+    brochureUrl: 'https://www.juniper.net/us/en/products/switches/ex-series/ex4100-ethernet-switch.html'
+  },
+  {
+    id: 'ex4400', category: 'switches', badge: 'Premium Access',
+    image: 'https://www.hpe.com/content/dam/hpe/shared-publishing/images-norend/products-norend/networking/juniper/Juniper-EX4400-Switch-F-16-9.png',
+    name: 'Juniper EX4400 Series',
+    tagline: 'Premium campus access switches with 25GbE uplinks, 100GbE Virtual Chassis, and Mist cloud integration.',
+    description: 'EX4400 provides the highest-performance access experience in the EX portfolio, built for mission-critical enterprise campuses. It supports full mGig, 25GbE SFP28 uplinks, 100GbE VCPs, and EVPN-VXLAN fabric extension. Integrated with Mist AI for cloud AIOps, MACsec AES-256, and a 10-member Virtual Chassis.',
+    specs: ['24/48 x 1GbE or mGig access ports', '4 x 25GbE SFP28 uplinks', '2 x 100GbE QSFP28 VCPs', 'PoE++ (802.3bt) up to 2880W', 'EVPN-VXLAN campus fabric', 'MACsec AES-256 on all ports'],
+    specGrid: [
+      { label: 'Access Ports', value: '24/48 mGig' },
+      { label: 'Uplinks', value: '4 x 25GbE SFP28' },
+      { label: 'VCPs', value: '2 x 100GbE' },
+      { label: 'PoE', value: '2880W 802.3bt' },
+      { label: 'Fabric', value: 'EVPN-VXLAN' },
+      { label: 'MACsec', value: 'AES-256' }
+    ],
+    features: ['EVPN-VXLAN campus fabric', '100GbE Virtual Chassis', '802.3bt PoE++', 'Mist AIOps'],
+    useCases: ['Premium campus access', 'Wi-Fi 6E/7 high-density', 'EVPN campus fabrics'],
+    licensing: 'Mist Wired Assurance subscription for AIOps. Advanced Feature License (AFL) for EVPN-VXLAN.',
+    licenseType: 'Perpetual + Mist WA + AFL',
+    models: [
+      { name: 'EX4400-24P', sku: 'EX4400-24P', description: '24 x 1GbE PoE+ + 4 SFP28 + 2 QSFP28' },
+      { name: 'EX4400-48P', sku: 'EX4400-48P', description: '48 x 1GbE PoE+ + 4 SFP28 + 2 QSFP28' },
+      { name: 'EX4400-24MP', sku: 'EX4400-24MP', description: '24 x mGig PoE++ + 4 SFP28 + 2 QSFP28' },
+      { name: 'EX4400-48MP', sku: 'EX4400-48MP', description: '48 x mGig PoE++ + 4 SFP28 + 2 QSFP28' },
+      { name: 'EX4400-48F', sku: 'EX4400-48F', description: '48 x 1GbE SFP + 4 SFP28 + 2 QSFP28' }
+    ],
+    productUrl: 'https://www.juniper.net/us/en/products/switches/ex-series/ex4400-ethernet-switch.html',
+    brochureUrl: 'https://www.juniper.net/us/en/products/switches/ex-series/ex4400-ethernet-switch.html'
+  },
+  {
+    id: 'ex4650', category: 'switches', badge: 'Access/Aggregation',
+    image: 'https://www.hpe.com/content/dam/hpe/shared-publishing/images-norend/products-norend/networking/juniper/Juniper-EX4650-Switch-F-16-9.png',
+    name: 'Juniper EX4650 Series',
+    tagline: 'Compact 25GbE/100GbE top-of-rack and aggregation switch for small data centers and campus cores.',
+    description: 'The EX4650 is a 1U switch delivering 48 x 25GbE SFP28 ports plus 8 x 100GbE QSFP28 uplinks, ideal as a server top-of-rack, campus distribution, or small data center leaf. It supports EVPN-VXLAN fabrics and can join a Virtual Chassis with EX4600 switches.',
+    specs: ['48 x 10/25GbE SFP28', '8 x 40/100GbE QSFP28', 'Up to 4 Tbps switching', 'EVPN-VXLAN leaf/spine', 'Virtual Chassis (mixed w/ EX4600)', 'Front-to-back / back-to-front airflow'],
+    specGrid: [
+      { label: 'SFP28 Ports', value: '48 x 25GbE' },
+      { label: 'QSFP28 Ports', value: '8 x 100GbE' },
+      { label: 'Switching', value: '4 Tbps' },
+      { label: 'Throughput', value: '2 Bpps' },
+      { label: 'Fabric', value: 'EVPN-VXLAN' },
+      { label: 'Form Factor', value: '1U' }
+    ],
+    features: ['Line-rate 25/100G', 'EVPN-VXLAN leaf', 'Virtual Chassis', 'MACsec 256'],
+    useCases: ['Campus distribution/core', 'Small DC top-of-rack', 'EVPN fabric leaf'],
+    licensing: 'Base Junos included. Advanced Feature License (AFL) unlocks EVPN-VXLAN and full L3.',
+    licenseType: 'Perpetual + AFL',
+    models: [
+      { name: 'EX4650-48Y', sku: 'EX4650-48Y-8C', description: '48 x 25GbE + 8 x 100GbE, AC PSU' },
+      { name: 'EX4650-48Y DC', sku: 'EX4650-48Y-8C-DC', description: '48 x 25GbE + 8 x 100GbE, DC PSU' }
+    ],
+    productUrl: 'https://www.juniper.net/us/en/products/switches/ex-series/ex4650-ethernet-switch.html',
+    brochureUrl: 'https://www.juniper.net/us/en/products/switches/ex-series/ex4650-ethernet-switch.html'
+  },
+  {
+    id: 'ex9200', category: 'switches', badge: 'Core / Chassis',
+    image: 'https://www.hpe.com/content/dam/hpe/shared-publishing/images-norend/products-norend/networking/juniper/Juniper-EX9200-Switches-F-16-9.png',
+    name: 'Juniper EX9200 Series',
+    tagline: 'Programmable modular core switches delivering multi-terabit performance for enterprise campus cores.',
+    description: 'The EX9200 is Juniper\u2019s flagship programmable core platform for enterprise campus. Based on the Junos Trio chipset, it offers line-rate L2/L3, MPLS, EVPN-VXLAN, and ISSU (in-service software upgrade). Available in 4/8/14-slot chassis to scale from 160G to over 13.2 Tbps.',
+    specs: ['4/8/14-slot chassis', 'Up to 13.2 Tbps switching', 'Programmable Trio chipset', 'MPLS, EVPN-VXLAN, L3VPN', 'ISSU (hitless upgrade)', 'Redundant RE, fabric, PSU'],
+    specGrid: [
+      { label: 'Slots', value: '4 / 8 / 14' },
+      { label: 'Max Capacity', value: '13.2 Tbps' },
+      { label: 'L2/L3', value: 'Full MPLS/EVPN' },
+      { label: 'Redundancy', value: 'RE+Fabric+PSU' },
+      { label: 'ISSU', value: 'Hitless upgrade' },
+      { label: 'Junos', value: 'Junos OS' }
+    ],
+    features: ['Programmable Trio', 'ISSU', 'EVPN-VXLAN campus fabric', 'Redundant control plane'],
+    useCases: ['Enterprise campus core', 'Aggregation for EX4400 access', 'Data center aggregation'],
+    licensing: 'Premium feature license required for advanced L3/MPLS. Per-slot / per-chassis options.',
+    licenseType: 'Perpetual chassis + premium FL',
+    models: [
+      { name: 'EX9204', sku: 'EX9204-CHAS', description: '4-slot chassis, 2 line card slots' },
+      { name: 'EX9208', sku: 'EX9208-CHAS', description: '8-slot chassis, 6 line card slots' },
+      { name: 'EX9214', sku: 'EX9214-CHAS', description: '14-slot chassis, 12 line card slots' }
+    ],
+    productUrl: 'https://www.juniper.net/us/en/products/switches/ex-series/ex9200-programmable-core-switch.html',
+    brochureUrl: 'https://www.juniper.net/us/en/products/switches/ex-series/ex9200-programmable-core-switch.html'
+  },
+  {
+    id: 'qfx5120', category: 'switches', badge: 'DC Leaf',
+    image: 'https://www.hpe.com/content/dam/hpe/shared-publishing/images-norend/products-norend/networking/juniper/Juniper-QFX5120-F-16-9.png',
+    name: 'Juniper QFX5120 Series',
+    tagline: 'High-density 25/100GbE data center leaf switches with deep buffers and EVPN-VXLAN fabric support.',
+    description: 'QFX5120 series delivers 48 x 25GbE or 32 x 100GbE options with deep buffering for demanding data center workloads. It supports EVPN-VXLAN leaf/spine fabrics, MACsec, and is Junos-based for uniform operations with the rest of the Juniper DC portfolio.',
+    specs: ['Up to 48 x 25GbE + 8 x 100GbE', '32 x 100GbE variant (QFX5120-32C)', 'Deep packet buffers', 'EVPN-VXLAN fabric', 'MACsec AES-256', 'Junos OS / Junos OS Evolved'],
+    specGrid: [
+      { label: 'Max 25G', value: '48 ports' },
+      { label: '100G', value: '8 / 32 ports' },
+      { label: 'Switching', value: '6.4 Tbps' },
+      { label: 'Buffers', value: 'Deep (32MB+)' },
+      { label: 'Fabric', value: 'EVPN-VXLAN' },
+      { label: 'MACsec', value: 'AES-256' }
+    ],
+    features: ['Deep buffers', 'Line-rate 25/100G', 'EVPN-VXLAN leaf', 'Junos Evolved option'],
+    useCases: ['DC top-of-rack leaf', '100GbE spine for small DCs', 'Campus core aggregation'],
+    licensing: 'Advanced Feature License (AFL) required for EVPN-VXLAN and MPLS features.',
+    licenseType: 'Perpetual + AFL',
+    models: [
+      { name: 'QFX5120-48Y', sku: 'QFX5120-48Y-AFI', description: '48 x 25GbE + 8 x 100GbE AFI airflow' },
+      { name: 'QFX5120-48T', sku: 'QFX5120-48T-AFI', description: '48 x 10GBASE-T + 8 x 100GbE' },
+      { name: 'QFX5120-32C', sku: 'QFX5120-32C-AFI', description: '32 x 100GbE QSFP28' }
+    ],
+    productUrl: 'https://www.juniper.net/us/en/products/switches/qfx-series/qfx5120-ethernet-switch.html',
+    brochureUrl: 'https://www.juniper.net/us/en/products/switches/qfx-series/qfx5120-ethernet-switch.html'
+  },
+  {
+    id: 'qfx5130', category: 'switches', badge: 'DC Leaf/Spine',
+    image: 'https://www.hpe.com/content/dam/hpe/shared-publishing/images-norend/products-norend/networking/juniper/Juniper-QFX5130-F-16-9.png',
+    name: 'Juniper QFX5130 Series',
+    tagline: 'High-performance 400GbE data center switch for leaf and spine roles in AI and cloud fabrics.',
+    description: 'QFX5130 brings 400GbE to data center fabrics. The 32-port QFX5130-32CD supports 32 x 400GbE QSFP56-DD ports (or breakouts to 100G/50G/25G), ideal as a spine for 25/100G leafs or as an AI/ML backend fabric switch. Runs Junos OS Evolved.',
+    specs: ['32 x 400GbE QSFP56-DD', 'Breakout to 100/50/25GbE', '12.8 Tbps switching', 'EVPN-VXLAN fabric', 'RoCEv2 for AI/ML', 'Junos OS Evolved'],
+    specGrid: [
+      { label: '400G Ports', value: '32 x QSFP56-DD' },
+      { label: 'Switching', value: '12.8 Tbps' },
+      { label: 'Breakouts', value: '100/50/25G' },
+      { label: 'OS', value: 'Junos Evolved' },
+      { label: 'AI Fabric', value: 'RoCEv2' },
+      { label: 'Form Factor', value: '1U' }
+    ],
+    features: ['400GbE spine', 'RoCEv2 AI fabric', 'Junos Evolved', 'EVPN-VXLAN'],
+    useCases: ['DC 400G spine', 'AI/ML backend fabric', '100G leaf aggregation'],
+    licensing: 'Advanced license required for EVPN-VXLAN and AI/ML fabric features.',
+    licenseType: 'Perpetual + Premium FL',
+    models: [
+      { name: 'QFX5130-32CD', sku: 'QFX5130-32CD', description: '32 x 400GbE QSFP56-DD leaf/spine' }
+    ],
+    productUrl: 'https://www.juniper.net/us/en/products/switches/qfx-series/qfx5130-ethernet-switch.html',
+    brochureUrl: 'https://www.juniper.net/us/en/products/switches/qfx-series/qfx5130-ethernet-switch.html'
+  },
+  {
+    id: 'qfx5220', category: 'switches', badge: 'DC Spine',
+    image: 'https://www.hpe.com/content/dam/hpe/shared-publishing/images-norend/products-norend/networking/juniper/Juniper-QFX5220-F-16-9.png',
+    name: 'Juniper QFX5220 Series',
+    tagline: 'High-radix 400GbE spine switch with 128-port 100GbE breakout for large-scale cloud fabrics.',
+    description: 'QFX5220 delivers spine performance with 32 x 400GbE QSFP-DD (QFX5220-32CD) or 128 x 100GbE via breakout. Ideal as a spine in massive EVPN-VXLAN fabrics, it runs Junos OS Evolved and supports RoCEv2 for AI/storage workloads.',
+    specs: ['32 x 400GbE QSFP-DD', '128 x 100GbE via breakout', '12.8 Tbps switching', 'EVPN-VXLAN spine', 'RoCEv2 support', 'Junos OS Evolved'],
+    specGrid: [
+      { label: '400G', value: '32 ports' },
+      { label: '100G Breakout', value: '128 ports' },
+      { label: 'Switching', value: '12.8 Tbps' },
+      { label: 'OS', value: 'Junos Evolved' },
+      { label: 'Fabric', value: 'EVPN-VXLAN' },
+      { label: 'Power', value: 'N+1 PSU' }
+    ],
+    features: ['High-radix spine', '400G QSFP-DD', 'RoCEv2', 'Junos Evolved'],
+    useCases: ['Cloud DC spine', 'Hyperscale fabrics', 'AI/ML clusters'],
+    licensing: 'Advanced license for EVPN-VXLAN and telemetry features.',
+    licenseType: 'Perpetual + Premium FL',
+    models: [
+      { name: 'QFX5220-32CD', sku: 'QFX5220-32CD', description: '32 x 400GbE QSFP-DD spine' },
+      { name: 'QFX5220-128C', sku: 'QFX5220-128C', description: '128 x 100GbE QSFP28 spine' }
+    ],
+    productUrl: 'https://www.juniper.net/us/en/products/switches/qfx-series/qfx5220-ethernet-switch.html',
+    brochureUrl: 'https://www.juniper.net/us/en/products/switches/qfx-series/qfx5220-ethernet-switch.html'
+  },
+  {
+    id: 'qfx10008', category: 'switches', badge: 'DC Chassis',
+    image: 'https://www.hpe.com/content/dam/hpe/shared-publishing/images-norend/products-norend/networking/juniper/Juniper-QFX10008-F-16-9.png',
+    name: 'Juniper QFX10000 Series',
+    tagline: 'Modular data center core switches offering multi-terabit capacity, deep buffers, and MPLS/EVPN.',
+    description: 'QFX10000 modular switches are designed for data center cores and large EVPN-VXLAN spines. Available as 8-slot or 16-slot chassis, they offer line-rate 10/40/100/400GbE, deep buffering, MPLS, and EVPN-VXLAN. Ideal for traditional and modern DC architectures alike.',
+    specs: ['8 or 16 line card slots', 'Up to 96 Tbps switching', 'Deep buffering per port', '10/40/100/400GbE line cards', 'MPLS, EVPN-VXLAN, L3VPN', 'Redundant RE, fabric, PSU, fans'],
+    specGrid: [
+      { label: 'Slots', value: '8 / 16' },
+      { label: 'Max Capacity', value: '96 Tbps' },
+      { label: 'Line Cards', value: '10/40/100/400G' },
+      { label: 'Buffers', value: 'Very Deep' },
+      { label: 'OS', value: 'Junos OS' },
+      { label: 'Redundancy', value: 'Full' }
+    ],
+    features: ['Deep buffers', 'Modular 400G', 'MPLS/EVPN', 'ISSU'],
+    useCases: ['DC core / super-spine', 'Carrier DC edge', 'EVPN fabric spine'],
+    licensing: 'Premium feature license for advanced L3/MPLS/EVPN. Per-slot / chassis.',
+    licenseType: 'Perpetual + Premium FL',
+    models: [
+      { name: 'QFX10008', sku: 'QFX10008-CHAS', description: '8-slot chassis' },
+      { name: 'QFX10016', sku: 'QFX10016-CHAS', description: '16-slot chassis' }
+    ],
+    productUrl: 'https://www.juniper.net/us/en/products/switches/qfx-series/qfx10000-ethernet-switch.html',
+    brochureUrl: 'https://www.juniper.net/us/en/products/switches/qfx-series/qfx10000-ethernet-switch.html'
+  },
+
+  // ========== ROUTERS ==========
+  {
+    id: 'mx204', category: 'routers', badge: 'Edge Router',
+    image: 'https://www.juniper.net/content/dam/www/assets/photos/us/en/products/routers/mx204-frontwtop-low-1.png',
+    name: 'Juniper MX204 Universal Router',
+    tagline: 'Compact 1U fixed-form edge router delivering 400Gbps of programmable MPLS and SP capabilities.',
+    description: 'The MX204 is a 1U fixed-configuration universal edge router offering 400Gbps throughput in a compact form factor. It provides 4 x 100GbE and 8 x 10GbE ports and runs Junos OS with full MX features including MPLS, L2VPN/L3VPN, EVPN, and programmability via Junos.',
+    specs: ['4 x 100GbE QSFP28', '8 x 10GbE SFP+', '400Gbps throughput', 'Full MX L2/L3/MPLS feature set', '1U fixed form factor', 'AC or DC PSU'],
+    specGrid: [
+      { label: 'Throughput', value: '400 Gbps' },
+      { label: '100G Ports', value: '4' },
+      { label: '10G Ports', value: '8' },
+      { label: 'Form Factor', value: '1U' },
+      { label: 'OS', value: 'Junos MX' },
+      { label: 'Services', value: 'MPLS/EVPN/BNG' }
+    ],
+    features: ['Full MX services', 'MPLS/EVPN', '1U compact', 'Junos programmable'],
+    useCases: ['SP edge / CE router', 'Data center edge', 'Business services edge'],
+    licensing: 'Advanced/premium feature licenses for BNG, AppSecure, and subscriber services.',
+    licenseType: 'Perpetual + optional FL',
+    models: [
+      { name: 'MX204', sku: 'MX204-HWBASE-AC', description: '400G edge router, AC PSU' },
+      { name: 'MX204 DC', sku: 'MX204-HWBASE-DC', description: '400G edge router, DC PSU' }
+    ],
+    productUrl: 'https://www.juniper.net/us/en/products/routers/mx-series/mx204-universal-routing-platform.html',
+    brochureUrl: 'https://www.juniper.net/us/en/products/routers/mx-series/mx204-universal-routing-platform.html'
+  },
+  {
+    id: 'mx304', category: 'routers', badge: 'Edge Router',
+    image: 'https://www.juniper.net/content/dam/www/assets/photos/us/en/products/routers/mx304-frontwtop.png',
+    name: 'Juniper MX304 Universal Router',
+    tagline: 'High-density 2.4Tbps edge router with 400GbE interfaces, native segment routing, and cloud-metro scale.',
+    description: 'The MX304 is a 2.4Tbps, 4-slot modular edge router supporting 400GbE QSFP56-DD interfaces and the full Junos MX feature set. It is designed for metro, cloud and business services edge use cases and supports SRv6, EVPN, MPLS, and advanced telemetry.',
+    specs: ['2.4 Tbps throughput', '4 MIC line-card slots (LMIC)', 'Up to 16 x 400GbE', 'SRv6, EVPN, MPLS', 'Redundant RE, PSU', 'Junos OS Evolved'],
+    specGrid: [
+      { label: 'Throughput', value: '2.4 Tbps' },
+      { label: 'Slots', value: '4 LMIC' },
+      { label: '400G Ports', value: 'Up to 16' },
+      { label: 'OS', value: 'Junos Evolved' },
+      { label: 'Services', value: 'SRv6/EVPN/BNG' },
+      { label: 'Redundancy', value: 'RE + PSU' }
+    ],
+    features: ['SRv6 native', 'EVPN/MPLS', '400G density', 'Redundant control plane'],
+    useCases: ['Metro aggregation', 'Cloud peering edge', 'Business services'],
+    licensing: 'Advanced / premium feature licenses for SRv6, subscriber management, and EVPN.',
+    licenseType: 'Perpetual + FL',
+    models: [
+      { name: 'MX304', sku: 'MX304-BASE-AC', description: '2.4 Tbps 4-slot edge router, AC' }
+    ],
+    productUrl: 'https://www.juniper.net/us/en/products/routers/mx-series/mx304-universal-routing-platform.html',
+    brochureUrl: 'https://www.juniper.net/us/en/products/routers/mx-series/mx304-universal-routing-platform.html'
+  },
+  {
+    id: 'mx960', category: 'routers', badge: 'Chassis Router',
+    image: 'https://www.juniper.net/content/dam/www/assets/photos/us/en/products/routers/mx960-frontwtop.png',
+    name: 'Juniper MX960 Universal Router',
+    tagline: 'Flagship 16-slot multi-terabit chassis router powering large SP edge, metro aggregation, and DC edge.',
+    description: 'The MX960 is a workhorse 16-slot (11 line card slots) modular chassis router widely deployed in service provider networks for edge, aggregation, and core services. It supports up to 80Tbps of system capacity with MPC10/MPC11 line cards and runs the full Junos MX feature set.',
+    specs: ['11 line card slots', 'Up to 80 Tbps (MPC11)', 'Redundant RE, SCB, PSU, fans', 'Full MPLS/EVPN/BNG', 'Hitless failover + ISSU', 'AC or DC power'],
+    specGrid: [
+      { label: 'Slots', value: '11 LC' },
+      { label: 'Capacity', value: 'Up to 80 Tbps' },
+      { label: 'Line Cards', value: 'MPC / MPC11' },
+      { label: 'OS', value: 'Junos MX' },
+      { label: 'Redundancy', value: 'Full' },
+      { label: 'Rack Units', value: '16U' }
+    ],
+    features: ['MPC11 80T capacity', 'Hitless ISSU', 'Full services edge', 'BNG subscriber'],
+    useCases: ['SP edge / BNG', 'Metro aggregation', 'Cloud DC edge'],
+    licensing: 'Advanced / premium feature licenses per slot / service. Subscriber licensing for BNG.',
+    licenseType: 'Perpetual + FL + subs',
+    models: [
+      { name: 'MX960 Base', sku: 'MX960-PREMIUM3-AC', description: '16-slot chassis with SCBE3, dual RE, AC' },
+      { name: 'MX960 DC', sku: 'MX960-PREMIUM3-DC', description: '16-slot chassis DC' }
+    ],
+    productUrl: 'https://www.juniper.net/us/en/products/routers/mx-series/mx960-universal-routing-platform.html',
+    brochureUrl: 'https://www.juniper.net/us/en/products/routers/mx-series/mx960-universal-routing-platform.html'
+  },
+  {
+    id: 'mx10008', category: 'routers', badge: 'Core Router',
+    image: 'https://www.hpe.com/content/dam/hpe/shared-publishing/images-norend/products-norend/networking/juniper/Juniper-MX10008-F-16-9.png',
+    name: 'Juniper MX10000 Series',
+    tagline: 'Ultra-high-capacity modular routers for cloud, DC interconnect and large SP edge with 400GbE density.',
+    description: 'The MX10000 series (MX10004/MX10008/MX10016) delivers hyperscale edge and DCI capacity with the Junos Trio chipset and Junos OS Evolved. Supporting up to 80Tbps per chassis and dense 400GbE interfaces, it\u2019s designed for DCI, SP edge and metro cloud.',
+    specs: ['4/8/16 line card slots', 'Up to 80 Tbps', 'Dense 100/400GbE line cards', 'Junos OS Evolved', 'SRv6, EVPN, MPLS', 'Redundant RE, SCB, PSU'],
+    specGrid: [
+      { label: 'Slots', value: '4 / 8 / 16' },
+      { label: 'Capacity', value: 'Up to 80 Tbps' },
+      { label: '400G', value: 'High density' },
+      { label: 'OS', value: 'Junos Evolved' },
+      { label: 'Use Cases', value: 'DCI / SP edge' },
+      { label: 'Redundancy', value: 'Full' }
+    ],
+    features: ['Dense 400G', 'SRv6 / EVPN', 'Junos Evolved', 'Hitless ISSU'],
+    useCases: ['DC interconnect', 'Cloud edge', 'Large metro aggregation'],
+    licensing: 'Advanced / premium feature licenses for SRv6 and cloud edge services.',
+    licenseType: 'Perpetual + FL',
+    models: [
+      { name: 'MX10004', sku: 'MX10004-BASE-AC', description: '4-slot chassis AC' },
+      { name: 'MX10008', sku: 'MX10008-BASE-AC', description: '8-slot chassis AC' },
+      { name: 'MX10016', sku: 'MX10016-BASE-AC', description: '16-slot chassis AC' }
+    ],
+    productUrl: 'https://www.juniper.net/us/en/products/routers/mx-series/mx10000-line-universal-routing-platform.html',
+    brochureUrl: 'https://www.juniper.net/us/en/products/routers/mx-series/mx10000-line-universal-routing-platform.html'
+  },
+  {
+    id: 'ptx10008', category: 'routers', badge: 'Core / Peering',
+    image: 'https://www.hpe.com/content/dam/hpe/shared-publishing/images-norend/products-norend/networking/juniper/Juniper-PTX10008-F-16-9.png',
+    name: 'Juniper PTX10000 Series',
+    tagline: 'Cloud-optimized packet transport routers delivering tens of terabits for IP/MPLS core and peering.',
+    description: 'The PTX10000 series (PTX10004/08/16) are modular, cloud-optimized packet transport routers for SP cores, peering, and DCI. Powered by Junos OS Evolved and the Express silicon family, they provide massive 400GbE/800GbE density with SRv6, segment routing and MACsec support.',
+    specs: ['4/8/16 LC slots (PTX10004/08/16)', 'Up to 115 Tbps per chassis', '400GbE / 800GbE line cards', 'Segment Routing, SRv6', 'MACsec AES-256', 'Junos OS Evolved'],
+    specGrid: [
+      { label: 'Slots', value: '4 / 8 / 16' },
+      { label: 'Capacity', value: 'Up to 115 Tbps' },
+      { label: 'Port Speeds', value: '100/400/800G' },
+      { label: 'SR / SRv6', value: 'Yes' },
+      { label: 'MACsec', value: 'AES-256' },
+      { label: 'OS', value: 'Junos Evolved' }
+    ],
+    features: ['800G line cards', 'SRv6', 'MACsec', 'Hitless ISSU'],
+    useCases: ['IP/MPLS core', 'Peering edge', 'DC interconnect'],
+    licensing: 'Advanced / premium feature licenses per slot for segment routing and telemetry.',
+    licenseType: 'Perpetual + FL',
+    models: [
+      { name: 'PTX10004', sku: 'PTX10004-BASE-AC', description: '4-slot core router, AC' },
+      { name: 'PTX10008', sku: 'PTX10008-BASE-AC', description: '8-slot core router, AC' },
+      { name: 'PTX10016', sku: 'PTX10016-BASE-AC', description: '16-slot core router, AC' }
+    ],
+    productUrl: 'https://www.juniper.net/us/en/products/routers/ptx-series/ptx10000-line-packet-transport-router.html',
+    brochureUrl: 'https://www.juniper.net/us/en/products/routers/ptx-series/ptx10000-line-packet-transport-router.html'
+  },
+  {
+    id: 'ptx10001', category: 'routers', badge: 'Compact Core',
+    image: 'https://www.hpe.com/content/dam/hpe/shared-publishing/images-norend/products-norend/networking/juniper/Juniper-PTX10001-F-16-9.png',
+    name: 'Juniper PTX10001-36MR',
+    tagline: 'Compact 1U core router with 36 x 400GbE ports for WAN, peering, and data center interconnect.',
+    description: 'The PTX10001-36MR is a 1U fixed form-factor core router delivering 36 x 400GbE QSFP56-DD ports (or breakouts to 100/50/25/10G). Running Junos OS Evolved, it supports SRv6, segment routing and MACsec, ideal for space-constrained WAN/peering PoPs.',
+    specs: ['36 x 400GbE QSFP56-DD', '14.4 Tbps throughput', '1U fixed form', 'Junos OS Evolved', 'SR / SRv6 / MPLS', 'Deep buffers'],
+    specGrid: [
+      { label: '400G Ports', value: '36' },
+      { label: 'Throughput', value: '14.4 Tbps' },
+      { label: 'Form', value: '1U' },
+      { label: 'Buffers', value: 'Deep' },
+      { label: 'OS', value: 'Junos Evolved' },
+      { label: 'SR/SRv6', value: 'Yes' }
+    ],
+    features: ['36 x 400G in 1U', 'Junos Evolved', 'SRv6', 'Compact PoP core'],
+    useCases: ['Compact WAN PoP', 'Small peering edge', 'Aggregation'],
+    licensing: 'Advanced feature license for segment routing and telemetry features.',
+    licenseType: 'Perpetual + FL',
+    models: [
+      { name: 'PTX10001-36MR', sku: 'PTX10001-36MR', description: '36 x 400G 1U core router' }
+    ],
+    productUrl: 'https://www.juniper.net/us/en/products/routers/ptx-series/ptx10001-36mr-packet-transport-router.html',
+    brochureUrl: 'https://www.juniper.net/us/en/products/routers/ptx-series/ptx10001-36mr-packet-transport-router.html'
+  },
+  {
+    id: 'acx7100', category: 'routers', badge: 'Access / Metro',
+    image: 'https://www.hpe.com/content/dam/hpe/shared-publishing/images-norend/products-norend/networking/juniper/Juniper-ACX7100-F-16-9.png',
+    name: 'Juniper ACX7000 Series',
+    tagline: 'Cloud metro routers purpose-built for 5G transport, metro aggregation, and business services edge.',
+    description: 'The ACX7000 family (ACX7100, ACX7509, ACX7024 and others) delivers cloud metro access and aggregation with timing (SyncE/PTP), segment routing, MACsec and Junos OS Evolved. Designed for 5G xHaul, metro aggregation, and business services, with compact and modular options.',
+    specs: ['10/25/100/400GbE options', 'SyncE / PTP Class C/D timing', 'Segment Routing / EVPN', 'MACsec AES-256', 'Junos OS Evolved', 'Hardened temp options'],
+    specGrid: [
+      { label: 'Port Speeds', value: '10/25/100/400G' },
+      { label: 'Timing', value: 'SyncE + PTP' },
+      { label: 'SR / SRv6', value: 'Yes' },
+      { label: 'MACsec', value: 'AES-256' },
+      { label: 'OS', value: 'Junos Evolved' },
+      { label: 'Temp', value: 'Extended (-H)' }
+    ],
+    features: ['5G transport', 'Timing SyncE/PTP', 'Segment Routing', 'MACsec'],
+    useCases: ['5G xHaul', 'Metro aggregation', 'Business services edge'],
+    licensing: 'Advanced feature license for segment routing, EVPN, and telemetry.',
+    licenseType: 'Perpetual + FL',
+    models: [
+      { name: 'ACX7100-32C', sku: 'ACX7100-32C', description: '32 x 100GbE cloud metro router' },
+      { name: 'ACX7100-48L', sku: 'ACX7100-48L', description: '48 x 10/25G + 6 x 100G' },
+      { name: 'ACX7509', sku: 'ACX7509-BASE-AC', description: '9-slot modular cloud metro router' }
+    ],
+    productUrl: 'https://www.juniper.net/us/en/products/routers/acx-series.html',
+    brochureUrl: 'https://www.juniper.net/us/en/products/routers/acx-series.html'
+  },
+
+  // ========== WIRELESS ==========
+  {
+    id: 'ap32', category: 'wireless', badge: 'Wi-Fi 6',
+    image: 'https://www.juniper.net/content/dam/www/assets/photos/us/en/products/wireless/ap32-front.png',
+    name: 'Juniper AP32 / AP33',
+    tagline: 'Entry-level Wi-Fi 6 access points with dynamic BLE/IoT radios, cloud-managed via Mist AI.',
+    description: 'AP32 and AP33 are Wi-Fi 6 (802.11ax) access points designed for branch and mid-density deployments. They include Juniper\u2019s dynamic Virtual Bluetooth LE antenna array, IoT radio, and are fully cloud-managed by the Mist AI platform with SLE (Service Level Expectation) analytics.',
+    specs: ['Wi-Fi 6 (802.11ax) 2x2:2', 'Dynamic vBLE 16-element array', 'Dedicated IoT radio', 'Mist AI cloud-managed', 'SLE AIOps analytics', '2.4 GHz + 5 GHz dual-band'],
+    specGrid: [
+      { label: 'Wi-Fi', value: 'Wi-Fi 6 2x2' },
+      { label: 'BLE', value: 'Virtual 16-element' },
+      { label: 'IoT', value: 'Dedicated radio' },
+      { label: 'Cloud', value: 'Mist AI' },
+      { label: 'Analytics', value: 'SLE' },
+      { label: 'PoE', value: '802.3at' }
+    ],
+    features: ['Wi-Fi 6 branch AP', 'vBLE array', 'IoT radio', 'Mist AIOps'],
+    useCases: ['Branch office Wi-Fi 6', 'Retail / small office', 'IoT + location services'],
+    licensing: 'Mist Wi-Fi Assurance subscription (cloud) required for full AIOps / SLE functionality.',
+    licenseType: 'HW + Mist subscription',
+    models: [
+      { name: 'AP32', sku: 'AP32-US', description: 'Wi-Fi 6 branch AP with BLE/IoT' },
+      { name: 'AP33', sku: 'AP33-US', description: 'Wi-Fi 6 2x2 with 16-element vBLE' }
+    ],
+    productUrl: 'https://www.juniper.net/us/en/products/wireless/access-points/ap32-33-access-point.html',
+    brochureUrl: 'https://www.juniper.net/us/en/products/wireless/access-points/ap32-33-access-point.html'
+  },
+  {
+    id: 'ap45', category: 'wireless', badge: 'Wi-Fi 6E',
+    image: 'https://www.juniper.net/content/dam/www/assets/photos/us/en/products/wireless/ap34-45-front.png',
+    name: 'Juniper AP45 / AP34',
+    tagline: 'Wi-Fi 6E tri-band access points with dedicated IoT and BLE radios for high-density enterprise venues.',
+    description: 'AP45 is Juniper\u2019s high-performance Wi-Fi 6E (6GHz) access point with 4x4:4 radios on all bands, dynamic vBLE, dedicated IoT and Mist AI cloud management. Designed for high-density enterprise campuses, healthcare, education, and large retail.',
+    specs: ['Wi-Fi 6E tri-band 2.4/5/6 GHz', '4x4:4 radios on all bands', 'Dynamic vBLE array', 'Dedicated IoT radio', 'Mist AI cloud-managed', '10GbE uplink (AP45)'],
+    specGrid: [
+      { label: 'Wi-Fi', value: 'Wi-Fi 6E 4x4' },
+      { label: 'Bands', value: '2.4/5/6 GHz' },
+      { label: 'BLE', value: 'vBLE array' },
+      { label: 'IoT', value: 'Dedicated radio' },
+      { label: 'Uplink', value: '10GbE (AP45)' },
+      { label: 'Cloud', value: 'Mist AI' }
+    ],
+    features: ['Wi-Fi 6E 6GHz', '10GbE uplink (AP45)', 'vBLE + IoT', 'Mist AIOps'],
+    useCases: ['High-density enterprise', 'Healthcare / education', 'Large retail venues'],
+    licensing: 'Mist Wi-Fi Assurance subscription required for full AIOps, plus optional Premium Analytics.',
+    licenseType: 'HW + Mist subscription',
+    models: [
+      { name: 'AP45', sku: 'AP45-US', description: 'Wi-Fi 6E 4x4 AP with 10GbE uplink' },
+      { name: 'AP34', sku: 'AP34-US', description: 'Wi-Fi 6 4x4 mid-range AP' }
+    ],
+    productUrl: 'https://www.juniper.net/us/en/products/wireless/access-points/ap45-access-point.html',
+    brochureUrl: 'https://www.juniper.net/us/en/products/wireless/access-points/ap45-access-point.html'
+  },
+  {
+    id: 'ap47', category: 'wireless', badge: 'Wi-Fi 7',
+    image: 'https://www.juniper.net/content/dam/www/assets/photos/us/en/products/wireless/ap47-top.png',
+    name: 'Juniper AP47 Wi-Fi 7',
+    tagline: 'Flagship Wi-Fi 7 access point delivering 6GHz, MLO, and 10GbE uplinks for next-gen enterprise wireless.',
+    description: 'AP47 is Juniper\u2019s flagship Wi-Fi 7 (802.11be) access point with tri-band 2.4/5/6 GHz radios, Multi-Link Operation (MLO), and 10GbE uplink. Fully Mist AI cloud-managed with SLE analytics and Marvis virtual assistant, it delivers the highest wireless performance for enterprise venues.',
+    specs: ['Wi-Fi 7 (802.11be) tri-band', '4x4:4 6GHz + 4x4 5GHz', 'Multi-Link Operation (MLO)', '10GbE uplink + 1GbE aux', 'Mist AI cloud-managed', 'vBLE + IoT radios'],
+    specGrid: [
+      { label: 'Wi-Fi', value: 'Wi-Fi 7 4x4' },
+      { label: 'Bands', value: '2.4/5/6 GHz' },
+      { label: 'MLO', value: 'Yes' },
+      { label: 'Uplink', value: '10GbE + 1GbE' },
+      { label: 'IoT/BLE', value: 'vBLE + IoT' },
+      { label: 'Cloud', value: 'Mist AI' }
+    ],
+    features: ['Wi-Fi 7 MLO', '10GbE uplink', 'Marvis AI', 'vBLE + IoT'],
+    useCases: ['Next-gen enterprise', 'High-density venues', 'Wi-Fi 7 early adopters'],
+    licensing: 'Mist Wi-Fi Assurance subscription required. Marvis VNA recommended.',
+    licenseType: 'HW + Mist subscription',
+    models: [
+      { name: 'AP47', sku: 'AP47-US', description: 'Wi-Fi 7 4x4 AP, 10GbE uplink' }
+    ],
+    productUrl: 'https://www.juniper.net/us/en/products/wireless/access-points/ap47-access-point.html',
+    brochureUrl: 'https://www.juniper.net/us/en/products/wireless/access-points/ap47-access-point.html'
+  },
+  {
+    id: 'ap64', category: 'wireless', badge: 'Outdoor Wi-Fi 6E',
+    image: 'https://www.juniper.net/content/dam/www/assets/photos/us/en/products/wireless/ap63-64-front.png',
+    name: 'Juniper AP63 / AP64 Outdoor',
+    tagline: 'Ruggedized outdoor Wi-Fi 6/6E access points for stadiums, warehouses, and large outdoor venues.',
+    description: 'AP63 (Wi-Fi 6) and AP64 (Wi-Fi 6E) are IP67-rated outdoor access points with integrated or external antennas. They deliver high-performance wireless in challenging environments, with vBLE, IoT radio and Mist AI cloud management for outdoor deployments.',
+    specs: ['IP67 outdoor rated', 'Wi-Fi 6 (AP63) or 6E (AP64)', '4x4:4 radios', 'vBLE + IoT radio', 'External antenna option', 'Mist AI cloud-managed'],
+    specGrid: [
+      { label: 'Rating', value: 'IP67 outdoor' },
+      { label: 'Wi-Fi', value: '6 / 6E 4x4' },
+      { label: 'BLE/IoT', value: 'Yes' },
+      { label: 'Antennas', value: 'Internal / Ext' },
+      { label: 'Uplink', value: '2.5GbE' },
+      { label: 'Cloud', value: 'Mist AI' }
+    ],
+    features: ['IP67 outdoor', 'Wi-Fi 6/6E', 'vBLE/IoT', 'Mist AIOps'],
+    useCases: ['Stadiums / outdoor venues', 'Warehouses / logistics', 'Manufacturing yards'],
+    licensing: 'Mist Wi-Fi Assurance subscription for AIOps and SLE features.',
+    licenseType: 'HW + Mist subscription',
+    models: [
+      { name: 'AP63', sku: 'AP63-US', description: 'Outdoor Wi-Fi 6 AP, internal ant.' },
+      { name: 'AP63E', sku: 'AP63E-US', description: 'Outdoor Wi-Fi 6 external antenna' },
+      { name: 'AP64', sku: 'AP64-US', description: 'Outdoor Wi-Fi 6E AP' }
+    ],
+    productUrl: 'https://www.juniper.net/us/en/products/wireless/access-points/ap63-64-access-point.html',
+    brochureUrl: 'https://www.juniper.net/us/en/products/wireless/access-points/ap63-64-access-point.html'
+  },
+
+  // ========== FIREWALLS ==========
+  {
+    id: 'srx300', category: 'firewalls', badge: 'Branch NGFW',
+    image: 'https://www.hpe.com/content/dam/hpe/shared-publishing/images-norend/products-norend/networking/juniper/Juniper-SRX300-Firewall-F-16-9.png',
+    name: 'Juniper SRX300 Line',
+    tagline: 'Compact branch firewalls combining NGFW, SD-WAN and routing for small offices and distributed sites.',
+    description: 'SRX300, SRX320, SRX340 and SRX345 are desktop/1U branch firewalls that combine stateful firewall, IDP, UTM, SD-WAN (Session Smart via Mist) and Junos routing. They offer up to 5 Gbps firewall throughput and integrate with Juniper Security Director and Mist for management.',
+    specs: ['Firewall: 1 - 5 Gbps', 'IPS / IDP signatures', 'UTM (AV, URL, AS)', 'Built-in SD-WAN (SSR)', 'Mist cloud-managed option', 'LTE options on 320/340/345'],
+    specGrid: [
+      { label: 'FW Throughput', value: '1 - 5 Gbps' },
+      { label: 'IPS', value: 'Yes' },
+      { label: 'SD-WAN', value: 'SSR / Junos' },
+      { label: 'UTM', value: 'AV/URL/AS' },
+      { label: 'LTE', value: '320/340/345' },
+      { label: 'Cloud Mgmt', value: 'Mist optional' }
+    ],
+    features: ['Full NGFW + UTM', 'SD-WAN (SSR)', 'LTE failover options', 'Mist cloud-managed'],
+    useCases: ['Branch office NGFW', 'SD-WAN spoke', 'Retail / remote sites'],
+    licensing: 'Perpetual HW + security subscription (IDP, UTM, URL) + optional Mist SD-WAN Assurance.',
+    licenseType: 'Perpetual + security sub',
+    models: [
+      { name: 'SRX300', sku: 'SRX300-SYS-JB', description: 'Desktop branch FW, 1 Gbps' },
+      { name: 'SRX320', sku: 'SRX320-SYS-JB', description: 'Desktop FW with LTE option, 1 Gbps' },
+      { name: 'SRX340', sku: 'SRX340-SYS-JB', description: '1U branch FW, 3 Gbps' },
+      { name: 'SRX345', sku: 'SRX345-SYS-JB', description: '1U branch FW, 5 Gbps' }
+    ],
+    productUrl: 'https://www.juniper.net/us/en/products/security/srx-series/srx300-branch-firewall.html',
+    brochureUrl: 'https://www.juniper.net/us/en/products/security/srx-series/srx300-branch-firewall.html'
+  },
+  {
+    id: 'srx1600', category: 'firewalls', badge: 'Campus NGFW',
+    image: 'https://www.hpe.com/content/dam/hpe/shared-publishing/images-norend/products-norend/networking/juniper/Juniper-SRX1600-F-16-9.png',
+    name: 'Juniper SRX1600',
+    tagline: 'Mid-range next-gen firewall delivering up to 78 Gbps of threat inspection for campus and mid-size DC.',
+    description: 'The SRX1600 is a 1U mid-range NGFW with up to 78 Gbps firewall throughput, 41 Gbps of threat prevention, full L7 inspection, IDP, ATP, URL filtering and encrypted traffic analysis. Managed by Security Director Cloud and integrates with Juniper Connected Security for campus and mid-DC use cases.',
+    specs: ['78 Gbps firewall throughput', '41 Gbps threat prevention', '20 Gbps IPsec VPN', 'IDP, ATP Cloud, URL FL', 'Encrypted traffic analysis', 'Security Director Cloud managed'],
+    specGrid: [
+      { label: 'FW', value: '78 Gbps' },
+      { label: 'Threat', value: '41 Gbps' },
+      { label: 'IPsec', value: '20 Gbps' },
+      { label: 'IDP', value: 'Yes' },
+      { label: 'Form', value: '1U' },
+      { label: 'Mgmt', value: 'SecDir Cloud' }
+    ],
+    features: ['Encrypted traffic analysis', 'ATP Cloud', 'Security Director Cloud', 'Juniper Connected Security'],
+    useCases: ['Mid-size campus NGFW', 'Mid-DC edge', 'Secure connect firewall'],
+    licensing: 'Perpetual HW + security subscriptions (IDP, URL, ATP, Premium).',
+    licenseType: 'Perpetual + security sub',
+    models: [
+      { name: 'SRX1600', sku: 'SRX1600-AC', description: 'NGFW 78 Gbps FW, AC PSU' }
+    ],
+    productUrl: 'https://www.juniper.net/us/en/products/security/srx-series/srx1600-firewall.html',
+    brochureUrl: 'https://www.juniper.net/us/en/products/security/srx-series/srx1600-firewall.html'
+  },
+  {
+    id: 'srx4600', category: 'firewalls', badge: 'Data Center NGFW',
+    image: 'https://www.hpe.com/content/dam/hpe/shared-publishing/images-norend/products-norend/networking/juniper/Juniper-SRX4600-F-16-9.png',
+    name: 'Juniper SRX4600',
+    tagline: 'High-performance 2U data center firewall with up to 400 Gbps throughput and 100GbE interfaces.',
+    description: 'SRX4600 is a 2U high-performance NGFW for large campuses and data center edge. It offers up to 400 Gbps firewall throughput, 100GbE interfaces, full L7 services, IDP, ATP Cloud integration and Security Director Cloud management.',
+    specs: ['400 Gbps firewall throughput', '2 x 100GbE + 8 x 10/25GbE', '200 Gbps IPsec VPN', 'IDP, ATP Cloud, URL FL', '2U form factor', 'SecDir Cloud management'],
+    specGrid: [
+      { label: 'FW', value: '400 Gbps' },
+      { label: '100GbE', value: '2 ports' },
+      { label: '10/25GbE', value: '8 ports' },
+      { label: 'IPsec', value: '200 Gbps' },
+      { label: 'IDP', value: 'Yes' },
+      { label: 'Form', value: '2U' }
+    ],
+    features: ['100GbE interfaces', 'ATP Cloud', 'Connected Security', 'High-perf 2U'],
+    useCases: ['DC edge firewall', 'Large campus core FW', 'Service provider edge'],
+    licensing: 'Perpetual HW + advanced security subscriptions (IDP, ATP, URL, AppSecure).',
+    licenseType: 'Perpetual + advanced sub',
+    models: [
+      { name: 'SRX4600', sku: 'SRX4600-AC', description: '2U NGFW 400 Gbps, AC PSU' },
+      { name: 'SRX4600 DC', sku: 'SRX4600-DC', description: '2U NGFW DC PSU' }
+    ],
+    productUrl: 'https://www.juniper.net/us/en/products/security/srx-series/srx4600-firewall.html',
+    brochureUrl: 'https://www.juniper.net/us/en/products/security/srx-series/srx4600-firewall.html'
+  },
+  {
+    id: 'srx4700', category: 'firewalls', badge: 'DC NGFW',
+    image: 'https://www.hpe.com/content/dam/hpe/shared-publishing/images-norend/products-norend/networking/juniper/Juniper-SRX4700-F-16-9.png',
+    name: 'Juniper SRX4700',
+    tagline: 'Next-gen 2U data center firewall delivering 1.4 Tbps firewall and 400GbE interfaces for cloud DC edge.',
+    description: 'SRX4700 is Juniper\u2019s next-generation high-end NGFW delivering up to 1.4 Tbps of firewall throughput in a 2U chassis. It offers 400GbE connectivity, hardware-accelerated threat prevention, ATP Cloud, and deep Security Director Cloud integration for modern data centers.',
+    specs: ['1.4 Tbps firewall throughput', '4 x 400GbE QSFP-DD', 'Hardware threat acceleration', 'ATP Cloud + IDP', 'Security Director Cloud', '2U form factor'],
+    specGrid: [
+      { label: 'FW', value: '1.4 Tbps' },
+      { label: '400G', value: '4 ports' },
+      { label: 'Threat HW', value: 'Accelerated' },
+      { label: 'ATP', value: 'Yes' },
+      { label: 'Form', value: '2U' },
+      { label: 'Mgmt', value: 'SecDir Cloud' }
+    ],
+    features: ['400GbE NGFW', 'HW threat accel', 'ATP Cloud', 'Cloud managed'],
+    useCases: ['Cloud DC edge', 'Hyperscale DC FW', 'High-perf SP edge'],
+    licensing: 'Perpetual HW + advanced security subscriptions.',
+    licenseType: 'Perpetual + advanced sub',
+    models: [
+      { name: 'SRX4700', sku: 'SRX4700-AC', description: '2U 1.4Tbps NGFW, AC' }
+    ],
+    productUrl: 'https://www.juniper.net/us/en/products/security/srx-series/srx4700-firewall.html',
+    brochureUrl: 'https://www.juniper.net/us/en/products/security/srx-series/srx4700-firewall.html'
+  },
+  {
+    id: 'srx5000', category: 'firewalls', badge: 'Carrier-Grade',
+    image: 'https://www.hpe.com/content/dam/hpe/shared-publishing/images-norend/products-norend/networking/juniper/Juniper-SRX5800-F-16-9.png',
+    name: 'Juniper SRX5000 Line',
+    tagline: 'Carrier-grade chassis firewalls for service providers and largest data centers, up to 3 Tbps FW.',
+    description: 'SRX5400, SRX5600 and SRX5800 are modular chassis firewalls designed for service providers and the largest enterprise data centers. They scale to 3 Tbps firewall throughput with IOC3 line cards and deliver full L4-L7 services, CGNAT, and telco-grade reliability.',
+    specs: ['Up to 3 Tbps FW (SRX5800)', '100GbE and 400GbE line cards', 'CGNAT, IPS, AppSecure', 'Hitless failover', 'Redundant RE, SPC, PSU', 'Telco-grade reliability'],
+    specGrid: [
+      { label: 'Chassis', value: '5400/5600/5800' },
+      { label: 'FW', value: 'Up to 3 Tbps' },
+      { label: 'Interfaces', value: '100G / 400G' },
+      { label: 'CGNAT', value: 'Yes' },
+      { label: 'RE/SPC', value: 'Redundant' },
+      { label: 'Use', value: 'Telco / LDC' }
+    ],
+    features: ['Chassis scale', 'CGNAT', 'Hitless failover', 'Telco-grade'],
+    useCases: ['SP gateway / CGNAT', 'Largest DC edge', 'Managed security services'],
+    licensing: 'Per-chassis licensing + advanced security subscriptions (IPS, AppSecure, URL).',
+    licenseType: 'Perpetual + subs',
+    models: [
+      { name: 'SRX5400', sku: 'SRX5400-CHAS', description: '5-slot carrier NGFW chassis' },
+      { name: 'SRX5600', sku: 'SRX5600-CHAS', description: '8-slot carrier NGFW chassis' },
+      { name: 'SRX5800', sku: 'SRX5800-CHAS', description: '14-slot carrier NGFW chassis' }
+    ],
+    productUrl: 'https://www.juniper.net/us/en/products/security/srx-series/srx5000-line-services-gateways.html',
+    brochureUrl: 'https://www.juniper.net/us/en/products/security/srx-series/srx5000-line-services-gateways.html'
+  },
+  {
+    id: 'vsrx', category: 'firewalls', badge: 'Virtual NGFW',
+    image: 'https://www.hpe.com/content/dam/hpe/shared-publishing/images-norend/products-norend/networking/juniper/Juniper-vSRX-F-16-9.png',
+    name: 'Juniper vSRX Virtual Firewall',
+    tagline: 'Software-based next-gen firewall deployable on VMware, KVM, AWS, Azure, GCP, and OCI clouds.',
+    description: 'vSRX is the virtualized version of the SRX NGFW, deployable across all major hypervisors and public clouds. It delivers full NGFW, IPS, AppSecure, and VPN capabilities with flexible licensing and elastic scale, ideal for cloud workloads and NFV use cases.',
+    specs: ['Up to 200 Gbps FW (cloud size)', 'KVM, ESXi, Hyper-V, Xen', 'AWS, Azure, GCP, OCI', 'Full NGFW + IPS', 'IPsec and SSL VPN', 'Security Director Cloud'],
+    specGrid: [
+      { label: 'Platforms', value: 'VM + Cloud' },
+      { label: 'Max FW', value: '200 Gbps' },
+      { label: 'IPS', value: 'Yes' },
+      { label: 'VPN', value: 'IPsec + SSL' },
+      { label: 'Clouds', value: 'AWS/Az/GCP/OCI' },
+      { label: 'Mgmt', value: 'SecDir Cloud' }
+    ],
+    features: ['Multi-cloud', 'Flexible sizing', 'Full NGFW', 'NFV ready'],
+    useCases: ['Cloud workload security', 'NFV / SDN', 'Virtual branch'],
+    licensing: 'Subscription (term) licensing by throughput tier. BYOL and PAYG models available.',
+    licenseType: 'Subscription (term/BYOL/PAYG)',
+    models: [
+      { name: 'vSRX 3.0', sku: 'VSRX-STD-1YR', description: 'Standard term license 1 year' },
+      { name: 'vSRX Premium', sku: 'VSRX-PRM-1YR', description: 'Premium term license 1 year' }
+    ],
+    productUrl: 'https://www.juniper.net/us/en/products/security/srx-series/vsrx-virtual-firewall.html',
+    brochureUrl: 'https://www.juniper.net/us/en/products/security/srx-series/vsrx-virtual-firewall.html'
+  },
+
+  // ========== SD-WAN ==========
+  {
+    id: 'ssr120', category: 'sdwan', badge: 'Branch SD-WAN',
+    image: 'https://www.hpe.com/content/dam/hpe/shared-publishing/images-norend/products-norend/networking/juniper/Juniper-SSR120-F-16-9.png',
+    name: 'Juniper Session Smart Router SSR120/130',
+    tagline: 'Tunnel-free AI-driven SD-WAN routers for small branches with zero-trust session-smart forwarding.',
+    description: 'SSR120 and SSR130 are compact branch SD-WAN appliances built on Juniper\u2019s Session Smart technology. They use tunnel-free, session-aware routing with zero-trust principles and are cloud-managed by Mist WAN Assurance for AI-driven operations and insights.',
+    specs: ['1 - 2 Gbps SD-WAN throughput', 'Tunnel-free Session Smart', 'Zero-trust overlay', 'Mist WAN Assurance', 'LTE option', '128- to 2048-bit encryption'],
+    specGrid: [
+      { label: 'Throughput', value: '1 - 2 Gbps' },
+      { label: 'Tech', value: 'Session Smart' },
+      { label: 'Tunnels', value: 'Tunnel-free' },
+      { label: 'Cloud', value: 'Mist WAN' },
+      { label: 'LTE', value: 'Optional' },
+      { label: 'Form', value: 'Desktop' }
+    ],
+    features: ['Session Smart', 'Zero-trust', 'Mist WAN AIOps', 'LTE option'],
+    useCases: ['Small branch SD-WAN', 'Retail stores', 'Home office / SoHo'],
+    licensing: 'Mist WAN Assurance subscription required for cloud AIOps features.',
+    licenseType: 'HW + Mist WAN subscription',
+    models: [
+      { name: 'SSR120', sku: 'SSR120-US', description: 'Small branch SD-WAN, 1 Gbps' },
+      { name: 'SSR130', sku: 'SSR130-US', description: 'Small branch SD-WAN, 2 Gbps + LTE' }
+    ],
+    productUrl: 'https://www.juniper.net/us/en/products/routers/session-smart-router.html',
+    brochureUrl: 'https://www.juniper.net/us/en/products/routers/session-smart-router.html'
+  },
+  {
+    id: 'ssr1400', category: 'sdwan', badge: 'Enterprise SD-WAN',
+    image: 'https://www.hpe.com/content/dam/hpe/shared-publishing/images-norend/products-norend/networking/juniper/Juniper-SSR1400-F-16-9.png',
+    name: 'Juniper Session Smart Router SSR1200/1400/1500',
+    tagline: 'Mid-range to enterprise SD-WAN appliances with up to 10 Gbps session-smart throughput and cloud AIOps.',
+    description: 'SSR1200, SSR1400 and SSR1500 are 1U SD-WAN appliances targeting mid to large branches and regional hubs. They deliver from 2 to 10 Gbps of session-smart throughput with zero-trust overlay, Mist WAN Assurance and flexible interface options.',
+    specs: ['2 - 10 Gbps throughput', 'Tunnel-free SD-WAN', 'Zero-trust overlay', '1GbE and 10GbE ports', 'Mist WAN Assurance', 'Redundant PSU options'],
+    specGrid: [
+      { label: 'Throughput', value: '2 - 10 Gbps' },
+      { label: 'Interfaces', value: '1/10GbE' },
+      { label: 'Tech', value: 'Session Smart' },
+      { label: 'Cloud', value: 'Mist WAN' },
+      { label: 'Form', value: '1U' },
+      { label: 'Redundancy', value: 'Opt PSU' }
+    ],
+    features: ['Session Smart', 'Zero-trust', 'Mist WAN AIOps', '10GbE'],
+    useCases: ['Medium / large branch', 'Regional hub', 'Aggregation site'],
+    licensing: 'Mist WAN Assurance subscription required per site.',
+    licenseType: 'HW + Mist WAN subscription',
+    models: [
+      { name: 'SSR1200', sku: 'SSR1200-US', description: 'Mid-range SD-WAN, 2 Gbps' },
+      { name: 'SSR1400', sku: 'SSR1400-US', description: 'Enterprise SD-WAN, 5 Gbps' },
+      { name: 'SSR1500', sku: 'SSR1500-US', description: 'Enterprise SD-WAN, 10 Gbps' }
+    ],
+    productUrl: 'https://www.juniper.net/us/en/products/routers/session-smart-router.html',
+    brochureUrl: 'https://www.juniper.net/us/en/products/routers/session-smart-router.html'
+  },
+  {
+    id: 'wan-assurance', category: 'sdwan', badge: 'Cloud SD-WAN',
+    image: 'https://www.hpe.com/content/dam/hpe/shared-publishing/images-norend/products-norend/networking/juniper/Juniper-Mist-WAN-Assurance-F-16-9.png',
+    name: 'Juniper Mist WAN Assurance',
+    tagline: 'Cloud-delivered SD-WAN management with Marvis AI assistant and proactive user experience insights.',
+    description: 'Mist WAN Assurance is a cloud-delivered service that brings Mist\u2019s AIOps and Marvis virtual assistant to Juniper SSR and SRX SD-WAN fleets. It provides per-site SLEs, proactive anomaly detection, automated root-cause analysis, and zero-touch provisioning.',
+    specs: ['Cloud-delivered SaaS', 'AIOps with Marvis VNA', 'Per-site SLEs', 'Zero-touch provisioning', 'Supports SSR and SRX', 'Multi-tenant / MSP options'],
+    specGrid: [
+      { label: 'Delivery', value: 'Cloud SaaS' },
+      { label: 'AI', value: 'Marvis VNA' },
+      { label: 'SLEs', value: 'Per site' },
+      { label: 'ZTP', value: 'Yes' },
+      { label: 'Platforms', value: 'SSR + SRX' },
+      { label: 'Mode', value: 'MT / MSP' }
+    ],
+    features: ['Marvis VNA', 'SLE insights', 'Zero-touch provisioning', 'MSP multi-tenant'],
+    useCases: ['SD-WAN operations', 'Managed SD-WAN services', 'Branch AIOps'],
+    licensing: 'Annual or multi-year per-site subscription with tiered feature sets.',
+    licenseType: 'Subscription (per site)',
+    models: [
+      { name: 'Mist WAN Assurance', sku: 'S-MIST-WAN-1S-1Y', description: '1 site, 1 year subscription' },
+      { name: 'Mist WAN Assurance 3Y', sku: 'S-MIST-WAN-1S-3Y', description: '1 site, 3 year subscription' },
+      { name: 'Mist WAN Assurance 5Y', sku: 'S-MIST-WAN-1S-5Y', description: '1 site, 5 year subscription' }
+    ],
+    productUrl: 'https://www.juniper.net/us/en/products/cloud-services/wan-assurance.html',
+    brochureUrl: 'https://www.juniper.net/us/en/products/cloud-services/wan-assurance.html'
+  },
+
+  // ========== MANAGEMENT & AIOPS ==========
+  {
+    id: 'mist-ai', category: 'management', badge: 'Cloud AIOps',
+    image: 'https://www.juniper.net/content/dam/www/assets/images/us/en/products/mist-ai-cloud.png',
+    name: 'Juniper Mist AI Cloud',
+    tagline: 'Cloud-native AI platform delivering AIOps for wireless, wired, and SD-WAN across the Juniper portfolio.',
+    description: 'Mist AI is Juniper\u2019s cloud-native AIOps platform that uses machine learning and the Marvis Virtual Network Assistant to proactively detect, explain and fix issues across Wi-Fi, wired access, and SD-WAN. It provides Service Level Expectations (SLEs) for user experience and automates day-2 operations.',
+    specs: ['Cloud-native AIOps', 'Marvis Virtual Network Assistant', 'SLE-based experience metrics', 'Wi-Fi, Wired, WAN assurance', 'Natural language queries', 'Automated root-cause analysis'],
+    specGrid: [
+      { label: 'Delivery', value: 'Cloud SaaS' },
+      { label: 'AI', value: 'Marvis VNA' },
+      { label: 'Domains', value: 'Wi-Fi/Wired/WAN' },
+      { label: 'Metrics', value: 'SLEs' },
+      { label: 'NL Queries', value: 'Yes' },
+      { label: 'RCA', value: 'Automated' }
+    ],
+    features: ['AI-driven ops', 'Marvis NL assistant', 'SLE telemetry', 'Per-domain assurance'],
+    useCases: ['Enterprise AIOps', 'Help desk automation', 'Proactive troubleshooting'],
+    licensing: 'Per-AP / per-switch / per-site annual or multi-year subscriptions. Tiered assurance SKUs.',
+    licenseType: 'Subscription (tiered)',
+    models: [
+      { name: 'Wi-Fi Assurance', sku: 'S-MIST-WIFI-1AP-1Y', description: 'Per-AP 1 year' },
+      { name: 'Wired Assurance', sku: 'S-MIST-WIRED-1SW-1Y', description: 'Per-switch 1 year' },
+      { name: 'WAN Assurance', sku: 'S-MIST-WAN-1S-1Y', description: 'Per-site 1 year' }
+    ],
+    productUrl: 'https://www.juniper.net/us/en/products/cloud-services/mist-ai.html',
+    brochureUrl: 'https://www.juniper.net/us/en/products/cloud-services/mist-ai.html'
+  },
+  {
+    id: 'marvis', category: 'management', badge: 'AI Assistant',
+    image: 'https://www.juniper.net/content/dam/www/assets/images/us/en/products/marvis-vna.png',
+    name: 'Juniper Marvis Virtual Network Assistant',
+    tagline: 'Conversational AI assistant that uses ML to automate troubleshooting and answer natural-language questions.',
+    description: 'Marvis is Juniper\u2019s Virtual Network Assistant powered by generative and classical AI. It interprets natural-language questions, proactively identifies anomalies, and recommends or executes fixes. Marvis Actions proactively detects persistently failing clients, APs, switches or WAN sites.',
+    specs: ['Natural language interface', 'Marvis Actions (proactive)', 'Conversational troubleshooting', 'Root-cause + remediation', 'Wi-Fi, Wired, WAN scope', 'SaaS delivery'],
+    specGrid: [
+      { label: 'Interface', value: 'NL chat' },
+      { label: 'Actions', value: 'Proactive' },
+      { label: 'RCA', value: 'Automated' },
+      { label: 'Scope', value: 'Wi-Fi/Wired/WAN' },
+      { label: 'Delivery', value: 'Cloud SaaS' },
+      { label: 'Add-on', value: 'Requires Mist' }
+    ],
+    features: ['NL queries', 'Marvis Actions', 'Auto remediation', 'Generative AI'],
+    useCases: ['Help desk deflection', 'Network operations', 'Executive visibility'],
+    licensing: 'Add-on subscription on top of Mist Wi-Fi/Wired/WAN Assurance. Annual terms.',
+    licenseType: 'Subscription (add-on)',
+    models: [
+      { name: 'Marvis for AP', sku: 'S-MIST-MRV-1AP-1Y', description: 'Per-AP add-on 1 year' },
+      { name: 'Marvis for Switch', sku: 'S-MIST-MRV-1SW-1Y', description: 'Per-switch add-on 1 year' },
+      { name: 'Marvis for Client', sku: 'S-MIST-MRV-CLI-1Y', description: 'Per-client add-on 1 year' }
+    ],
+    productUrl: 'https://www.juniper.net/us/en/products/cloud-services/mist-ai/marvis-virtual-network-assistant.html',
+    brochureUrl: 'https://www.juniper.net/us/en/products/cloud-services/mist-ai/marvis-virtual-network-assistant.html'
+  },
+  {
+    id: 'apstra', category: 'management', badge: 'DC Fabric Mgmt',
+    image: 'https://www.juniper.net/content/dam/www/assets/images/us/en/products/apstra-dashboard.png',
+    name: 'Juniper Apstra',
+    tagline: 'Intent-based data center automation that designs, deploys, and operates multi-vendor DC fabrics.',
+    description: 'Apstra is Juniper\u2019s intent-based networking (IBN) solution for data centers. It uses a blueprint-driven approach to design, deploy, and continuously validate EVPN-VXLAN fabrics across Juniper and third-party switches, with full closed-loop assurance, root cause and rollback.',
+    specs: ['Intent-based networking', 'EVPN-VXLAN automation', 'Multi-vendor (Juniper + others)', 'Continuous validation', 'Root-cause + time rewind', 'Closed-loop assurance'],
+    specGrid: [
+      { label: 'Model', value: 'Intent-based' },
+      { label: 'Vendors', value: 'Multi' },
+      { label: 'Fabrics', value: 'EVPN-VXLAN' },
+      { label: 'Validation', value: 'Continuous' },
+      { label: 'RCA', value: 'Time-rewind' },
+      { label: 'Delivery', value: 'On-prem / Cloud' }
+    ],
+    features: ['Intent-based DC', 'Multi-vendor EVPN', 'Time rewind', 'Closed-loop'],
+    useCases: ['Enterprise DC automation', 'Multi-vendor fabric ops', 'Brownfield automation'],
+    licensing: 'Per-device annual subscription with tiered feature sets (Premium/Advanced).',
+    licenseType: 'Subscription (per device)',
+    models: [
+      { name: 'Apstra Standard', sku: 'S-APSTRA-STD-1D-1Y', description: 'Per-device 1 year standard' },
+      { name: 'Apstra Advanced', sku: 'S-APSTRA-ADV-1D-1Y', description: 'Per-device 1 year advanced' },
+      { name: 'Apstra Premium', sku: 'S-APSTRA-PRM-1D-1Y', description: 'Per-device 1 year premium' }
+    ],
+    productUrl: 'https://www.juniper.net/us/en/products/network-automation/apstra.html',
+    brochureUrl: 'https://www.juniper.net/us/en/products/network-automation/apstra.html'
+  },
+  {
+    id: 'paragon', category: 'management', badge: 'WAN Automation',
+    image: 'https://www.juniper.net/content/dam/www/assets/images/us/en/products/paragon-automation.png',
+    name: 'Juniper Paragon Automation',
+    tagline: 'Closed-loop automation and assurance for WAN, metro, and 5G transport networks with rich analytics.',
+    description: 'Paragon Automation is Juniper\u2019s closed-loop automation suite for service provider and metro WAN. It includes Paragon Pathfinder (traffic engineering), Planner, Insights (telemetry), and Active Assurance for synthetic testing, helping operators automate the full network lifecycle.',
+    specs: ['Pathfinder (SR/SR-TE/RSVP)', 'Planner (what-if modeling)', 'Insights (streaming telemetry)', 'Active Assurance synthetic tests', 'Closed-loop automation', 'Multi-vendor support'],
+    specGrid: [
+      { label: 'Modules', value: '4 (PF/PL/IN/AA)' },
+      { label: 'TE', value: 'SR / RSVP' },
+      { label: 'Telemetry', value: 'Streaming' },
+      { label: 'Synthetic', value: 'Yes' },
+      { label: 'Vendors', value: 'Multi' },
+      { label: 'Delivery', value: 'On-prem / Cloud' }
+    ],
+    features: ['Traffic engineering', 'Synthetic active test', 'Telemetry analytics', 'Closed-loop'],
+    useCases: ['SP / metro WAN', '5G transport automation', 'Enterprise WAN ops'],
+    licensing: 'Per-device / per-test subscription. Tiered by module (Pathfinder, Insights, Planner, Active Assurance).',
+    licenseType: 'Subscription (modular)',
+    models: [
+      { name: 'Paragon Pathfinder', sku: 'S-PARA-PF-1D-1Y', description: 'Per-device Pathfinder 1 year' },
+      { name: 'Paragon Insights', sku: 'S-PARA-IN-1D-1Y', description: 'Per-device Insights 1 year' },
+      { name: 'Paragon Active Assurance', sku: 'S-PARA-AA-1T-1Y', description: 'Per-test Active Assurance 1 year' }
+    ],
+    productUrl: 'https://www.juniper.net/us/en/products/network-automation/paragon-automation.html',
+    brochureUrl: 'https://www.juniper.net/us/en/products/network-automation/paragon-automation.html'
+  },
+
+  // ========== SOFTWARE & SUBSCRIPTIONS ==========
+  {
+    id: 'junos-os', category: 'software', badge: 'Network OS',
+    image: 'https://www.juniper.net/content/dam/www/assets/images/us/en/products/junos-os.png',
+    name: 'Juniper Junos OS',
+    tagline: 'One unified, robust network operating system powering Juniper routers, switches, and firewalls.',
+    description: 'Junos OS is Juniper\u2019s flagship network operating system, built on FreeBSD with a modular architecture, separation of control/data/services planes, and a consistent CLI/API across MX, PTX, EX, QFX, SRX, and ACX platforms. It provides ISSU, commit/rollback, NETCONF/YANG, and rich programmability.',
+    specs: ['Unified OS across routing/switching/security', 'Modular microkernel', 'Commit model w/ rollback', 'ISSU (in-service upgrades)', 'NETCONF / YANG / JSON', 'Programmable via Python / gRPC'],
+    specGrid: [
+      { label: 'Platforms', value: 'MX/EX/QFX/SRX/PTX' },
+      { label: 'Kernel', value: 'FreeBSD-based' },
+      { label: 'Config', value: 'Commit / rollback' },
+      { label: 'ISSU', value: 'Supported' },
+      { label: 'APIs', value: 'NETCONF/YANG' },
+      { label: 'Scripting', value: 'Python / gRPC' }
+    ],
+    features: ['Unified CLI/API', 'Commit/rollback', 'ISSU', 'NETCONF/gRPC'],
+    useCases: ['Standard OS across Juniper HW', 'Programmable networking', 'DevOps automation'],
+    licensing: 'Included with supported hardware. Advanced Feature License (AFL) unlocks premium features.',
+    licenseType: 'Perpetual (HW bundle)',
+    models: [
+      { name: 'Junos OS', sku: 'JUNOS-OS', description: 'Included with supported HW' },
+      { name: 'AFL', sku: 'AFL-STD-1D', description: 'Advanced Feature License per device' }
+    ],
+    productUrl: 'https://www.juniper.net/us/en/products/network-operating-system/junos-os.html',
+    brochureUrl: 'https://www.juniper.net/us/en/products/network-operating-system/junos-os.html'
+  },
+  {
+    id: 'junos-evo', category: 'software', badge: 'Modern Network OS',
+    image: 'https://www.juniper.net/content/dam/www/assets/images/us/en/products/junos-evolved.png',
+    name: 'Juniper Junos OS Evolved',
+    tagline: 'Linux-native evolution of Junos with native containers, streaming telemetry, and state-driven architecture.',
+    description: 'Junos OS Evolved is the next-generation version of Junos, built directly on Linux with a state-driven architecture, native container support, streaming telemetry, and full compatibility with the Junos CLI and configuration model. Runs on PTX, ACX, QFX, and MX10000 platforms.',
+    specs: ['Linux-native', 'State-driven architecture', 'Container / microservice ready', 'Streaming telemetry (gRPC)', 'Junos CLI compatible', 'Runs on PTX/ACX/QFX/MX10K'],
+    specGrid: [
+      { label: 'Kernel', value: 'Linux-native' },
+      { label: 'Architecture', value: 'State-driven' },
+      { label: 'Containers', value: 'Native' },
+      { label: 'Telemetry', value: 'gRPC stream' },
+      { label: 'Platforms', value: 'PTX/ACX/QFX/MX10K' },
+      { label: 'CLI', value: 'Junos compat.' }
+    ],
+    features: ['Linux native', 'State-driven', 'Containers', 'Streaming telemetry'],
+    useCases: ['Cloud and SP core', 'DC spine', 'Modern NOS deployments'],
+    licensing: 'Included with supported HW. Premium features via FL.',
+    licenseType: 'Perpetual (HW bundle)',
+    models: [
+      { name: 'Junos OS Evolved', sku: 'JUNOS-EVO', description: 'Included with supported HW' }
+    ],
+    productUrl: 'https://www.juniper.net/us/en/products/network-operating-system/junos-os-evolved.html',
+    brochureUrl: 'https://www.juniper.net/us/en/products/network-operating-system/junos-os-evolved.html'
+  },
+  {
+    id: 'sec-dir-cloud', category: 'software', badge: 'Security Mgmt',
+    image: 'https://www.juniper.net/content/dam/www/assets/images/us/en/products/security-director-cloud.png',
+    name: 'Juniper Security Director Cloud',
+    tagline: 'Cloud-delivered unified security management for SRX firewalls, SASE, and zero-trust policy.',
+    description: 'Security Director Cloud is a unified, cloud-delivered security management console for Juniper SRX NGFWs. It manages policy, threat prevention, logging and reporting across physical/virtual/container and cloud SRX deployments and bridges into Juniper Secure Edge for SASE.',
+    specs: ['Cloud-delivered SaaS', 'Manages SRX physical/virtual/container', 'Unified policy + logging', 'Threat insights + ATP', 'Secure Edge SASE integration', 'Zero-trust policy model'],
+    specGrid: [
+      { label: 'Delivery', value: 'Cloud SaaS' },
+      { label: 'Manages', value: 'SRX / vSRX / cSRX' },
+      { label: 'SASE', value: 'Secure Edge' },
+      { label: 'Policy', value: 'Unified' },
+      { label: 'ATP', value: 'Integrated' },
+      { label: 'Model', value: 'Zero-trust' }
+    ],
+    features: ['Cloud management', 'Unified policy', 'SASE integration', 'ATP insights'],
+    useCases: ['SRX management at scale', 'SASE onboarding', 'Zero-trust policy'],
+    licensing: 'Per-device or per-user annual subscription, tied to SRX / Secure Edge deployments.',
+    licenseType: 'Subscription (per device/user)',
+    models: [
+      { name: 'SecDir Cloud SRX', sku: 'S-SDC-SRX-1D-1Y', description: 'Per-SRX 1 year' },
+      { name: 'SecDir Cloud User', sku: 'S-SDC-USR-1U-1Y', description: 'Per-user 1 year' }
+    ],
+    productUrl: 'https://www.juniper.net/us/en/products/security/security-director-cloud.html',
+    brochureUrl: 'https://www.juniper.net/us/en/products/security/security-director-cloud.html'
+  },
+  {
+    id: 'secure-edge', category: 'software', badge: 'SASE',
+    image: 'https://www.juniper.net/content/dam/www/assets/images/us/en/products/secure-edge.png',
+    name: 'Juniper Secure Edge (SASE)',
+    tagline: 'Cloud-delivered SSE that brings NGFW, SWG, CASB, and ZTNA under unified policy with Security Director Cloud.',
+    description: 'Juniper Secure Edge is Juniper\u2019s SSE (Security Service Edge) delivering cloud-native NGFW, Secure Web Gateway, CASB and Zero Trust Network Access. It uses the same policy framework as on-prem SRX via Security Director Cloud, providing consistent security from HQ to branch to remote worker.',
+    specs: ['Cloud-native NGFW', 'SWG + URL filtering', 'CASB (inline)', 'ZTNA for any user / device', 'Unified policy w/ SRX', 'Global PoP footprint'],
+    specGrid: [
+      { label: 'NGFW', value: 'Cloud-native' },
+      { label: 'SWG', value: 'Yes' },
+      { label: 'CASB', value: 'Inline' },
+      { label: 'ZTNA', value: 'Yes' },
+      { label: 'Policy', value: 'Unified w/ SRX' },
+      { label: 'PoPs', value: 'Global' }
+    ],
+    features: ['SASE / SSE', 'Unified with SRX', 'ZTNA', 'Global PoPs'],
+    useCases: ['Remote worker security', 'Branch SASE', 'Cloud application protection'],
+    licensing: 'Per-user annual subscription with optional add-ons (ATP, DEM, CASB). Multi-year discounts.',
+    licenseType: 'Subscription (per user)',
+    models: [
+      { name: 'Secure Edge STD', sku: 'S-SE-STD-1U-1Y', description: 'Per-user standard 1 year' },
+      { name: 'Secure Edge ADV', sku: 'S-SE-ADV-1U-1Y', description: 'Per-user advanced 1 year' },
+      { name: 'Secure Edge PRM', sku: 'S-SE-PRM-1U-1Y', description: 'Per-user premium 1 year' }
+    ],
+    productUrl: 'https://www.juniper.net/us/en/products/security/secure-edge.html',
+    brochureUrl: 'https://www.juniper.net/us/en/products/security/secure-edge.html'
+  },
+
+  // ========== SERVICES ==========
+  {
+    id: 'juniper-care', category: 'services', badge: 'Hardware Support',
+    image: 'https://www.juniper.net/content/dam/www/assets/images/us/en/services/juniper-care.png',
+    name: 'Juniper Care Services',
+    tagline: 'Tiered hardware and software support with 24x7 TAC, RMA, and proactive platinum options.',
+    description: 'Juniper Care provides tiered hardware replacement, software updates, and technical support. Tiers include Core, Next-Day, Same-Day, Same-Day Onsite, and Platinum, giving customers the flexibility to match support SLAs to the criticality of each device.',
+    specs: ['24x7 TAC access', 'Software updates included', 'RMA hardware replacement', 'Tiered SLAs (NBD \u2013 same day)', 'Onsite options', 'Proactive options (Platinum)'],
+    specGrid: [
+      { label: 'Tiers', value: 'Core/NBD/SD/SDO/PLT' },
+      { label: 'TAC', value: '24x7' },
+      { label: 'RMA', value: 'Included' },
+      { label: 'SW Updates', value: 'Included' },
+      { label: 'Onsite', value: 'Optional' },
+      { label: 'Proactive', value: 'Platinum' }
+    ],
+    features: ['24x7 TAC', 'RMA replacement', 'Onsite options', 'Platinum proactive'],
+    useCases: ['HW warranty extension', 'Mission-critical SLAs', 'Regulated environments'],
+    licensing: 'Annual or multi-year per-device. Pricing varies by HW tier and SLA level.',
+    licenseType: 'Service contract (per device)',
+    models: [
+      { name: 'J-Care Core', sku: 'J-CARE-CORE-1Y', description: 'Annual core support' },
+      { name: 'J-Care NBD', sku: 'J-CARE-NBD-1Y', description: 'Annual next-business-day' },
+      { name: 'J-Care SD', sku: 'J-CARE-SD-1Y', description: 'Annual same-day' },
+      { name: 'J-Care SDO', sku: 'J-CARE-SDO-1Y', description: 'Annual same-day onsite' },
+      { name: 'J-Care Platinum', sku: 'J-CARE-PLT-1Y', description: 'Annual proactive platinum' }
+    ],
+    productUrl: 'https://www.juniper.net/us/en/services/hardware-software-services/juniper-care.html',
+    brochureUrl: 'https://www.juniper.net/us/en/services/hardware-software-services/juniper-care.html'
+  },
+  {
+    id: 'pro-services', category: 'services', badge: 'Professional',
+    image: 'https://www.juniper.net/content/dam/www/assets/images/us/en/services/professional-services.png',
+    name: 'Juniper Professional Services',
+    tagline: 'Design, deployment, migration and optimization services from Juniper-certified engineers and architects.',
+    description: 'Juniper Professional Services provides design, planning, migration, deployment and optimization services across the Juniper portfolio. Engagements range from Quick Start fixed-scope deployments to full custom architecture and large-scale network transformations.',
+    specs: ['Design and planning', 'Quick Start installs', 'Network migration', 'Custom architecture', 'Automation / integration', 'Optimization and audits'],
+    specGrid: [
+      { label: 'Engagement', value: 'Fixed / T&M' },
+      { label: 'Design', value: 'Yes' },
+      { label: 'Migration', value: 'Yes' },
+      { label: 'Automation', value: 'Yes' },
+      { label: 'Delivered By', value: 'JNPR + partner' },
+      { label: 'Scope', value: 'All products' }
+    ],
+    features: ['Design / plan', 'Deploy / migrate', 'Automate', 'Optimize'],
+    useCases: ['Complex deployments', 'Legacy to modern migration', 'Automation enablement'],
+    licensing: 'Statement-of-Work based engagement. Fixed-scope or time-and-materials options.',
+    licenseType: 'SoW (fixed / T&M)',
+    models: [
+      { name: 'Quick Start', sku: 'PS-QSTART', description: 'Fixed-scope deployment' },
+      { name: 'Design Service', sku: 'PS-DESIGN', description: 'Architecture and design' },
+      { name: 'Migration Service', sku: 'PS-MIGRATE', description: 'Network migration' },
+      { name: 'Automation Service', sku: 'PS-AUTOMATE', description: 'Automation enablement' }
+    ],
+    productUrl: 'https://www.juniper.net/us/en/services/professional-services.html',
+    brochureUrl: 'https://www.juniper.net/us/en/services/professional-services.html'
+  },
+  {
+    id: 'ai-support', category: 'services', badge: 'AI-Driven Support',
+    image: 'https://www.juniper.net/content/dam/www/assets/images/us/en/services/ai-driven-support.png',
+    name: 'Juniper AI-Driven Support Services',
+    tagline: 'Proactive support services powered by Marvis AI with predictive insights and auto-case creation.',
+    description: 'Juniper AI-Driven Support uses Marvis telemetry and machine learning to proactively detect issues, auto-generate support cases, and accelerate resolution. It integrates with Juniper Care to deliver a modern, insight-driven support experience across the Mist-managed estate.',
+    specs: ['Proactive issue detection', 'Auto-case creation', 'Marvis telemetry-driven', 'Tight Juniper Care integration', 'Continuous health scoring', 'Actionable recommendations'],
+    specGrid: [
+      { label: 'Proactive', value: 'Yes' },
+      { label: 'Cases', value: 'Auto-created' },
+      { label: 'Source', value: 'Marvis ML' },
+      { label: 'Integration', value: 'Juniper Care' },
+      { label: 'Scope', value: 'Mist estate' },
+      { label: 'Delivery', value: 'Cloud' }
+    ],
+    features: ['Proactive tickets', 'AI insights', 'Mist integration', 'Auto-case'],
+    useCases: ['Proactive operations', 'Reduced MTTR', 'MSP service differentiation'],
+    licensing: 'Annual per-device / per-site subscription, layered on top of Juniper Care.',
+    licenseType: 'Subscription (per device/site)',
+    models: [
+      { name: 'AI-Driven Support AP', sku: 'S-AI-SUP-AP-1Y', description: 'Per-AP 1 year' },
+      { name: 'AI-Driven Support SW', sku: 'S-AI-SUP-SW-1Y', description: 'Per-switch 1 year' },
+      { name: 'AI-Driven Support Site', sku: 'S-AI-SUP-SITE-1Y', description: 'Per-site 1 year' }
+    ],
+    productUrl: 'https://www.juniper.net/us/en/services/ai-driven-support-services.html',
+    brochureUrl: 'https://www.juniper.net/us/en/services/ai-driven-support-services.html'
+  },
+  {
+    id: 'training', category: 'services', badge: 'Training',
+    image: 'https://www.juniper.net/content/dam/www/assets/images/us/en/services/education-services.png',
+    name: 'Juniper Education Services & JNCP',
+    tagline: 'Official Juniper training and certification from associate (JNCIA) to expert (JNCIE) across all tracks.',
+    description: 'Juniper Education Services delivers instructor-led, on-demand and bootcamp training across the Juniper Networks Certification Program (JNCP). Tracks cover Enterprise Routing and Switching, Data Center, Security, Service Provider, Automation and DevOps, and Cloud.',
+    specs: ['JNCIA / JNCIS / JNCIP / JNCIE tracks', 'Instructor-led and on-demand', 'Hands-on labs included', 'Tracks: ENT/DC/SEC/SP/DevOps/Cloud', 'Official Juniper material', 'Exam vouchers available'],
+    specGrid: [
+      { label: 'Cert Levels', value: '4 (Assoc\u2013Expert)' },
+      { label: 'Delivery', value: 'ILT / OD / Bootcamp' },
+      { label: 'Tracks', value: 'ENT/DC/SEC/SP/DevOps' },
+      { label: 'Labs', value: 'Hands-on' },
+      { label: 'Voucher', value: 'Optional' },
+      { label: 'Language', value: 'Multi' }
+    ],
+    features: ['Official JNCP', 'Hands-on labs', 'Bootcamps', 'Multi-track'],
+    useCases: ['Staff upskilling', 'Certification readiness', 'Partner enablement'],
+    licensing: 'Per-seat / per-class. Bundle options with exam vouchers. Training credits available.',
+    licenseType: 'Per seat (class/OD)',
+    models: [
+      { name: 'JNCIA-Junos', sku: 'EDU-JNCIA-JUNOS', description: 'Associate Junos class + exam' },
+      { name: 'JNCIS-ENT', sku: 'EDU-JNCIS-ENT', description: 'Specialist ENT routing/switching' },
+      { name: 'JNCIP-SEC', sku: 'EDU-JNCIP-SEC', description: 'Professional Security track' },
+      { name: 'JNCIE-DC', sku: 'EDU-JNCIE-DC', description: 'Expert Data Center bootcamp' }
+    ],
+    productUrl: 'https://www.juniper.net/us/en/training.html',
+    brochureUrl: 'https://www.juniper.net/us/en/training.html'
+  }
+];
+
+// ===== STATE =====
+let activeFilter = 'all';
+let searchQuery = '';
+let compareList = [];
+let currentSearchIdx = -1;
+
+function getRAGStatus(p) {
+  let s = 0;
+  if (p.image) s += 2;
+  if ((p.models && p.models.length > 0) || p.sku) s += 3;
+  if (p.specs && p.specs.length >= 4) s += 2;
+  if (p.description && p.description.length > 50) s += 1;
+  if (p.productUrl) s += 1;
+  if (p.brochureUrl) s += 1;
+  if (p.licensing && p.licensing.length > 10) s += 1;
+  if (p.specGrid && p.specGrid.length >= 3) s += 1;
+  const pct = (s / 12) * 100;
+  if (pct >= 85) return { status: 'green', score: s };
+  if (pct >= 55) return { status: 'amber', score: s };
+  return { status: 'red', score: s };
+}
+
+function getBadgeClass(cat) {
+  return (categories[cat] && categories[cat].badgeClass) || '';
+}
+
+// ===== RENDER =====
+function render() {
+  const main = document.getElementById('mainContent');
+  const noResults = document.getElementById('noResults');
+  let filtered = products.filter(p => {
+    if (activeFilter !== 'all' && p.category !== activeFilter) return false;
+    if (searchQuery) {
+      const q = searchQuery.toLowerCase();
+      const hay = (p.name + ' ' + p.tagline + ' ' + p.description + ' ' + (p.specs || []).join(' ') + ' ' + (p.models || []).map(m => m.name + ' ' + m.sku).join(' ')).toLowerCase();
+      if (!hay.includes(q)) return false;
+    }
+    return true;
+  });
+  if (filtered.length === 0) {
+    main.innerHTML = '';
+    noResults.style.display = 'block';
+    return;
+  }
+  noResults.style.display = 'none';
+  const grouped = {};
+  filtered.forEach(p => {
+    if (!grouped[p.category]) grouped[p.category] = [];
+    grouped[p.category].push(p);
+  });
+  let html = '';
+  catOrder.forEach(cat => {
+    if (!grouped[cat]) return;
+    const catInfo = categories[cat];
+    html += '<section class="category-section"><div class="category-header"><h2>' + catInfo.name + '</h2><span class="category-count">' + grouped[cat].length + ' product' + (grouped[cat].length > 1 ? 's' : '') + '</span></div><div class="products-grid">';
+    grouped[cat].forEach(p => {
+      const rag = getRAGStatus(p);
+      const inCompare = compareList.includes(p.id);
+      html += '<div class="product-card" data-id="' + p.id + '">'
+        + '<div class="rag-indicator rag-' + rag.status + '" title="Data completeness: ' + rag.score + '/12"></div>'
+        + '<div class="product-image"><img src="' + p.image + '" alt="' + p.name + '" onerror="handleImgError(this)"></div>'
+        + '<div class="product-body">'
+        + '<span class="product-badge ' + getBadgeClass(p.category) + '">' + p.badge + '</span>'
+        + '<h3 class="product-name">' + p.name + '</h3>'
+        + '<p class="product-tagline">' + p.tagline + '</p>'
+        + '<div class="product-actions">'
+        + '<button class="btn-primary" onclick="openModal(\'' + p.id + '\')">Details</button>'
+        + '<button class="btn-secondary" onclick="openSeriesPage(\'' + p.id + '\')">Series</button>'
+        + '<button class="btn-compare' + (inCompare ? ' active' : '') + '" onclick="toggleCompare(\'' + p.id + '\')" title="Add to compare">'
+        + '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 20V10M12 20V4M6 20v-6"/></svg>'
+        + '</button>'
+        + '<button class="btn-bom' + (isInBom(p.id) ? ' in-bom' : '') + '" onclick="addToBom(\'' + p.id + '\', 1)" title="Add to BOM">+ BOM</button>'
+        + '</div></div></div>';
+    });
+    html += '</div></section>';
+  });
+  main.innerHTML = html;
+}
+
+// ===== MODAL =====
+function openModal(id) {
+  const p = products.find(x => x.id === id);
+  if (!p) return;
+  const modal = document.getElementById('modalContent');
+  let html = '<button class="modal-close" onclick="closeModal()">&times;</button>'
+    + '<div class="modal-header">'
+    + '<div class="modal-img"><img src="' + p.image + '" alt="' + p.name + '" onerror="handleImgError(this)"></div>'
+    + '<div class="modal-info"><span class="product-badge ' + getBadgeClass(p.category) + '">' + p.badge + '</span>'
+    + '<h2>' + p.name + '</h2><p class="tagline">' + p.tagline + '</p>'
+    + '<div class="modal-actions">'
+    + '<button class="btn-primary" onclick="addToBom(\'' + p.id + '\', 1)">+ Add to BOM</button>'
+    + (p.productUrl ? '<a class="btn-secondary" href="' + p.productUrl + '" target="_blank">Product Page</a>' : '')
+    + (p.brochureUrl ? '<a class="btn-secondary" href="' + p.brochureUrl + '" target="_blank">Datasheet</a>' : '')
+    + '</div></div></div>'
+    + '<div class="modal-body"><p>' + p.description + '</p>';
+  if (p.specGrid && p.specGrid.length) {
+    html += '<h4>Key Specifications</h4><div class="spec-grid">';
+    p.specGrid.forEach(s => { html += '<div class="spec-item"><div class="spec-label">' + s.label + '</div><div class="spec-value">' + s.value + '</div></div>'; });
+    html += '</div>';
+  }
+  if (p.specs && p.specs.length) {
+    html += '<h4>Features &amp; Specs</h4><ul class="feature-list">';
+    p.specs.forEach(s => { html += '<li>' + s + '</li>'; });
+    html += '</ul>';
+  }
+  if (p.useCases && p.useCases.length) {
+    html += '<h4>Use Cases</h4><ul class="feature-list">';
+    p.useCases.forEach(u => { html += '<li>' + u + '</li>'; });
+    html += '</ul>';
+  }
+  if (p.models && p.models.length) {
+    html += '<h4>Models / SKUs</h4><table class="models-table"><thead><tr><th>Model</th><th>SKU</th><th>Description</th></tr></thead><tbody>';
+    p.models.forEach(m => { html += '<tr><td>' + m.name + '</td><td><code>' + m.sku + '</code></td><td>' + m.description + '</td></tr>'; });
+    html += '</tbody></table>';
+  }
+  if (p.licensing) html += '<h4>Licensing</h4><p>' + p.licensing + ' <em>(' + (p.licenseType || '') + ')</em></p>';
+  html += '</div>';
+  modal.innerHTML = html;
+  document.getElementById('modalOverlay').classList.add('active');
+}
+function closeModal() { document.getElementById('modalOverlay').classList.remove('active'); }
+
+// ===== COMPARE =====
+function toggleCompare(id) {
+  const i = compareList.indexOf(id);
+  if (i >= 0) compareList.splice(i, 1);
+  else { if (compareList.length >= 4) { showToast('Max 4 products for compare', 'warning'); return; } compareList.push(id); }
+  document.getElementById('compareCount').textContent = compareList.length;
+  render();
+}
+function openCompare() {
+  if (compareList.length < 2) { showToast('Pick at least 2 products to compare', 'info'); return; }
+  const panel = document.getElementById('comparePanel');
+  const items = compareList.map(id => products.find(p => p.id === id)).filter(Boolean);
+  let html = '<button class="modal-close" onclick="closeCompare()">&times;</button><h2 style="margin:0 0 16px;color:var(--jnpr-text)">Product Comparison</h2><div class="compare-grid">';
+  items.forEach(p => {
+    html += '<div class="compare-card"><img src="' + p.image + '" alt="' + p.name + '" onerror="handleImgError(this)"><h3>' + p.name + '</h3><p style="font-size:0.8rem;color:var(--jnpr-muted);margin:6px 0 12px">' + p.tagline + '</p>';
+    if (p.specGrid) p.specGrid.forEach(s => { html += '<div class="compare-spec"><span class="label">' + s.label + '</span><span class="value">' + s.value + '</span></div>'; });
+    html += '<div style="margin-top:12px;display:flex;gap:6px"><button class="btn-primary" onclick="addToBom(\'' + p.id + '\', 1)">+ BOM</button><button class="btn-secondary" onclick="toggleCompare(\'' + p.id + '\');closeCompare();openCompare()">Remove</button></div></div>';
+  });
+  html += '</div>';
+  panel.innerHTML = html;
+  document.getElementById('compareOverlay').classList.add('active');
+}
+function closeCompare() { document.getElementById('compareOverlay').classList.remove('active'); }
+
+// ===== SERIES PAGE =====
+function openSeriesPage(id) {
+  const p = products.find(x => x.id === id);
+  if (!p) return;
+  const c = document.getElementById('seriesContent');
+  let html = '<div class="series-hero"><div class="series-hero-img"><img src="' + p.image + '" alt="' + p.name + '" onerror="handleImgError(this)"></div>'
+    + '<div class="series-hero-info"><h1>' + p.name + '</h1><p class="tagline">' + p.tagline + '</p></div></div>';
+  if (p.models && p.models.length) {
+    html += '<div class="series-models-title">Models</div><div class="series-models-grid">';
+    p.models.forEach(m => {
+      html += '<div class="model-card"><div class="model-card-img"><img src="' + p.image + '" alt="' + m.name + '" onerror="handleImgError(this)"></div>'
+        + '<div class="model-card-body"><h3>' + m.name + '</h3><div class="model-sku">' + m.sku + '</div><div class="model-desc">' + m.description + '</div>'
+        + '<div class="model-card-actions"><button class="btn-bom" onclick="addToBomDirect(\'' + p.id + '\',\'' + m.name.replace(/'/g, "\\'") + '\',\'' + m.sku + '\', 1)">+ Add to BOM</button></div></div></div>';
+    });
+    html += '</div>';
+  }
+  document.getElementById('seriesOverlay').classList.add('open');
+  document.getElementById('seriesContent').innerHTML = html;
+}
+function closeSeriesPage() { document.getElementById('seriesOverlay').classList.remove('open'); }
+
+// ===== BOM =====
+let bomState = {
+  id: 'bom-' + Date.now(),
+  version: 1,
+  meta: { project: '', customer: '', preparedBy: 'Compugeddon t/a CGTECH', reference: '' },
+  items: [],
+  createdAt: new Date().toISOString(),
+  updatedAt: new Date().toISOString()
+};
+const BOM_STORAGE_KEY = 'juniper-bom-autosave-v1';
+
+function bomAutoSave() {
+  bomState.meta.project = document.getElementById('bomProject').value;
+  bomState.meta.customer = document.getElementById('bomCustomer').value;
+  bomState.meta.preparedBy = document.getElementById('bomPreparedBy').value;
+  bomState.meta.reference = document.getElementById('bomReference').value;
+  bomState.updatedAt = new Date().toISOString();
+  try { localStorage.setItem(BOM_STORAGE_KEY, JSON.stringify(bomState)); } catch (e) { }
+}
+function loadAutoSavedBom() {
+  try {
+    const s = localStorage.getItem(BOM_STORAGE_KEY);
+    if (s) {
+      bomState = JSON.parse(s);
+      if (!bomState.meta) bomState.meta = { project: '', customer: '', preparedBy: 'Compugeddon t/a CGTECH', reference: '' };
+      if (!bomState.items) bomState.items = [];
+      setTimeout(() => {
+        document.getElementById('bomProject').value = bomState.meta.project || '';
+        document.getElementById('bomCustomer').value = bomState.meta.customer || '';
+        document.getElementById('bomPreparedBy').value = bomState.meta.preparedBy || 'Compugeddon t/a CGTECH';
+        document.getElementById('bomReference').value = bomState.meta.reference || '';
+      }, 50);
+    }
+  } catch (e) { }
+}
+function isInBom(productId) { return bomState.items.some(i => i.productId === productId); }
+
+function addToBom(productId, qty) {
+  const p = products.find(x => x.id === productId);
+  if (!p) return;
+  if (p.models && p.models.length > 1) { showModelPicker(productId); return; }
+  if (p.models && p.models.length === 1) { addToBomDirect(productId, p.models[0].name, p.models[0].sku, qty); return; }
+  addToBomDirect(productId, p.name, productId.toUpperCase(), qty);
+}
+function addToBomDirect(seriesId, modelName, modelSku, qty) {
+  const p = products.find(x => x.id === seriesId);
+  if (!p) return;
+  qty = qty || 1;
+  const existing = bomState.items.find(i => i.productId === seriesId && i.modelSku === modelSku);
+  if (existing) { existing.qty += qty; }
+  else {
+    bomState.items.push({ productId: seriesId, productName: p.name, category: p.category, modelName: modelName, modelSku: modelSku, qty: qty });
+  }
+  bomState.updatedAt = new Date().toISOString();
+  bomAutoSave();
+  renderBomItems();
+  updateBomBadge();
+  showToast('Added ' + modelName + ' to BOM', 'success');
+  render();
+}
+function updateBomBadge() {
+  const total = bomState.items.reduce((s, i) => s + i.qty, 0);
+  const b = document.getElementById('bomBadge');
+  b.textContent = total;
+  b.classList.toggle('show', total > 0);
+}
+function removeBomItem(idx) { bomState.items.splice(idx, 1); bomAutoSave(); renderBomItems(); updateBomBadge(); render(); }
+function updateBomQty(idx, val) {
+  const q = parseInt(val, 10) || 1;
+  bomState.items[idx].qty = Math.max(1, q);
+  bomAutoSave(); renderBomItems(); updateBomBadge();
+}
+function renderBomItems() {
+  const wrap = document.getElementById('bomItems');
+  const summary = document.getElementById('bomSummary');
+  if (bomState.items.length === 0) {
+    wrap.innerHTML = '<div style="text-align:center;padding:40px 20px;color:var(--jnpr-muted);font-size:0.85rem">No items in BOM yet.<br>Click <strong style="color:var(--jnpr-green)">+ BOM</strong> on any product.</div>';
+    summary.innerHTML = '';
+    return;
+  }
+  const grouped = {};
+  bomState.items.forEach((item, idx) => {
+    if (!grouped[item.category]) grouped[item.category] = [];
+    grouped[item.category].push({ item, idx });
+  });
+  let html = '';
+  catOrder.forEach(cat => {
+    if (!grouped[cat]) return;
+    const catInfo = categories[cat];
+    html += '<div style="margin-bottom:16px"><div style="font-size:0.7rem;text-transform:uppercase;letter-spacing:1px;color:' + catInfo.color + ';font-weight:700;margin-bottom:8px">' + catInfo.name + '</div>';
+    grouped[cat].forEach(({ item, idx }) => {
+      html += '<div class="bom-item">'
+        + '<div class="bom-item-info"><div class="bom-item-name">' + item.productName + '</div>'
+        + '<div class="bom-item-sku">' + item.modelName + ' &middot; ' + item.modelSku + '</div></div>'
+        + '<input class="bom-qty" type="number" min="1" value="' + item.qty + '" onchange="updateBomQty(' + idx + ', this.value)">'
+        + '<button class="bom-btn danger" onclick="removeBomItem(' + idx + ')" title="Remove">&times;</button></div>';
+    });
+    html += '</div>';
+  });
+  wrap.innerHTML = html;
+  const totalItems = bomState.items.reduce((s, i) => s + i.qty, 0);
+  const uniqueLines = bomState.items.length;
+  summary.innerHTML = '<div class="row"><span>Line items</span><span>' + uniqueLines + '</span></div>'
+    + '<div class="row"><span>Total units</span><span>' + totalItems + '</span></div>'
+    + '<div class="row"><span>Project</span><span>' + (bomState.meta.project || '<em>unset</em>') + '</span></div>';
+}
+function toggleBomDrawer() {
+  const d = document.getElementById('bomDrawer');
+  const bd = document.getElementById('bomBackdrop');
+  if (d.classList.contains('open')) closeBomDrawer();
+  else { d.classList.add('open'); bd.style.display = 'block'; renderBomItems(); }
+}
+function closeBomDrawer() {
+  document.getElementById('bomDrawer').classList.remove('open');
+  document.getElementById('bomBackdrop').style.display = 'none';
+}
+function clearBom() {
+  if (!confirm('Clear all BOM items?')) return;
+  bomState.items = [];
+  bomAutoSave();
+  renderBomItems();
+  updateBomBadge();
+  render();
+  showToast('BOM cleared', 'info');
+}
+function exportBomCSV() {
+  if (bomState.items.length === 0) { showToast('BOM is empty', 'warning'); return; }
+  let csv = 'Category,Product,Model,SKU,Qty\n';
+  bomState.items.forEach(i => {
+    csv += '"' + (categories[i.category] ? categories[i.category].name : i.category) + '","' + i.productName + '","' + i.modelName + '","' + i.modelSku + '",' + i.qty + '\n';
+  });
+  const blob = new Blob([csv], { type: 'text/csv' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'Juniper-BOM-' + (bomState.meta.reference || 'export') + '.csv';
+  a.click();
+  URL.revokeObjectURL(url);
+  showToast('BOM exported', 'success');
+}
+function copyBomToClipboard() {
+  if (bomState.items.length === 0) { showToast('BOM is empty', 'warning'); return; }
+  let txt = 'Juniper Networks BOM\n====================\n';
+  if (bomState.meta.project) txt += 'Project: ' + bomState.meta.project + '\n';
+  if (bomState.meta.customer) txt += 'Customer: ' + bomState.meta.customer + '\n';
+  txt += '\n';
+  bomState.items.forEach(i => { txt += i.qty + ' x ' + i.modelName + ' (' + i.modelSku + ') - ' + i.productName + '\n'; });
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(txt).then(() => showToast('BOM copied', 'success'));
+  } else {
+    showToast('Clipboard not supported', 'error');
+  }
+}
+function printBom() {
+  if (bomState.items.length === 0) { showToast('BOM is empty', 'warning'); return; }
+  const w = window.open('', '_blank');
+  let html = '<html><head><title>Juniper BOM</title><style>body{font-family:Arial;padding:24px;color:#111}h1{color:#0A7E37}table{width:100%;border-collapse:collapse;margin-top:16px}th,td{padding:8px;border:1px solid #ccc;text-align:left;font-size:12px}th{background:#84BD00;color:#000}</style></head><body>'
+    + '<h1>Juniper Networks Bill of Materials</h1>'
+    + '<p><strong>Prepared by:</strong> ' + (bomState.meta.preparedBy || 'CGTECH') + '<br>'
+    + '<strong>Project:</strong> ' + (bomState.meta.project || '&mdash;') + '<br>'
+    + '<strong>Customer:</strong> ' + (bomState.meta.customer || '&mdash;') + '<br>'
+    + '<strong>Reference:</strong> ' + (bomState.meta.reference || '&mdash;') + '<br>'
+    + '<strong>Date:</strong> ' + new Date().toLocaleDateString() + '</p>'
+    + '<table><thead><tr><th>Category</th><th>Product</th><th>Model</th><th>SKU</th><th>Qty</th></tr></thead><tbody>';
+  bomState.items.forEach(i => {
+    html += '<tr><td>' + (categories[i.category] ? categories[i.category].name : i.category) + '</td><td>' + i.productName + '</td><td>' + i.modelName + '</td><td>' + i.modelSku + '</td><td>' + i.qty + '</td></tr>';
+  });
+  html += '</tbody></table></body></html>';
+  w.document.write(html);
+  w.document.close();
+  setTimeout(() => w.print(), 500);
+}
+
+// ===== MODEL PICKER =====
+function showModelPicker(productId) {
+  const p = products.find(x => x.id === productId);
+  if (!p || !p.models) return;
+  const c = document.getElementById('modelPickerContent');
+  let html = '<h3>' + p.name + '</h3><p class="subtitle">Select a model to add to BOM</p>';
+  p.models.forEach(m => {
+    const key = (p.id + '__' + m.sku).replace(/[^a-zA-Z0-9_]/g, '_');
+    html += '<div class="model-option"><div class="model-info"><div class="model-name">' + m.name + '</div><div class="model-sku">' + m.sku + '</div><div class="model-desc">' + m.description + '</div></div>'
+      + '<div class="model-qty"><button onclick="document.getElementById(\'mp_' + key + '\').value=Math.max(1,(parseInt(document.getElementById(\'mp_' + key + '\').value,10)||1)-1)">-</button>'
+      + '<input id="mp_' + key + '" type="number" value="1" min="1">'
+      + '<button onclick="document.getElementById(\'mp_' + key + '\').value=(parseInt(document.getElementById(\'mp_' + key + '\').value,10)||1)+1">+</button></div>'
+      + '<button class="btn-bom" style="margin-left:8px" onclick="addModelFromPicker(\'' + p.id + '\',\'' + m.name.replace(/'/g, "\\'") + '\',\'' + m.sku + '\',\'mp_' + key + '\')">+ Add</button></div>';
+  });
+  html += '<div style="display:flex;justify-content:flex-end;margin-top:16px"><button class="bom-btn" onclick="closeModelPicker()">Close</button></div>';
+  c.innerHTML = html;
+  document.getElementById('modelPickerOverlay').style.display = 'flex';
+}
+function addModelFromPicker(seriesId, modelName, modelSku, qtyInputId) {
+  const q = parseInt(document.getElementById(qtyInputId).value, 10) || 1;
+  addToBomDirect(seriesId, modelName, modelSku, q);
+  closeModelPicker();
+}
+function closeModelPicker() { document.getElementById('modelPickerOverlay').style.display = 'none'; }
+
+// ===== SEARCH DROPDOWN =====
+function renderSearchDropdown() {
+  const dd = document.getElementById('searchDropdown');
+  const q = (searchQuery || '').toLowerCase().trim();
+  if (!q || q.length < 2) { dd.classList.remove('show'); return; }
+  const matches = [];
+  products.forEach(p => {
+    if ((p.name + ' ' + p.tagline).toLowerCase().includes(q)) {
+      matches.push({ type: 'product', product: p, label: p.name, meta: p.badge });
+    }
+    if (p.models) {
+      p.models.forEach(m => {
+        if ((m.name + ' ' + m.sku).toLowerCase().includes(q)) {
+          matches.push({ type: 'model', product: p, model: m, label: m.name, meta: m.sku });
+        }
+      });
+    }
+  });
+  if (matches.length === 0) { dd.classList.remove('show'); return; }
+  const top = matches.slice(0, 12);
+  let html = '';
+  top.forEach((m, i) => {
+    html += '<div class="search-dropdown-item' + (i === currentSearchIdx ? ' active' : '') + '" onclick="selectSearchItem(' + i + ')"><img src="' + m.product.image + '" onerror="handleImgError(this)"><div class="search-dd-info"><div class="search-dd-name">' + m.label + '</div><div class="search-dd-meta">' + m.meta + '</div></div><span class="search-dd-type">' + m.type + '</span></div>';
+  });
+  dd.innerHTML = html;
+  dd.classList.add('show');
+  dd._matches = top;
+}
+function selectSearchItem(i) {
+  const dd = document.getElementById('searchDropdown');
+  const m = dd._matches && dd._matches[i];
+  if (!m) return;
+  dd.classList.remove('show');
+  document.getElementById('searchInput').value = '';
+  searchQuery = '';
+  render();
+  if (m.type === 'model') openSeriesPage(m.product.id);
+  else openModal(m.product.id);
+}
+
+// ===== HW COMPARE =====
+function openHwCompare() {
+  document.getElementById('hwOverlay').classList.add('active');
+  renderHwTable();
+}
+function closeHwCompare() { document.getElementById('hwOverlay').classList.remove('active'); }
+function renderHwTable() {
+  const main = document.getElementById('hwMain');
+  const checks = Array.from(document.querySelectorAll('input[name="hw-cat"]:checked')).map(c => c.value);
+  const list = products.filter(p => checks.includes(p.category));
+  if (list.length === 0) { main.innerHTML = '<div class="hw-no-results">No hardware selected. Enable a category in the sidebar.</div>'; return; }
+  let html = '<div class="hw-results-info">' + list.length + ' product series</div><div class="hw-table-wrap"><table class="hw-table"><thead><tr><th>Product</th><th>Category</th><th>Key Spec 1</th><th>Key Spec 2</th><th>Key Spec 3</th><th>Actions</th></tr></thead><tbody>';
+  list.forEach(p => {
+    const g = p.specGrid || [];
+    html += '<tr><td><div class="hw-product-cell"><img src="' + p.image + '" onerror="handleImgError(this)"><div><div class="hw-prod-name">' + p.name + '</div><div style="font-size:0.7rem;color:var(--jnpr-muted)">' + p.badge + '</div></div></div></td>'
+      + '<td>' + (categories[p.category] ? categories[p.category].name : p.category) + '</td>'
+      + '<td>' + (g[0] ? g[0].label + ': ' + g[0].value : '&mdash;') + '</td>'
+      + '<td>' + (g[1] ? g[1].label + ': ' + g[1].value : '&mdash;') + '</td>'
+      + '<td>' + (g[2] ? g[2].label + ': ' + g[2].value : '&mdash;') + '</td>'
+      + '<td><button class="btn-secondary" onclick="closeHwCompare();openModal(\'' + p.id + '\')">Details</button></td></tr>';
+  });
+  html += '</tbody></table></div>';
+  main.innerHTML = html;
+}
+
+// ===== EVENT LISTENERS =====
+document.querySelectorAll('.filter-tab').forEach(tab => {
+  tab.addEventListener('click', function () {
+    document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+    this.classList.add('active');
+    activeFilter = this.getAttribute('data-filter');
+    render();
+  });
+});
+const searchInput = document.getElementById('searchInput');
+searchInput.addEventListener('input', function () {
+  searchQuery = this.value;
+  currentSearchIdx = -1;
+  render();
+  renderSearchDropdown();
+});
+searchInput.addEventListener('focus', function () { if (searchQuery) renderSearchDropdown(); });
+document.addEventListener('click', function (e) {
+  if (!e.target.closest('.search-box')) document.getElementById('searchDropdown').classList.remove('show');
+});
+document.addEventListener('keydown', function (e) {
+  if (e.key === 'Escape') {
+    closeModal();
+    closeCompare();
+    closeSeriesPage();
+    closeBomDrawer();
+    closeModelPicker();
+    closeHwCompare();
+    document.getElementById('searchDropdown').classList.remove('show');
+  }
+  if (e.ctrlKey && e.key === 'b') { e.preventDefault(); toggleBomDrawer(); }
+});
+
+// ===== INIT =====
+loadAutoSavedBom();
+render();
+updateBomBadge();
+renderBomItems();
+</script>
+</body>
+</html>
