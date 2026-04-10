@@ -2143,6 +2143,49 @@ const products = [
     brochureUrl: "https://www.cisco.com/c/en/us/products/collateral/switches/catalyst-9600-series-switches/nb-06-cat9600-ser-data-sheet-cte-en.html",
     productUrl: "https://www.cisco.com/site/us/en/products/networking/switches/catalyst-9600-series-switches/index.html"
   },
+  {
+    id: "cat-9500x", image: "https://www.cisco.com/content/dam/cisco-cdc/site/us/en/images/networking/cat9500-og-image-1200x630.jpg",
+    models: [
+      {model:"C9500X-28C8D-A",sku:"C9500X-28C8D-A",desc:"28x 100G QSFP28 + 8x 400G QSFP-DD"},
+      {model:"C9500X-60L4D-A",sku:"C9500X-60L4D-A",desc:"60x 50G + 4x 400G QSFP-DD (2026)"},
+      {model:"C9500X-64Y4C-A",sku:"C9500X-64Y4C-A",desc:"64x 25G SFP28 + 4x 100G QSFP28 (2026)"}
+    ],
+    name: "Catalyst 9500X Series",
+    category: "campus-switching",
+    badge: "New 2026",
+    tagline: "Next-generation campus core and aggregation with Silicon One ASIC and 400G density for AI-era networks.",
+    description: "The Catalyst 9500X is Cisco's next-generation fixed-form campus core switch, built on the Silicon One Q200 ASIC. It delivers up to 25.6 Tbps with native 400G QSFP-DD connectivity, enhanced telemetry for AI/ML workloads, and hardware-accelerated macro-segmentation for zero-trust architectures.",
+    specs: ["Silicon One Q200 ASIC","Up to 25.6 Tbps capacity","Native 400G QSFP-DD","Hardware macro-segmentation","SD-Access fabric border","MACsec-256 line-rate"],
+    specGrid: [{label:"Switching Capacity",value:"Up to 25.6 Tbps"},{label:"Max Speed",value:"400G QSFP-DD"},{label:"ASIC",value:"Silicon One Q200"},{label:"Redundancy",value:"StackWise Virtual"},{label:"Form Factor",value:"1U fixed"},{label:"Power",value:"1+1 redundant PSU"}],
+    features: ["Silicon One unified ASIC architecture","Deep visibility with flow-based telemetry","Hardware-enforced SGT/SDA micro-segmentation","400G breakout to 4x 100G / 8x 50G","Application hosting with integrated x86 / NVMe","Native post-quantum ready cryptography"],
+    useCases: ["AI-era campus core","High-bandwidth SD-Access border","Data center-adjacent aggregation","Campus-to-cloud edge"],
+    licensing: "DNA Advantage subscription required for full SD-Access and assurance features.",
+    licenseType: "DNA Subscription",
+    brochureUrl: "https://www.cisco.com/c/en/us/products/collateral/switches/catalyst-9500-series-switches/nb-06-cat9500-ser-data-sheet-cte-en.html",
+    productUrl: "https://www.cisco.com/site/us/en/products/networking/switches/catalyst-9500-series-switches/index.html"
+  },
+  {
+    id: "cat-9350", image: "https://www.cisco.com/content/dam/cisco-cdc/site/images/open-graph/products/networking/9300-series-switches-laptop-og-image-1200x630.jpg",
+    models: [
+      {model:"C9350-24P-A",sku:"C9350-24P-A",desc:"24x 1G PoE+, 4x 25G uplinks"},
+      {model:"C9350-48P-A",sku:"C9350-48P-A",desc:"48x 1G PoE+, 4x 25G uplinks"},
+      {model:"C9350-24UX-A",sku:"C9350-24UX-A",desc:"24x mGig UPOE, 4x 25G uplinks"},
+      {model:"C9350-48UXM-A",sku:"C9350-48UXM-A",desc:"48x mGig UPOE+, 4x 25G uplinks"}
+    ],
+    name: "Catalyst 9350 Series",
+    category: "campus-switching",
+    badge: "New 2026",
+    tagline: "Mid-tier stackable campus access switch bridging the 9300 and 9500 with native 25G uplinks and Wi-Fi 7 readiness.",
+    description: "The Catalyst 9350 is a new mid-tier stackable campus access platform announced in 2026. Positioned between the 9300 and 9500X, it delivers native 25G uplinks, mGig access ports for Wi-Fi 7 densification, UADP 3.0 ASIC, and Perpetual PoE — all with full SD-Access fabric edge capability.",
+    specs: ["Native 25G uplinks","UADP 3.0 ASIC","Multi-Gig (mGig) Ethernet","UPOE+ (90W/port)","StackWise stacking","MACsec-256"],
+    specGrid: [{label:"Switching Capacity",value:"Up to 2 Tbps"},{label:"Uplinks",value:"4x 25G SFP28"},{label:"PoE",value:"UPOE+ up to 2400W"},{label:"Stacking",value:"StackWise-1T"},{label:"ASIC",value:"UADP 3.0"},{label:"Form Factor",value:"1U fixed"}],
+    features: ["Wi-Fi 7 ready with mGig access ports","Native 25G uplinks for Wi-Fi 7 backhaul","Perpetual PoE survives reboot","SD-Access fabric edge","Application hosting with on-box x86","MACsec-256 on all ports"],
+    useCases: ["Wi-Fi 7 campus access","High-density IoT and IDF","Smart building networks","Education and healthcare campuses"],
+    licensing: "DNA Essentials or DNA Advantage subscription (3/5/7yr).",
+    licenseType: "DNA Subscription",
+    brochureUrl: "https://www.cisco.com/c/en/us/products/collateral/switches/catalyst-9300-series-switches/nb-06-cat9300-ser-data-sheet-cte-en.html",
+    productUrl: "https://www.cisco.com/site/us/en/products/networking/switches/catalyst-9300-series-switches/index.html"
+  },
   // ── BRANCH SWITCHING ────────────────────────────────────────────
   {
     id: "cat-1000", image: "https://www.cisco.com/c/dam/assets/swa/img/anchor-info/cat1k-anchor-v2-628x353.png",
@@ -2260,6 +2303,28 @@ const products = [
     licenseType: "NX-OS Subscription",
     brochureUrl: "https://www.cisco.com/c/en/us/products/collateral/switches/nexus-3000-series-switches/data_sheet_c78-729771.html",
     productUrl: "https://www.cisco.com/c/en/us/products/switches/nexus-3000-series-switches/index.html"
+  },
+  {
+    id: "nexus-9408", image: "https://www.cisco.com/content/dam/cisco-cdc/site/us/en/images/networking/og-image-nexus-9000-series-switches-1200x630.jpg",
+    models: [
+      {model:"N9K-C9408",sku:"N9K-C9408",desc:"8-slot compact modular chassis"},
+      {model:"N9K-X9400-SUP-A",sku:"N9K-X9400-SUP-A",desc:"Supervisor module for 9408"},
+      {model:"N9K-X9400-16D",sku:"N9K-X9400-16D",desc:"16x 400G QSFP-DD line card"},
+      {model:"N9K-X9400-22L4D",sku:"N9K-X9400-22L4D",desc:"22x 50G + 4x 400G line card"}
+    ],
+    name: "Nexus 9408 Modular Chassis",
+    category: "dc-switching",
+    badge: "New 2026",
+    tagline: "Compact 8-slot modular DC switch delivering up to 25.6 Tbps for mid-sized spine and aggregation deployments.",
+    description: "The Nexus 9408 is Cisco's new compact modular data center switch announced in 2026. It fills the gap between fixed Nexus 9300 leaves and large 9500 chassis, providing an 8-slot modular platform with Silicon One silicon, 400G line cards, and both NX-OS and ACI fabric modes in a space-efficient form factor.",
+    specs: ["8-slot compact modular","Up to 25.6 Tbps capacity","Silicon One ASIC","400G QSFP-DD line cards","NX-OS or ACI mode","Redundant supervisors"],
+    specGrid: [{label:"Capacity",value:"Up to 25.6 Tbps"},{label:"Slots",value:"8 line card slots"},{label:"Line Cards",value:"400G QSFP-DD"},{label:"ASIC",value:"Silicon One"},{label:"Fabric Mode",value:"NX-OS or ACI"},{label:"Redundancy",value:"Dual supervisor"}],
+    features: ["Compact modular for space-constrained DCs","Silicon One Q200 ASIC","Redundant supervisor with ISSU","VXLAN EVPN multi-site fabric","Streaming telemetry with Nexus One","Power-efficient for edge DC"],
+    useCases: ["Mid-sized DC spine","Edge data center","Colocation and hosting","Branch data center"],
+    licensing: "NX-OS Essentials or Advantage. ACI Essentials or Advantage for fabric mode.",
+    licenseType: "NX-OS / ACI Subscription",
+    brochureUrl: "https://www.cisco.com/c/en/us/products/collateral/switches/nexus-9000-series-switches/nb-06-nexus9500-ser-data-sheet-cte-en.html",
+    productUrl: "https://www.cisco.com/c/en/us/products/switches/nexus-9000-series-switches/index.html"
   },
   // ── WIRELESS ────────────────────────────────────────────────────
   {
@@ -2425,6 +2490,27 @@ const products = [
     brochureUrl: "https://www.cisco.com/c/en/us/products/collateral/routers/asr-1000-series-aggregation-services-routers/datasheet-c78-731632.html",
     productUrl: "https://www.cisco.com/c/en/us/products/routers/asr-1000-series-aggregation-services-routers/index.html"
   },
+  {
+    id: "cat-8500l", image: "https://www.cisco.com/content/dam/cisco-cdc/site/images/open-graph/products/networking/og-catalyst-8000v-1200x630.jpg",
+    models: [
+      {model:"C8500L-8S4X",sku:"C8500L-8S4X",desc:"8x 1GbE + 4x 10GbE SFP+, compact aggregation"},
+      {model:"C8500L-16S4X",sku:"C8500L-16S4X",desc:"16x 1GbE + 4x 10GbE SFP+ (2026)"},
+      {model:"C8500L-8X8M",sku:"C8500L-8X8M",desc:"8x 10G + 8x mGig (2026)"}
+    ],
+    name: "Catalyst 8500L Series",
+    category: "routing",
+    badge: "New 2026",
+    tagline: "Compact aggregation router delivering Catalyst 8500-class performance and SD-WAN in a 1U fixed form factor.",
+    description: "The Catalyst 8500L is the compact 1U variant of Cisco's Catalyst 8500 aggregation series, designed for branch and small WAN aggregation deployments. It delivers up to 30 Gbps of crypto-accelerated throughput, full IOS-XE SD-WAN capability, and SASE on-ramp in a space-efficient form factor.",
+    specs: ["Up to 30 Gbps throughput","Hardware crypto acceleration","8-16x 1G + 4x 10G SFP+","IOS-XE SD-WAN","SASE on-ramp","1U compact form factor"],
+    specGrid: [{label:"Throughput",value:"Up to 30 Gbps"},{label:"Crypto",value:"Hardware accelerated"},{label:"Ports",value:"1G + 10G SFP+"},{label:"OS",value:"IOS-XE SD-WAN"},{label:"Form Factor",value:"1U fixed"},{label:"Power",value:"Single AC PSU"}],
+    features: ["IOS-XE SD-WAN with vManage","Cisco Umbrella SIG on-ramp","Hardware-accelerated IPSec / DTLS","Catalyst SD-WAN routing and segmentation","SD-Access transit capable","ZTP via Plug-and-Play"],
+    useCases: ["Branch WAN aggregation","Compact SD-WAN hub","SASE on-ramp at the edge","Co-location aggregation"],
+    licensing: "Cisco DNA subscription required (Essentials or Advantage). SD-WAN tier optional.",
+    licenseType: "DNA Subscription",
+    brochureUrl: "https://www.cisco.com/c/en/us/products/collateral/routers/catalyst-8500-series-edge-platforms/nb-06-cat8500-edge-plat-data-sheet-cte-en.html",
+    productUrl: "https://www.cisco.com/site/us/en/products/networking/sdwan-routers/catalyst-8500-edge-platforms/index.html"
+  },
   // ── SD-WAN ──────────────────────────────────────────────────────
   {
     id: "cisco-sdwan", image: "https://www.cisco.com/content/dam/cisco-cdc/site/images/open-graph/solutions/networking/sdwan-og-1200x630.png",
@@ -2474,6 +2560,27 @@ const products = [
     productUrl: "https://meraki.cisco.com/products/security-sd-wan/"
   },
   // ── SECURITY ────────────────────────────────────────────────────
+  {
+    id: "fw-1200", image: "https://www.cisco.com/content/dam/cisco-cdc/site/us/en/images/security/secure-firewall3100-og-1200x677.jpg",
+    models: [
+      {model:"FPR-1210",sku:"FPR1210-NGFW-K9",desc:"3 Gbps FW, 1 Gbps IPS, 8x 1GbE, 1U"},
+      {model:"FPR-1220",sku:"FPR1220-NGFW-K9",desc:"5 Gbps FW, 1.5 Gbps IPS, 8x 1GbE + 2x SFP, 1U"},
+      {model:"FPR-1230",sku:"FPR1230-NGFW-K9",desc:"7 Gbps FW, 2 Gbps IPS, 12x 1GbE + 4x SFP+, 1U"}
+    ],
+    name: "Secure Firewall 1200 Series",
+    category: "security",
+    badge: "New 2026",
+    tagline: "Next-gen branch and small-office firewall with cloud-delivered security and zero-trust segmentation in a compact 1U.",
+    description: "The Secure Firewall 1200 series is Cisco's 2026 branch and small-office NGFW refresh, replacing the older ASA 5500-X line. It delivers up to 7 Gbps firewall throughput, Snort 3 IPS, hardware crypto acceleration, and integrated SD-WAN — all managed via Cisco Defense Orchestrator (CDO) or Firewall Management Center (FMC).",
+    specs: ["Up to 7 Gbps FW throughput","Snort 3 IPS","Hardware crypto acceleration","Integrated SD-WAN","Cloud or on-prem managed","1U fanless models available"],
+    specGrid: [{label:"FW Throughput",value:"3 to 7 Gbps"},{label:"IPS Throughput",value:"1 to 2 Gbps"},{label:"Crypto",value:"Hardware accelerated"},{label:"Form Factor",value:"1U fixed"},{label:"IPS Engine",value:"Snort 3"},{label:"Management",value:"FMC, CDO, or local"}],
+    features: ["Cloud-managed via Defense Orchestrator","Snort 3 IPS with Talos intelligence","Integrated SD-WAN with vManage","Zero-trust micro-segmentation","TLS 1.3 inspection","Cisco Umbrella SIG integration"],
+    useCases: ["Branch office NGFW","Small enterprise edge","Retail / hospitality firewall","SASE on-ramp"],
+    licensing: "Base + Threat/Malware/URL subscriptions. Available as Essentials or Advantage bundle.",
+    licenseType: "Threat Subscription",
+    brochureUrl: "https://www.cisco.com/c/en/us/products/collateral/security/secure-firewall/secure-firewall-1200-series-ds.html",
+    productUrl: "https://www.cisco.com/site/us/en/products/security/firewalls/secure-firewall-1200-series/index.html"
+  },
   {
     id: "fw-3100", image: "https://www.cisco.com/content/dam/cisco-cdc/site/us/en/images/security/secure-firewall3100-og-1200x677.jpg",
     models: [
@@ -2686,6 +2793,27 @@ const products = [
     productUrl: "https://www.cisco.com/c/en/us/products/hyperconverged-infrastructure/index.html"
   },
   // ── MANAGEMENT & LICENSING ──────────────────────────────────────
+  {
+    id: "nexus-one", image: "https://www.cisco.com/content/dam/cisco-cdc/site/us/en/images/networking/og-image-nexus-9000-series-switches-1200x630.jpg",
+    models: [
+      {model:"Nexus One Essentials",sku:"NX1-ESS",desc:"Base unified DC fabric management"},
+      {model:"Nexus One Advantage",sku:"NX1-ADV",desc:"Multi-site, AI insights, and automation"},
+      {model:"Nexus One Premier",sku:"NX1-PRM",desc:"Full suite with assurance and compliance"}
+    ],
+    name: "Cisco Nexus One",
+    category: "management",
+    badge: "New 2026",
+    tagline: "Unified data center fabric management platform announced at Cisco Live EMEA 2026, consolidating Nexus Dashboard and ACI ops.",
+    description: "Cisco Nexus One is the next-generation unified management platform for data center fabrics, announced at Cisco Live EMEA 2026. It consolidates the capabilities of Nexus Dashboard, Nexus Insights, and ACI Multi-Site Orchestrator into a single SaaS-hosted plane with AI-driven assurance, fabric-wide telemetry, and intent-based provisioning across NX-OS and ACI deployments.",
+    specs: ["Unified DC fabric mgmt platform","SaaS or on-prem deployment","AI-driven assurance","Multi-site orchestration","NX-OS and ACI fabric support","Streaming telemetry"],
+    specGrid: [{label:"Deployment",value:"SaaS or on-prem cluster"},{label:"Fabric Support",value:"NX-OS + ACI"},{label:"Multi-site",value:"Native orchestration"},{label:"AI/ML",value:"Anomaly detection + assurance"},{label:"Telemetry",value:"gNMI, gRPC streaming"},{label:"API",value:"REST + Terraform"}],
+    features: ["Single pane for all DC fabric ops","AI-driven anomaly detection and root cause","Intent-based provisioning across sites","Fabric assurance with closed-loop verification","Day-2 ops with compliance and drift detection","Open APIs and Terraform provider"],
+    useCases: ["Multi-DC fabric operations","Cloud-scale enterprise data centers","Hybrid NX-OS / ACI environments","Day-2 fabric assurance and compliance"],
+    licensing: "Per-switch subscription (Essentials / Advantage / Premier). Available as SaaS or on-prem cluster.",
+    licenseType: "Subscription",
+    brochureUrl: "https://www.cisco.com/c/en/us/products/cloud-systems-management/nexus-dashboard/index.html",
+    productUrl: "https://www.cisco.com/c/en/us/products/cloud-systems-management/nexus-dashboard/index.html"
+  },
   {
     id: "catalyst-center", image: "https://www.cisco.com/content/dam/cisco-cdc/site/images/photography/product-photography/catalyst-center-og-1200x630.jpg",
     models: [
