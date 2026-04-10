@@ -793,6 +793,58 @@ footer a:hover { text-decoration: underline; }
 </style>
 </head>
 <body>
+<!--CG_SWITCHER_START-->
+<style>
+.cg-switcher{position:sticky;top:0;left:0;right:0;z-index:99999;background:rgba(8,12,22,0.82);backdrop-filter:blur(18px) saturate(160%);-webkit-backdrop-filter:blur(18px) saturate(160%);border-bottom:1px solid rgba(255,255,255,0.08);font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;box-shadow:0 4px 24px rgba(0,0,0,0.25)}
+.cg-switcher-inner{max-width:1440px;margin:0 auto;padding:12px 24px;display:flex;align-items:center;gap:20px}
+.cg-home{display:flex;align-items:center;gap:10px;color:#fff;text-decoration:none;font-weight:800;font-size:0.78rem;letter-spacing:0.08em;text-transform:uppercase;padding:8px 14px;border-radius:10px;transition:all .25s cubic-bezier(.4,0,.2,1);border:1px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.02);flex-shrink:0}
+.cg-home:hover{background:rgba(255,255,255,0.06);border-color:rgba(255,255,255,0.15);transform:translateY(-1px)}
+.cg-home svg{color:#94a3b8;transition:color .25s}
+.cg-home:hover svg{color:#fff}
+.cg-pills{display:flex;gap:6px;flex:1;justify-content:center;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none}
+.cg-pills::-webkit-scrollbar{display:none}
+.cg-pill{display:inline-flex;align-items:center;gap:10px;padding:9px 18px;border-radius:999px;font-size:0.82rem;font-weight:600;color:#94a3b8;text-decoration:none;border:1px solid transparent;background:rgba(255,255,255,0.02);transition:all .3s cubic-bezier(.4,0,.2,1);white-space:nowrap;position:relative;letter-spacing:0.01em}
+.cg-pill em{font-style:normal;font-weight:500;opacity:0.65;margin-left:2px}
+.cg-pill .cg-dot{width:8px;height:8px;border-radius:50%;background:currentColor;color:var(--cg-brand);opacity:0.55;transition:all .3s;flex-shrink:0}
+.cg-pill:hover{color:#fff;background:rgba(255,255,255,0.05);border-color:rgba(255,255,255,0.08);transform:translateY(-1px)}
+.cg-pill:hover .cg-dot{opacity:1;box-shadow:0 0 12px var(--cg-brand),0 0 4px var(--cg-brand);transform:scale(1.15)}
+.cg-hpe{--cg-brand:#01A982}
+.cg-pa{--cg-brand:#FA582D}
+.cg-cisco{--cg-brand:#049FD9}
+.cg-juniper{--cg-brand:#84BD00}
+.cg-switcher[data-active="hpe"] .cg-hpe,
+.cg-switcher[data-active="pa"] .cg-pa,
+.cg-switcher[data-active="cisco"] .cg-cisco,
+.cg-switcher[data-active="juniper"] .cg-juniper{background:linear-gradient(135deg,var(--cg-brand) 0%,rgba(0,0,0,0.15) 140%);color:#fff;border-color:rgba(255,255,255,0.15);box-shadow:0 4px 24px -4px var(--cg-brand),0 0 0 1px rgba(255,255,255,0.08) inset,0 -1px 0 rgba(0,0,0,0.2) inset;text-shadow:0 1px 2px rgba(0,0,0,0.25);cursor:default;pointer-events:none}
+.cg-switcher[data-active="hpe"] .cg-hpe .cg-dot,
+.cg-switcher[data-active="pa"] .cg-pa .cg-dot,
+.cg-switcher[data-active="cisco"] .cg-cisco .cg-dot,
+.cg-switcher[data-active="juniper"] .cg-juniper .cg-dot{background:#fff;color:#fff;box-shadow:0 0 14px rgba(255,255,255,0.9),0 0 4px rgba(255,255,255,0.6);opacity:1;animation:cg-pulse 2.4s ease-in-out infinite}
+.cg-switcher[data-active="hpe"] .cg-hpe em,
+.cg-switcher[data-active="pa"] .cg-pa em,
+.cg-switcher[data-active="cisco"] .cg-cisco em,
+.cg-switcher[data-active="juniper"] .cg-juniper em{opacity:0.85}
+@keyframes cg-pulse{0%,100%{transform:scale(1);box-shadow:0 0 14px rgba(255,255,255,0.9)}50%{transform:scale(1.15);box-shadow:0 0 22px rgba(255,255,255,1)}}
+.cg-badge{display:inline-flex;align-items:center;gap:6px;margin-left:auto;padding:6px 12px;border-radius:8px;background:linear-gradient(135deg,rgba(132,189,0,0.12),rgba(1,169,130,0.08));border:1px solid rgba(255,255,255,0.08);color:#cbd5e1;font-size:0.7rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;flex-shrink:0}
+.cg-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:#22c55e;box-shadow:0 0 8px #22c55e;animation:cg-pulse 2.4s ease-in-out infinite}
+@media (max-width:900px){.cg-switcher-inner{padding:10px 14px;gap:12px}.cg-home span{display:none}.cg-pill em{display:none}.cg-pill{padding:7px 14px;font-size:0.75rem}.cg-badge{display:none}.cg-pills{justify-content:flex-start}}
+</style>
+<nav class="cg-switcher" data-active="juniper">
+  <div class="cg-switcher-inner">
+    <a href="https://algreconian.github.io/compugeddon-catalogue/index.html" class="cg-home" title="All CGTECH catalogues">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12L12 3l9 9"/><path d="M5 10v10a1 1 0 0 0 1 1h4v-7h4v7h4a1 1 0 0 0 1-1V10"/></svg>
+      <span>CGTECH</span>
+    </a>
+    <div class="cg-pills">
+      <a href="https://algreconian.github.io/compugeddon-catalogue/hpe-catalogue.html" class="cg-pill cg-hpe"><span class="cg-dot"></span><span>HPE<em> Aruba · Juniper</em></span></a>
+      <a href="https://algreconian.github.io/compugeddon-catalogue/paloalto-catalogue.html" class="cg-pill cg-pa"><span class="cg-dot"></span><span>Palo Alto<em> Networks</em></span></a>
+      <a href="https://algreconian.github.io/compugeddon-catalogue/cisco-catalogue.html" class="cg-pill cg-cisco"><span class="cg-dot"></span><span>Cisco<em> Systems</em></span></a>
+      <a href="https://algreconian.github.io/compugeddon-catalogue/juniper-catalogue.html" class="cg-pill cg-juniper"><span class="cg-dot"></span><span>Juniper<em> Networks</em></span></a>
+    </div>
+    <div class="cg-badge">Live</div>
+  </div>
+</nav>
+<!--CG_SWITCHER_END-->
 
 <!-- HERO -->
 <section class="hero">
@@ -996,7 +1048,7 @@ const products = [
   // ========== SWITCHES ==========
   {
     id: 'ex2300', category: 'switches', badge: 'Access Switch',
-    image: 'https://www.hpe.com/content/dam/hpe/shared-publishing/images-norend/products-norend/networking/juniper/Juniper-EX2300-Switch-F-16-9.png',
+    image: 'https://juniper-prod.scene7.com/is/image/junipernetworks/ex2300-48p-front',
     name: 'Juniper EX2300 Series',
     tagline: 'Compact, entry-level access switches with Layer 2/3 capabilities for branch offices and small campuses.',
     description: 'The EX2300 line delivers enterprise-grade switching for small branches and campus access closets. It supports Layer 2/3, Virtual Chassis (up to 4 members), Energy Efficient Ethernet, and optional PoE+ for powering APs, phones and cameras. Junos OS provides a consistent operational model across the Juniper portfolio.',
@@ -1024,7 +1076,7 @@ const products = [
   },
   {
     id: 'ex3400', category: 'switches', badge: 'Access Switch',
-    image: 'https://www.hpe.com/content/dam/hpe/shared-publishing/images-norend/products-norend/networking/juniper/Juniper-EX3400-Switch-F-16-9.png',
+    image: 'https://juniper-prod.scene7.com/is/image/junipernetworks/ex3400-48p-front',
     name: 'Juniper EX3400 Series',
     tagline: 'Mid-range access switches with 10GbE uplinks, 40GbE VCP, and advanced routing for converged campus edge.',
     description: 'EX3400 switches extend campus access with 10GbE SFP+ uplinks and 40GbE QSFP+ Virtual Chassis ports for high-speed stacking. They support MACsec encryption on all ports, Junos OS, and Virtual Chassis up to 10 members. Ideal for modern campus access that needs 10G uplink capacity today.',
@@ -1052,7 +1104,7 @@ const products = [
   },
   {
     id: 'ex4100', category: 'switches', badge: 'Access + mGig',
-    image: 'https://www.hpe.com/content/dam/hpe/shared-publishing/images-norend/products-norend/networking/juniper/Juniper-EX4100-48p-Switch-F-16-9.png',
+    image: 'https://www.hpe.com/content/dam/hpe/shared-publishing/images-norend/products/Juniper-EX4100-48p-Switch-F-16-9.png',
     name: 'Juniper EX4100 Series',
     tagline: 'Cloud-ready access switches with multigigabit ports, 25GbE uplinks, and Mist AI cloud management.',
     description: 'The EX4100 is Juniper\u2019s modern campus access platform, supporting Wi-Fi 6/6E/7 access points with 2.5G/5G/10G multigigabit ports, 25GbE uplinks, and 100GbE Virtual Chassis ports. Integrated with the Mist cloud for AIOps, it delivers the simplicity of cloud operations with the power of Junos.',
@@ -1081,7 +1133,7 @@ const products = [
   },
   {
     id: 'ex4400', category: 'switches', badge: 'Premium Access',
-    image: 'https://www.hpe.com/content/dam/hpe/shared-publishing/images-norend/products-norend/networking/juniper/Juniper-EX4400-Switch-F-16-9.png',
+    image: 'https://www.hpe.com/content/dam/hpe/shared-publishing/images-norend/products/Juniper-EX4400-Switch-F-16-9.png',
     name: 'Juniper EX4400 Series',
     tagline: 'Premium campus access switches with 25GbE uplinks, 100GbE Virtual Chassis, and Mist cloud integration.',
     description: 'EX4400 provides the highest-performance access experience in the EX portfolio, built for mission-critical enterprise campuses. It supports full mGig, 25GbE SFP28 uplinks, 100GbE VCPs, and EVPN-VXLAN fabric extension. Integrated with Mist AI for cloud AIOps, MACsec AES-256, and a 10-member Virtual Chassis.',
@@ -1110,7 +1162,7 @@ const products = [
   },
   {
     id: 'ex4650', category: 'switches', badge: 'Access/Aggregation',
-    image: 'https://www.hpe.com/content/dam/hpe/shared-publishing/images-norend/products-norend/networking/juniper/Juniper-EX4650-Switch-F-16-9.png',
+    image: 'https://juniper-prod.scene7.com/is/image/junipernetworks/ex4650-48y-front',
     name: 'Juniper EX4650 Series',
     tagline: 'Compact 25GbE/100GbE top-of-rack and aggregation switch for small data centers and campus cores.',
     description: 'The EX4650 is a 1U switch delivering 48 x 25GbE SFP28 ports plus 8 x 100GbE QSFP28 uplinks, ideal as a server top-of-rack, campus distribution, or small data center leaf. It supports EVPN-VXLAN fabrics and can join a Virtual Chassis with EX4600 switches.',
@@ -1136,7 +1188,7 @@ const products = [
   },
   {
     id: 'ex9200', category: 'switches', badge: 'Core / Chassis',
-    image: 'https://www.hpe.com/content/dam/hpe/shared-publishing/images-norend/products-norend/networking/juniper/Juniper-EX9200-Switches-F-16-9.png',
+    image: 'https://juniper-prod.scene7.com/is/image/junipernetworks/ex9214-front',
     name: 'Juniper EX9200 Series',
     tagline: 'Programmable modular core switches delivering multi-terabit performance for enterprise campus cores.',
     description: 'The EX9200 is Juniper\u2019s flagship programmable core platform for enterprise campus. Based on the Junos Trio chipset, it offers line-rate L2/L3, MPLS, EVPN-VXLAN, and ISSU (in-service software upgrade). Available in 4/8/14-slot chassis to scale from 160G to over 13.2 Tbps.',
@@ -1163,7 +1215,7 @@ const products = [
   },
   {
     id: 'qfx5120', category: 'switches', badge: 'DC Leaf',
-    image: 'https://www.hpe.com/content/dam/hpe/shared-publishing/images-norend/products-norend/networking/juniper/Juniper-QFX5120-F-16-9.png',
+    image: 'https://juniper-prod.scene7.com/is/image/junipernetworks/qfx5120-48y-front',
     name: 'Juniper QFX5120 Series',
     tagline: 'High-density 25/100GbE data center leaf switches with deep buffers and EVPN-VXLAN fabric support.',
     description: 'QFX5120 series delivers 48 x 25GbE or 32 x 100GbE options with deep buffering for demanding data center workloads. It supports EVPN-VXLAN leaf/spine fabrics, MACsec, and is Junos-based for uniform operations with the rest of the Juniper DC portfolio.',
@@ -1190,7 +1242,7 @@ const products = [
   },
   {
     id: 'qfx5130', category: 'switches', badge: 'DC Leaf/Spine',
-    image: 'https://www.hpe.com/content/dam/hpe/shared-publishing/images-norend/products-norend/networking/juniper/Juniper-QFX5130-F-16-9.png',
+    image: 'https://juniper-prod.scene7.com/is/image/junipernetworks/qfx5130-32cd-front',
     name: 'Juniper QFX5130 Series',
     tagline: 'High-performance 400GbE data center switch for leaf and spine roles in AI and cloud fabrics.',
     description: 'QFX5130 brings 400GbE to data center fabrics. The 32-port QFX5130-32CD supports 32 x 400GbE QSFP56-DD ports (or breakouts to 100G/50G/25G), ideal as a spine for 25/100G leafs or as an AI/ML backend fabric switch. Runs Junos OS Evolved.',
@@ -1215,7 +1267,7 @@ const products = [
   },
   {
     id: 'qfx5220', category: 'switches', badge: 'DC Spine',
-    image: 'https://www.hpe.com/content/dam/hpe/shared-publishing/images-norend/products-norend/networking/juniper/Juniper-QFX5220-F-16-9.png',
+    image: 'https://www.hpe.com/content/dam/hpe/shared-publishing/images-norend/products/Juniper-QFX5220-F-16-9.png',
     name: 'Juniper QFX5220 Series',
     tagline: 'High-radix 400GbE spine switch with 128-port 100GbE breakout for large-scale cloud fabrics.',
     description: 'QFX5220 delivers spine performance with 32 x 400GbE QSFP-DD (QFX5220-32CD) or 128 x 100GbE via breakout. Ideal as a spine in massive EVPN-VXLAN fabrics, it runs Junos OS Evolved and supports RoCEv2 for AI/storage workloads.',
@@ -1241,7 +1293,7 @@ const products = [
   },
   {
     id: 'qfx10008', category: 'switches', badge: 'DC Chassis',
-    image: 'https://www.hpe.com/content/dam/hpe/shared-publishing/images-norend/products-norend/networking/juniper/Juniper-QFX10008-F-16-9.png',
+    image: 'https://www.hpe.com/content/dam/hpe/shared-publishing/images-norend/products/Juniper-QFX10008-F-16-9.png',
     name: 'Juniper QFX10000 Series',
     tagline: 'Modular data center core switches offering multi-terabit capacity, deep buffers, and MPLS/EVPN.',
     description: 'QFX10000 modular switches are designed for data center cores and large EVPN-VXLAN spines. Available as 8-slot or 16-slot chassis, they offer line-rate 10/40/100/400GbE, deep buffering, MPLS, and EVPN-VXLAN. Ideal for traditional and modern DC architectures alike.',
@@ -1269,7 +1321,7 @@ const products = [
   // ========== ROUTERS ==========
   {
     id: 'mx204', category: 'routers', badge: 'Edge Router',
-    image: 'https://www.juniper.net/content/dam/www/assets/photos/us/en/products/routers/mx204-frontwtop-low-1.png',
+    image: 'https://juniper-prod.scene7.com/is/image/junipernetworks/mx204-frontwtop-low-1',
     name: 'Juniper MX204 Universal Router',
     tagline: 'Compact 1U fixed-form edge router delivering 400Gbps of programmable MPLS and SP capabilities.',
     description: 'The MX204 is a 1U fixed-configuration universal edge router offering 400Gbps throughput in a compact form factor. It provides 4 x 100GbE and 8 x 10GbE ports and runs Junos OS with full MX features including MPLS, L2VPN/L3VPN, EVPN, and programmability via Junos.',
@@ -1295,7 +1347,7 @@ const products = [
   },
   {
     id: 'mx304', category: 'routers', badge: 'Edge Router',
-    image: 'https://www.juniper.net/content/dam/www/assets/photos/us/en/products/routers/mx304-frontwtop.png',
+    image: 'https://juniper-prod.scene7.com/is/image/junipernetworks/mx304-frontwtop',
     name: 'Juniper MX304 Universal Router',
     tagline: 'High-density 2.4Tbps edge router with 400GbE interfaces, native segment routing, and cloud-metro scale.',
     description: 'The MX304 is a 2.4Tbps, 4-slot modular edge router supporting 400GbE QSFP56-DD interfaces and the full Junos MX feature set. It is designed for metro, cloud and business services edge use cases and supports SRv6, EVPN, MPLS, and advanced telemetry.',
@@ -1320,7 +1372,7 @@ const products = [
   },
   {
     id: 'mx960', category: 'routers', badge: 'Chassis Router',
-    image: 'https://www.juniper.net/content/dam/www/assets/photos/us/en/products/routers/mx960-frontwtop.png',
+    image: 'https://juniper-prod.scene7.com/is/image/junipernetworks/mx960-frontwtop',
     name: 'Juniper MX960 Universal Router',
     tagline: 'Flagship 16-slot multi-terabit chassis router powering large SP edge, metro aggregation, and DC edge.',
     description: 'The MX960 is a workhorse 16-slot (11 line card slots) modular chassis router widely deployed in service provider networks for edge, aggregation, and core services. It supports up to 80Tbps of system capacity with MPC10/MPC11 line cards and runs the full Junos MX feature set.',
@@ -1346,7 +1398,7 @@ const products = [
   },
   {
     id: 'mx10008', category: 'routers', badge: 'Core Router',
-    image: 'https://www.hpe.com/content/dam/hpe/shared-publishing/images-norend/products-norend/networking/juniper/Juniper-MX10008-F-16-9.png',
+    image: 'https://juniper-prod.scene7.com/is/image/junipernetworks/mx10008-front',
     name: 'Juniper MX10000 Series',
     tagline: 'Ultra-high-capacity modular routers for cloud, DC interconnect and large SP edge with 400GbE density.',
     description: 'The MX10000 series (MX10004/MX10008/MX10016) delivers hyperscale edge and DCI capacity with the Junos Trio chipset and Junos OS Evolved. Supporting up to 80Tbps per chassis and dense 400GbE interfaces, it\u2019s designed for DCI, SP edge and metro cloud.',
@@ -1373,7 +1425,7 @@ const products = [
   },
   {
     id: 'ptx10008', category: 'routers', badge: 'Core / Peering',
-    image: 'https://www.hpe.com/content/dam/hpe/shared-publishing/images-norend/products-norend/networking/juniper/Juniper-PTX10008-F-16-9.png',
+    image: 'https://juniper-prod.scene7.com/is/image/junipernetworks/ptx10008-front',
     name: 'Juniper PTX10000 Series',
     tagline: 'Cloud-optimized packet transport routers delivering tens of terabits for IP/MPLS core and peering.',
     description: 'The PTX10000 series (PTX10004/08/16) are modular, cloud-optimized packet transport routers for SP cores, peering, and DCI. Powered by Junos OS Evolved and the Express silicon family, they provide massive 400GbE/800GbE density with SRv6, segment routing and MACsec support.',
@@ -1400,7 +1452,7 @@ const products = [
   },
   {
     id: 'ptx10001', category: 'routers', badge: 'Compact Core',
-    image: 'https://www.hpe.com/content/dam/hpe/shared-publishing/images-norend/products-norend/networking/juniper/Juniper-PTX10001-F-16-9.png',
+    image: 'https://juniper-prod.scene7.com/is/image/junipernetworks/ptx10001-36mr-front',
     name: 'Juniper PTX10001-36MR',
     tagline: 'Compact 1U core router with 36 x 400GbE ports for WAN, peering, and data center interconnect.',
     description: 'The PTX10001-36MR is a 1U fixed form-factor core router delivering 36 x 400GbE QSFP56-DD ports (or breakouts to 100/50/25/10G). Running Junos OS Evolved, it supports SRv6, segment routing and MACsec, ideal for space-constrained WAN/peering PoPs.',
@@ -1425,7 +1477,7 @@ const products = [
   },
   {
     id: 'acx7100', category: 'routers', badge: 'Access / Metro',
-    image: 'https://www.hpe.com/content/dam/hpe/shared-publishing/images-norend/products-norend/networking/juniper/Juniper-ACX7100-F-16-9.png',
+    image: 'https://juniper-prod.scene7.com/is/image/junipernetworks/acx7024-front',
     name: 'Juniper ACX7000 Series',
     tagline: 'Cloud metro routers purpose-built for 5G transport, metro aggregation, and business services edge.',
     description: 'The ACX7000 family (ACX7100, ACX7509, ACX7024 and others) delivers cloud metro access and aggregation with timing (SyncE/PTP), segment routing, MACsec and Junos OS Evolved. Designed for 5G xHaul, metro aggregation, and business services, with compact and modular options.',
@@ -1454,7 +1506,7 @@ const products = [
   // ========== WIRELESS ==========
   {
     id: 'ap32', category: 'wireless', badge: 'Wi-Fi 6',
-    image: 'https://www.juniper.net/content/dam/www/assets/photos/us/en/products/wireless/ap32-front.png',
+    image: 'https://juniper-prod.scene7.com/is/image/junipernetworks/ap32-ap33-front-comparison',
     name: 'Juniper AP32 / AP33',
     tagline: 'Entry-level Wi-Fi 6 access points with dynamic BLE/IoT radios, cloud-managed via Mist AI.',
     description: 'AP32 and AP33 are Wi-Fi 6 (802.11ax) access points designed for branch and mid-density deployments. They include Juniper\u2019s dynamic Virtual Bluetooth LE antenna array, IoT radio, and are fully cloud-managed by the Mist AI platform with SLE (Service Level Expectation) analytics.',
@@ -1480,7 +1532,7 @@ const products = [
   },
   {
     id: 'ap45', category: 'wireless', badge: 'Wi-Fi 6E',
-    image: 'https://www.juniper.net/content/dam/www/assets/photos/us/en/products/wireless/ap34-45-front.png',
+    image: 'https://juniper-prod.scene7.com/is/image/junipernetworks/ap34-45-front',
     name: 'Juniper AP45 / AP34',
     tagline: 'Wi-Fi 6E tri-band access points with dedicated IoT and BLE radios for high-density enterprise venues.',
     description: 'AP45 is Juniper\u2019s high-performance Wi-Fi 6E (6GHz) access point with 4x4:4 radios on all bands, dynamic vBLE, dedicated IoT and Mist AI cloud management. Designed for high-density enterprise campuses, healthcare, education, and large retail.',
@@ -1506,7 +1558,7 @@ const products = [
   },
   {
     id: 'ap47', category: 'wireless', badge: 'Wi-Fi 7',
-    image: 'https://www.juniper.net/content/dam/www/assets/photos/us/en/products/wireless/ap47-top.png',
+    image: 'https://juniper-prod.scene7.com/is/image/junipernetworks/ap47-top',
     name: 'Juniper AP47 Wi-Fi 7',
     tagline: 'Flagship Wi-Fi 7 access point delivering 6GHz, MLO, and 10GbE uplinks for next-gen enterprise wireless.',
     description: 'AP47 is Juniper\u2019s flagship Wi-Fi 7 (802.11be) access point with tri-band 2.4/5/6 GHz radios, Multi-Link Operation (MLO), and 10GbE uplink. Fully Mist AI cloud-managed with SLE analytics and Marvis virtual assistant, it delivers the highest wireless performance for enterprise venues.',
@@ -1531,7 +1583,7 @@ const products = [
   },
   {
     id: 'ap64', category: 'wireless', badge: 'Outdoor Wi-Fi 6E',
-    image: 'https://www.juniper.net/content/dam/www/assets/photos/us/en/products/wireless/ap63-64-front.png',
+    image: 'https://juniper-prod.scene7.com/is/image/junipernetworks/ap63-front-comparison',
     name: 'Juniper AP63 / AP64 Outdoor',
     tagline: 'Ruggedized outdoor Wi-Fi 6/6E access points for stadiums, warehouses, and large outdoor venues.',
     description: 'AP63 (Wi-Fi 6) and AP64 (Wi-Fi 6E) are IP67-rated outdoor access points with integrated or external antennas. They deliver high-performance wireless in challenging environments, with vBLE, IoT radio and Mist AI cloud management for outdoor deployments.',
@@ -1560,7 +1612,7 @@ const products = [
   // ========== FIREWALLS ==========
   {
     id: 'srx300', category: 'firewalls', badge: 'Branch NGFW',
-    image: 'https://www.hpe.com/content/dam/hpe/shared-publishing/images-norend/products-norend/networking/juniper/Juniper-SRX300-Firewall-F-16-9.png',
+    image: 'https://www.hpe.com/content/dam/hpe/shared-publishing/images-norend/products/Juniper-SRX300-Firewall-F-16-9.png',
     name: 'Juniper SRX300 Line',
     tagline: 'Compact branch firewalls combining NGFW, SD-WAN and routing for small offices and distributed sites.',
     description: 'SRX300, SRX320, SRX340 and SRX345 are desktop/1U branch firewalls that combine stateful firewall, IDP, UTM, SD-WAN (Session Smart via Mist) and Junos routing. They offer up to 5 Gbps firewall throughput and integrate with Juniper Security Director and Mist for management.',
@@ -1588,7 +1640,7 @@ const products = [
   },
   {
     id: 'srx1600', category: 'firewalls', badge: 'Campus NGFW',
-    image: 'https://www.hpe.com/content/dam/hpe/shared-publishing/images-norend/products-norend/networking/juniper/Juniper-SRX1600-F-16-9.png',
+    image: 'https://juniper-prod.scene7.com/is/image/junipernetworks/srx1600-front',
     name: 'Juniper SRX1600',
     tagline: 'Mid-range next-gen firewall delivering up to 78 Gbps of threat inspection for campus and mid-size DC.',
     description: 'The SRX1600 is a 1U mid-range NGFW with up to 78 Gbps firewall throughput, 41 Gbps of threat prevention, full L7 inspection, IDP, ATP, URL filtering and encrypted traffic analysis. Managed by Security Director Cloud and integrates with Juniper Connected Security for campus and mid-DC use cases.',
@@ -1613,7 +1665,7 @@ const products = [
   },
   {
     id: 'srx4600', category: 'firewalls', badge: 'Data Center NGFW',
-    image: 'https://www.hpe.com/content/dam/hpe/shared-publishing/images-norend/products-norend/networking/juniper/Juniper-SRX4600-F-16-9.png',
+    image: 'https://www.hpe.com/content/dam/hpe/shared-publishing/images-norend/products/Juniper-SRX4600-F-16-9.png',
     name: 'Juniper SRX4600',
     tagline: 'High-performance 2U data center firewall with up to 400 Gbps throughput and 100GbE interfaces.',
     description: 'SRX4600 is a 2U high-performance NGFW for large campuses and data center edge. It offers up to 400 Gbps firewall throughput, 100GbE interfaces, full L7 services, IDP, ATP Cloud integration and Security Director Cloud management.',
@@ -1639,7 +1691,7 @@ const products = [
   },
   {
     id: 'srx4700', category: 'firewalls', badge: 'DC NGFW',
-    image: 'https://www.hpe.com/content/dam/hpe/shared-publishing/images-norend/products-norend/networking/juniper/Juniper-SRX4700-F-16-9.png',
+    image: 'https://juniper-prod.scene7.com/is/image/junipernetworks/srx4700-front',
     name: 'Juniper SRX4700',
     tagline: 'Next-gen 2U data center firewall delivering 1.4 Tbps firewall and 400GbE interfaces for cloud DC edge.',
     description: 'SRX4700 is Juniper\u2019s next-generation high-end NGFW delivering up to 1.4 Tbps of firewall throughput in a 2U chassis. It offers 400GbE connectivity, hardware-accelerated threat prevention, ATP Cloud, and deep Security Director Cloud integration for modern data centers.',
@@ -1664,7 +1716,7 @@ const products = [
   },
   {
     id: 'srx5000', category: 'firewalls', badge: 'Carrier-Grade',
-    image: 'https://www.hpe.com/content/dam/hpe/shared-publishing/images-norend/products-norend/networking/juniper/Juniper-SRX5800-F-16-9.png',
+    image: 'https://www.hpe.com/content/dam/hpe/shared-publishing/images-norend/products/Juniper-SRX5800-F-16-9.png',
     name: 'Juniper SRX5000 Line',
     tagline: 'Carrier-grade chassis firewalls for service providers and largest data centers, up to 3 Tbps FW.',
     description: 'SRX5400, SRX5600 and SRX5800 are modular chassis firewalls designed for service providers and the largest enterprise data centers. They scale to 3 Tbps firewall throughput with IOC3 line cards and deliver full L4-L7 services, CGNAT, and telco-grade reliability.',
@@ -1691,7 +1743,7 @@ const products = [
   },
   {
     id: 'vsrx', category: 'firewalls', badge: 'Virtual NGFW',
-    image: 'https://www.hpe.com/content/dam/hpe/shared-publishing/images-norend/products-norend/networking/juniper/Juniper-vSRX-F-16-9.png',
+    image: 'https://logos-world.net/wp-content/uploads/2022/05/Juniper-Networks-Logo.png',
     name: 'Juniper vSRX Virtual Firewall',
     tagline: 'Software-based next-gen firewall deployable on VMware, KVM, AWS, Azure, GCP, and OCI clouds.',
     description: 'vSRX is the virtualized version of the SRX NGFW, deployable across all major hypervisors and public clouds. It delivers full NGFW, IPS, AppSecure, and VPN capabilities with flexible licensing and elastic scale, ideal for cloud workloads and NFV use cases.',
@@ -1719,7 +1771,7 @@ const products = [
   // ========== SD-WAN ==========
   {
     id: 'ssr120', category: 'sdwan', badge: 'Branch SD-WAN',
-    image: 'https://www.hpe.com/content/dam/hpe/shared-publishing/images-norend/products-norend/networking/juniper/Juniper-SSR120-F-16-9.png',
+    image: 'https://juniper-prod.scene7.com/is/image/junipernetworks/ssr120-front',
     name: 'Juniper Session Smart Router SSR120/130',
     tagline: 'Tunnel-free AI-driven SD-WAN routers for small branches with zero-trust session-smart forwarding.',
     description: 'SSR120 and SSR130 are compact branch SD-WAN appliances built on Juniper\u2019s Session Smart technology. They use tunnel-free, session-aware routing with zero-trust principles and are cloud-managed by Mist WAN Assurance for AI-driven operations and insights.',
@@ -1745,7 +1797,7 @@ const products = [
   },
   {
     id: 'ssr1400', category: 'sdwan', badge: 'Enterprise SD-WAN',
-    image: 'https://www.hpe.com/content/dam/hpe/shared-publishing/images-norend/products-norend/networking/juniper/Juniper-SSR1400-F-16-9.png',
+    image: 'https://juniper-prod.scene7.com/is/image/junipernetworks/ssr1400-front',
     name: 'Juniper Session Smart Router SSR1200/1400/1500',
     tagline: 'Mid-range to enterprise SD-WAN appliances with up to 10 Gbps session-smart throughput and cloud AIOps.',
     description: 'SSR1200, SSR1400 and SSR1500 are 1U SD-WAN appliances targeting mid to large branches and regional hubs. They deliver from 2 to 10 Gbps of session-smart throughput with zero-trust overlay, Mist WAN Assurance and flexible interface options.',
@@ -1772,7 +1824,7 @@ const products = [
   },
   {
     id: 'wan-assurance', category: 'sdwan', badge: 'Cloud SD-WAN',
-    image: 'https://www.hpe.com/content/dam/hpe/shared-publishing/images-norend/products-norend/networking/juniper/Juniper-Mist-WAN-Assurance-F-16-9.png',
+    image: 'https://logos-world.net/wp-content/uploads/2022/05/Juniper-Networks-Logo.png',
     name: 'Juniper Mist WAN Assurance',
     tagline: 'Cloud-delivered SD-WAN management with Marvis AI assistant and proactive user experience insights.',
     description: 'Mist WAN Assurance is a cloud-delivered service that brings Mist\u2019s AIOps and Marvis virtual assistant to Juniper SSR and SRX SD-WAN fleets. It provides per-site SLEs, proactive anomaly detection, automated root-cause analysis, and zero-touch provisioning.',
@@ -1801,7 +1853,7 @@ const products = [
   // ========== MANAGEMENT & AIOPS ==========
   {
     id: 'mist-ai', category: 'management', badge: 'Cloud AIOps',
-    image: 'https://www.juniper.net/content/dam/www/assets/images/us/en/products/mist-ai-cloud.png',
+    image: 'https://logos-world.net/wp-content/uploads/2022/05/Juniper-Networks-Logo.png',
     name: 'Juniper Mist AI Cloud',
     tagline: 'Cloud-native AI platform delivering AIOps for wireless, wired, and SD-WAN across the Juniper portfolio.',
     description: 'Mist AI is Juniper\u2019s cloud-native AIOps platform that uses machine learning and the Marvis Virtual Network Assistant to proactively detect, explain and fix issues across Wi-Fi, wired access, and SD-WAN. It provides Service Level Expectations (SLEs) for user experience and automates day-2 operations.',
@@ -1828,7 +1880,7 @@ const products = [
   },
   {
     id: 'marvis', category: 'management', badge: 'AI Assistant',
-    image: 'https://www.juniper.net/content/dam/www/assets/images/us/en/products/marvis-vna.png',
+    image: 'https://logos-world.net/wp-content/uploads/2022/05/Juniper-Networks-Logo.png',
     name: 'Juniper Marvis Virtual Network Assistant',
     tagline: 'Conversational AI assistant that uses ML to automate troubleshooting and answer natural-language questions.',
     description: 'Marvis is Juniper\u2019s Virtual Network Assistant powered by generative and classical AI. It interprets natural-language questions, proactively identifies anomalies, and recommends or executes fixes. Marvis Actions proactively detects persistently failing clients, APs, switches or WAN sites.',
@@ -1855,7 +1907,7 @@ const products = [
   },
   {
     id: 'apstra', category: 'management', badge: 'DC Fabric Mgmt',
-    image: 'https://www.juniper.net/content/dam/www/assets/images/us/en/products/apstra-dashboard.png',
+    image: 'https://logos-world.net/wp-content/uploads/2022/05/Juniper-Networks-Logo.png',
     name: 'Juniper Apstra',
     tagline: 'Intent-based data center automation that designs, deploys, and operates multi-vendor DC fabrics.',
     description: 'Apstra is Juniper\u2019s intent-based networking (IBN) solution for data centers. It uses a blueprint-driven approach to design, deploy, and continuously validate EVPN-VXLAN fabrics across Juniper and third-party switches, with full closed-loop assurance, root cause and rollback.',
@@ -1882,7 +1934,7 @@ const products = [
   },
   {
     id: 'paragon', category: 'management', badge: 'WAN Automation',
-    image: 'https://www.juniper.net/content/dam/www/assets/images/us/en/products/paragon-automation.png',
+    image: 'https://logos-world.net/wp-content/uploads/2022/05/Juniper-Networks-Logo.png',
     name: 'Juniper Paragon Automation',
     tagline: 'Closed-loop automation and assurance for WAN, metro, and 5G transport networks with rich analytics.',
     description: 'Paragon Automation is Juniper\u2019s closed-loop automation suite for service provider and metro WAN. It includes Paragon Pathfinder (traffic engineering), Planner, Insights (telemetry), and Active Assurance for synthetic testing, helping operators automate the full network lifecycle.',
@@ -1911,7 +1963,7 @@ const products = [
   // ========== SOFTWARE & SUBSCRIPTIONS ==========
   {
     id: 'junos-os', category: 'software', badge: 'Network OS',
-    image: 'https://www.juniper.net/content/dam/www/assets/images/us/en/products/junos-os.png',
+    image: 'https://logos-world.net/wp-content/uploads/2022/05/Juniper-Networks-Logo.png',
     name: 'Juniper Junos OS',
     tagline: 'One unified, robust network operating system powering Juniper routers, switches, and firewalls.',
     description: 'Junos OS is Juniper\u2019s flagship network operating system, built on FreeBSD with a modular architecture, separation of control/data/services planes, and a consistent CLI/API across MX, PTX, EX, QFX, SRX, and ACX platforms. It provides ISSU, commit/rollback, NETCONF/YANG, and rich programmability.',
@@ -1937,7 +1989,7 @@ const products = [
   },
   {
     id: 'junos-evo', category: 'software', badge: 'Modern Network OS',
-    image: 'https://www.juniper.net/content/dam/www/assets/images/us/en/products/junos-evolved.png',
+    image: 'https://logos-world.net/wp-content/uploads/2022/05/Juniper-Networks-Logo.png',
     name: 'Juniper Junos OS Evolved',
     tagline: 'Linux-native evolution of Junos with native containers, streaming telemetry, and state-driven architecture.',
     description: 'Junos OS Evolved is the next-generation version of Junos, built directly on Linux with a state-driven architecture, native container support, streaming telemetry, and full compatibility with the Junos CLI and configuration model. Runs on PTX, ACX, QFX, and MX10000 platforms.',
@@ -1962,7 +2014,7 @@ const products = [
   },
   {
     id: 'sec-dir-cloud', category: 'software', badge: 'Security Mgmt',
-    image: 'https://www.juniper.net/content/dam/www/assets/images/us/en/products/security-director-cloud.png',
+    image: 'https://logos-world.net/wp-content/uploads/2022/05/Juniper-Networks-Logo.png',
     name: 'Juniper Security Director Cloud',
     tagline: 'Cloud-delivered unified security management for SRX firewalls, SASE, and zero-trust policy.',
     description: 'Security Director Cloud is a unified, cloud-delivered security management console for Juniper SRX NGFWs. It manages policy, threat prevention, logging and reporting across physical/virtual/container and cloud SRX deployments and bridges into Juniper Secure Edge for SASE.',
@@ -1988,7 +2040,7 @@ const products = [
   },
   {
     id: 'secure-edge', category: 'software', badge: 'SASE',
-    image: 'https://www.juniper.net/content/dam/www/assets/images/us/en/products/secure-edge.png',
+    image: 'https://logos-world.net/wp-content/uploads/2022/05/Juniper-Networks-Logo.png',
     name: 'Juniper Secure Edge (SASE)',
     tagline: 'Cloud-delivered SSE that brings NGFW, SWG, CASB, and ZTNA under unified policy with Security Director Cloud.',
     description: 'Juniper Secure Edge is Juniper\u2019s SSE (Security Service Edge) delivering cloud-native NGFW, Secure Web Gateway, CASB and Zero Trust Network Access. It uses the same policy framework as on-prem SRX via Security Director Cloud, providing consistent security from HQ to branch to remote worker.',
@@ -2017,7 +2069,7 @@ const products = [
   // ========== SERVICES ==========
   {
     id: 'juniper-care', category: 'services', badge: 'Hardware Support',
-    image: 'https://www.juniper.net/content/dam/www/assets/images/us/en/services/juniper-care.png',
+    image: 'https://logos-world.net/wp-content/uploads/2022/05/Juniper-Networks-Logo.png',
     name: 'Juniper Care Services',
     tagline: 'Tiered hardware and software support with 24x7 TAC, RMA, and proactive platinum options.',
     description: 'Juniper Care provides tiered hardware replacement, software updates, and technical support. Tiers include Core, Next-Day, Same-Day, Same-Day Onsite, and Platinum, giving customers the flexibility to match support SLAs to the criticality of each device.',
@@ -2046,7 +2098,7 @@ const products = [
   },
   {
     id: 'pro-services', category: 'services', badge: 'Professional',
-    image: 'https://www.juniper.net/content/dam/www/assets/images/us/en/services/professional-services.png',
+    image: 'https://logos-world.net/wp-content/uploads/2022/05/Juniper-Networks-Logo.png',
     name: 'Juniper Professional Services',
     tagline: 'Design, deployment, migration and optimization services from Juniper-certified engineers and architects.',
     description: 'Juniper Professional Services provides design, planning, migration, deployment and optimization services across the Juniper portfolio. Engagements range from Quick Start fixed-scope deployments to full custom architecture and large-scale network transformations.',
@@ -2074,7 +2126,7 @@ const products = [
   },
   {
     id: 'ai-support', category: 'services', badge: 'AI-Driven Support',
-    image: 'https://www.juniper.net/content/dam/www/assets/images/us/en/services/ai-driven-support.png',
+    image: 'https://logos-world.net/wp-content/uploads/2022/05/Juniper-Networks-Logo.png',
     name: 'Juniper AI-Driven Support Services',
     tagline: 'Proactive support services powered by Marvis AI with predictive insights and auto-case creation.',
     description: 'Juniper AI-Driven Support uses Marvis telemetry and machine learning to proactively detect issues, auto-generate support cases, and accelerate resolution. It integrates with Juniper Care to deliver a modern, insight-driven support experience across the Mist-managed estate.',
@@ -2101,7 +2153,7 @@ const products = [
   },
   {
     id: 'training', category: 'services', badge: 'Training',
-    image: 'https://www.juniper.net/content/dam/www/assets/images/us/en/services/education-services.png',
+    image: 'https://logos-world.net/wp-content/uploads/2022/05/Juniper-Networks-Logo.png',
     name: 'Juniper Education Services & JNCP',
     tagline: 'Official Juniper training and certification from associate (JNCIA) to expert (JNCIE) across all tracks.',
     description: 'Juniper Education Services delivers instructor-led, on-demand and bootcamp training across the Juniper Networks Certification Program (JNCP). Tracks cover Enterprise Routing and Switching, Data Center, Security, Service Provider, Automation and DevOps, and Cloud.',
@@ -2188,7 +2240,7 @@ function render() {
       const rag = getRAGStatus(p);
       const inCompare = compareList.includes(p.id);
       html += '<div class="product-card" data-id="' + p.id + '">'
-        + '<div class="rag-indicator rag-' + rag.status + '" title="Data completeness: ' + rag.score + '/12"></div>'
+        + '<div class="rag-light rag-' + rag.status + '" title="Data completeness: ' + rag.score + '/12"></div>'
         + '<div class="product-image"><img src="' + p.image + '" alt="' + p.name + '" onerror="handleImgError(this)"></div>'
         + '<div class="product-body">'
         + '<span class="product-badge ' + getBadgeClass(p.category) + '">' + p.badge + '</span>'

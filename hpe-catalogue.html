@@ -321,6 +321,58 @@ footer a{color:var(--hpe-green)}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js" defer></script>
 </head>
 <body>
+<!--CG_SWITCHER_START-->
+<style>
+.cg-switcher{position:sticky;top:0;left:0;right:0;z-index:99999;background:rgba(8,12,22,0.82);backdrop-filter:blur(18px) saturate(160%);-webkit-backdrop-filter:blur(18px) saturate(160%);border-bottom:1px solid rgba(255,255,255,0.08);font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;box-shadow:0 4px 24px rgba(0,0,0,0.25)}
+.cg-switcher-inner{max-width:1440px;margin:0 auto;padding:12px 24px;display:flex;align-items:center;gap:20px}
+.cg-home{display:flex;align-items:center;gap:10px;color:#fff;text-decoration:none;font-weight:800;font-size:0.78rem;letter-spacing:0.08em;text-transform:uppercase;padding:8px 14px;border-radius:10px;transition:all .25s cubic-bezier(.4,0,.2,1);border:1px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.02);flex-shrink:0}
+.cg-home:hover{background:rgba(255,255,255,0.06);border-color:rgba(255,255,255,0.15);transform:translateY(-1px)}
+.cg-home svg{color:#94a3b8;transition:color .25s}
+.cg-home:hover svg{color:#fff}
+.cg-pills{display:flex;gap:6px;flex:1;justify-content:center;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none}
+.cg-pills::-webkit-scrollbar{display:none}
+.cg-pill{display:inline-flex;align-items:center;gap:10px;padding:9px 18px;border-radius:999px;font-size:0.82rem;font-weight:600;color:#94a3b8;text-decoration:none;border:1px solid transparent;background:rgba(255,255,255,0.02);transition:all .3s cubic-bezier(.4,0,.2,1);white-space:nowrap;position:relative;letter-spacing:0.01em}
+.cg-pill em{font-style:normal;font-weight:500;opacity:0.65;margin-left:2px}
+.cg-pill .cg-dot{width:8px;height:8px;border-radius:50%;background:currentColor;color:var(--cg-brand);opacity:0.55;transition:all .3s;flex-shrink:0}
+.cg-pill:hover{color:#fff;background:rgba(255,255,255,0.05);border-color:rgba(255,255,255,0.08);transform:translateY(-1px)}
+.cg-pill:hover .cg-dot{opacity:1;box-shadow:0 0 12px var(--cg-brand),0 0 4px var(--cg-brand);transform:scale(1.15)}
+.cg-hpe{--cg-brand:#01A982}
+.cg-pa{--cg-brand:#FA582D}
+.cg-cisco{--cg-brand:#049FD9}
+.cg-juniper{--cg-brand:#84BD00}
+.cg-switcher[data-active="hpe"] .cg-hpe,
+.cg-switcher[data-active="pa"] .cg-pa,
+.cg-switcher[data-active="cisco"] .cg-cisco,
+.cg-switcher[data-active="juniper"] .cg-juniper{background:linear-gradient(135deg,var(--cg-brand) 0%,rgba(0,0,0,0.15) 140%);color:#fff;border-color:rgba(255,255,255,0.15);box-shadow:0 4px 24px -4px var(--cg-brand),0 0 0 1px rgba(255,255,255,0.08) inset,0 -1px 0 rgba(0,0,0,0.2) inset;text-shadow:0 1px 2px rgba(0,0,0,0.25);cursor:default;pointer-events:none}
+.cg-switcher[data-active="hpe"] .cg-hpe .cg-dot,
+.cg-switcher[data-active="pa"] .cg-pa .cg-dot,
+.cg-switcher[data-active="cisco"] .cg-cisco .cg-dot,
+.cg-switcher[data-active="juniper"] .cg-juniper .cg-dot{background:#fff;color:#fff;box-shadow:0 0 14px rgba(255,255,255,0.9),0 0 4px rgba(255,255,255,0.6);opacity:1;animation:cg-pulse 2.4s ease-in-out infinite}
+.cg-switcher[data-active="hpe"] .cg-hpe em,
+.cg-switcher[data-active="pa"] .cg-pa em,
+.cg-switcher[data-active="cisco"] .cg-cisco em,
+.cg-switcher[data-active="juniper"] .cg-juniper em{opacity:0.85}
+@keyframes cg-pulse{0%,100%{transform:scale(1);box-shadow:0 0 14px rgba(255,255,255,0.9)}50%{transform:scale(1.15);box-shadow:0 0 22px rgba(255,255,255,1)}}
+.cg-badge{display:inline-flex;align-items:center;gap:6px;margin-left:auto;padding:6px 12px;border-radius:8px;background:linear-gradient(135deg,rgba(132,189,0,0.12),rgba(1,169,130,0.08));border:1px solid rgba(255,255,255,0.08);color:#cbd5e1;font-size:0.7rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;flex-shrink:0}
+.cg-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:#22c55e;box-shadow:0 0 8px #22c55e;animation:cg-pulse 2.4s ease-in-out infinite}
+@media (max-width:900px){.cg-switcher-inner{padding:10px 14px;gap:12px}.cg-home span{display:none}.cg-pill em{display:none}.cg-pill{padding:7px 14px;font-size:0.75rem}.cg-badge{display:none}.cg-pills{justify-content:flex-start}}
+</style>
+<nav class="cg-switcher" data-active="hpe">
+  <div class="cg-switcher-inner">
+    <a href="https://algreconian.github.io/compugeddon-catalogue/index.html" class="cg-home" title="All CGTECH catalogues">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12L12 3l9 9"/><path d="M5 10v10a1 1 0 0 0 1 1h4v-7h4v7h4a1 1 0 0 0 1-1V10"/></svg>
+      <span>CGTECH</span>
+    </a>
+    <div class="cg-pills">
+      <a href="https://algreconian.github.io/compugeddon-catalogue/hpe-catalogue.html" class="cg-pill cg-hpe"><span class="cg-dot"></span><span>HPE<em> Aruba · Juniper</em></span></a>
+      <a href="https://algreconian.github.io/compugeddon-catalogue/paloalto-catalogue.html" class="cg-pill cg-pa"><span class="cg-dot"></span><span>Palo Alto<em> Networks</em></span></a>
+      <a href="https://algreconian.github.io/compugeddon-catalogue/cisco-catalogue.html" class="cg-pill cg-cisco"><span class="cg-dot"></span><span>Cisco<em> Systems</em></span></a>
+      <a href="https://algreconian.github.io/compugeddon-catalogue/juniper-catalogue.html" class="cg-pill cg-juniper"><span class="cg-dot"></span><span>Juniper<em> Networks</em></span></a>
+    </div>
+    <div class="cg-badge">Live</div>
+  </div>
+</nav>
+<!--CG_SWITCHER_END-->
 
 <!-- Hero -->
 <section class="hero">
