@@ -550,6 +550,16 @@ const PRODUCT_IMAGES = {
   'aruba-cx8400':'https://cdn.blueally.com/securewirelessworks/images/switches/8400/8400_switch_z.png',
   'aruba-cx10000':'https://cdn.blueally.com/securewirelessworks/images/switches/cx10000/cx10000-hero.png',
   'aruba-cx4100i':'https://cdn.blueally.com/securewirelessworks/images/switches/cx6100/family.png',
+  'aruba-cx8100':'https://cdn.blueally.com/securewirelessworks/images/switches/8400/8400_switch_z.png',
+  'aruba-cx8325':'https://cdn.blueally.com/securewirelessworks/images/switches/8400/8400_switch_z.png',
+  'aruba-cx8360':'https://cdn.blueally.com/securewirelessworks/images/switches/8400/8400_switch_z.png',
+  'aruba-instanton-1960':'https://cdn.blueally.com/securewirelessworks/images/switches/cx6200/family.png',
+  'aruba-ap635':'https://juniper-prod.scene7.com/is/image/junipernetworks/ap32-ap33-front-comparison',
+  'aruba-ap567':'https://juniper-prod.scene7.com/is/image/junipernetworks/ap63-front-comparison',
+  'aruba-instanton-ap25':'https://juniper-prod.scene7.com/is/image/junipernetworks/ap32-ap33-front-comparison',
+  'aruba-gw9200':'https://cdn.blueally.com/securewirelessworks/images/aruba-central/aruba-central.png',
+  'aruba-gw7200':'https://cdn.blueally.com/securewirelessworks/images/aruba-central/aruba-central.png',
+  'aruba-gw9000':'https://cdn.blueally.com/securewirelessworks/images/aruba-central/aruba-central.png',
   // Aruba Management
   'aruba-central':'https://cdn.blueally.com/securewirelessworks/images/aruba-central/aruba-central.png',
   'aruba-aiops':'https://cdn.blueally.com/securewirelessworks/images/aruba-central/aruba-central.png',
@@ -685,6 +695,46 @@ const DEFAULT_PRODUCTS = [
     productUrl:"https://www.hpe.com/us/en/product-catalog/networking/networking-switches/pip.aruba-cx-4100i-switch-series.1013090283.html",
     datasheetUrl:"https://www.hpe.com/psnow/doc/a00117285enw"
   },
+  {
+    id:"aruba-cx8100",sku:"R9W88A (8100-48XT4X)",models:[{model:"CX 8100-48XT4X",sku:"R9W88A",desc:"48x 10GBASE-T + 4x 25GbE uplinks"},{model:"CX 8100-40XT8XF4C",sku:"R9W89A",desc:"40x 10GBASE-T + 8x 10GbE SFP+ + 4x 100GbE"},{model:"CX 8100-48Y8C",sku:"R9W90A",desc:"48x 25GbE SFP28 + 8x 100GbE QSFP28"}],name:"HPE Aruba CX 8100 Series",brand:"aruba",category:"switches",
+    tagline:"Scalable Layer 3 aggregation switch delivering 10/25/100GbE for high-performance campus core and distribution layers.",
+    specs:["Layer 3 with full BGP/OSPF/VRRP","10GbE / 25GbE / 100GbE","VSX virtual switching","Network Analytics Engine","ZTP and cloud-managed via Central"],
+    useCases:["Campus aggregation","Campus core","Small data center"],
+    tags:["Distribution","Core","Campus","DC"],
+    licensing:"AOS-CX included; optional Central subscription",
+    productUrl:"https://www.arubanetworks.com/products/switches/8100-series/",
+    datasheetUrl:"https://www.arubanetworks.com/assets/ds/DS_8100Switch.pdf"
+  },
+  {
+    id:"aruba-cx8325",sku:"JL624A (8325-48Y8C)",models:[{model:"CX 8325-48Y8C",sku:"JL624A",desc:"48x 25GbE SFP28 + 8x 100GbE QSFP28, front-to-back"},{model:"CX 8325-32C",sku:"JL626A",desc:"32x 100GbE QSFP28, front-to-back"},{model:"CX 8325-48Y8C BF",sku:"JL625A",desc:"48x 25GbE + 8x 100GbE, back-to-front"}],name:"HPE Aruba CX 8325 Series",brand:"aruba",category:"switches",
+    tagline:"Low-latency, high-performance 10/25/100GbE data center top-of-rack with VSX and EVPN-VXLAN.",
+    specs:["Line-rate 10/25/100GbE","Ultra-low latency (<700ns)","VSX virtual switching","EVPN-VXLAN overlay","F2B and B2F airflow SKUs","Network Analytics Engine"],
+    useCases:["Data center top-of-rack","Campus core","HPC aggregation"],
+    tags:["DC","Core","Campus"],
+    licensing:"AOS-CX included; optional Central subscription",
+    productUrl:"https://www.arubanetworks.com/products/switches/8325-series/",
+    datasheetUrl:"https://www.hpe.com/psnow/doc/a00074262enw"
+  },
+  {
+    id:"aruba-cx8360",sku:"JL700A (8360-48XT4C)",models:[{model:"CX 8360-48XT4C",sku:"JL700A",desc:"48x 10GBASE-T + 4x 100GbE QSFP28"},{model:"CX 8360-32Y4C",sku:"JL701A",desc:"32x 25GbE SFP28 + 4x 100GbE"},{model:"CX 8360-16Y2C",sku:"JL702A",desc:"16x 25GbE SFP28 + 2x 100GbE"},{model:"CX 8360-12C",sku:"JL704A",desc:"12x 100GbE QSFP28"}],name:"HPE Aruba CX 8360 Series",brand:"aruba",category:"switches",
+    tagline:"High-performance Layer 3 switch with 10/25/40/100GbE and EVPN-VXLAN for campus aggregation and compact data center.",
+    specs:["10/25/40/100GbE line rate","EVPN-VXLAN overlay","VSX virtual switching","MACsec AES-256","Multiple airflow SKUs","Network Analytics Engine"],
+    useCases:["Campus core","Campus aggregation","Compact data center"],
+    tags:["Core","Distribution","DC","Campus"],
+    licensing:"AOS-CX included; optional Central subscription",
+    productUrl:"https://www.arubanetworks.com/products/switches/8360-series/",
+    datasheetUrl:"https://www.hpe.com/psnow/doc/a00093155enw"
+  },
+  {
+    id:"aruba-instanton-1960",sku:"JL806A (1960-24G)",models:[{model:"Instant On 1960-24G",sku:"JL806A",desc:"24 1GbE + 2x 10G SFP+ + 2x 10GBASE-T"},{model:"Instant On 1960-48G",sku:"JL808A",desc:"48 1GbE + 2x 10G SFP+ + 2x 10GBASE-T"},{model:"Instant On 1960-24G-PoE+",sku:"JL807A",desc:"24 1GbE PoE+ 370W + 2x 10G SFP+"},{model:"Instant On 1960-48G-PoE+",sku:"JL809A",desc:"48 1GbE PoE+ 600W + 2x 10G SFP+"},{model:"Instant On 1960-12XGT-4SFP+",sku:"JL805A",desc:"12x 10GBASE-T + 4x 10G SFP+"}],name:"HPE Aruba Instant On 1960 Series",brand:"aruba",category:"switches",
+    tagline:"Smart-managed stackable Layer 2+ switches for growing small and midsize businesses with free cloud or app management.",
+    specs:["Layer 2+ with static and dynamic routing","Up to 4 switches stackable","10G SFP+ and 10GBASE-T uplinks","PoE+ models up to 600W","Free Instant On mobile app and cloud portal","Limited lifetime warranty"],
+    useCases:["Small and midsize business","Branch offices","SMB core"],
+    tags:["Access","Distribution","SME","Branch"],
+    licensing:"Free — Instant On cloud/app included",
+    productUrl:"https://www.arubainstanton.com/products/switches/1960-series/",
+    datasheetUrl:"https://www.arubainstanton.com/wp-content/uploads/2021/08/a00111288enw.pdf"
+  },
   // ── JUNIPER SWITCHES ───────────────────────────────────────────
   {
     id:"juniper-ex4400",sku:"EX4400-24P / EX4400-48F",models:[{model:"EX4400-24P",sku:"EX4400-24P",desc:"24 PoE+ ports, 1GbE"},{model:"EX4400-24T",sku:"EX4400-24T",desc:"24 ports, 1GbE, non-PoE"},{model:"EX4400-48F",sku:"EX4400-48F",desc:"48 SFP+ ports, 10GbE"},{model:"EX4400-48P",sku:"EX4400-48P",desc:"48 PoE+ ports, 1GbE"},{model:"EX4400-48T",sku:"EX4400-48T",desc:"48 ports, 1GbE, non-PoE"}],name:"Juniper EX4400 Series",brand:"juniper",category:"switches",
@@ -786,6 +836,66 @@ const DEFAULT_PRODUCTS = [
     licensing:"Aruba Central subscription required",
     productUrl:"https://www.arubanetworks.com/products/wireless/access-points/700-series/",
     datasheetUrl:"https://www.hpe.com/psnow/doc/PSN1014912441USEN"
+  },
+  {
+    id:"aruba-ap635",sku:"R7J30A (AP-635)",models:[{model:"AP-635 (US)",sku:"R7J30A",desc:"Wi-Fi 6E, 2x2:2 tri-radio, internal antennas"},{model:"AP-635 (RW)",sku:"R7J31A",desc:"Wi-Fi 6E, 2x2:2 tri-radio, rest-of-world"}],name:"HPE Aruba AP-635 (Wi-Fi 6E)",brand:"aruba",category:"wireless",
+    tagline:"Mid-tier Wi-Fi 6E tri-radio access point with 6 GHz support for high-density enterprise and education deployments.",
+    specs:["Wi-Fi 6E (802.11ax, 6 GHz)","2x2:2 tri-radio","OFDMA, MU-MIMO, BSS coloring","Integrated Bluetooth 5 and 802.15.4","2.5GbE uplink with PoE","Aruba AI-powered RF"],
+    useCases:["Mid-density enterprise","Education campuses","Healthcare"],
+    tags:["Campus","Enterprise","Mid-density"],
+    licensing:"Aruba Central foundation or advanced subscription",
+    productUrl:"https://www.arubanetworks.com/products/wireless/access-points/6-series/",
+    datasheetUrl:"https://www.hpe.com/psnow/doc/a00120565enw"
+  },
+  {
+    id:"aruba-ap567",sku:"R7H13A (AP-567)",models:[{model:"AP-567 (US)",sku:"R7H13A",desc:"Outdoor Wi-Fi 6, 2x2:2, internal antennas"},{model:"AP-567 (RW)",sku:"R7H14A",desc:"Outdoor Wi-Fi 6, 2x2:2, rest-of-world"},{model:"AP-567EX",sku:"R7H15A",desc:"Outdoor Wi-Fi 6 hazardous-location rated"}],name:"HPE Aruba AP-560 Series (Outdoor Wi-Fi 6)",brand:"aruba",category:"wireless",
+    tagline:"Ruggedized outdoor Wi-Fi 6 access points with IP66/IP67 rating for harsh outdoor and industrial environments.",
+    specs:["Wi-Fi 6 (802.11ax)","2x2:2 dual-radio","IP66/IP67 outdoor rated","Operating temp -40°C to +65°C","Integrated Bluetooth 5","EX variant for hazardous locations"],
+    useCases:["Outdoor venues","Stadiums","Warehouses","Oil and gas"],
+    tags:["Outdoor","Industrial","Enterprise"],
+    licensing:"Aruba Central subscription required",
+    productUrl:"https://www.arubanetworks.com/products/wireless/access-points/560-series/",
+    datasheetUrl:"https://www.hpe.com/psnow/doc/a00108142enw"
+  },
+  {
+    id:"aruba-instanton-ap25",sku:"R9B28A (AP25)",models:[{model:"Instant On AP25",sku:"R9B28A",desc:"Wi-Fi 6, 4x4:4, internal antennas"},{model:"Instant On AP22",sku:"R6M50A",desc:"Wi-Fi 6, 2x2:2, internal antennas"},{model:"Instant On AP22D",sku:"R9B29A",desc:"Wi-Fi 6 desk/wall AP with local Ethernet"}],name:"HPE Aruba Instant On AP Series",brand:"aruba",category:"wireless",
+    tagline:"Plug-and-play Wi-Fi 6 access points for small and midsize businesses with free cloud and mobile app management.",
+    specs:["Wi-Fi 6 (802.11ax)","2x2:2 (AP22/22D) or 4x4:4 (AP25)","Smart mesh and secure guest","Free Instant On cloud + mobile app","PoE powered","Limited lifetime warranty"],
+    useCases:["Small business","Retail","Cafes and restaurants","Home office"],
+    tags:["SME","Branch"],
+    licensing:"Free — Instant On cloud/app included",
+    productUrl:"https://www.arubainstanton.com/products/indoor-access-points/",
+    datasheetUrl:"https://www.arubainstanton.com/wp-content/uploads/2022/09/a00104856enw.pdf"
+  },
+  {
+    id:"aruba-gw9200",sku:"R6M51A (9240)",models:[{model:"9240 Gateway",sku:"R6M51A",desc:"Large enterprise, up to 75 Gbps firewall, 2048 APs"},{model:"9240E Gateway",sku:"R6M52A",desc:"9240 with advanced crypto (suite-B)"}],name:"HPE Aruba 9200 Series Gateway",brand:"aruba",category:"wireless",
+    tagline:"High-performance SD-Branch and mobility gateway for large enterprises with integrated firewall, SD-WAN, and advanced security services.",
+    specs:["Up to 75 Gbps firewall throughput","Up to 2048 APs per gateway","Integrated SD-WAN and routing","Deep packet inspection","WPA3, Enhanced Open, MACsec","Cluster HA with seamless failover"],
+    useCases:["Large enterprise HQ","Campus wireless controller","SD-Branch aggregation"],
+    tags:["Campus","Enterprise","Core"],
+    licensing:"Aruba Central foundation or advanced + optional Gateway Security",
+    productUrl:"https://www.arubanetworks.com/products/gateways-and-controllers/9200-series/",
+    datasheetUrl:"https://www.hpe.com/psnow/doc/a50005629enw"
+  },
+  {
+    id:"aruba-gw7200",sku:"JW735A (7210)",models:[{model:"7210 Controller",sku:"JW735A",desc:"Up to 512 APs, 20 Gbps firewall"},{model:"7220 Controller",sku:"JW743A",desc:"Up to 1024 APs, 40 Gbps firewall"},{model:"7240XM Controller",sku:"JW781A",desc:"Up to 2048 APs, 40 Gbps firewall"},{model:"7280 Controller",sku:"JW755A",desc:"Up to 2048 APs, 100 Gbps firewall"}],name:"HPE Aruba 7200 Series Mobility Controller",brand:"aruba",category:"wireless",
+    tagline:"Enterprise-grade mobility controllers delivering wireless aggregation, policy enforcement, and stateful firewall for campus networks.",
+    specs:["Up to 100 Gbps firewall throughput","Up to 2048 APs per controller","Integrated PEF stateful firewall","Role-based access control","High availability clustering","Centralized WLAN management"],
+    useCases:["Campus wireless aggregation","Large enterprise WLAN","Convention centers and stadiums"],
+    tags:["Campus","Enterprise","Distribution"],
+    licensing:"AP license per access point (LIC-AP) + optional PEFNG/RFP",
+    productUrl:"https://www.arubanetworks.com/products/gateways-and-controllers/7200-series/",
+    datasheetUrl:"https://www.hpe.com/psnow/doc/c04368133.pdf"
+  },
+  {
+    id:"aruba-gw9000",sku:"R1B22A (9004)",models:[{model:"9004 Gateway",sku:"R1B22A",desc:"4x 1GbE ports, up to 4 Gbps firewall"},{model:"9004-LTE Gateway",sku:"R1B23A",desc:"9004 with integrated LTE modem"},{model:"9012 Gateway",sku:"R1B32A",desc:"12x 1GbE ports, 6 Gbps firewall"}],name:"HPE Aruba 9000 Series Branch Gateway",brand:"aruba",category:"wireless",
+    tagline:"Compact SD-Branch gateway integrating routing, SD-WAN, firewall, and wireless controller in a single platform for branch offices.",
+    specs:["Up to 6 Gbps firewall throughput","Integrated SD-WAN with ZTP","Stateful firewall with DPI","LTE failover option (9004-LTE)","Wireless controller for local APs","Cloud-managed via Aruba Central"],
+    useCases:["Branch offices","Retail locations","Remote sites","SD-Branch edge"],
+    tags:["Branch","SD-WAN","SME"],
+    licensing:"Aruba Central foundation or advanced + optional Gateway Security",
+    productUrl:"https://www.arubanetworks.com/products/gateways-and-controllers/9000-series/",
+    datasheetUrl:"https://www.hpe.com/psnow/doc/a00094271enw"
   },
   // ── JUNIPER WIRELESS ───────────────────────────────────────────
   {
