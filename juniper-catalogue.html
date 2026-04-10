@@ -247,9 +247,10 @@ body {
   border-color: var(--jnpr-green);
   box-shadow: 0 0 0 1px var(--jnpr-green);
 }
-.card-image {
+.card-image, .product-image {
   width: 100%;
   height: 140px;
+  max-height: 140px;
   border-radius: 8px;
   margin-bottom: 14px;
   overflow: hidden;
@@ -258,15 +259,19 @@ body {
   align-items: center;
   justify-content: center;
   position: relative;
+  flex-shrink: 0;
 }
-.card-image img {
+.card-image img, .product-image img {
   max-width: 90%;
   max-height: 120px;
+  width: auto;
+  height: auto;
   object-fit: contain;
   transition: transform 0.3s ease;
   mix-blend-mode: lighten;
 }
-.product-card:hover .card-image img { transform: scale(1.05); }
+.product-card:hover .card-image img,
+.product-card:hover .product-image img { transform: scale(1.05); }
 .card-top {
   display: flex;
   justify-content: space-between;
@@ -634,14 +639,18 @@ body {
   cursor: pointer;
 }
 .compare-close:hover { background: rgba(255,255,255,0.05); }
-.compare-product-img {
-  width: 80px;
-  height: 56px;
+.compare-card img, .compare-product-img {
+  display: block;
+  width: 100%;
+  max-width: 160px;
+  height: 90px;
   object-fit: contain;
   border-radius: 6px;
   background: rgba(255,255,255,0.04);
   padding: 4px;
-  margin-bottom: 6px;
+  margin: 0 auto 12px;
+  box-sizing: border-box;
+  mix-blend-mode: lighten;
 }
 
 /* NO RESULTS */
@@ -2268,7 +2277,7 @@ function render() {
       const inCompare = compareList.includes(p.id);
       html += '<div class="product-card" data-id="' + p.id + '">'
         + '<div class="rag-light rag-' + rag.status + '" title="Data completeness: ' + rag.score + '/12"></div>'
-        + '<div class="product-image"><img src="' + p.image + '" alt="' + p.name + '" onerror="handleImgError(this)"></div>'
+        + '<div class="card-image"><img src="' + p.image + '" alt="' + p.name + '" onerror="handleImgError(this)"></div>'
         + '<div class="product-body">'
         + '<span class="product-badge ' + getBadgeClass(p.category) + '">' + p.badge + '</span>'
         + '<h3 class="product-name">' + p.name + '</h3>'
