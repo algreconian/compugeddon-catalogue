@@ -1160,22 +1160,37 @@ footer a:hover { text-decoration: underline; }
 
 .hw-compare-selected-btn {
   padding: 8px 20px;
-  border: 1px solid var(--cisco-teal);
+  border: 1px solid var(--cisco-border);
   border-radius: 6px;
   background: transparent;
-  color: var(--cisco-teal);
+  color: var(--cisco-muted);
   font-size: 0.8rem;
   font-weight: 600;
   font-family: inherit;
-  cursor: pointer;
+  cursor: not-allowed;
   transition: all var(--transition);
-  display: none;
+  display: inline-flex;
   align-items: center;
   gap: 6px;
   white-space: nowrap;
+  position: relative;
 }
-.hw-compare-selected-btn.visible { display: inline-flex; }
-.hw-compare-selected-btn:hover { background: var(--cisco-teal); color: var(--cisco-dark); }
+/* Armed (2+ selected) — full colour + subtle pulse to draw the eye */
+.hw-compare-selected-btn.ready {
+  border-color: var(--cisco-teal);
+  color: var(--cisco-teal);
+  cursor: pointer;
+  animation: hwBtnPulse 2.2s ease-in-out infinite;
+}
+.hw-compare-selected-btn.ready:hover {
+  background: var(--cisco-teal);
+  color: var(--cisco-dark);
+  animation: none;
+}
+@keyframes hwBtnPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(0,188,212,0.45); }
+  50%      { box-shadow: 0 0 0 6px rgba(0,188,212,0); }
+}
 
 .hw-body {
   display: flex;
@@ -1760,9 +1775,10 @@ footer a:hover { text-decoration: underline; }
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
         Filters
       </button>
-      <button class="hw-compare-selected-btn" id="hwCompareSelectedBtn" onclick="hwCompareSelected()">
+      <button class="hw-compare-selected-btn" id="hwCompareSelectedBtn" onclick="hwCompareSelected()" title="Tick the checkbox next to at least 2 models to enable comparison">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 20V10M12 20V4M6 20v-6"/></svg>
-        Compare Selected (<span id="hwSelectedCount">0</span>)
+        <span id="hwCompareSelectedLabel">Select models to compare</span>
+        <span id="hwSelectedCount" style="display:none">0</span>
       </button>
       <button class="hw-close" onclick="closeHwCompare()" title="Back to Catalogue">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5"/><polyline points="12 19 5 12 12 5"/></svg>
@@ -2097,7 +2113,7 @@ const products = [
     useCases: ["Enterprise branch offices","Campus access layer","Retail stores","Healthcare clinics"],
     licensing: "Cisco DNA Essentials or DNA Advantage subscription required (3/5/7 year terms). Hardware purchased separately.",
     licenseType: "DNA Subscription",
-    brochureUrl: "https://www.cisco.com/c/en/us/products/collateral/switches/catalyst-9200-series-switches/nb-09-cat-9200-ser-data-sheet-ctp-en.html",
+    brochureUrl: "https://www.cisco.com/c/en/us/products/collateral/switches/catalyst-9200-series-switches/nb-06-cat9200-ser-data-sheet-cte-en.html",
     productUrl: "https://www.cisco.com/site/us/en/products/networking/switches/catalyst-9200-series-switches/index.html"
   },
   {
@@ -2192,7 +2208,7 @@ const products = [
     useCases: ["Large campus core","Multi-building campus backbone","SD-Access fabric core","High-density aggregation"],
     licensing: "DNA Essentials or DNA Advantage per network module.",
     licenseType: "DNA Subscription",
-    brochureUrl: "https://www.cisco.com/c/en/us/products/collateral/switches/catalyst-9600-series-switches/nb-06-cat9600-ser-data-sheet-cte-en.html",
+    brochureUrl: "https://www.cisco.com/site/us/en/products/collateral/networking/switches/catalyst-9600-series-switches/nb-06-cat9600-series-data-sheet-cte-en.html",
     productUrl: "https://www.cisco.com/site/us/en/products/networking/switches/catalyst-9600-series-switches/index.html"
   },
   {
@@ -2260,7 +2276,7 @@ const products = [
     useCases: ["Branch offices","Small and medium businesses","Retail locations","Quiet office environments"],
     licensing: "LAN Lite or LAN Base perpetual license. No DNA subscription required.",
     licenseType: "Perpetual",
-    brochureUrl: "https://www.cisco.com/c/en/us/products/collateral/switches/catalyst-1000-series-switches/nb-06-cat1k-ser-data-sheet-cte-en.html",
+    brochureUrl: "https://www.cisco.com/c/en/us/products/collateral/switches/catalyst-1000-series-switches/nb-06-cat1k-ser-switch-ds-cte-en.html",
     productUrl: "https://www.cisco.com/c/en/us/products/switches/catalyst-1000-series-switches/index.html"
   },
   {
@@ -2309,7 +2325,7 @@ const products = [
     useCases: ["Data center leaf/spine","Cloud provider infrastructure","Enterprise private cloud","High-frequency trading (with deep buffer)"],
     licensing: "NX-OS Essentials (base) or Advantage (advanced features). ACI Essentials or Advantage for fabric mode.",
     licenseType: "NX-OS / ACI Subscription",
-    brochureUrl: "https://www.cisco.com/c/en/us/products/collateral/switches/nexus-9000-series-switches/nb-06-nexus9300-ser-data-sheet-cte-en.html",
+    brochureUrl: "https://www.cisco.com/c/en/us/products/collateral/switches/nexus-9000-series-switches/datasheet-c78-736967.html",
     productUrl: "https://www.cisco.com/c/en/us/products/switches/nexus-9000-series-switches/index.html"
   },
   {
@@ -2332,7 +2348,7 @@ const products = [
     useCases: ["Data center spine/core","Multi-DC fabric interconnect","Cloud-scale infrastructure","AI/ML training clusters"],
     licensing: "NX-OS Essentials or Advantage. ACI Essentials or Advantage for fabric mode.",
     licenseType: "NX-OS / ACI Subscription",
-    brochureUrl: "https://www.cisco.com/c/en/us/products/collateral/switches/nexus-9000-series-switches/nb-06-nexus9500-ser-data-sheet-cte-en.html",
+    brochureUrl: "https://www.cisco.com/c/en/us/products/collateral/switches/nexus-9000-series-switches/datasheet-c78-729404.html",
     productUrl: "https://www.cisco.com/c/en/us/products/switches/nexus-9000-series-switches/index.html"
   },
   {
@@ -2353,7 +2369,7 @@ const products = [
     useCases: ["Algorithmic / high-frequency trading","High-performance computing","AI/ML training clusters","Low-latency storage networks"],
     licensing: "NX-OS Essential (base). NX-OS Advantage for advanced features.",
     licenseType: "NX-OS Subscription",
-    brochureUrl: "https://www.cisco.com/c/en/us/products/collateral/switches/nexus-3000-series-switches/data_sheet_c78-729771.html",
+    brochureUrl: "https://www.cisco.com/c/en/us/products/switches/nexus-3000-series-switches/datasheet-listing.html",
     productUrl: "https://www.cisco.com/c/en/us/products/switches/nexus-3000-series-switches/index.html"
   },
   {
@@ -2375,7 +2391,7 @@ const products = [
     useCases: ["Mid-sized DC spine","Edge data center","Colocation and hosting","Branch data center"],
     licensing: "NX-OS Essentials or Advantage. ACI Essentials or Advantage for fabric mode.",
     licenseType: "NX-OS / ACI Subscription",
-    brochureUrl: "https://www.cisco.com/c/en/us/products/collateral/switches/nexus-9000-series-switches/nb-06-nexus9500-ser-data-sheet-cte-en.html",
+    brochureUrl: "https://www.cisco.com/c/en/us/products/collateral/switches/nexus-9000-series-switches/datasheet-c78-729404.html",
     productUrl: "https://www.cisco.com/c/en/us/products/switches/nexus-9000-series-switches/index.html"
   },
   // ── WIRELESS ────────────────────────────────────────────────────
@@ -2400,11 +2416,11 @@ const products = [
     useCases: ["High-density offices and auditoriums","Healthcare with location services","Education with 1:1 student devices","Warehouses and logistics"],
     licensing: "DNA Essentials or Advantage per AP subscription (3/5/7yr). Or Meraki license if cloud-managed.",
     licenseType: "DNA Subscription",
-    brochureUrl: "https://www.cisco.com/c/en/us/products/collateral/wireless/catalyst-9100ax-access-points/nb-06-cat-9100-ser-data-sheet-cte-en.html",
+    brochureUrl: "https://www.cisco.com/c/en/us/products/wireless/catalyst-9100ax-access-points/datasheet-listing.html",
     productUrl: "https://www.cisco.com/site/us/en/products/networking/wireless/access-points/index.html"
   },
   {
-    id: "meraki-mr", image: "https://meraki.cisco.com/content/dam/cisco-cdc/site/images/photography/products/networking/wireless/access-points/meraki-access-points/mr57/mr9166-access-points-product-tile.png",
+    id: "meraki-mr", image: "https://images.ctfassets.net/9wfw3isqc9xb/5nNJJH9I4QzG4sHQYZ5kMg/meraki-cw9166-hero.png",
     models: [
       {model:"MR36",sku:"MR36-HW",desc:"Wi-Fi 6, 2x2, indoor, entry"},
       {model:"MR46",sku:"MR46-HW",desc:"Wi-Fi 6, 4x4, indoor, mid-range"},
@@ -2446,7 +2462,7 @@ const products = [
     useCases: ["Large campus wireless management","SD-Access wireless fabric","Branch with FlexConnect","Multi-site centralized or distributed WLC"],
     licensing: "DNA Essentials or Advantage per-AP subscription (included with AP DNA license).",
     licenseType: "DNA Subscription",
-    brochureUrl: "https://www.cisco.com/c/en/us/products/collateral/wireless/catalyst-9800-series-wireless-controllers/nb-06-cat9800-ser-data-sheet-cte-en.html",
+    brochureUrl: "https://www.cisco.com/c/en/us/products/wireless/catalyst-9800-series-wireless-controllers/datasheet-listing.html",
     productUrl: "https://www.cisco.com/c/en/us/products/wireless/catalyst-9800-series-wireless-controllers/index.html"
   },
   // ── ROUTING ─────────────────────────────────────────────────────
@@ -2471,7 +2487,7 @@ const products = [
     useCases: ["SD-WAN branch and hub","Enterprise WAN edge","Cloud on-ramp (DIA, SaaS)","WAN aggregation"],
     licensing: "DNA SD-WAN Essentials or Advantage subscription + HSEC (encryption) license.",
     licenseType: "DNA SD-WAN Subscription",
-    brochureUrl: "https://www.cisco.com/c/en/us/products/collateral/routers/catalyst-8000-series/nb-06-cat8000-ser-data-sheet-cte-en.html",
+    brochureUrl: "https://www.cisco.com/c/en/us/products/collateral/routers/cloud-edge/at-a-glance-c45-744084.html",
     productUrl: "https://www.cisco.com/c/en/us/products/routers/catalyst-8000-series/index.html"
   },
   {
@@ -2560,8 +2576,8 @@ const products = [
     useCases: ["Branch WAN aggregation","Compact SD-WAN hub","SASE on-ramp at the edge","Co-location aggregation"],
     licensing: "Cisco DNA subscription required (Essentials or Advantage). SD-WAN tier optional.",
     licenseType: "DNA Subscription",
-    brochureUrl: "https://www.cisco.com/c/en/us/products/collateral/routers/catalyst-8500-series-edge-platforms/nb-06-cat8500-edge-plat-data-sheet-cte-en.html",
-    productUrl: "https://www.cisco.com/site/us/en/products/networking/sdwan-routers/catalyst-8500-edge-platforms/index.html"
+    brochureUrl: "https://www.cisco.com/c/en/us/products/collateral/routers/catalyst-8500-series-edge-platforms/datasheet-c78-744089.html",
+    productUrl: "https://www.cisco.com/c/en/us/support/routers/catalyst-8500l-series-edge-platforms/series.html"
   },
   // ── SD-WAN ──────────────────────────────────────────────────────
   {
@@ -2582,7 +2598,7 @@ const products = [
     useCases: ["MPLS to SD-WAN migration","Multi-cloud networking","Branch office modernization","Secure direct Internet access"],
     licensing: "DNA SD-WAN Essentials or Advantage per-router subscription (1/3/5yr).",
     licenseType: "DNA SD-WAN Subscription",
-    brochureUrl: "https://www.cisco.com/c/en/us/solutions/collateral/enterprise-networks/sd-wan/nb-06-cisco-sd-wan-ebook-cte-en.html",
+    brochureUrl: "https://www.cisco.com/c/en/us/solutions/collateral/enterprise-networks/sd-wan/nb-06-sd-wan-ds-cte-en.html",
     productUrl: "https://www.cisco.com/c/en/us/solutions/enterprise-networks/sd-wan/index.html"
   },
   {
@@ -2630,7 +2646,7 @@ const products = [
     useCases: ["Branch office NGFW","Small enterprise edge","Retail / hospitality firewall","SASE on-ramp"],
     licensing: "Base + Threat/Malware/URL subscriptions. Available as Essentials or Advantage bundle.",
     licenseType: "Threat Subscription",
-    brochureUrl: "https://www.cisco.com/c/en/us/products/collateral/security/secure-firewall/secure-firewall-1200-series-ds.html",
+    brochureUrl: "https://www.cisco.com/c/en/us/products/collateral/security/firewalls/secure-firewall-1200-series-ds.html",
     productUrl: "https://www.cisco.com/site/us/en/products/security/firewalls/secure-firewall-1200-series/index.html"
   },
   {
@@ -2653,7 +2669,7 @@ const products = [
     useCases: ["SMB and branch firewall","Campus internet edge","Compliance-driven network segmentation","VPN concentrator"],
     licensing: "Base license + Threat (IPS/URL), Malware (AMP), URL Filtering subscriptions. Bundled as Essentials or Advantage.",
     licenseType: "Threat Subscription",
-    brochureUrl: "https://www.cisco.com/c/en/us/products/collateral/security/secure-firewall/secure-firewall-3100-series-ds.html",
+    brochureUrl: "https://www.cisco.com/c/en/us/products/collateral/security/firewalls/secure-firewall-3100-series-ds.html",
     productUrl: "https://www.cisco.com/site/us/en/products/security/firewalls/secure-firewall-3100-series/index.html"
   },
   {
@@ -2674,7 +2690,7 @@ const products = [
     useCases: ["Enterprise DC firewall","Internet edge at scale","High-throughput VPN concentrator","Zero-trust segmentation"],
     licensing: "Base + Threat/Malware/URL subscriptions. Available as Essentials or Advantage bundle.",
     licenseType: "Threat Subscription",
-    brochureUrl: "https://www.cisco.com/c/en/us/products/collateral/security/secure-firewall/secure-firewall-4200-series-ds.html",
+    brochureUrl: "https://www.cisco.com/c/en/us/products/collateral/security/firewalls/secure-firewall-4200-series-ds.html",
     productUrl: "https://www.cisco.com/site/us/en/products/security/firewalls/secure-firewall-4200-series/index.html"
   },
   {
@@ -2725,7 +2741,7 @@ const products = [
     useCases: ["Enterprise MFA rollout","Zero trust access for remote workers","VPN and cloud application protection","Compliance (PCI, HIPAA, SOX)"],
     licensing: "Duo Free (up to 10 users), Duo Essentials, Duo Advantage, or Duo Premier (per-user subscription).",
     licenseType: "Per-User Subscription",
-    brochureUrl: "https://www.cisco.com/c/en/us/products/collateral/security/duo/duo-aag.html",
+    brochureUrl: "https://duo.com/resources/data-sheet",
     productUrl: "https://www.cisco.com/site/us/en/products/security/duo/index.html"
   },
   {
@@ -2742,7 +2758,7 @@ const products = [
     useCases: ["SOC modernization","Threat detection and response","Incident investigation","Security operations automation"],
     licensing: "Per-user subscription. Included in Cisco Security Choice Enterprise Agreement.",
     licenseType: "Per-User Subscription",
-    brochureUrl: "https://www.cisco.com/c/en/us/products/collateral/security/xdr-aag.html",
+    brochureUrl: "https://www.cisco.com/c/en/us/products/collateral/security/xdr/xdr-aag.html",
     productUrl: "https://www.cisco.com/site/us/en/products/security/xdr/index.html"
   },
   // ── DATA CENTER ─────────────────────────────────────────────────
@@ -2786,7 +2802,7 @@ const products = [
     useCases: ["Next-gen data center compute","VDI and virtual desktops","AI/ML inference at scale","Private cloud and IaaS"],
     licensing: "Intersight Infrastructure Services, Advantage, or Premier subscription per node.",
     licenseType: "Intersight Subscription",
-    brochureUrl: "https://www.cisco.com/c/en/us/products/collateral/servers-unified-computing/ucs-x-series-modular-system/datasheet-c78-2472587.html",
+    brochureUrl: "https://www.cisco.com/c/en/us/products/servers-unified-computing/ucs-x-series-modular-system/datasheet-listing.html",
     productUrl: "https://www.cisco.com/c/en/us/products/servers-unified-computing/ucs-x-series-modular-system/index.html"
   },
   {
@@ -2803,7 +2819,7 @@ const products = [
     useCases: ["Enterprise DC SDN","Multi-tenant environments","Hybrid cloud networking","DC migration and modernization"],
     licensing: "ACI Essentials, Advantage, or Premier per-leaf-switch subscription (1/3/5yr).",
     licenseType: "ACI Subscription",
-    brochureUrl: "https://www.cisco.com/c/en/us/products/collateral/cloud-systems-management/aci-aag.html",
+    brochureUrl: "https://www.cisco.com/c/en/us/products/collateral/cloud-systems-management/application-policy-infrastructure-controller-apic/at-a-glance-c45-739060.html",
     productUrl: "https://www.cisco.com/c/en/us/solutions/data-center-virtualization/application-centric-infrastructure/index.html"
   },
   {
@@ -2863,8 +2879,8 @@ const products = [
     useCases: ["Multi-DC fabric operations","Cloud-scale enterprise data centers","Hybrid NX-OS / ACI environments","Day-2 fabric assurance and compliance"],
     licensing: "Per-switch subscription (Essentials / Advantage / Premier). Available as SaaS or on-prem cluster.",
     licenseType: "Subscription",
-    brochureUrl: "https://www.cisco.com/c/en/us/products/cloud-systems-management/nexus-dashboard/index.html",
-    productUrl: "https://www.cisco.com/c/en/us/products/cloud-systems-management/nexus-dashboard/index.html"
+    brochureUrl: "https://www.cisco.com/site/us/en/products/networking/cloud-networking/nexus-dashboard/index.html",
+    productUrl: "https://www.cisco.com/site/us/en/products/networking/cloud-networking/nexus-dashboard/index.html"
   },
   {
     id: "catalyst-center", image: "https://www.cisco.com/content/dam/cisco-cdc/site/images/photography/product-photography/catalyst-center-og-1200x630.jpg",
@@ -2900,7 +2916,7 @@ const products = [
     useCases: ["Multi-site IT management","Distributed retail and franchise","Education district-wide management","Remote monitoring and troubleshooting"],
     licensing: "Included with Meraki device license. No separate dashboard cost.",
     licenseType: "Included with Meraki",
-    brochureUrl: "https://meraki.cisco.com/lib/pdf/meraki_datasheet_dashboard.pdf",
+    brochureUrl: "https://meraki.cisco.com/product-collateral/cloud-management-datasheet/",
     productUrl: "https://meraki.cisco.com/products/systems-manager/"
   },
   {
@@ -3753,16 +3769,28 @@ function toggleHwModelSelect(pid) {
 
 function updateHwCompareBtn() {
   var count = hwSelectedSet.size;
-  document.getElementById('hwSelectedCount').textContent = count;
   var btn = document.getElementById('hwCompareSelectedBtn');
-  if (btn) {
-    if (count > 0) {
-      btn.classList.add('visible');
-    } else {
-      btn.classList.remove('visible');
+  var label = document.getElementById('hwCompareSelectedLabel');
+  if (!btn) return;
+  // Adaptive label: makes the action discoverable BEFORE selecting anything,
+  // and tells the user what's needed at each step.
+  var text;
+  if      (count === 0) text = 'Select models to compare';
+  else if (count === 1) text = 'Pick 1 more to compare (1 selected)';
+  else                  text = 'Compare Selected (' + count + ')';
+  if (label) label.textContent = text;
+  btn.disabled = count < 2;
+  btn.classList.toggle('ready', count >= 2);
+  btn.title = count < 2
+    ? 'Tick the checkbox next to at least 2 models to enable comparison'
+    : 'Open side-by-side comparison of ' + count + ' selected models';
+  // First-time hint: when the user crosses the threshold to 2, tell them
+  // the button is ready (they may not be looking at the header).
+  if (count === 2 && !window.__hwHintedCompare) {
+    window.__hwHintedCompare = true;
+    if (typeof showToast === 'function') {
+      showToast('2 models selected — click "Compare Selected" to view side-by-side', 'success', 3500);
     }
-    btn.disabled = count < 2;
-    btn.style.opacity = count < 2 ? '0.6' : '1';
   }
 }
 
