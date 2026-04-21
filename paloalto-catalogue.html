@@ -310,13 +310,17 @@ body {
 /* RAG status light */
 .rag-light {
   width: 10px; height: 10px; border-radius: 50%; display: inline-block;
-  position: absolute; top: 12px; right: 12px; z-index: 2;
+  position: absolute; top: 12px; right: 12px; z-index: 3;
   box-shadow: 0 0 6px currentColor;
   cursor: help;
 }
 .rag-green { background: #22c55e; color: #22c55e; }
 .rag-amber { background: #f59e0b; color: #f59e0b; }
 .rag-red { background: #ef4444; color: #ef4444; }
+
+/* On EOL/EoS cards, move RAG dot to the LEFT so it doesn't collide
+   with the ribbon which hugs the top-right corner. */
+.eol-ribbon + .rag-light { right: auto; left: 12px; top: 12px; }
 
 /* EOL / EoS card status ribbon */
 .eol-ribbon {
@@ -1158,22 +1162,37 @@ footer a:hover { text-decoration: underline; }
 
 .hw-compare-selected-btn {
   padding: 8px 20px;
-  border: 1px solid var(--pa-cyan);
+  border: 1px solid var(--pa-border);
   border-radius: 6px;
   background: transparent;
-  color: var(--pa-cyan);
+  color: var(--pa-muted);
   font-size: 0.8rem;
   font-weight: 600;
   font-family: inherit;
-  cursor: pointer;
+  cursor: not-allowed;
   transition: all var(--transition);
-  display: none;
+  display: inline-flex;
   align-items: center;
   gap: 6px;
   white-space: nowrap;
+  position: relative;
 }
-.hw-compare-selected-btn.visible { display: inline-flex; }
-.hw-compare-selected-btn:hover { background: var(--pa-cyan); color: var(--pa-dark); }
+/* Armed (2+ selected) — full colour + subtle pulse to draw the eye */
+.hw-compare-selected-btn.ready {
+  border-color: var(--pa-cyan);
+  color: var(--pa-cyan);
+  cursor: pointer;
+  animation: hwBtnPulse 2.2s ease-in-out infinite;
+}
+.hw-compare-selected-btn.ready:hover {
+  background: var(--pa-cyan);
+  color: var(--pa-dark);
+  animation: none;
+}
+@keyframes hwBtnPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(0,192,232,0.45); }
+  50%      { box-shadow: 0 0 0 6px rgba(0,192,232,0); }
+}
 
 .hw-body {
   display: flex;
@@ -1761,9 +1780,10 @@ footer a:hover { text-decoration: underline; }
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
         Filters
       </button>
-      <button class="hw-compare-selected-btn" id="hwCompareSelectedBtn" onclick="hwCompareSelected()">
+      <button class="hw-compare-selected-btn" id="hwCompareSelectedBtn" onclick="hwCompareSelected()" title="Tick the checkbox next to at least 2 models to enable comparison">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 20V10M12 20V4M6 20v-6"/></svg>
-        Compare Selected (<span id="hwSelectedCount">0</span>)
+        <span id="hwCompareSelectedLabel">Select models to compare</span>
+        <span id="hwSelectedCount" style="display:none">0</span>
       </button>
       <button class="hw-close" onclick="closeHwCompare()" title="Back to Catalogue">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5"/><polyline points="12 19 5 12 12 5"/></svg>
@@ -2105,7 +2125,7 @@ const products = [
     useCases: ["Hyperscale data center security", "Tier-1 service provider deployments", "Large enterprise Internet edge", "Carrier-grade network security"],
     licensing: "Per-chassis subscription model. Chassis and System Processing Cards (SPCs) purchased separately. Security subscriptions (Prevention or Premium bundle) required. Strata Cloud Manager included.",
     licenseType: "Per-Chassis Subscription",
-    brochureUrl: "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/pa-7500-series",
+    brochureUrl: "https://www.paloaltonetworks.com/resources/datasheets/pa-7500",
     productUrl: "https://www.paloaltonetworks.com/network-security/hardware-firewall-innovations",
     detailedSpecs: [
           { section: 'Performance', rows: [['PA-7500: App-ID firewall throughput (Appmix)', '1.5 Tbps'], ['PA-7500: Threat prevention throughput (Appmix)', '1.44 Tbps'], ['PA-7500: IPSec VPN throughput', '407 Gbps'], ['PA-7500: Connections per second', '7,200,000']] },
@@ -2760,7 +2780,7 @@ const products = [
     useCases: ["Legacy branch and campus deployments", "Small enterprise perimeter (legacy)"],
     licensing: "No longer available for new purchase. Existing customers supported until Aug 31, 2029. Upgrade path: PA-1400 Series.",
     licenseType: "End-of-Sale — Legacy",
-    brochureUrl: "https://www.paloaltonetworks.com/apps/pan/public/downloadResource?pagePath=/content/pan/en_US/resources/datasheets/pa-800-series",
+    brochureUrl: "https://www.paloaltonetworks.com/resources/datasheets/pa-800-series-datasheet",
     productUrl: "https://www.paloaltonetworks.com/network-security/hardware-firewall-innovations",
     detailedSpecs: [
           { section: 'Performance', rows: [['PA-850: App-ID firewall throughput (Appmix)', '1.9 Gbps'], ['PA-850: Threat prevention throughput (Appmix)', '1 Gbps'], ['PA-850: IPSec VPN throughput', '1.8 Gbps'], ['PA-850: Connections per second', '13,100'], ['PA-820: App-ID firewall throughput (Appmix)', '1.5 Gbps'], ['PA-820: Threat prevention throughput (Appmix)', '840 Mbps'], ['PA-820: IPSec VPN throughput', '1.4 Gbps'], ['PA-820: Connections per second', '8,100']] },
@@ -2933,7 +2953,7 @@ const products = [
     useCases: ["Historical reference only — no longer deployable in production"],
     licensing: "This product has reached End-of-Life and is no longer supported or sold. No software updates or support available.",
     licenseType: "End-of-Life — Unsupported",
-    brochureUrl: "https://www.paloaltonetworks.com/resources/datasheets/pa-500",
+    brochureUrl: "https://www.paloaltonetworks.com/services/support/end-of-life-announcements/end-of-life-summary",
     productUrl: "https://www.paloaltonetworks.com/network-security/hardware-firewall-innovations",
     detailedSpecs: {
       "Performance": {
@@ -2978,7 +2998,7 @@ const products = [
     useCases: ["Historical reference only — no longer deployable in production"],
     licensing: "This product has reached End-of-Life and is no longer supported or sold.",
     licenseType: "End-of-Life — Unsupported",
-    brochureUrl: "https://www.paloaltonetworks.com/resources/datasheets/pa-200",
+    brochureUrl: "https://www.paloaltonetworks.com/services/support/end-of-life-announcements/end-of-life-summary",
     productUrl: "https://www.paloaltonetworks.com/network-security/hardware-firewall-innovations",
     detailedSpecs: {
       "Performance": {
@@ -3358,7 +3378,7 @@ const products = [
     useCases: ["Unified NGFW + SASE management", "Security posture optimization", "Operational simplification", "Compliance and audit readiness"],
     licensing: "Included with all Strata NGFW and Prisma SASE subscriptions. Premium tier available with enhanced AIOps features and extended log retention. SaaS-delivered, no additional infrastructure needed.",
     licenseType: "Included / Premium Tier",
-    brochureUrl: "https://www.paloaltonetworks.com/resources/datasheets/strata-cloud-manager",
+    brochureUrl: "https://www.paloaltonetworks.com/network-security/strata-cloud-manager",
     productUrl: "https://www.paloaltonetworks.com/network-security/strata-cloud-manager"
   },
 
@@ -3889,7 +3909,7 @@ const products = [
     useCases: ["Email-based threat prevention", "BEC and CEO fraud protection", "Phishing attack mitigation", "SOC-integrated email security"],
     licensing: "Per-mailbox annual subscription. Available as standalone or integrated with Cortex XSIAM. Volume-based pricing tiers.",
     licenseType: "Per-Mailbox Subscription",
-    brochureUrl: "https://www.paloaltonetworks.com/resources/datasheets/cortex-email-security",
+    brochureUrl: "https://www.paloaltonetworks.com/resources/techbriefs/cortex-advanced-email-security",
     productUrl: "https://www.paloaltonetworks.com/cortex/advanced-email-security"
   },
 
@@ -3966,7 +3986,7 @@ const products = [
     useCases: ["Securing enterprise AI/LLM deployments", "Protecting against prompt injection", "AI data loss prevention", "Governing AI agent behaviors"],
     licensing: "Per-AI-application or per-API-call consumption model. Annual subscription with tiered pricing based on usage volume. Available as standalone or integrated with Cortex Cloud.",
     licenseType: "Consumption-Based",
-    brochureUrl: "https://www.paloaltonetworks.com/resources/datasheets/prisma-ai-runtime-security",
+    brochureUrl: "https://www.paloaltonetworks.com/resources/datasheets/ai-runtime-security",
     productUrl: "https://www.paloaltonetworks.com/prisma/prisma-ai-runtime-security"
   },
 
@@ -4043,7 +4063,7 @@ const products = [
     useCases: ["Outsourced SOC operations", "SOC augmentation (nights/weekends)", "Organizations without dedicated SOC", "Compliance-driven monitoring"],
     licensing: "Per-endpoint or per-seat annual subscription. Tiered service levels: MDR Essentials and MDR Complete. Requires Cortex XDR or XSIAM as the underlying platform. Multi-year discounts available.",
     licenseType: "Per-Endpoint Subscription",
-    brochureUrl: "https://www.paloaltonetworks.com/resources/datasheets/unit42-managed-detection-response",
+    brochureUrl: "https://www.paloaltonetworks.com/resources/datasheets/unit42-managed-detection-and-response",
     productUrl: "https://www.paloaltonetworks.com/cortex/managed-detection-and-response"
   },
   {
@@ -4093,7 +4113,7 @@ const products = [
     useCases: ["Strategic threat intelligence program", "Executive threat briefings", "Operationalizing threat intel in SOC", "Industry-specific threat awareness"],
     licensing: "Subscription-based annual service. Tiered access levels based on intelligence depth and analyst engagement. Can be combined with IR retainer. Custom briefing packages available.",
     licenseType: "Annual Subscription",
-    brochureUrl: "https://www.paloaltonetworks.com/resources/datasheets/unit42-threat-intelligence",
+    brochureUrl: "https://www.paloaltonetworks.com/resources/datasheets/threat-intel-and-incident-response-services",
     productUrl: "https://www.paloaltonetworks.com/unit42/threat-intelligence-partners"
   }
 ];
@@ -4936,16 +4956,28 @@ function toggleHwModelSelect(pid) {
 
 function updateHwCompareBtn() {
   var count = hwSelectedSet.size;
-  document.getElementById('hwSelectedCount').textContent = count;
   var btn = document.getElementById('hwCompareSelectedBtn');
-  if (btn) {
-    if (count > 0) {
-      btn.classList.add('visible');
-    } else {
-      btn.classList.remove('visible');
+  var label = document.getElementById('hwCompareSelectedLabel');
+  if (!btn) return;
+  // Adaptive label: makes the action discoverable BEFORE selecting anything,
+  // and tells the user what's needed at each step.
+  var text;
+  if      (count === 0) text = 'Select models to compare';
+  else if (count === 1) text = 'Pick 1 more to compare (1 selected)';
+  else                  text = 'Compare Selected (' + count + ')';
+  if (label) label.textContent = text;
+  btn.disabled = count < 2;
+  btn.classList.toggle('ready', count >= 2);
+  btn.title = count < 2
+    ? 'Tick the checkbox next to at least 2 models to enable comparison'
+    : 'Open side-by-side comparison of ' + count + ' selected models';
+  // First-time hint: when the user crosses the threshold to 2, tell them
+  // the button is ready (they may not be looking at the header).
+  if (count === 2 && !window.__hwHintedCompare) {
+    window.__hwHintedCompare = true;
+    if (typeof showToast === 'function') {
+      showToast('2 models selected — click "Compare Selected" to view side-by-side', 'success', 3500);
     }
-    btn.disabled = count < 2;
-    btn.style.opacity = count < 2 ? '0.6' : '1';
   }
 }
 
